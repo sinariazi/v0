@@ -1,0 +1,13 @@
+# Ignore everything
+*
+
+# But don't ignore these files and folders
+!package.json
+!next.config.js
+!prisma
+!public
+!app
+!components
+!lib
+!styles
+

@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  EMPLOYEE
+  MANAGER
+  ADMIN
+}
+
+model User {
+  id             String   @id @default(uuid())
+  cognitoId      String   @unique
+  email          String   @unique
+  role           UserRole
+  organizationId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  surveys        Survey[]
+
+  @@index([cognitoId])
+  @@index([email])
+  @@index([organizationId])
+}
+
+model Organization {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
+  surveys   Survey[]
+}
+
+model Survey {
+  id               String   @id @default(uuid())
+  userId           String
+  organizationId   String
+  question1Score   Int
+  question2Score   Int
+  question3Score   Int
+  engagementScore  Float
+  createdAt        DateTime @default(now())
+  user             User     @relation(fields: [userId], references: [id])
+  organization     Organization @relation(fields: [organizationId], references: [id])
+
+  @@index([userId])
+  @@index([organizationId])
+}
+
