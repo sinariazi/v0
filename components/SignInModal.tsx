@@ -1,5 +1,3 @@
-'use client'
-
 import { useState, useEffect } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -11,6 +9,12 @@ import { configureAmplify } from '../lib/amplify-config'
 interface SignInModalProps {
   isOpen: boolean
   onClose: () => void
+}
+
+interface SignInError {
+  name: string;
+  message: string;
+  code?: string;
 }
 
 export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
@@ -43,14 +47,13 @@ export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
       onClose()
     } catch (error) {
       console.error('Error signing in:', error)
-      if (error instanceof Error) {
-        console.error('Error name:', error.name)
-        console.error('Error message:', error.message)
-        if ('code' in error) {
-          console.error('Error code:', (error as any).code)
-        }
+      const signInError = error as SignInError
+      console.error('Error name:', signInError.name)
+      console.error('Error message:', signInError.message)
+      if (signInError.code) {
+        console.error('Error code:', signInError.code)
       }
-      setError(error instanceof Error ? error.message : 'An unknown error occurred')
+      setError(signInError.message || 'An unknown error occurred')
     }
   }
 

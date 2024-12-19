@@ -1,9 +1,20 @@
-import Image from 'next/image'
-import { notFound } from 'next/navigation'
+import Image from "next/image";
+import { notFound } from "next/navigation";
 
-const blogPosts = {
-  'the-true-cost-of-disengaged-employees': {
-    title: 'The True Cost of Disengaged Employees',
+interface BlogPost {
+  title: string;
+  content: string;
+  date: string;
+  image: string;
+}
+
+type BlogPosts = {
+  [key: string]: BlogPost;
+};
+
+const blogPosts: BlogPosts = {
+  "the-true-cost-of-disengaged-employees": {
+    title: "The True Cost of Disengaged Employees",
     content: `
       <p>Employee disengagement is a silent productivity killer that's costing companies billions of dollars annually. According to a Gallup study, disengaged employees cost the U.S. economy up to $550 billion per year in lost productivity.</p>
       
@@ -24,11 +35,11 @@ const blogPosts = {
       
       <p>Investing in employee engagement isn't just a feel-good initiative—it's a strategic business decision that can significantly impact your company's financial performance. By using tools like Mood Whisper, you can track engagement levels in real-time and take proactive steps to improve workplace satisfaction and productivity.</p>
     `,
-    date: '2023-06-15',
-    image: '/blog/disengaged-employees.jpg',
+    date: "2023-06-15",
+    image: "/blog/disengaged-employees.jpg",
   },
-  'boosting-productivity-through-engagement': {
-    title: 'Boosting Productivity Through Engagement',
+  "boosting-productivity-through-engagement": {
+    title: "Boosting Productivity Through Engagement",
     content: `
       <p>Employee engagement is not just a buzzword—it's a critical factor in driving productivity and profitability. Engaged employees are more committed, perform better, and contribute more to their organizations.</p>
       
@@ -49,11 +60,11 @@ const blogPosts = {
       
       <p>By using Mood Whisper's real-time engagement tracking and analytics, you can identify areas for improvement and implement targeted strategies to boost engagement. This data-driven approach allows you to make informed decisions that directly impact your company's productivity and bottom line.</p>
     `,
-    date: '2023-06-22',
-    image: '/blog/productivity-engagement.jpg',
+    date: "2023-06-22",
+    image: "/blog/productivity-engagement.jpg",
   },
-  'creating-a-culture-of-engagement': {
-    title: 'Creating a Culture of Engagement',
+  "creating-a-culture-of-engagement": {
+    title: "Creating a Culture of Engagement",
     content: `
       <p>Building a culture of engagement is crucial for long-term business success. It's not about perks or one-off initiatives, but about creating an environment where employees feel valued, heard, and motivated.</p>
       
@@ -75,20 +86,20 @@ const blogPosts = {
       
       <p>Mood Whisper can help you build and maintain this culture of engagement. By providing real-time insights into employee sentiment and engagement levels, you can quickly identify and address issues, celebrate successes, and continuously improve your workplace culture. Remember, creating an engaging culture is an ongoing process, not a destination—and with the right tools and commitment, it's a goal within every organization's reach.</p>
     `,
-    date: '2023-06-29',
-    image: '/blog/culture-engagement.jpg',
+    date: "2023-06-29",
+    image: "/blog/culture-engagement.jpg",
   },
-}
+};
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug]
+  const post = blogPosts[params.slug] as BlogPost | undefined;
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
-    <div className="py-12">
+    <div className="container mx-auto py-12 px-4">
       <Image
         src={post.image}
         alt={post.title}
@@ -98,8 +109,10 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       />
       <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
       <p className="text-muted-foreground mb-8">Published on {post.date}</p>
-      <div className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
+      <div
+        className="prose dark:prose-invert max-w-none"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
     </div>
-  )
+  );
 }
-
