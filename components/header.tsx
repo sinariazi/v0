@@ -2,17 +2,21 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Loader2 } from "lucide-react";
 import SignUpModal from "./SignUpModal";
 import SignInModal from "./SignInModal";
+import { useAuth } from "@/lib/auth-context";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const { user, loading, signOut } = useAuth();
+  const router = useRouter();
 
   const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -32,6 +36,19 @@ export default function Header() {
     }
   }, []);
 
+  useEffect(() => {
+    console.log("Auth state changed:", { user, loading });
+  }, [user, loading]);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      router.push("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/features", label: "Features" },
@@ -39,7 +56,7 @@ export default function Header() {
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
-    { href: "/admin", label: "Admin" },
+    ...(user ? [{ href: "/admin", label: "Admin" }] : []),
     { href: "#pricing", label: "Pricing", onClick: scrollToPricing },
   ];
 
@@ -73,12 +90,28 @@ export default function Header() {
               <Moon className="h-5 w-5" />
             )}
           </Button>
-          <Button variant="outline" onClick={() => setIsSignUpOpen(true)}>
-            Sign Up
-          </Button>
-          <Button variant="outline" onClick={() => setIsSignInOpen(true)}>
-            Sign In
-          </Button>
+          {loading ? (
+            <Button variant="ghost" disabled>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Loading
+            </Button>
+          ) : user ? (
+            <>
+              <span className="text-sm">Welcome, {user.attributes.email}</span>
+              <Button variant="outline" onClick={handleSignOut}>
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="outline" onClick={() => setIsSignUpOpen(true)}>
+                Sign Up
+              </Button>
+              <Button variant="outline" onClick={() => setIsSignInOpen(true)}>
+                Sign In
+              </Button>
+            </>
+          )}
           <Button asChild variant="outline" className="hidden md:inline-flex">
             <Link href="/schedule-demo">Schedule Demo</Link>
           </Button>
@@ -109,12 +142,30 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Button variant="outline" onClick={() => setIsSignUpOpen(true)}>
-              Sign Up
-            </Button>
-            <Button variant="outline" onClick={() => setIsSignInOpen(true)}>
-              Sign In
-            </Button>
+            {loading ? (
+              <Button variant="ghost" disabled>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Loading
+              </Button>
+            ) : user ? (
+              <>
+                <span className="text-sm">
+                  Welcome, {user.attributes.email}
+                </span>
+                <Button variant="outline" onClick={handleSignOut}>
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button variant="outline" onClick={() => setIsSignUpOpen(true)}>
+                  Sign Up
+                </Button>
+                <Button variant="outline" onClick={() => setIsSignInOpen(true)}>
+                  Sign In
+                </Button>
+              </>
+            )}
             <Button asChild variant="outline">
               <Link href="/schedule-demo">Schedule Demo</Link>
             </Button>
