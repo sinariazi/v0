@@ -1,42 +1,35 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from 'next/link'
+import Image from 'next/image'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(date);
-};
+  const date = new Date(dateString)
+  return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(date)
+}
 
 const blogPosts = [
   {
-    slug: "the-true-cost-of-disengaged-employees",
-    title: "The True Cost of Disengaged Employees",
-    excerpt:
-      "Discover how employee disengagement is costing companies billions annually and what you can do about it.",
-    date: "2023-06-15",
-    image: "/blog/disengaged-employees.jpg",
+    slug: 'the-true-cost-of-disengaged-employees',
+    title: 'The True Cost of Disengaged Employees',
+    excerpt: 'Discover how employee disengagement is costing companies billions annually and what you can do about it.',
+    date: '2023-06-15',
+    image: '/blog/disengaged-employees.jpg',
   },
   {
-    slug: "boosting-productivity-through-engagement",
-    title: "Boosting Productivity Through Engagement",
-    excerpt:
-      "Learn how engaged employees can significantly increase your company's productivity and bottom line.",
-    date: "2023-06-22",
-    image: "/blog/productivity-engagement.jpg",
+    slug: 'boosting-productivity-through-engagement',
+    title: 'Boosting Productivity Through Engagement',
+    excerpt: 'Learn how engaged employees can significantly increase your company\'s productivity and bottom line.',
+    date: '2023-06-22',
+    image: '/blog/productivity-engagement.jpg',
   },
   {
-    slug: "creating-a-culture-of-engagement",
-    title: "Creating a Culture of Engagement",
-    excerpt:
-      "Explore strategies for fostering a workplace culture that naturally encourages high employee engagement.",
-    date: "2023-06-29",
-    image: "/blog/culture-engagement.jpg",
+    slug: 'creating-a-culture-of-engagement',
+    title: 'Creating a Culture of Engagement',
+    excerpt: 'Explore strategies for fostering a workplace culture that naturally encourages high employee engagement.',
+    date: '2023-06-29',
+    image: '/blog/culture-engagement.jpg',
   },
-];
+]
 
 export default function BlogPage() {
   return (
@@ -69,5 +62,6 @@ export default function BlogPage() {
         ))}
       </div>
     </div>
-  );
+  )
 }
+

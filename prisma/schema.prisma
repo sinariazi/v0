@@ -17,9 +17,9 @@ enum UserRole {
 }
 
 model User {
-  id             String   @id @default(uuid())
-  cognitoId      String   @unique
+  id             Int      @id @default(autoincrement())
   email          String   @unique
+  name           String?
   role           UserRole
   organizationId String
   createdAt      DateTime @default(now())
@@ -27,7 +27,6 @@ model User {
   organization   Organization @relation(fields: [organizationId], references: [id])
   surveys        Survey[]
 
-  @@index([cognitoId])
   @@index([email])
   @@index([organizationId])
 }
@@ -43,7 +42,7 @@ model Organization {
 
 model Survey {
   id               String   @id @default(uuid())
-  userId           String
+  userId           Int
   organizationId   String
   question1Score   Int
   question2Score   Int

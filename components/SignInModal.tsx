@@ -1,41 +1,34 @@
-import { useState, useEffect } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useAuth } from "@/lib/auth-context";
-import { configureAmplify } from "../lib/amplify-config";
+import { useState, useEffect } from 'react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { useAuth } from '@/lib/auth-context'
+import { configureAmplify } from '../lib/amplify-config'
 
 interface SignInModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
 export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmationCode, setConfirmationCode] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [isConfigured, setIsConfigured] = useState(false);
-  const [isConfirmationRequired, setIsConfirmationRequired] = useState(false);
-  const { signIn, confirmSignUp, loading, user } = useAuth();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmationCode, setConfirmationCode] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [isConfigured, setIsConfigured] = useState(false)
+  const [isConfirmationRequired, setIsConfirmationRequired] = useState(false)
+  const { signIn, confirmSignUp, loading, user } = useAuth()
 
   useEffect(() => {
-    console.log("SignInModal: Attempting to configure Amplify...");
-    const configured = configureAmplify();
-    console.log("SignInModal: Amplify configuration result:", configured);
-    setIsConfigured(configured);
+    console.log('SignInModal: Attempting to configure Amplify...')
+    const configured = configureAmplify()
+    console.log('SignInModal: Amplify configuration result:', configured)
+    setIsConfigured(configured)
     if (!configured) {
-      setError(
-        "Amplify configuration failed. Please check your environment variables."
-      );
+      setError('Amplify configuration failed. Please check your environment variables.')
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (user) {
@@ -44,59 +37,51 @@ export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
   }, [user, onClose]);
 
   const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
+    e.preventDefault()
+    setError(null)
     try {
-      const result = await signIn(email, password);
+      const result = await signIn(email, password)
       if (result.isSignedIn) {
-        console.log("Sign-in successful");
-        onClose();
+        console.log('Sign-in successful');
+        onClose()
       } else if (result.userConfirmationRequired) {
-        setIsConfirmationRequired(true);
+        setIsConfirmationRequired(true)
       }
     } catch (error) {
-      console.error("Error signing in:", error);
-      setError(
-        "Failed to sign in. Please check your credentials and try again."
-      );
+      console.error('Error signing in:', error)
+      setError('Failed to sign in. Please check your credentials and try again.')
     }
-  };
+  }
 
   const handleConfirmSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
+    e.preventDefault()
+    setError(null)
     try {
-      const isConfirmed = await confirmSignUp(email, confirmationCode);
+      const isConfirmed = await confirmSignUp(email, confirmationCode)
       if (isConfirmed) {
-        console.log("Email confirmed successfully");
+        console.log('Email confirmed successfully')
         // Attempt to sign in again after confirmation
-        const result = await signIn(email, password);
+        const result = await signIn(email, password)
         if (result.isSignedIn) {
-          console.log("Sign-in successful after confirmation");
-          onClose();
+          console.log('Sign-in successful after confirmation');
+          onClose()
         } else {
-          setError(
-            "Sign-in failed after confirmation. Please try signing in again."
-          );
+          setError('Sign-in failed after confirmation. Please try signing in again.')
         }
       } else {
-        setError(
-          "Failed to confirm email. Please check the confirmation code and try again."
-        );
+        setError('Failed to confirm email. Please check the confirmation code and try again.')
       }
     } catch (error) {
-      console.error("Error confirming sign up:", error);
-      setError("Failed to confirm email. Please try again.");
+      console.error('Error confirming sign up:', error)
+      setError('Failed to confirm email. Please try again.')
     }
-  };
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            {isConfirmationRequired ? "Confirm Email" : "Sign In"}
-          </DialogTitle>
+          <DialogTitle>{isConfirmationRequired ? 'Confirm Email' : 'Sign In'}</DialogTitle>
         </DialogHeader>
         {!isConfirmationRequired ? (
           <form onSubmit={handleSignIn} className="space-y-4">
@@ -124,7 +109,7 @@ export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
             </div>
             {error && <p className="text-red-500">{error}</p>}
             <Button type="submit" disabled={!isConfigured || loading}>
-              {loading ? "Signing In..." : "Sign In"}
+              {loading ? 'Signing In...' : 'Sign In'}
             </Button>
           </form>
         ) : (
@@ -142,11 +127,12 @@ export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
             </div>
             {error && <p className="text-red-500">{error}</p>}
             <Button type="submit" disabled={!isConfigured || loading}>
-              {loading ? "Confirming..." : "Confirm Email"}
+              {loading ? 'Confirming...' : 'Confirm Email'}
             </Button>
           </form>
         )}
       </DialogContent>
     </Dialog>
-  );
+  )
 }
+
