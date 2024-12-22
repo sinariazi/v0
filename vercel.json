@@ -5,14 +5,16 @@
       "src": "package.json",
       "use": "@vercel/next",
       "config": {
-        "installCommand": "pnpm install --no-frozen-lockfile",
-        "buildCommand": "pnpm prisma generate && pnpm build"
+        "installCommand": "npm install",
+        "buildCommand": "npm run prisma generate && npm run build"
       }
     }
   ],
   "env": {
     "AWS_REGION": "@aws_region",
     "SECRET_NAME": "@secret_name",
-    "DATABASE_URL": "@database_url"
+    "DATABASE_URL": "@database_url",
+    "NODE_ENV": "production"
   }
 }
+

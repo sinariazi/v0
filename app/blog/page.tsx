@@ -2,6 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+};
+
 const blogPosts = [
   {
     slug: "the-true-cost-of-disengaged-employees",
@@ -53,7 +62,7 @@ export default function BlogPage() {
             <CardContent className="flex-grow">
               <p className="text-muted-foreground mb-4">{post.excerpt}</p>
               <p className="text-sm text-muted-foreground">
-                Published on {post.date}
+                Published on {formatDate(post.date)}
               </p>
             </CardContent>
           </Card>
