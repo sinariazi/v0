@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@aws-amplify/auth": "^6.8.3",
@@ -23,15 +24,17 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
     "aws-amplify": "^6.0.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "date-fns": "^3.0.0",
+    "date-fns": "^3.6.0",
     "lucide-react": "^0.294.0",
     "next": "14.0.4",
     "next-themes": "^0.4.4",
     "react": "^18.2.0",
-    "react-day-picker": "^8.9.1",
+    "react-day-picker": "^8.10.1",
     "react-dom": "^18.2.0",
     "recharts": "^2.10.3",
     "tailwind-merge": "^2.1.0",
@@ -47,6 +50,7 @@
     "postcss": "^8.4.32",
     "prisma": "^5.7.1",
     "tailwindcss": "^3.3.6",
-    "typescript": "^5.3.3"
-  }
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "pnpm@8.6.0"
 }
