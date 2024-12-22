@@ -38,11 +38,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    checkSession();
-  }, []);
-
-  async function checkSession() {
+  const checkSession = React.useCallback(async () => {
     setLoading(true);
     try {
       const session = await fetchAuthSession();
@@ -57,7 +53,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    checkSession();
+  }, [checkSession]);
 
   async function checkUser() {
     try {
