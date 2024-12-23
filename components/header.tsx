@@ -5,15 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X, Loader2 } from "lucide-react";
-import SignUpModal from "./SignUpModal";
+import { Moon, Sun, Menu, X, Loader2, LogIn, LogOut } from "lucide-react";
 import SignInModal from "./SignInModal";
 import { useAuth } from "@/lib/auth-context";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const { user, loading, signOut } = useAuth();
   const router = useRouter();
@@ -100,20 +98,18 @@ export default function Header() {
             </Button>
           ) : user ? (
             <>
-              <span className="text-sm">Welcome, {user.attributes.email}</span>
-              <Button variant="outline" onClick={handleSignOut}>
-                Sign Out
+              <Button variant="ghost" size="icon" onClick={handleSignOut}>
+                <LogOut className="h-5 w-5" />
               </Button>
             </>
           ) : (
-            <>
-              <Button variant="outline" onClick={() => setIsSignUpOpen(true)}>
-                Sign Up
-              </Button>
-              <Button variant="outline" onClick={() => setIsSignInOpen(true)}>
-                Sign In
-              </Button>
-            </>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsSignInOpen(true)}
+            >
+              <LogIn className="h-5 w-5" />
+            </Button>
           )}
           <Button asChild variant="outline" className="hidden md:inline-flex">
             <Link href="/schedule-demo">Schedule Demo</Link>
@@ -151,23 +147,17 @@ export default function Header() {
                 Loading
               </Button>
             ) : user ? (
-              <>
-                <span className="text-sm">
-                  Welcome, {user.attributes.email}
-                </span>
-                <Button variant="outline" onClick={handleSignOut}>
-                  Sign Out
-                </Button>
-              </>
+              <Button variant="ghost" size="icon" onClick={handleSignOut}>
+                <LogOut className="h-5 w-5" />
+              </Button>
             ) : (
-              <>
-                <Button variant="outline" onClick={() => setIsSignUpOpen(true)}>
-                  Sign Up
-                </Button>
-                <Button variant="outline" onClick={() => setIsSignInOpen(true)}>
-                  Sign In
-                </Button>
-              </>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsSignInOpen(true)}
+              >
+                <LogIn className="h-5 w-5" />
+              </Button>
             )}
             <Button asChild variant="outline">
               <Link href="/schedule-demo">Schedule Demo</Link>
@@ -175,10 +165,6 @@ export default function Header() {
           </nav>
         </div>
       )}
-      <SignUpModal
-        isOpen={isSignUpOpen}
-        onClose={() => setIsSignUpOpen(false)}
-      />
       <SignInModal
         isOpen={isSignInOpen}
         onClose={() => setIsSignInOpen(false)}
