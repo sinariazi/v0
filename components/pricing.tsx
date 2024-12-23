@@ -1,6 +1,13 @@
-import { Check } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function Pricing() {
   const plans = [
@@ -12,8 +19,8 @@ export default function Pricing() {
         "Up to 25 employees",
         "Basic mood tracking",
         "Weekly reports",
-        "Email support"
-      ]
+        "Email support",
+      ],
     },
     {
       name: "Pro",
@@ -24,8 +31,8 @@ export default function Pricing() {
         "Advanced mood analytics",
         "Daily reports",
         "Team collaboration tools",
-        "Priority email support"
-      ]
+        "Priority email support",
+      ],
     },
     {
       name: "Enterprise",
@@ -36,10 +43,10 @@ export default function Pricing() {
         "Custom integrations",
         "Dedicated account manager",
         "24/7 phone support",
-        "On-site training"
-      ]
-    }
-  ]
+        "On-site training",
+      ],
+    },
+  ];
 
   return (
     <section id="pricing" className="py-24 px-4 bg-muted scroll-mt-16">
@@ -53,7 +60,12 @@ export default function Pricing() {
                 <CardDescription>{plan.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-4xl font-bold mb-4">{plan.price}<span className="text-xl font-normal text-muted-foreground">{plan.price !== 'Custom' ? '/month' : ''}</span></p>
+                <p className="text-4xl font-bold mb-4">
+                  {plan.price}
+                  <span className="text-xl font-normal text-muted-foreground">
+                    {plan.price !== "Custom" ? "/month" : ""}
+                  </span>
+                </p>
                 <ul className="space-y-2">
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center">
@@ -71,6 +83,5 @@ export default function Pricing() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

@@ -7,11 +7,14 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "organize-imports": "tsc --build --force --preserveWatchOutput && eslint . --fix"
   },
   "dependencies": {
     "@aws-amplify/auth": "^6.0.9",
+    "@aws-sdk/client-cognito-identity-provider": "^3.716.0",
     "@aws-sdk/client-secrets-manager": "^3.360.0",
+    "@aws-sdk/credential-providers": "^3.716.0",
     "@prisma/client": "^5.7.1",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
