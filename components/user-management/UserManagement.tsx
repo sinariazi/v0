@@ -55,15 +55,14 @@ export function UserManagement() {
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to add user");
       }
-    } catch (error: unknown) {
+    } catch (error) {
       console.error("Error adding user:", error);
-      let errorMessage = "Failed to add user. Please try again.";
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
       toast({
         title: "Error",
-        description: errorMessage,
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to add user. Please try again.",
         variant: "destructive",
       });
     }
@@ -88,20 +87,19 @@ export function UserManagement() {
           const errorData = await response.json();
           throw new Error(errorData.message || "Failed to update user");
         }
-      } catch (error: unknown) {
+      } catch (error) {
         console.error("Error updating user:", error);
-        let errorMessage = "Failed to update user. Please try again.";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
         toast({
           title: "Error",
-          description: errorMessage,
+          description:
+            error instanceof Error
+              ? error.message
+              : "Failed to update user. Please try again.",
           variant: "destructive",
         });
       }
     },
-    [toast],
+    [toast]
   );
 
   const handleRemoveUser = useCallback(
@@ -121,21 +119,20 @@ export function UserManagement() {
             const errorData = await response.json();
             throw new Error(errorData.message || "Failed to remove user");
           }
-        } catch (error: unknown) {
+        } catch (error) {
           console.error("Error removing user:", error);
-          let errorMessage = "Failed to remove user. Please try again.";
-          if (error instanceof Error) {
-            errorMessage = error.message;
-          }
           toast({
             title: "Error",
-            description: errorMessage,
+            description:
+              error instanceof Error
+                ? error.message
+                : "Failed to remove user. Please try again.",
             variant: "destructive",
           });
         }
       }
     },
-    [toast],
+    [toast]
   );
 
   if (state.isLoading) {
