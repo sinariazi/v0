@@ -1,6 +1,12 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function AdminDashboard() {
   return (
@@ -10,7 +16,9 @@ export default function AdminDashboard() {
         <Card className="flex flex-col min-h-[200px]">
           <CardHeader>
             <CardTitle>User Management</CardTitle>
-            <CardDescription>Manage your users and their permissions</CardDescription>
+            <CardDescription>
+              Manage your users and their permissions
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex-grow flex items-end pt-4">
             <Button asChild className="w-full mt-auto">
@@ -21,7 +29,9 @@ export default function AdminDashboard() {
         <Card className="flex flex-col min-h-[200px]">
           <CardHeader>
             <CardTitle>Surveys</CardTitle>
-            <CardDescription>Create and manage employee surveys</CardDescription>
+            <CardDescription>
+              Create and manage employee surveys
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex-grow flex items-end pt-4">
             <Button asChild className="w-full mt-auto">
@@ -32,7 +42,9 @@ export default function AdminDashboard() {
         <Card className="flex flex-col min-h-[200px]">
           <CardHeader>
             <CardTitle>Insights</CardTitle>
-            <CardDescription>View and analyze employee engagement data</CardDescription>
+            <CardDescription>
+              View and analyze employee engagement data
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex-grow flex items-end pt-4">
             <Button asChild className="w-full mt-auto">
@@ -43,7 +55,9 @@ export default function AdminDashboard() {
         <Card className="flex flex-col min-h-[200px]">
           <CardHeader>
             <CardTitle>Billing</CardTitle>
-            <CardDescription>Manage your subscription and billing information</CardDescription>
+            <CardDescription>
+              Manage your subscription and billing information
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex-grow flex items-end pt-4">
             <Button asChild className="w-full mt-auto">
@@ -64,6 +78,5 @@ export default function AdminDashboard() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
-

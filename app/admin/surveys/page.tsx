@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function SurveysPage() {
   return (
@@ -11,6 +17,5 @@ export default function SurveysPage() {
         <p>Survey management functionality will be implemented here.</p>
       </CardContent>
     </Card>
-  )
+  );
 }
-

@@ -1,4 +1,4 @@
-import { State, Action, User } from "./types";
+import { Action, State } from "./types";
 
 export const initialState: State = {
   users: [],
@@ -7,7 +7,6 @@ export const initialState: State = {
   searchTerm: "",
   isAddUserOpen: false,
   newUser: { role: "EMPLOYEE", gender: "OTHER" },
-  editingUser: null,
 };
 
 export function userManagementReducer(state: State, action: Action): State {
@@ -24,13 +23,11 @@ export function userManagementReducer(state: State, action: Action): State {
       return { ...state, isAddUserOpen: action.payload };
     case "SET_NEW_USER":
       return { ...state, newUser: action.payload };
-    case "SET_EDITING_USER":
-      return { ...state, editingUser: action.payload };
     case "UPDATE_USER":
       return {
         ...state,
         users: state.users.map((user) =>
-          user.id === action.payload.id ? action.payload : user
+          user.id === action.payload.id ? action.payload : user,
         ),
       };
     case "REMOVE_USER":

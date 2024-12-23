@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
-import { Users, ClipboardList, BarChart, CreditCard, Home } from 'lucide-react'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Users, ClipboardList, BarChart, CreditCard, Home } from "lucide-react";
 
 const sidebarNavItems = [
   {
@@ -32,10 +32,10 @@ const sidebarNavItems = [
     href: "/admin/billing",
     icon: CreditCard,
   },
-]
+];
 
 export function AdminSideMenu() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <div className="h-full py-6">
@@ -51,7 +51,7 @@ export function AdminSideMenu() {
                 variant={pathname === item.href ? "secondary" : "ghost"}
                 className={cn(
                   "w-full justify-start",
-                  pathname === item.href && "bg-muted hover:bg-muted"
+                  pathname === item.href && "bg-muted hover:bg-muted",
                 )}
                 asChild
               >
@@ -65,6 +65,5 @@ export function AdminSideMenu() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

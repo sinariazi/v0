@@ -30,7 +30,7 @@ interface AuthContextType {
   loading: boolean;
   signIn: (
     username: string,
-    password: string
+    password: string,
   ) => Promise<{ isSignedIn: boolean; userConfirmationRequired?: boolean }>;
   signOut: () => Promise<void>;
   signUp: (username: string, password: string, email: string) => Promise<void>;
@@ -136,7 +136,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function handleSignUp(
     username: string,
     password: string,
-    email: string
+    email: string,
   ) {
     setLoading(true);
     try {

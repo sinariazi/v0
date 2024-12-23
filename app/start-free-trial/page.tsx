@@ -1,19 +1,31 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function StartFreeTrialPage() {
   return (
     <div className="container mx-auto py-12">
-      <h1 className="text-4xl font-bold text-center mb-8">Start Your Free Trial</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">
+        Start Your Free Trial
+      </h1>
       <p className="text-xl text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-        Experience the power of Mood Whisper risk-free for 14 days. No credit card required.
+        Experience the power of Mood Whisper risk-free for 14 days. No credit
+        card required.
       </p>
       <Card className="max-w-md mx-auto">
         <CardHeader>
           <CardTitle>Sign Up for Free Trial</CardTitle>
-          <CardDescription>Fill out the form below to get started</CardDescription>
+          <CardDescription>
+            Fill out the form below to get started
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form>
@@ -38,6 +50,5 @@ export default function StartFreeTrialPage() {
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }
-

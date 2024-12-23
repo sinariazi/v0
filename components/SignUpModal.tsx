@@ -47,7 +47,7 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
     setIsConfigured(configured);
     if (!configured) {
       setError(
-        "Amplify configuration failed. Please check your environment variables."
+        "Amplify configuration failed. Please check your environment variables.",
       );
     }
   }, []);

@@ -1,30 +1,73 @@
-import React, { useContext, useMemo } from 'react'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { UserManagementContext } from './UserManagementContext'
-import { User, UserRole, Gender } from './types'
+import React, { useContext, useMemo, useState, useEffect } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { UserManagementContext } from "./UserManagementContext";
+import { User, UserRole, Gender } from "./types";
 
 export function UserTable() {
-  const { state, dispatch, handleUpdateUser, handleRemoveUser } = useContext(UserManagementContext);
+  const { state, dispatch, handleUpdateUser, handleRemoveUser } = useContext(
+    UserManagementContext,
+  );
+  const [changedUsers, setChangedUsers] = useState<{ [key: number]: boolean }>(
+    {},
+  );
 
   const filteredUsers = useMemo(() => {
-    return state.users.filter((user) =>
-      (user.firstName?.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
-       user.lastName?.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
-       user.email.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
-       user.cognitoUsername?.toLowerCase().includes(state.searchTerm.toLowerCase())) ?? false
+    return state.users.filter(
+      (user) =>
+        (user.firstName
+          ?.toLowerCase()
+          .includes(state.searchTerm.toLowerCase()) ||
+          user.lastName
+            ?.toLowerCase()
+            .includes(state.searchTerm.toLowerCase()) ||
+          user.email.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+          user.cognitoUsername
+            ?.toLowerCase()
+            .includes(state.searchTerm.toLowerCase())) ??
+        false,
     );
   }, [state.users, state.searchTerm]);
+
+  const handleInputChange = (
+    user: User,
+    field: keyof User,
+    value: string | UserRole | Gender,
+  ) => {
+    const updatedUser = { ...user, [field]: value };
+    dispatch({ type: "UPDATE_USER", payload: updatedUser });
+    setChangedUsers((prev) => ({ ...prev, [user.id]: true }));
+  };
+
+  const handleSave = async (user: User) => {
+    await handleUpdateUser(user);
+    setChangedUsers((prev) => ({ ...prev, [user.id]: false }));
+  };
 
   return (
     <>
       <Input
         placeholder="Search users..."
         value={state.searchTerm}
-        onChange={(e) => dispatch({ type: 'SET_SEARCH_TERM', payload: e.target.value })}
-        className="max-w-sm"
+        onChange={(e) =>
+          dispatch({ type: "SET_SEARCH_TERM", payload: e.target.value })
+        }
+        className="max-w-sm mb-4"
       />
       <Table>
         <TableHeader>
@@ -33,7 +76,6 @@ export function UserTable() {
             <TableHead>Email</TableHead>
             <TableHead>Role</TableHead>
             <TableHead>User ID (Sub)</TableHead>
-            <TableHead>Email Verified</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Gender</TableHead>
             <TableHead>Team</TableHead>
@@ -44,12 +86,37 @@ export function UserTable() {
         <TableBody>
           {filteredUsers.map((user) => (
             <TableRow key={user.id}>
-              <TableCell>{user.firstName} {user.lastName}</TableCell>
-              <TableCell>{user.email}</TableCell>
+              <TableCell>
+                <Input
+                  value={user.firstName}
+                  onChange={(e) =>
+                    handleInputChange(user, "firstName", e.target.value)
+                  }
+                  className="w-full"
+                />
+                <Input
+                  value={user.lastName}
+                  onChange={(e) =>
+                    handleInputChange(user, "lastName", e.target.value)
+                  }
+                  className="w-full mt-2"
+                />
+              </TableCell>
+              <TableCell>
+                <Input
+                  value={user.email}
+                  onChange={(e) =>
+                    handleInputChange(user, "email", e.target.value)
+                  }
+                  className="w-full"
+                />
+              </TableCell>
               <TableCell>
                 <Select
                   value={user.role}
-                  onValueChange={(value: UserRole) => handleUpdateUser({ ...user, role: value })}
+                  onValueChange={(value: UserRole) =>
+                    handleInputChange(user, "role", value)
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select a role" />
@@ -62,12 +129,13 @@ export function UserTable() {
                 </Select>
               </TableCell>
               <TableCell>{user.cognitoSub}</TableCell>
-              <TableCell>{user.emailVerified ? 'Yes' : 'No'}</TableCell>
               <TableCell>{user.status}</TableCell>
               <TableCell>
                 <Select
                   value={user.gender}
-                  onValueChange={(value: Gender) => handleUpdateUser({ ...user, gender: value })}
+                  onValueChange={(value: Gender) =>
+                    handleInputChange(user, "gender", value)
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select gender" />
@@ -81,14 +149,36 @@ export function UserTable() {
               </TableCell>
               <TableCell>
                 <Input
-                  value={user.team || ''}
-                  onChange={(e) => handleUpdateUser({ ...user, team: e.target.value })}
+                  value={user.team || ""}
+                  onChange={(e) =>
+                    handleInputChange(user, "team", e.target.value)
+                  }
+                  className="w-full"
                 />
               </TableCell>
-              <TableCell>{user.organizationId}</TableCell>
               <TableCell>
-                <Button onClick={() => dispatch({ type: 'SET_EDITING_USER', payload: user })} className="mr-2">Edit</Button>
-                <Button onClick={() => handleRemoveUser(user.id)} variant="destructive">Remove</Button>
+                <Input
+                  value={user.organizationId}
+                  onChange={(e) =>
+                    handleInputChange(user, "organizationId", e.target.value)
+                  }
+                  className="w-full"
+                />
+              </TableCell>
+              <TableCell>
+                <Button
+                  onClick={() => handleSave(user)}
+                  disabled={!changedUsers[user.id]}
+                >
+                  Save
+                </Button>
+                <Button
+                  onClick={() => handleRemoveUser(user.id)}
+                  variant="destructive"
+                  className="ml-2"
+                >
+                  Remove
+                </Button>
               </TableCell>
             </TableRow>
           ))}
@@ -97,4 +187,3 @@ export function UserTable() {
     </>
   );
 }
-

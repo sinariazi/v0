@@ -4,7 +4,6 @@ import React, { useReducer, useCallback, useEffect, useRef } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { UserTable } from "./UserTable";
 import { AddUserDialog } from "./AddUserDialog";
-import { EditUserDialog } from "./EditUserDialog";
 import { UserManagementContext } from "./UserManagementContext";
 import { userManagementReducer, initialState } from "./userManagementReducer";
 import { useFetchUsers } from "./useFetchUsers";
@@ -53,13 +52,18 @@ export function UserManagement() {
           description: "User added successfully.",
         });
       } else {
-        throw new Error("Failed to add user");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to add user");
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error adding user:", error);
+      let errorMessage = "Failed to add user. Please try again.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
       toast({
         title: "Error",
-        description: "Failed to add user. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     }
@@ -74,25 +78,30 @@ export function UserManagement() {
           body: JSON.stringify(user),
         });
         if (response.ok) {
-          dispatch({ type: "UPDATE_USER", payload: user });
-          dispatch({ type: "SET_EDITING_USER", payload: null });
+          const updatedUser = await response.json();
+          dispatch({ type: "UPDATE_USER", payload: updatedUser });
           toast({
             title: "Success",
             description: "User updated successfully.",
           });
         } else {
-          throw new Error("Failed to update user");
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Failed to update user");
         }
-      } catch (error) {
+      } catch (error: unknown) {
         console.error("Error updating user:", error);
+        let errorMessage = "Failed to update user. Please try again.";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
         toast({
           title: "Error",
-          description: "Failed to update user. Please try again.",
+          description: errorMessage,
           variant: "destructive",
         });
       }
     },
-    [toast]
+    [toast],
   );
 
   const handleRemoveUser = useCallback(
@@ -109,19 +118,24 @@ export function UserManagement() {
               description: "User removed successfully.",
             });
           } else {
-            throw new Error("Failed to remove user");
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Failed to remove user");
           }
-        } catch (error) {
+        } catch (error: unknown) {
           console.error("Error removing user:", error);
+          let errorMessage = "Failed to remove user. Please try again.";
+          if (error instanceof Error) {
+            errorMessage = error.message;
+          }
           toast({
             title: "Error",
-            description: "Failed to remove user. Please try again.",
+            description: errorMessage,
             variant: "destructive",
           });
         }
       }
     },
-    [toast]
+    [toast],
   );
 
   if (state.isLoading) {
@@ -141,7 +155,6 @@ export function UserManagement() {
       <div className="space-y-4">
         <AddUserDialog />
         <UserTable />
-        <EditUserDialog />
       </div>
     </UserManagementContext.Provider>
   );

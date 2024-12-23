@@ -31,7 +31,7 @@ export type State = {
   searchTerm: string;
   isAddUserOpen: boolean;
   newUser: Partial<User>;
-  editingUser: User | null;
+  // editingUser: User | null;
 };
 
 export type Action =

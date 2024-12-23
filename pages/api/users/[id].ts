@@ -14,13 +14,14 @@ const cognitoClient = new CognitoIdentityProviderClient({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const { id } = req.query;
 
   if (req.method === "PUT") {
     try {
-      const { email, role, gender, lastName, firstName, team } = req.body;
+      const { email, role, gender, lastName, firstName, team, organizationId } =
+        req.body;
       const user = await prisma.user.findUnique({ where: { id: Number(id) } });
 
       if (!user) {
@@ -36,7 +37,9 @@ export default async function handler(
           { Name: "gender", Value: gender },
           { Name: "family_name", Value: lastName },
           { Name: "given_name", Value: firstName },
-          { Name: "custom:team", Value: team || "" },
+          { Name: "custom:organization_id", Value: organizationId },
+          // Only include team if it's not null or undefined
+          ...(team ? [{ Name: "custom:team", Value: team }] : []),
         ],
       });
 
@@ -45,13 +48,28 @@ export default async function handler(
       // Update user in database
       const updatedUser = await prisma.user.update({
         where: { id: Number(id) },
-        data: { email, role, gender, lastName, firstName, team },
+        data: {
+          email,
+          role,
+          gender,
+          lastName,
+          firstName,
+          team,
+          organizationId,
+        },
       });
 
       res.status(200).json(updatedUser);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error updating user:", error);
-      res.status(500).json({ message: "Error updating user" });
+      let errorMessage =
+        "An unexpected error occurred while updating the user.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      res
+        .status(500)
+        .json({ message: "Error updating user", error: errorMessage });
     }
   } else if (req.method === "DELETE") {
     try {
@@ -73,9 +91,16 @@ export default async function handler(
       await prisma.user.delete({ where: { id: Number(id) } });
 
       res.status(204).end();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error deleting user:", error);
-      res.status(500).json({ message: "Error deleting user" });
+      let errorMessage =
+        "An unexpected error occurred while deleting the user.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      res
+        .status(500)
+        .json({ message: "Error deleting user", error: errorMessage });
     }
   } else {
     res.setHeader("Allow", ["PUT", "DELETE"]);

@@ -14,7 +14,7 @@ const cognitoClient = new CognitoIdentityProviderClient({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
@@ -46,10 +46,10 @@ export default async function handler(
     let syncedCount = 0;
     for (const cognitoUser of cognitoUsers.Users || []) {
       const email = cognitoUser.Attributes?.find(
-        (attr) => attr.Name === "email"
+        (attr) => attr.Name === "email",
       )?.Value;
       const sub = cognitoUser.Attributes?.find(
-        (attr) => attr.Name === "sub"
+        (attr) => attr.Name === "sub",
       )?.Value;
       const name =
         cognitoUser.Attributes?.find((attr) => attr.Name === "name")?.Value ||
@@ -93,19 +93,15 @@ export default async function handler(
       }
     }
 
-    res
-      .status(200)
-      .json({
-        message: `Users synced successfully. Synced ${syncedCount} users.`,
-      });
+    res.status(200).json({
+      message: `Users synced successfully. Synced ${syncedCount} users.`,
+    });
   } catch (error) {
     console.error("Error syncing users:", error);
-    res
-      .status(500)
-      .json({
-        message: `Error syncing users: ${
-          error instanceof Error ? error.message : "Unknown error"
-        }`,
-      });
+    res.status(500).json({
+      message: `Error syncing users: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`,
+    });
   }
 }

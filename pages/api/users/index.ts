@@ -14,7 +14,7 @@ const cognitoClient = new CognitoIdentityProviderClient({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method === "GET") {
     try {
@@ -79,7 +79,7 @@ export default async function handler(
       }
 
       const cognitoSub = cognitoResponse.User.Attributes?.find(
-        (attr) => attr.Name === "sub"
+        (attr) => attr.Name === "sub",
       )?.Value;
 
       if (!cognitoSub) {

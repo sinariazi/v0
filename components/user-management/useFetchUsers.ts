@@ -11,8 +11,19 @@ export function useFetchUsers(dispatch: React.Dispatch<Action>) {
       }
       const data = await response.json();
       dispatch({ type: "FETCH_USERS_SUCCESS", payload: data });
-    } catch (error) {
-      dispatch({ type: "FETCH_USERS_ERROR", payload: "Error fetching users" });
+    } catch (error: unknown) {
+      console.error("Error fetching users:", error);
+      let errorMessage = "Error fetching users";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (
+        typeof error === "object" &&
+        error !== null &&
+        "message" in error
+      ) {
+        errorMessage = String(error.message);
+      }
+      dispatch({ type: "FETCH_USERS_ERROR", payload: errorMessage });
     }
   }, [dispatch]);
 

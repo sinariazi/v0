@@ -10,5 +10,5 @@ interface UserManagementContextType {
 }
 
 export const UserManagementContext = createContext<UserManagementContextType>(
-  {} as UserManagementContextType
+  {} as UserManagementContextType,
 );
