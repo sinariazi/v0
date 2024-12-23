@@ -7,8 +7,7 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate",
-    "test-db": "ts-node -O {\"module\":\"commonjs\"} scripts/test-db-connection.ts"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@aws-amplify/auth": "^6.0.9",
