@@ -97,9 +97,11 @@ export function UserManagement() {
               : "Failed to update user. Please try again.",
           variant: "destructive",
         });
+        // Revert the changes in the UI
+        debouncedFetchUsers();
       }
     },
-    [toast]
+    [debouncedFetchUsers, toast]
   );
 
   const handleRemoveUser = useCallback(
@@ -129,10 +131,12 @@ export function UserManagement() {
                 : "Failed to remove user. Please try again.",
             variant: "destructive",
           });
+          // Refresh the user list to ensure UI is in sync with backend
+          debouncedFetchUsers();
         }
       }
     },
-    [toast]
+    [debouncedFetchUsers, toast]
   );
 
   if (state.isLoading) {

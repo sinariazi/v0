@@ -6,6 +6,7 @@ import {
   AdminDeleteUserCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
+import { Prisma } from "@prisma/client";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -14,7 +15,7 @@ const cognitoClient = new CognitoIdentityProviderClient({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   const { id } = req.query;
 
@@ -28,22 +29,12 @@ export default async function handler(
         return res.status(404).json({ message: "User not found" });
       }
 
-      // Update user in Cognito
-      const updateUserCommand = new AdminUpdateUserAttributesCommand({
-        UserPoolId: process.env.NEXT_PUBLIC_AWS_USER_POOL_ID,
-        Username: user.cognitoUsername || user.email,
-        UserAttributes: [
-          { Name: "email", Value: email },
-          { Name: "gender", Value: gender },
-          { Name: "family_name", Value: lastName },
-          { Name: "given_name", Value: firstName },
-          { Name: "custom:organization_id", Value: organizationId },
-          // Only include team if it's not null or undefined
-          ...(team ? [{ Name: "custom:team", Value: team }] : []),
-        ],
+      // Check if the organization exists, if not create it
+      const organization = await prisma.organization.upsert({
+        where: { id: organizationId },
+        update: {},
+        create: { id: organizationId, name: `Organization ${organizationId}` },
       });
-
-      await cognitoClient.send(updateUserCommand);
 
       // Update user in database
       const updatedUser = await prisma.user.update({
@@ -55,21 +46,41 @@ export default async function handler(
           lastName,
           firstName,
           team,
-          organizationId,
+          organizationId: organization.id,
         },
       });
 
+      // Update user in Cognito
+      const updateUserCommand = new AdminUpdateUserAttributesCommand({
+        UserPoolId: process.env.NEXT_PUBLIC_AWS_USER_POOL_ID,
+        Username: user.cognitoUsername || user.email,
+        UserAttributes: [
+          { Name: "email", Value: email },
+          { Name: "given_name", Value: firstName },
+          { Name: "family_name", Value: lastName },
+          { Name: "gender", Value: gender },
+          { Name: "custom:organization_id", Value: organizationId },
+          ...(team ? [{ Name: "custom:team", Value: team }] : []),
+        ],
+      });
+
+      await cognitoClient.send(updateUserCommand);
+
       res.status(200).json(updatedUser);
-    } catch (error: unknown) {
+    } catch (error) {
       console.error("Error updating user:", error);
-      let errorMessage =
-        "An unexpected error occurred while updating the user.";
-      if (error instanceof Error) {
-        errorMessage = error.message;
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        res
+          .status(400)
+          .json({ message: "Error updating user", error: error.message });
+      } else {
+        res
+          .status(500)
+          .json({
+            message: "Error updating user",
+            error: "An unexpected error occurred",
+          });
       }
-      res
-        .status(500)
-        .json({ message: "Error updating user", error: errorMessage });
     }
   } else if (req.method === "DELETE") {
     try {
