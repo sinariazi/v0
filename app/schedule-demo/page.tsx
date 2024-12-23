@@ -1,30 +1,20 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function ScheduleDemoPage() {
   return (
     <div className="container mx-auto py-12">
       <h1 className="text-4xl font-bold text-center mb-8">Schedule a Demo</h1>
       <p className="text-xl text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-        See Mood Whisper in action and discover how it can transform your
-        workplace.
+        See Mood Whisper in action and discover how it can transform your workplace.
       </p>
       <Card className="max-w-md mx-auto">
         <CardHeader>
           <CardTitle>Request a Demo</CardTitle>
-          <CardDescription>
-            Fill out the form below and we&apos;ll be in touch
-          </CardDescription>
+          <CardDescription>Fill out the form below and we&apos;ll be in touch</CardDescription>
         </CardHeader>
         <CardContent>
           <form>
@@ -53,5 +43,6 @@ export default function ScheduleDemoPage() {
         </CardFooter>
       </Card>
     </div>
-  );
+  )
 }
+

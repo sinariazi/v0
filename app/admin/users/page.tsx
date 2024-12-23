@@ -1,16 +1,11 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { UserManagement } from '@/components/user-management'
 
 export default function UserManagementPage() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>User Management</CardTitle>
-        <CardDescription>Manage your users and their permissions</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>User management functionality will be implemented here.</p>
-      </CardContent>
-    </Card>
+    <div className="container mx-auto py-10">
+      <h1 className="text-4xl font-bold mb-8">User Management</h1>
+      <UserManagement />
+    </div>
   )
 }
 
