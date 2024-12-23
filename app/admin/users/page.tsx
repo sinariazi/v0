@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { UserManagement } from "@/components/user-management";
+import { UserManagement } from "@/components/user-management/UserManagement";
 
 const MemoizedUserManagement = memo(UserManagement);
 

@@ -35,8 +35,8 @@ enum UserStatus {
 model User {
   id                Int        @id @default(autoincrement())
   email             String     @unique
-  name              String
-  family            String
+  firstName         String     @default("")
+  lastName          String     @default("")
   gender            Gender
   status            UserStatus @default(UNCONFIRMED)
   createdAt         DateTime   @default(now())
@@ -45,6 +45,7 @@ model User {
   team              String?
   cognitoSub        String     @unique
   cognitoUsername   String?
+  emailVerified     Boolean    @default(false)
   organization      Organization @relation(fields: [organizationId], references: [id])
 
   @@index([email])

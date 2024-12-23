@@ -20,7 +20,7 @@ export default async function handler(
 
   if (req.method === "PUT") {
     try {
-      const { email, role, gender, family, name } = req.body;
+      const { email, role, gender, lastName, firstName, team } = req.body;
       const user = await prisma.user.findUnique({ where: { id: Number(id) } });
 
       if (!user) {
@@ -34,9 +34,9 @@ export default async function handler(
         UserAttributes: [
           { Name: "email", Value: email },
           { Name: "gender", Value: gender },
-          { Name: "family_name", Value: family },
-          { Name: "name", Value: name },
-          // Remove the 'custom:team' attribute update
+          { Name: "family_name", Value: lastName },
+          { Name: "given_name", Value: firstName },
+          { Name: "custom:team", Value: team || "" },
         ],
       });
 
@@ -45,7 +45,7 @@ export default async function handler(
       // Update user in database
       const updatedUser = await prisma.user.update({
         where: { id: Number(id) },
-        data: { email, role, gender, family, name },
+        data: { email, role, gender, lastName, firstName, team },
       });
 
       res.status(200).json(updatedUser);

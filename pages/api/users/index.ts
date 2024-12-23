@@ -22,8 +22,8 @@ export default async function handler(
         select: {
           id: true,
           email: true,
-          name: true,
-          family: true,
+          firstName: true,
+          lastName: true,
           gender: true,
           status: true,
           createdAt: true,
@@ -31,11 +31,8 @@ export default async function handler(
           team: true,
           cognitoSub: true,
           cognitoUsername: true,
-          organization: {
-            select: {
-              name: true,
-            },
-          },
+          emailVerified: true,
+          organizationId: true,
         },
       });
       res.status(200).json(users);
@@ -44,14 +41,15 @@ export default async function handler(
     }
   } else if (req.method === "POST") {
     try {
-      const { name, family, email, role, gender, team } = req.body;
+      const { firstName, lastName, email, role, gender, team, organizationId } =
+        req.body;
 
       // Ensure default organization exists
       const defaultOrg = await prisma.organization.upsert({
-        where: { id: "default-org-id" },
+        where: { id: organizationId || "default-org-id" },
         update: {},
         create: {
-          id: "default-org-id",
+          id: organizationId || "default-org-id",
           name: "Default Organization",
         },
       });
@@ -62,10 +60,14 @@ export default async function handler(
         Username: email,
         UserAttributes: [
           { Name: "email", Value: email },
-          { Name: "name", Value: name },
-          { Name: "family_name", Value: family },
+          { Name: "given_name", Value: firstName },
+          { Name: "family_name", Value: lastName },
           { Name: "gender", Value: gender },
           { Name: "custom:team", Value: team || "" },
+          {
+            Name: "custom:organization_id",
+            Value: organizationId || defaultOrg.id,
+          },
         ],
         TemporaryPassword: "TemporaryPassword123!",
       });
@@ -97,16 +99,17 @@ export default async function handler(
       // Create user in database
       const newUser = await prisma.user.create({
         data: {
-          name,
-          family,
+          firstName,
+          lastName,
           email,
           role,
           gender,
           team,
           cognitoSub,
           cognitoUsername: email,
-          organizationId: defaultOrg.id,
+          organizationId: organizationId || defaultOrg.id,
           status: "FORCE_CHANGE_PASSWORD",
+          emailVerified: false,
         },
       });
 
