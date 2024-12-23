@@ -7,7 +7,6 @@ import CTA from "@/components/cta";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import HowItWorks from "@/components/how-it-works";
-import { AuthStatus } from "@/components/AuthStatus";
 
 export default function Home() {
   return (
@@ -33,7 +32,6 @@ export default function Home() {
       <Testimonials />
       <Pricing />
       <CTA />
-      <AuthStatus />
     </>
   );
 }
