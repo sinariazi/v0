@@ -30,12 +30,13 @@ interface AuthContextType {
   loading: boolean;
   signIn: (
     username: string,
-    password: string,
+    password: string
   ) => Promise<{ isSignedIn: boolean; userConfirmationRequired?: boolean }>;
   signOut: () => Promise<void>;
   signUp: (username: string, password: string, email: string) => Promise<void>;
   confirmSignUp: (username: string, code: string) => Promise<boolean>;
   checkAuthStatus: () => Promise<boolean>;
+  isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -43,6 +44,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const checkUser = useCallback(async () => {
     try {
@@ -54,6 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       };
       console.log("Current user:", userInfo);
       setUser(userInfo);
+      setIsAuthenticated(true);
     } catch (error) {
       console.error("Error checking user:", error);
       if (
@@ -61,6 +64,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         error.name === "UserUnAuthenticatedException"
       ) {
         setUser(null);
+        setIsAuthenticated(false);
       } else {
         console.error("Unexpected error during authentication check:", error);
       }
@@ -75,10 +79,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         await checkUser();
       } else {
         setUser(null);
+        setIsAuthenticated(false);
       }
     } catch (error) {
       console.error("Error checking session:", error);
       setUser(null);
+      setIsAuthenticated(false);
     } finally {
       setLoading(false);
     }
@@ -125,6 +131,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await signOut();
       setUser(null);
+      setIsAuthenticated(false);
     } catch (error) {
       console.error("Error signing out:", error);
       throw error;
@@ -136,7 +143,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function handleSignUp(
     username: string,
     password: string,
-    email: string,
+    email: string
   ) {
     setLoading(true);
     try {
@@ -178,6 +185,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signUp: handleSignUp,
     confirmSignUp: handleConfirmSignUp,
     checkAuthStatus,
+    isAuthenticated,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

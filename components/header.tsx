@@ -56,9 +56,12 @@ export default function Header() {
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
-    ...(user ? [{ href: "/admin", label: "Admin" }] : []),
     { href: "#pricing", label: "Pricing", onClick: scrollToPricing },
   ];
+
+  if (user) {
+    navLinks.push({ href: "/admin", label: "Admin" });
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
