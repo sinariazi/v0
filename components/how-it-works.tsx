@@ -1,10 +1,26 @@
 export default function HowItWorks() {
   const steps = [
-    { title: 'Sign Up', description: 'Create your Mood Whisper account and set up your organization profile.' },
-    { title: 'Invite Team', description: 'Invite your employees to join the platform and start sharing their moods.' },
-    { title: 'Track & Analyze', description: 'Monitor real-time mood data and analyze trends to improve workplace satisfaction.' },
-    { title: 'Take Action', description: 'Implement changes based on insights to boost employee engagement and productivity.' },
-  ]
+    {
+      title: "Sign Up",
+      description:
+        "Create your Mood Whisper account and set up your organization profile.",
+    },
+    {
+      title: "Invite Team",
+      description:
+        "Invite your employees to join the platform and start sharing their moods.",
+    },
+    {
+      title: "Track & Analyze",
+      description:
+        "Monitor real-time mood data and analyze trends to improve workplace satisfaction.",
+    },
+    {
+      title: "Take Action",
+      description:
+        "Implement changes based on insights to boost employee engagement and productivity.",
+    },
+  ];
 
   return (
     <section id="how-it-works" className="py-24 px-4 bg-muted">
@@ -23,6 +39,5 @@ export default function HowItWorks() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

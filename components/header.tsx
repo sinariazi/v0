@@ -1,53 +1,53 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useTheme } from 'next-themes'
-import { Button } from '@/components/ui/button'
-import { Moon, Sun, Menu, X, Loader2 } from 'lucide-react'
-import SignUpModal from './SignUpModal'
-import SignInModal from './SignInModal'
-import { useAuth } from '@/lib/auth-context'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import { Moon, Sun, Menu, X, Loader2 } from "lucide-react";
+import SignUpModal from "./SignUpModal";
+import SignInModal from "./SignInModal";
+import { useAuth } from "@/lib/auth-context";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false)
-  const [isSignInOpen, setIsSignInOpen] = useState(false)
-  const { user, loading, signOut } = useAuth()
-  const router = useRouter()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const { user, loading, signOut } = useAuth();
+  const router = useRouter();
 
   const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    const pricingSection = document.getElementById('pricing')
+    e.preventDefault();
+    const pricingSection = document.getElementById("pricing");
     if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: 'smooth' })
-      window.history.pushState(null, '', '/#pricing')
+      pricingSection.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", "/#pricing");
     }
-  }
+  };
 
   useEffect(() => {
-    if (window.location.hash === '#pricing') {
-      const pricingSection = document.getElementById('pricing')
+    if (window.location.hash === "#pricing") {
+      const pricingSection = document.getElementById("pricing");
       if (pricingSection) {
-        pricingSection.scrollIntoView({ behavior: 'smooth' })
+        pricingSection.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    console.log('Auth state changed:', { user, loading });
+    console.log("Auth state changed:", { user, loading });
   }, [user, loading]);
 
   const handleSignOut = async () => {
     try {
-      await signOut()
-      router.push('/')
+      await signOut();
+      router.push("/");
     } catch (error) {
-      console.error('Error signing out:', error)
+      console.error("Error signing out:", error);
     }
-  }
+  };
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -56,9 +56,12 @@ export default function Header() {
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
-    ...(user ? [{ href: "/admin", label: "Admin" }] : []),
     { href: "#pricing", label: "Pricing", onClick: scrollToPricing },
   ];
+
+  if (user) {
+    navLinks.push({ href: "/admin", label: "Admin" });
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -79,8 +82,16 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          >
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
           </Button>
           {loading ? (
             <Button variant="ghost" disabled>
@@ -107,8 +118,17 @@ export default function Header() {
           <Button asChild variant="outline" className="hidden md:inline-flex">
             <Link href="/schedule-demo">Schedule Demo</Link>
           </Button>
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </Button>
         </div>
       </div>
@@ -132,7 +152,9 @@ export default function Header() {
               </Button>
             ) : user ? (
               <>
-                <span className="text-sm">Welcome, {user.attributes.email}</span>
+                <span className="text-sm">
+                  Welcome, {user.attributes.email}
+                </span>
                 <Button variant="outline" onClick={handleSignOut}>
                   Sign Out
                 </Button>
@@ -153,9 +175,14 @@ export default function Header() {
           </nav>
         </div>
       )}
-      <SignUpModal isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} />
-      <SignInModal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} />
+      <SignUpModal
+        isOpen={isSignUpOpen}
+        onClose={() => setIsSignUpOpen(false)}
+      />
+      <SignInModal
+        isOpen={isSignInOpen}
+        onClose={() => setIsSignInOpen(false)}
+      />
     </header>
-  )
+  );
 }
-

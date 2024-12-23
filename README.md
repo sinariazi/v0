@@ -9,4 +9,3 @@ For development purposes, we've implemented a mock data solution that allows the
 To use the mock data:
 
 1. Ensure that your `NODE_ENV` is not set to 'production' in your `.env.local` file:
-

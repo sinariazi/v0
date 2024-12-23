@@ -17,7 +17,7 @@ export function configureAmplify() {
       {
         userPoolId,
         userPoolClientId,
-      }
+      },
     );
     return false;
   }
@@ -42,4 +42,3 @@ export function configureAmplify() {
     return false;
   }
 }
-

@@ -1,31 +1,106 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
+import {
+  CognitoIdentityProviderClient,
+  AdminUpdateUserAttributesCommand,
+  AdminDeleteUserCommand,
+} from "@aws-sdk/client-cognito-identity-provider";
+import { fromEnv } from "@aws-sdk/credential-providers";
+
+const cognitoClient = new CognitoIdentityProviderClient({
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
+  credentials: fromEnv(),
+});
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const { id } = req.query;
 
   if (req.method === "PUT") {
     try {
-      const { email, role } = req.body;
+      const { email, role, gender, lastName, firstName, team, organizationId } =
+        req.body;
+      const user = await prisma.user.findUnique({ where: { id: Number(id) } });
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Update user in Cognito
+      const updateUserCommand = new AdminUpdateUserAttributesCommand({
+        UserPoolId: process.env.NEXT_PUBLIC_AWS_USER_POOL_ID,
+        Username: user.cognitoUsername || user.email,
+        UserAttributes: [
+          { Name: "email", Value: email },
+          { Name: "gender", Value: gender },
+          { Name: "family_name", Value: lastName },
+          { Name: "given_name", Value: firstName },
+          { Name: "custom:organization_id", Value: organizationId },
+          // Only include team if it's not null or undefined
+          ...(team ? [{ Name: "custom:team", Value: team }] : []),
+        ],
+      });
+
+      await cognitoClient.send(updateUserCommand);
+
+      // Update user in database
       const updatedUser = await prisma.user.update({
         where: { id: Number(id) },
-        data: { email, role },
+        data: {
+          email,
+          role,
+          gender,
+          lastName,
+          firstName,
+          team,
+          organizationId,
+        },
       });
+
       res.status(200).json(updatedUser);
-    } catch (error) {
-      res.status(500).json({ message: "Error updating user" });
+    } catch (error: unknown) {
+      console.error("Error updating user:", error);
+      let errorMessage =
+        "An unexpected error occurred while updating the user.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      res
+        .status(500)
+        .json({ message: "Error updating user", error: errorMessage });
     }
   } else if (req.method === "DELETE") {
     try {
-      await prisma.user.delete({
-        where: { id: Number(id) },
+      const user = await prisma.user.findUnique({ where: { id: Number(id) } });
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Delete user from Cognito
+      const deleteUserCommand = new AdminDeleteUserCommand({
+        UserPoolId: process.env.NEXT_PUBLIC_AWS_USER_POOL_ID,
+        Username: user.cognitoUsername || user.email,
       });
+
+      await cognitoClient.send(deleteUserCommand);
+
+      // Delete user from database
+      await prisma.user.delete({ where: { id: Number(id) } });
+
       res.status(204).end();
-    } catch (error) {
-      res.status(500).json({ message: "Error deleting user" });
+    } catch (error: unknown) {
+      console.error("Error deleting user:", error);
+      let errorMessage =
+        "An unexpected error occurred while deleting the user.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      res
+        .status(500)
+        .json({ message: "Error deleting user", error: errorMessage });
     }
   } else {
     res.setHeader("Allow", ["PUT", "DELETE"]);

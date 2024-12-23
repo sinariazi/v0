@@ -1,9 +1,16 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactPage() {
   return (
@@ -13,7 +20,10 @@ export default function ContactPage() {
         <Card>
           <CardHeader>
             <CardTitle>Get in Touch</CardTitle>
-            <CardDescription>Fill out the form and we&apos;ll get back to you as soon as possible.</CardDescription>
+            <CardDescription>
+              Fill out the form and we&apos;ll get back to you as soon as
+              possible.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form>
@@ -24,7 +34,11 @@ export default function ContactPage() {
                 </div>
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" placeholder="Enter your email" type="email" />
+                  <Input
+                    id="email"
+                    placeholder="Enter your email"
+                    type="email"
+                  />
                 </div>
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="message">Message</Label>
@@ -40,7 +54,9 @@ export default function ContactPage() {
         <Card>
           <CardHeader>
             <CardTitle>Contact Information</CardTitle>
-            <CardDescription>You can also reach us using the following information.</CardDescription>
+            <CardDescription>
+              You can also reach us using the following information.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -59,6 +75,5 @@ export default function ContactPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
-
