@@ -1,170 +1,181 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/components/ui/use-toast";
-import { Toast } from "@/components/ui/toast";
+import { useState, useEffect } from 'react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Label } from '@/components/ui/label'
+import { useToast } from '@/components/ui/use-toast'
+import { Toast } from '@/components/ui/toast'
 
-type UserRole = "EMPLOYEE" | "MANAGER" | "ADMIN";
+type UserRole = 'EMPLOYEE' | 'MANAGER' | 'ADMIN';
 
 interface User {
-  id: number;
-  email: string;
-  name: string | null;
-  role: UserRole;
+  id: number
+  email: string
+  name: string | null
+  role: UserRole
+  cognitoSub: string
+  cognitoUsername: string | null
 }
 
 export function UserManagement() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isAddUserOpen, setIsAddUserOpen] = useState(false);
-  const [newUser, setNewUser] = useState<{
-    name: string;
-    email: string;
-    role: UserRole;
-  }>({
-    name: "",
-    email: "",
-    role: "EMPLOYEE",
-  });
-  const { toast, toasts } = useToast();
+  const [users, setUsers] = useState<User[]>([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [isAddUserOpen, setIsAddUserOpen] = useState(false)
+  const [newUser, setNewUser] = useState<{ name: string; email: string; role: UserRole }>({ 
+    name: '', 
+    email: '', 
+    role: 'EMPLOYEE'
+  })
+  const [isSyncing, setIsSyncing] = useState(false)
+  const { toast, toasts } = useToast()
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchUsers()
+  }, [])
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("/api/users");
+      const response = await fetch('/api/users')
       if (response.ok) {
-        const data = await response.json();
-        setUsers(data);
+        const data = await response.json()
+        setUsers(data)
       } else {
-        throw new Error("Failed to fetch users");
+        throw new Error('Failed to fetch users')
       }
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.error('Error fetching users:', error)
       toast({
-        title: "Error",
-        description: "Failed to fetch users. Please try again.",
-        variant: "destructive",
-      });
+        title: 'Error',
+        description: 'Failed to fetch users. Please try again.',
+        variant: 'destructive',
+      })
     }
-  };
+  }
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
+    setSearchTerm(event.target.value)
+  }
 
-  const filteredUsers = users.filter(
-    (user) =>
-      user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredUsers = users.filter(user =>
+    user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.cognitoUsername?.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   const handleAddUser = async () => {
     try {
-      const response = await fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newUser),
-      });
+      })
       if (response.ok) {
-        setIsAddUserOpen(false);
-        setNewUser({ name: "", email: "", role: "EMPLOYEE" });
-        fetchUsers();
+        setIsAddUserOpen(false)
+        setNewUser({ name: '', email: '', role: 'EMPLOYEE' })
+        fetchUsers()
         toast({
-          title: "Success",
-          description: "User added successfully.",
-        });
+          title: 'Success',
+          description: 'User added successfully.',
+        })
       } else {
-        throw new Error("Failed to add user");
+        throw new Error('Failed to add user')
       }
     } catch (error) {
-      console.error("Error adding user:", error);
+      console.error('Error adding user:', error)
       toast({
-        title: "Error",
-        description: "Failed to add user. Please try again.",
-        variant: "destructive",
-      });
+        title: 'Error',
+        description: 'Failed to add user. Please try again.',
+        variant: 'destructive',
+      })
     }
-  };
+  }
 
   const handleUpdateUser = async (user: User) => {
     try {
       const response = await fetch(`/api/users/${user.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user),
-      });
+      })
       if (response.ok) {
-        fetchUsers();
+        fetchUsers()
         toast({
-          title: "Success",
-          description: "User updated successfully.",
-        });
+          title: 'Success',
+          description: 'User updated successfully.',
+        })
       } else {
-        throw new Error("Failed to update user");
+        throw new Error('Failed to update user')
       }
     } catch (error) {
-      console.error("Error updating user:", error);
+      console.error('Error updating user:', error)
       toast({
-        title: "Error",
-        description: "Failed to update user. Please try again.",
-        variant: "destructive",
-      });
+        title: 'Error',
+        description: 'Failed to update user. Please try again.',
+        variant: 'destructive',
+      })
     }
-  };
+  }
 
   const handleRemoveUser = async (userId: number) => {
-    if (window.confirm("Are you sure you want to remove this user?")) {
+    if (window.confirm('Are you sure you want to remove this user?')) {
       try {
         const response = await fetch(`/api/users/${userId}`, {
-          method: "DELETE",
-        });
+          method: 'DELETE',
+        })
         if (response.ok) {
-          fetchUsers();
+          fetchUsers()
           toast({
-            title: "Success",
-            description: "User removed successfully.",
-          });
+            title: 'Success',
+            description: 'User removed successfully.',
+          })
         } else {
-          throw new Error("Failed to remove user");
+          throw new Error('Failed to remove user')
         }
       } catch (error) {
-        console.error("Error removing user:", error);
+        console.error('Error removing user:', error)
         toast({
-          title: "Error",
-          description: "Failed to remove user. Please try again.",
-          variant: "destructive",
-        });
+          title: 'Error',
+          description: 'Failed to remove user. Please try again.',
+          variant: 'destructive',
+        })
       }
     }
-  };
+  }
+
+  const syncUsers = async () => {
+    setIsSyncing(true)
+    try {
+      const response = await fetch('/api/sync-users', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      const data = await response.json()
+      if (response.ok) {
+        fetchUsers()
+        toast({
+          title: 'Success',
+          description: data.message,
+        })
+      } else {
+        throw new Error(data.message || 'Failed to sync users')
+      }
+    } catch (error) {
+      console.error('Error syncing users:', error)
+      toast({
+        title: 'Error',
+        description: error instanceof Error ? error.message : 'Failed to sync users with Cognito. Please try again.',
+        variant: 'destructive',
+      })
+    } finally {
+      setIsSyncing(false)
+    }
+  }
 
   return (
     <div className="space-y-4">
@@ -175,66 +186,65 @@ export function UserManagement() {
           onChange={handleSearch}
           className="max-w-sm"
         />
-        <Dialog open={isAddUserOpen} onOpenChange={setIsAddUserOpen}>
-          <DialogTrigger asChild>
-            <Button>Add User</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Add New User</DialogTitle>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  Name
-                </Label>
-                <Input
-                  id="name"
-                  value={newUser.name}
-                  onChange={(e) =>
-                    setNewUser({ ...newUser, name: e.target.value })
-                  }
-                  className="col-span-3"
-                />
+        <div>
+          <Button onClick={syncUsers} disabled={isSyncing} className="mr-2">
+            {isSyncing ? 'Syncing...' : 'Sync with Cognito'}
+          </Button>
+          <Dialog open={isAddUserOpen} onOpenChange={setIsAddUserOpen}>
+            <DialogTrigger asChild>
+              <Button>Add User</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Add New User</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    Name
+                  </Label>
+                  <Input
+                    id="name"
+                    value={newUser.name}
+                    onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="email" className="text-right">
+                    Email
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={newUser.email}
+                    onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="role" className="text-right">
+                    Role
+                  </Label>
+                  <Select
+                    value={newUser.role}
+                    onValueChange={(value: UserRole) => setNewUser({ ...newUser, role: value })}
+                  >
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Select a role" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="EMPLOYEE">Employee</SelectItem>
+                      <SelectItem value="MANAGER">Manager</SelectItem>
+                      <SelectItem value="ADMIN">Admin</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="email" className="text-right">
-                  Email
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={newUser.email}
-                  onChange={(e) =>
-                    setNewUser({ ...newUser, email: e.target.value })
-                  }
-                  className="col-span-3"
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="role" className="text-right">
-                  Role
-                </Label>
-                <Select
-                  value={newUser.role}
-                  onValueChange={(value: UserRole) =>
-                    setNewUser({ ...newUser, role: value })
-                  }
-                >
-                  <SelectTrigger className="col-span-3">
-                    <SelectValue placeholder="Select a role" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="EMPLOYEE">Employee</SelectItem>
-                    <SelectItem value="MANAGER">Manager</SelectItem>
-                    <SelectItem value="ADMIN">Admin</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-            <Button onClick={handleAddUser}>Add User</Button>
-          </DialogContent>
-        </Dialog>
+              <Button onClick={handleAddUser}>Add User</Button>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
       <Table>
         <TableHeader>
@@ -242,6 +252,7 @@ export function UserManagement() {
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Role</TableHead>
+            <TableHead>Cognito Username</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -249,28 +260,11 @@ export function UserManagement() {
           {filteredUsers.map((user) => (
             <TableRow key={user.id}>
               <TableCell>{user.name}</TableCell>
-              <TableCell>
-                <Input
-                  value={user.email}
-                  onChange={(e) =>
-                    setUsers(
-                      users.map((u) =>
-                        u.id === user.id ? { ...u, email: e.target.value } : u
-                      )
-                    )
-                  }
-                />
-              </TableCell>
+              <TableCell>{user.email}</TableCell>
               <TableCell>
                 <Select
                   value={user.role}
-                  onValueChange={(value: UserRole) =>
-                    setUsers(
-                      users.map((u) =>
-                        u.id === user.id ? { ...u, role: value } : u
-                      )
-                    )
-                  }
+                  onValueChange={(value: UserRole) => handleUpdateUser({ ...user, role: value })}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select a role" />
@@ -282,16 +276,9 @@ export function UserManagement() {
                   </SelectContent>
                 </Select>
               </TableCell>
+              <TableCell>{user.cognitoUsername || 'N/A'}</TableCell>
               <TableCell>
-                <Button onClick={() => handleUpdateUser(user)} className="mr-2">
-                  Save
-                </Button>
-                <Button
-                  onClick={() => handleRemoveUser(user.id)}
-                  variant="destructive"
-                >
-                  Remove
-                </Button>
+                <Button onClick={() => handleRemoveUser(user.id)} variant="destructive">Remove</Button>
               </TableCell>
             </TableRow>
           ))}
@@ -301,5 +288,6 @@ export function UserManagement() {
         <Toast key={index} {...toast} />
       ))}
     </div>
-  );
+  )
 }
+

@@ -26,6 +26,8 @@ model User {
   updatedAt      DateTime @updatedAt
   organization   Organization @relation(fields: [organizationId], references: [id])
   surveys        Survey[]
+  cognitoSub     String   @unique
+  cognitoUsername String?
 
   @@index([email])
   @@index([organizationId])
