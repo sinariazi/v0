@@ -5,9 +5,11 @@ import {
   AdminUpdateUserAttributesCommand,
   AdminDeleteUserCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
+import { fromEnv } from "@aws-sdk/credential-providers";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
+  credentials: fromEnv(),
 });
 
 export default async function handler(
@@ -18,7 +20,7 @@ export default async function handler(
 
   if (req.method === "PUT") {
     try {
-      const { email, role } = req.body;
+      const { email, role, gender, family, name } = req.body;
       const user = await prisma.user.findUnique({ where: { id: Number(id) } });
 
       if (!user) {
@@ -29,7 +31,13 @@ export default async function handler(
       const updateUserCommand = new AdminUpdateUserAttributesCommand({
         UserPoolId: process.env.NEXT_PUBLIC_AWS_USER_POOL_ID,
         Username: user.cognitoUsername || user.email,
-        UserAttributes: [{ Name: "email", Value: email }],
+        UserAttributes: [
+          { Name: "email", Value: email },
+          { Name: "gender", Value: gender },
+          { Name: "family_name", Value: family },
+          { Name: "name", Value: name },
+          // Remove the 'custom:team' attribute update
+        ],
       });
 
       await cognitoClient.send(updateUserCommand);
@@ -37,7 +45,7 @@ export default async function handler(
       // Update user in database
       const updatedUser = await prisma.user.update({
         where: { id: Number(id) },
-        data: { email, role },
+        data: { email, role, gender, family, name },
       });
 
       res.status(200).json(updatedUser);

@@ -5,6 +5,7 @@ import {
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
 import prisma from "@/lib/prisma";
+import { Gender, UserStatus } from "@prisma/client";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -50,22 +51,42 @@ export default async function handler(
       const sub = cognitoUser.Attributes?.find(
         (attr) => attr.Name === "sub"
       )?.Value;
+      const name =
+        cognitoUser.Attributes?.find((attr) => attr.Name === "name")?.Value ||
+        "";
+      const family =
+        cognitoUser.Attributes?.find((attr) => attr.Name === "family_name")
+          ?.Value || "";
+      const gender =
+        (cognitoUser.Attributes?.find((attr) => attr.Name === "gender")
+          ?.Value as Gender) || "OTHER";
+      const team =
+        cognitoUser.Attributes?.find((attr) => attr.Name === "custom:team")
+          ?.Value || null;
 
       if (email && sub) {
         await prisma.user.upsert({
           where: { cognitoSub: sub },
           update: {
             email,
-            name: cognitoUser.Username || "",
+            name,
+            family,
+            gender,
+            team,
             cognitoUsername: cognitoUser.Username || "",
+            status: (cognitoUser.UserStatus as UserStatus) || "UNKNOWN",
           },
           create: {
             email,
-            name: cognitoUser.Username || "",
+            name,
+            family,
+            gender,
+            team,
             cognitoSub: sub,
             cognitoUsername: cognitoUser.Username || "",
             role: "EMPLOYEE",
             organizationId: defaultOrg.id,
+            status: (cognitoUser.UserStatus as UserStatus) || "UNKNOWN",
           },
         });
         syncedCount++;

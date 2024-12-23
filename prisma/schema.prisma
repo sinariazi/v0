@@ -16,18 +16,36 @@ enum UserRole {
   ADMIN
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum UserStatus {
+  UNCONFIRMED
+  CONFIRMED
+  ARCHIVED
+  COMPROMISED
+  UNKNOWN
+  RESET_REQUIRED
+  FORCE_CHANGE_PASSWORD
+}
+
 model User {
-  id             Int      @id @default(autoincrement())
-  email          String   @unique
-  name           String?
-  role           UserRole
-  organizationId String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  organization   Organization @relation(fields: [organizationId], references: [id])
-  surveys        Survey[]
-  cognitoSub     String   @unique
-  cognitoUsername String?
+  id                Int        @id @default(autoincrement())
+  email             String     @unique
+  name              String
+  family            String
+  gender            Gender
+  status            UserStatus @default(UNCONFIRMED)
+  createdAt         DateTime   @default(now())
+  role              UserRole
+  organizationId    String
+  team              String?
+  cognitoSub        String     @unique
+  cognitoUsername   String?
+  organization      Organization @relation(fields: [organizationId], references: [id])
 
   @@index([email])
   @@index([organizationId])
@@ -39,22 +57,5 @@ model Organization {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   users     User[]
-  surveys   Survey[]
-}
-
-model Survey {
-  id               String   @id @default(uuid())
-  userId           Int
-  organizationId   String
-  question1Score   Int
-  question2Score   Int
-  question3Score   Int
-  engagementScore  Float
-  createdAt        DateTime @default(now())
-  user             User     @relation(fields: [userId], references: [id])
-  organization     Organization @relation(fields: [organizationId], references: [id])
-
-  @@index([userId])
-  @@index([organizationId])
 }
 
