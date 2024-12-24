@@ -98,17 +98,15 @@ export default function Header() {
             </Button>
           ) : user ? (
             <>
-              <Button variant="ghost" size="icon" onClick={handleSignOut}>
-                <LogOut className="h-5 w-5" />
+              <Button variant="ghost" onClick={handleSignOut}>
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign Out
               </Button>
             </>
           ) : (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsSignInOpen(true)}
-            >
-              <LogIn className="h-5 w-5" />
+            <Button variant="ghost" onClick={() => setIsSignInOpen(true)}>
+              <LogIn className="mr-2 h-4 w-4" />
+              Sign In
             </Button>
           )}
           <Button asChild variant="outline" className="hidden md:inline-flex">
@@ -147,16 +145,14 @@ export default function Header() {
                 Loading
               </Button>
             ) : user ? (
-              <Button variant="ghost" size="icon" onClick={handleSignOut}>
-                <LogOut className="h-5 w-5" />
+              <Button variant="ghost" onClick={handleSignOut}>
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign Out
               </Button>
             ) : (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsSignInOpen(true)}
-              >
-                <LogIn className="h-5 w-5" />
+              <Button variant="ghost" onClick={() => setIsSignInOpen(true)}>
+                <LogIn className="mr-2 h-4 w-4" />
+                Sign In
               </Button>
             )}
             <Button asChild variant="outline">
