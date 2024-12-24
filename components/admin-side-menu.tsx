@@ -4,7 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Users, ClipboardList, BarChart, CreditCard, Home } from "lucide-react";
+import {
+  CreditCard,
+  Users,
+  ClipboardList,
+  BarChart,
+  Home,
+  Zap,
+} from "lucide-react";
 
 const sidebarNavItems = [
   {
@@ -32,6 +39,11 @@ const sidebarNavItems = [
     href: "/admin/billing",
     icon: CreditCard,
   },
+  {
+    title: "Subscription",
+    href: "/admin/subscription",
+    icon: Zap,
+  },
 ];
 
 export function AdminSideMenu() {
@@ -51,7 +63,7 @@ export function AdminSideMenu() {
                 variant={pathname === item.href ? "secondary" : "ghost"}
                 className={cn(
                   "w-full justify-start",
-                  pathname === item.href && "bg-muted hover:bg-muted",
+                  pathname === item.href && "bg-muted hover:bg-muted"
                 )}
                 asChild
               >

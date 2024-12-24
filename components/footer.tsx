@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useAuth } from "@/lib/auth-context";
 
 export default function Footer() {
+  const { user } = useAuth();
   return (
     <footer className="bg-background border-t">
       <div className="container mx-auto py-8 px-4">
@@ -12,24 +16,28 @@ export default function Footer() {
             </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-4 md:gap-8">
-            <Link
-              href="/"
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              Home
-            </Link>
-            <Link
-              href="/features"
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              Features
-            </Link>
-            <Link
-              href="/how-it-works"
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              How It Works
-            </Link>
+            {!user && (
+              <>
+                <Link
+                  href="/"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/features"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                  Features
+                </Link>
+                <Link
+                  href="/how-it-works"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                  How It Works
+                </Link>
+              </>
+            )}
             <Link
               href="/blog"
               className="text-sm text-muted-foreground hover:text-foreground"
