@@ -1,23 +1,10 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { BillingSection } from "@/components/admin/BillingSection";
 
 export default function BillingPage() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Billing</CardTitle>
-        <CardDescription>
-          Manage your subscription and billing information
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Billing and subscription management will be implemented here.</p>
-      </CardContent>
-    </Card>
+    <div className="space-y-6">
+      <h1 className="text-3xl font-bold">Billing Management</h1>
+      <BillingSection />
+    </div>
   );
 }
