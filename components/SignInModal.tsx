@@ -52,7 +52,7 @@ export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
       const result = await signIn(email, password);
       if (result.isSignedIn) {
         console.log("Sign-in successful");
-        onClose();
+        // The redirection will be handled by the useEffect in the header component
       } else if (result.userConfirmationRequired) {
         setIsConfirmationRequired(true);
       }
