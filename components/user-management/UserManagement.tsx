@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useReducer, useCallback, useEffect, useRef } from "react";
+import React, {
+  useReducer,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { UserTable } from "./UserTable";
 import { AddUserDialog } from "./AddUserDialog";
@@ -8,12 +14,15 @@ import { UserManagementContext } from "./UserManagementContext";
 import { userManagementReducer, initialState } from "./userManagementReducer";
 import { useFetchUsers } from "./useFetchUsers";
 import { User } from "./types";
+import { ImportUsersDialog } from "./ImportUsersDialog";
+import { Button } from "@/components/ui/button";
 
 export function UserManagement() {
   const [state, dispatch] = useReducer(userManagementReducer, initialState);
   const { toast } = useToast();
   const fetchUsers = useFetchUsers(dispatch);
   const fetchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isImportDialogOpen, setIsImportDialogOpen] = useState(false);
 
   const debouncedFetchUsers = useCallback(() => {
     if (fetchTimeoutRef.current) {
@@ -97,9 +106,11 @@ export function UserManagement() {
               : "Failed to update user. Please try again.",
           variant: "destructive",
         });
+        // Revert the changes in the UI
+        debouncedFetchUsers();
       }
     },
-    [toast]
+    [debouncedFetchUsers, toast]
   );
 
   const handleRemoveUser = useCallback(
@@ -129,10 +140,12 @@ export function UserManagement() {
                 : "Failed to remove user. Please try again.",
             variant: "destructive",
           });
+          // Refresh the user list to ensure UI is in sync with backend
+          debouncedFetchUsers();
         }
       }
     },
-    [toast]
+    [debouncedFetchUsers, toast]
   );
 
   if (state.isLoading) {
@@ -150,8 +163,17 @@ export function UserManagement() {
       }}
     >
       <div className="space-y-4">
-        <AddUserDialog />
+        <div className="flex space-x-4">
+          <AddUserDialog />
+          <Button onClick={() => setIsImportDialogOpen(true)}>
+            Import Users
+          </Button>
+        </div>
         <UserTable />
+        <ImportUsersDialog
+          isOpen={isImportDialogOpen}
+          onClose={() => setIsImportDialogOpen(false)}
+        />
       </div>
     </UserManagementContext.Provider>
   );

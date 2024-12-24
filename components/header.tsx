@@ -5,15 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X, Loader2 } from "lucide-react";
-import SignUpModal from "./SignUpModal";
+import { Moon, Sun, Menu, X, Loader2, LogIn, LogOut } from "lucide-react";
 import SignInModal from "./SignInModal";
 import { useAuth } from "@/lib/auth-context";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const { user, loading, signOut } = useAuth();
   const router = useRouter();
@@ -40,6 +38,12 @@ export default function Header() {
     console.log("Auth state changed:", { user, loading });
   }, [user, loading]);
 
+  useEffect(() => {
+    if (user && !loading) {
+      router.push("/admin");
+    }
+  }, [user, loading, router]);
+
   const handleSignOut = async () => {
     try {
       await signOut();
@@ -49,39 +53,54 @@ export default function Header() {
     }
   };
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/features", label: "Features" },
-    { href: "/how-it-works", label: "How it Works" },
-    { href: "/blog", label: "Blog" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
-    { href: "#pricing", label: "Pricing", onClick: scrollToPricing },
-  ];
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (user) {
+      router.push("/admin");
+    } else {
+      router.push("/");
+    }
+  };
 
-  if (user) {
-    navLinks.push({ href: "/admin", label: "Admin" });
-  }
+  const navLinks = user
+    ? []
+    : [
+        { href: "/", label: "Home" },
+        { href: "/features", label: "Features" },
+        { href: "/how-it-works", label: "How it Works" },
+        { href: "/blog", label: "Blog" },
+        { href: "/about", label: "About" },
+        { href: "/contact", label: "Contact" },
+        { href: "#pricing", label: "Pricing", onClick: scrollToPricing },
+      ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link
+          href={user ? "/admin" : "/"}
+          className={`flex items-center space-x-2 ${
+            user ? "absolute left-4" : ""
+          }`}
+          onClick={handleLogoClick}
+        >
           <span className="text-2xl font-bold">Mood Whisper</span>
         </Link>
-        <nav className="hidden md:flex space-x-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium hover:text-primary"
-              onClick={link.onClick}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 ml-auto">
+          {!user && (
+            <nav className="hidden md:flex space-x-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium hover:text-primary"
+                  onClick={link.onClick}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          )}
           <Button
             variant="ghost"
             size="icon"
@@ -99,25 +118,21 @@ export default function Header() {
               Loading
             </Button>
           ) : user ? (
-            <>
-              <span className="text-sm">Welcome, {user.attributes.email}</span>
-              <Button variant="outline" onClick={handleSignOut}>
-                Sign Out
-              </Button>
-            </>
+            <Button variant="ghost" onClick={handleSignOut}>
+              <LogOut className="mr-2 h-4 w-4" />
+              Sign Out
+            </Button>
           ) : (
-            <>
-              <Button variant="outline" onClick={() => setIsSignUpOpen(true)}>
-                Sign Up
-              </Button>
-              <Button variant="outline" onClick={() => setIsSignInOpen(true)}>
-                Sign In
-              </Button>
-            </>
+            <Button variant="ghost" onClick={() => setIsSignInOpen(true)}>
+              <LogIn className="mr-2 h-4 w-4" />
+              Sign In
+            </Button>
           )}
-          <Button asChild variant="outline" className="hidden md:inline-flex">
-            <Link href="/schedule-demo">Schedule Demo</Link>
-          </Button>
+          {!user && (
+            <Button asChild variant="outline" className="hidden md:inline-flex">
+              <Link href="/schedule-demo">Schedule Demo</Link>
+            </Button>
+          )}
           <Button
             variant="ghost"
             size="icon"
@@ -145,40 +160,14 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            {loading ? (
-              <Button variant="ghost" disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Loading
+            {!user && (
+              <Button asChild variant="outline">
+                <Link href="/schedule-demo">Schedule Demo</Link>
               </Button>
-            ) : user ? (
-              <>
-                <span className="text-sm">
-                  Welcome, {user.attributes.email}
-                </span>
-                <Button variant="outline" onClick={handleSignOut}>
-                  Sign Out
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button variant="outline" onClick={() => setIsSignUpOpen(true)}>
-                  Sign Up
-                </Button>
-                <Button variant="outline" onClick={() => setIsSignInOpen(true)}>
-                  Sign In
-                </Button>
-              </>
             )}
-            <Button asChild variant="outline">
-              <Link href="/schedule-demo">Schedule Demo</Link>
-            </Button>
           </nav>
         </div>
       )}
-      <SignUpModal
-        isOpen={isSignUpOpen}
-        onClose={() => setIsSignUpOpen(false)}
-      />
       <SignInModal
         isOpen={isSignInOpen}
         onClose={() => setIsSignInOpen(false)}
