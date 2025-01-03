@@ -21,10 +21,10 @@ import { User, UserRole, Gender } from "./types";
 
 export function UserTable() {
   const { state, dispatch, handleUpdateUser, handleRemoveUser } = useContext(
-    UserManagementContext,
+    UserManagementContext
   );
   const [changedUsers, setChangedUsers] = useState<{ [key: number]: boolean }>(
-    {},
+    {}
   );
 
   const filteredUsers = useMemo(() => {
@@ -40,14 +40,14 @@ export function UserTable() {
           user.cognitoUsername
             ?.toLowerCase()
             .includes(state.searchTerm.toLowerCase())) ??
-        false,
+        false
     );
   }, [state.users, state.searchTerm]);
 
   const handleInputChange = (
     user: User,
     field: keyof User,
-    value: string | UserRole | Gender,
+    value: string | UserRole | Gender
   ) => {
     const updatedUser = { ...user, [field]: value };
     dispatch({ type: "UPDATE_USER", payload: updatedUser });
@@ -72,10 +72,10 @@ export function UserTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
+            <TableHead>First Name</TableHead>
+            <TableHead>Last Name</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Role</TableHead>
-            <TableHead>User ID (Sub)</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Gender</TableHead>
             <TableHead>Team</TableHead>
@@ -93,13 +93,17 @@ export function UserTable() {
                     handleInputChange(user, "firstName", e.target.value)
                   }
                   className="w-full"
+                  placeholder="First Name"
                 />
+              </TableCell>
+              <TableCell>
                 <Input
                   value={user.lastName}
                   onChange={(e) =>
                     handleInputChange(user, "lastName", e.target.value)
                   }
-                  className="w-full mt-2"
+                  className="w-full"
+                  placeholder="Last Name"
                 />
               </TableCell>
               <TableCell>
@@ -128,7 +132,6 @@ export function UserTable() {
                   </SelectContent>
                 </Select>
               </TableCell>
-              <TableCell>{user.cognitoSub}</TableCell>
               <TableCell>{user.status}</TableCell>
               <TableCell>
                 <Select
@@ -166,19 +169,22 @@ export function UserTable() {
                 />
               </TableCell>
               <TableCell>
-                <Button
-                  onClick={() => handleSave(user)}
-                  disabled={!changedUsers[user.id]}
-                >
-                  Save
-                </Button>
-                <Button
-                  onClick={() => handleRemoveUser(user.id)}
-                  variant="destructive"
-                  className="ml-2"
-                >
-                  Remove
-                </Button>
+                <div className="flex space-x-2">
+                  <Button
+                    onClick={() => handleSave(user)}
+                    disabled={!changedUsers[user.id]}
+                    className="flex-1"
+                  >
+                    Save
+                  </Button>
+                  <Button
+                    onClick={() => handleRemoveUser(user.id)}
+                    variant="destructive"
+                    className="flex-1"
+                  >
+                    Remove
+                  </Button>
+                </div>
               </TableCell>
             </TableRow>
           ))}

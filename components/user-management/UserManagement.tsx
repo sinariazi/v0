@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useReducer, useCallback, useEffect, useRef } from "react";
+import React, {
+  useReducer,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { UserTable } from "./UserTable";
 import { AddUserDialog } from "./AddUserDialog";
@@ -8,12 +14,17 @@ import { UserManagementContext } from "./UserManagementContext";
 import { userManagementReducer, initialState } from "./userManagementReducer";
 import { useFetchUsers } from "./useFetchUsers";
 import { User } from "./types";
+import { ImportUsersDialog } from "./ImportUsersDialog";
+import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 export function UserManagement() {
   const [state, dispatch] = useReducer(userManagementReducer, initialState);
   const { toast } = useToast();
   const fetchUsers = useFetchUsers(dispatch);
   const fetchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isImportDialogOpen, setIsImportDialogOpen] = useState(false);
+  const [adminEmail, setAdminEmail] = useState<string | null>(null);
 
   const debouncedFetchUsers = useCallback(() => {
     if (fetchTimeoutRef.current) {
@@ -33,11 +44,67 @@ export function UserManagement() {
     };
   }, [debouncedFetchUsers]);
 
+  useEffect(() => {
+    const fetchAdminEmail = async () => {
+      try {
+        const response = await fetch("/api/admin/get-email");
+        if (response.ok) {
+          const data = await response.json();
+          setAdminEmail(data.email);
+        } else {
+          throw new Error("Failed to fetch admin email");
+        }
+      } catch (error) {
+        console.error("Error fetching admin email:", error);
+        toast({
+          title: "Error",
+          description:
+            "Failed to fetch admin information. Some features may not work correctly.",
+          variant: "destructive",
+        });
+      }
+    };
+
+    fetchAdminEmail();
+  }, []);
+
+  const syncUsersFromCognito = async () => {
+    try {
+      const response = await fetch("/api/sync-users-from-cognito", {
+        method: "POST",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        toast({
+          title: "Success",
+          description: data.message,
+        });
+        debouncedFetchUsers();
+      } else {
+        throw new Error("Failed to sync users");
+      }
+    } catch (error) {
+      console.error("Error syncing users:", error);
+      toast({
+        title: "Error",
+        description: "Failed to sync users from Cognito. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  useEffect(() => {
+    syncUsersFromCognito();
+  }, []);
+
   const handleAddUser = useCallback(async () => {
     try {
       const response = await fetch("/api/users", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-Admin-Email": adminEmail || "",
+        },
         body: JSON.stringify(state.newUser),
       });
       if (response.ok) {
@@ -55,19 +122,18 @@ export function UserManagement() {
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to add user");
       }
-    } catch (error: unknown) {
+    } catch (error) {
       console.error("Error adding user:", error);
-      let errorMessage = "Failed to add user. Please try again.";
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
       toast({
         title: "Error",
-        description: errorMessage,
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to add user. Please try again.",
         variant: "destructive",
       });
     }
-  }, [state.newUser, debouncedFetchUsers, toast]);
+  }, [state.newUser, debouncedFetchUsers, toast, adminEmail]);
 
   const handleUpdateUser = useCallback(
     async (user: User) => {
@@ -88,20 +154,21 @@ export function UserManagement() {
           const errorData = await response.json();
           throw new Error(errorData.message || "Failed to update user");
         }
-      } catch (error: unknown) {
+      } catch (error) {
         console.error("Error updating user:", error);
-        let errorMessage = "Failed to update user. Please try again.";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
         toast({
           title: "Error",
-          description: errorMessage,
+          description:
+            error instanceof Error
+              ? error.message
+              : "Failed to update user. Please try again.",
           variant: "destructive",
         });
+        // Revert the changes in the UI
+        debouncedFetchUsers();
       }
     },
-    [toast],
+    [debouncedFetchUsers, toast]
   );
 
   const handleRemoveUser = useCallback(
@@ -121,21 +188,22 @@ export function UserManagement() {
             const errorData = await response.json();
             throw new Error(errorData.message || "Failed to remove user");
           }
-        } catch (error: unknown) {
+        } catch (error) {
           console.error("Error removing user:", error);
-          let errorMessage = "Failed to remove user. Please try again.";
-          if (error instanceof Error) {
-            errorMessage = error.message;
-          }
           toast({
             title: "Error",
-            description: errorMessage,
+            description:
+              error instanceof Error
+                ? error.message
+                : "Failed to remove user. Please try again.",
             variant: "destructive",
           });
+          // Refresh the user list to ensure UI is in sync with backend
+          debouncedFetchUsers();
         }
       }
     },
-    [toast],
+    [debouncedFetchUsers, toast]
   );
 
   if (state.isLoading) {
@@ -153,8 +221,17 @@ export function UserManagement() {
       }}
     >
       <div className="space-y-4">
-        <AddUserDialog />
+        <div className="flex space-x-4">
+          <AddUserDialog debouncedFetchUsers={debouncedFetchUsers} />
+          <Button onClick={() => setIsImportDialogOpen(true)}>
+            Import Users
+          </Button>
+        </div>
         <UserTable />
+        <ImportUsersDialog
+          isOpen={isImportDialogOpen}
+          onClose={() => setIsImportDialogOpen(false)}
+        />
       </div>
     </UserManagementContext.Provider>
   );

@@ -1,23 +1,20 @@
-"use client";
-
 import { Amplify } from "aws-amplify";
 
 export function configureAmplify() {
   const userPoolId = process.env.NEXT_PUBLIC_AWS_USER_POOL_ID;
   const userPoolClientId = process.env.NEXT_PUBLIC_AWS_USER_POOL_WEB_CLIENT_ID;
-  // TODO:remove console.log
-  console.log("Environment variables:", {
-    userPoolId,
-    userPoolClientId,
-  });
+  const region = process.env.NEXT_PUBLIC_AWS_REGION;
 
-  if (!userPoolId || !userPoolClientId) {
+  console.log('Configuring Amplify with:', { userPoolId, userPoolClientId, region });
+
+  if (!userPoolId || !userPoolClientId || !region) {
     console.error(
       "Missing required environment variables for Amplify configuration:",
       {
         userPoolId,
         userPoolClientId,
-      },
+        region,
+      }
     );
     return false;
   }
@@ -28,17 +25,32 @@ export function configureAmplify() {
         Cognito: {
           userPoolId,
           userPoolClientId,
+          loginWith: {
+            email: true,
+            phone: false,
+            username: false
+          },
+          passwordFormat: {
+            minLength: 8,
+            requireLowercase: true,
+            requireUppercase: true,
+            requireNumbers: true,
+            requireSpecialCharacters: true,
+          }
         },
       },
     });
 
-    console.log("Amplify configured successfully with:", {
-      userPoolId,
-      userPoolClientId,
-    });
+    console.log("Amplify configured successfully");
     return true;
   } catch (error) {
     console.error("Error configuring Amplify:", error);
     return false;
   }
 }
+
+// Ensure Amplify is configured on the server side
+if (typeof window === 'undefined') {
+  configureAmplify();
+}
+

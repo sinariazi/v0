@@ -14,7 +14,7 @@ const cognitoClient = new CognitoIdentityProviderClient({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.method === "GET") {
     try {
@@ -41,18 +41,24 @@ export default async function handler(
     }
   } else if (req.method === "POST") {
     try {
-      const { firstName, lastName, email, role, gender, team, organizationId } =
-        req.body;
+      const { firstName, lastName, email, role, gender, team } = req.body;
 
-      // Ensure default organization exists
-      const defaultOrg = await prisma.organization.upsert({
-        where: { id: organizationId || "default-org-id" },
-        update: {},
-        create: {
-          id: organizationId || "default-org-id",
-          name: "Default Organization",
-        },
+      // Get the admin's organization ID
+      const adminEmail = req.headers["x-admin-email"] as string;
+      if (!adminEmail) {
+        return res.status(400).json({ message: "Admin email is required" });
+      }
+
+      const adminUser = await prisma.user.findUnique({
+        where: { email: adminEmail },
+        select: { organizationId: true },
       });
+
+      if (!adminUser) {
+        return res.status(404).json({ message: "Admin user not found" });
+      }
+
+      const organizationId = adminUser.organizationId;
 
       // Create user in Cognito
       const createUserCommand = new AdminCreateUserCommand({
@@ -64,12 +70,9 @@ export default async function handler(
           { Name: "family_name", Value: lastName },
           { Name: "gender", Value: gender },
           { Name: "custom:team", Value: team || "" },
-          {
-            Name: "custom:organization_id",
-            Value: organizationId || defaultOrg.id,
-          },
+          { Name: "custom:organization_id", Value: organizationId },
         ],
-        TemporaryPassword: "TemporaryPassword123!",
+        TemporaryPassword: "ChangeMe123!",
       });
 
       const cognitoResponse = await cognitoClient.send(createUserCommand);
@@ -79,7 +82,7 @@ export default async function handler(
       }
 
       const cognitoSub = cognitoResponse.User.Attributes?.find(
-        (attr) => attr.Name === "sub",
+        (attr) => attr.Name === "sub"
       )?.Value;
 
       if (!cognitoSub) {
@@ -107,7 +110,7 @@ export default async function handler(
           team,
           cognitoSub,
           cognitoUsername: email,
-          organizationId: organizationId || defaultOrg.id,
+          organizationId,
           status: "FORCE_CHANGE_PASSWORD",
           emailVerified: false,
         },
