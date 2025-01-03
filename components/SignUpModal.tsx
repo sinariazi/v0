@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,8 +8,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signUp } from "aws-amplify/auth";
-import { configureAmplify } from "../lib/amplify-config";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useToast } from "@/components/ui/use-toast";
 
 interface SignUpModalProps {
   isOpen: boolean;
@@ -17,58 +23,66 @@ interface SignUpModalProps {
 }
 
 export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    organizationId: "",
-  });
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [role, setRole] = useState<"EMPLOYEE" | "MANAGER" | "ADMIN">(
+    "EMPLOYEE"
+  );
+  const [gender, setGender] = useState<"MALE" | "FEMALE" | "OTHER">("OTHER");
+  const [team, setTeam] = useState("");
+  const [organizationId, setOrganizationId] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [isConfigured, setIsConfigured] = useState(false);
-
-  useEffect(() => {
-    const configured = configureAmplify();
-    setIsConfigured(configured);
-    if (!configured) {
-      setError(
-        "Amplify configuration failed. Please check your environment variables."
-      );
-    }
-  }, []);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
+  const { toast } = useToast();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isConfigured) {
-      setError("Amplify is not configured. Unable to sign up.");
-      return;
-    }
     setError(null);
+
     try {
-      const { email, password, firstName, lastName, organizationId } = formData;
-      const result = await signUp({
-        username: email,
-        password,
-        options: {
-          userAttributes: {
-            email,
-            given_name: firstName,
-            family_name: lastName,
-            "custom:organization_id": organizationId,
-          },
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          email,
+          firstName,
+          lastName,
+          role,
+          gender,
+          team,
+          organizationId,
+        }),
       });
-      console.log("Sign up result:", result);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to sign up");
+      }
+
+      const data = await response.json();
+      toast({
+        title: "Success",
+        description:
+          "Your account has been created. Please check your email for the temporary password.",
+      });
       onClose();
     } catch (error) {
       console.error("Error signing up:", error);
       setError(
-        error instanceof Error ? error.message : "An unknown error occurred"
+        error instanceof Error
+          ? error.message
+          : "Failed to sign up. Please try again."
       );
+      toast({
+        title: "Error",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to sign up. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -79,27 +93,90 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
           <DialogTitle>Sign Up</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSignUp} className="space-y-4">
-          {["email", "password", "firstName", "lastName", "organizationId"].map(
-            (field) => (
-              <div key={field}>
-                <Label htmlFor={field}>
-                  {field.charAt(0).toUpperCase() + field.slice(1)}
-                </Label>
-                <Input
-                  id={field}
-                  type={field === "password" ? "password" : "text"}
-                  value={formData[field as keyof typeof formData]}
-                  onChange={handleInputChange}
-                  required
-                  disabled={!isConfigured}
-                />
-              </div>
-            )
-          )}
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="firstName">First Name</Label>
+            <Input
+              id="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="lastName">Last Name</Label>
+            <Input
+              id="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="role">Role</Label>
+            <Select
+              value={role}
+              onValueChange={(value: "EMPLOYEE" | "MANAGER" | "ADMIN") =>
+                setRole(value)
+              }
+              required
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select a role" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="EMPLOYEE">Employee</SelectItem>
+                <SelectItem value="MANAGER">Manager</SelectItem>
+                <SelectItem value="ADMIN">Admin</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Label htmlFor="gender">Gender</Label>
+            <Select
+              value={gender}
+              onValueChange={(value: "MALE" | "FEMALE" | "OTHER") =>
+                setGender(value)
+              }
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select gender" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="MALE">Male</SelectItem>
+                <SelectItem value="FEMALE">Female</SelectItem>
+                <SelectItem value="OTHER">Other</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Label htmlFor="team">Team</Label>
+            <Input
+              id="team"
+              value={team}
+              onChange={(e) => setTeam(e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="organizationId">Organization ID</Label>
+            <Input
+              id="organizationId"
+              value={organizationId}
+              onChange={(e) => setOrganizationId(e.target.value)}
+              required
+            />
+          </div>
           {error && <p className="text-red-500">{error}</p>}
-          <Button type="submit" disabled={!isConfigured}>
-            Sign Up
-          </Button>
+          <Button type="submit">Sign Up</Button>
         </form>
       </DialogContent>
     </Dialog>

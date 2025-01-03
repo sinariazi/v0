@@ -16,6 +16,7 @@ import { useFetchUsers } from "./useFetchUsers";
 import { User } from "./types";
 import { ImportUsersDialog } from "./ImportUsersDialog";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 export function UserManagement() {
   const [state, dispatch] = useReducer(userManagementReducer, initialState);
@@ -23,6 +24,7 @@ export function UserManagement() {
   const fetchUsers = useFetchUsers(dispatch);
   const fetchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isImportDialogOpen, setIsImportDialogOpen] = useState(false);
+  const [adminEmail, setAdminEmail] = useState<string | null>(null);
 
   const debouncedFetchUsers = useCallback(() => {
     if (fetchTimeoutRef.current) {
@@ -42,11 +44,67 @@ export function UserManagement() {
     };
   }, [debouncedFetchUsers]);
 
+  useEffect(() => {
+    const fetchAdminEmail = async () => {
+      try {
+        const response = await fetch("/api/admin/get-email");
+        if (response.ok) {
+          const data = await response.json();
+          setAdminEmail(data.email);
+        } else {
+          throw new Error("Failed to fetch admin email");
+        }
+      } catch (error) {
+        console.error("Error fetching admin email:", error);
+        toast({
+          title: "Error",
+          description:
+            "Failed to fetch admin information. Some features may not work correctly.",
+          variant: "destructive",
+        });
+      }
+    };
+
+    fetchAdminEmail();
+  }, []);
+
+  const syncUsersFromCognito = async () => {
+    try {
+      const response = await fetch("/api/sync-users-from-cognito", {
+        method: "POST",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        toast({
+          title: "Success",
+          description: data.message,
+        });
+        debouncedFetchUsers();
+      } else {
+        throw new Error("Failed to sync users");
+      }
+    } catch (error) {
+      console.error("Error syncing users:", error);
+      toast({
+        title: "Error",
+        description: "Failed to sync users from Cognito. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  useEffect(() => {
+    syncUsersFromCognito();
+  }, []);
+
   const handleAddUser = useCallback(async () => {
     try {
       const response = await fetch("/api/users", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-Admin-Email": adminEmail || "",
+        },
         body: JSON.stringify(state.newUser),
       });
       if (response.ok) {
@@ -75,7 +133,7 @@ export function UserManagement() {
         variant: "destructive",
       });
     }
-  }, [state.newUser, debouncedFetchUsers, toast]);
+  }, [state.newUser, debouncedFetchUsers, toast, adminEmail]);
 
   const handleUpdateUser = useCallback(
     async (user: User) => {
@@ -164,7 +222,7 @@ export function UserManagement() {
     >
       <div className="space-y-4">
         <div className="flex space-x-4">
-          <AddUserDialog />
+          <AddUserDialog debouncedFetchUsers={debouncedFetchUsers} />
           <Button onClick={() => setIsImportDialogOpen(true)}>
             Import Users
           </Button>

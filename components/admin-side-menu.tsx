@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +12,7 @@ import {
   Home,
   Zap,
 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const sidebarNavItems = [
   {
@@ -41,13 +42,19 @@ const sidebarNavItems = [
   },
   {
     title: "Subscription",
-    href: "/admin/subscription",
+    href: "/subscription",
     icon: Zap,
   },
 ];
 
 export function AdminSideMenu() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const handleNavClick = (href: string) => {
+    router.push(href);
+  };
 
   return (
     <div className="h-full py-6">
@@ -65,12 +72,10 @@ export function AdminSideMenu() {
                   "w-full justify-start",
                   pathname === item.href && "bg-muted hover:bg-muted"
                 )}
-                asChild
+                onClick={() => handleNavClick(item.href)}
               >
-                <Link href={item.href}>
-                  <item.icon className="mr-2 h-4 w-4" />
-                  {item.title}
-                </Link>
+                <item.icon className="mr-2 h-4 w-4" />
+                {item.title}
               </Button>
             ))}
           </nav>

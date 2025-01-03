@@ -101,7 +101,7 @@ export default async function handler(
       console.log("Attempting to parse CSV file:", fileToProcess.filepath);
       const users = await parseCSV(fileToProcess.filepath);
       console.log("Parsed CSV data:", JSON.stringify(users, null, 2));
-      const importResult = await importUsers(users, adminOrganizationId);
+      const importResult = await importUsers(users, adminEmail);
       return res.status(200).json(importResult);
     } catch (error) {
       console.error("Unhandled error during import process:", error);
@@ -162,10 +162,22 @@ async function parseCSV(filePath: string): Promise<any[]> {
 
 async function importUsers(
   users: any[],
-  organizationId: string
+  adminEmail: string
 ): Promise<{ message: string; importedCount: number; errors: string[] }> {
   let importedCount = 0;
   const errors: string[] = [];
+
+  // Get the admin's organization ID
+  const adminUser = await prisma.user.findUnique({
+    where: { email: adminEmail },
+    select: { organizationId: true },
+  });
+
+  if (!adminUser) {
+    throw new Error("Admin user not found");
+  }
+
+  const organizationId = adminUser.organizationId;
 
   for (const user of users) {
     try {
@@ -217,7 +229,7 @@ async function importUsers(
           email: user.email,
           role: (user.role as "EMPLOYEE" | "MANAGER" | "ADMIN") || "EMPLOYEE",
           gender: user.gender || "OTHER",
-          team: user.team, // Team is added only to the database
+          team: user.team,
           cognitoSub,
           cognitoUsername: user.email,
           organizationId: organizationId,

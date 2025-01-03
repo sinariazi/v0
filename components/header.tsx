@@ -12,7 +12,7 @@ import { useAuth } from "@/lib/auth-context";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false); // Update 2: Added state variable for SignInModal
   const { user, loading, signOut } = useAuth();
   const router = useRouter();
 
@@ -76,7 +76,11 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div
+        className={`container relative flex h-16 items-center ${
+          user ? "justify-end" : "justify-between"
+        }`}
+      >
         <Link
           href={user ? "/admin" : "/"}
           className={`flex items-center space-x-2 ${
@@ -86,52 +90,66 @@ export default function Header() {
         >
           <span className="text-2xl font-bold">Mood Whisper</span>
         </Link>
-        <div className="flex items-center space-x-4 ml-auto">
-          {!user && (
-            <nav className="hidden md:flex space-x-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium hover:text-primary"
-                  onClick={link.onClick}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          )}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
-          {loading ? (
-            <Button variant="ghost" disabled>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Loading
-            </Button>
-          ) : user ? (
-            <Button variant="ghost" onClick={handleSignOut}>
-              <LogOut className="mr-2 h-4 w-4" />
-              Sign Out
-            </Button>
+        <div className="flex items-center space-x-4">
+          {user ? (
+            <div className="flex items-center space-x-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
+              </Button>
+              <Button variant="ghost" onClick={handleSignOut}>
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign Out
+              </Button>
+            </div>
           ) : (
-            <Button variant="ghost" onClick={() => setIsSignInOpen(true)}>
-              <LogIn className="mr-2 h-4 w-4" />
-              Sign In
-            </Button>
-          )}
-          {!user && (
-            <Button asChild variant="outline" className="hidden md:inline-flex">
-              <Link href="/schedule-demo">Schedule Demo</Link>
-            </Button>
+            <>
+              <nav className="hidden md:flex space-x-6">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm font-medium hover:text-primary"
+                    onClick={link.onClick}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+              <div className="flex items-center space-x-4">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
+                  {theme === "dark" ? (
+                    <Sun className="h-5 w-5" />
+                  ) : (
+                    <Moon className="h-5 w-5" />
+                  )}
+                </Button>
+                <Button variant="ghost" onClick={() => setIsSignInOpen(true)}>
+                  {" "}
+                  {/* Update 3: Updated onClick handler */}
+                  <LogIn className="mr-2 h-4 w-4" />
+                  Sign In
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="hidden md:inline-flex"
+                >
+                  <Link href="/schedule-demo">Schedule Demo</Link>
+                </Button>
+              </div>
+            </>
           )}
           <Button
             variant="ghost"
@@ -171,7 +189,8 @@ export default function Header() {
       <SignInModal
         isOpen={isSignInOpen}
         onClose={() => setIsSignInOpen(false)}
-      />
+      />{" "}
+      {/* Update 4: Added SignInModal component */}
     </header>
   );
 }
