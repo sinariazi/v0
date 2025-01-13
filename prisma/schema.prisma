@@ -67,6 +67,23 @@ model Organization {
   updatedAt    DateTime  @updatedAt
   users        User[]
   customer     Customer?
+  surveys      Survey[]
+}
+
+model Survey {
+  id             Int              @id @default(autoincrement())
+  organizationId String
+  organization   Organization     @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime         @default(now())
+  responses      SurveyResponse[]
+}
+
+model SurveyResponse {
+  id       Int    @id @default(autoincrement())
+  surveyId Int
+  survey   Survey @relation(fields: [surveyId], references: [id])
+  question String
+  answer   Int
 }
 
 model Customer {
