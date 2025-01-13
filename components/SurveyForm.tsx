@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 
 const questions = [
   "How satisfied are you with your current role?",
+  "How engaged do you feel in your day-to-day work?",
   "How well does your work align with your career goals?",
   "How would you rate the work-life balance in your current position?",
   "How satisfied are you with the recognition you receive for your work?",
@@ -14,6 +15,10 @@ const questions = [
   "How satisfied are you with your current compensation and benefits?",
   "How would you rate the overall company culture?",
   "How likely are you to recommend this company as a great place to work?",
+  "How well do you feel supported by your manager?",
+  "How confident are you in the company's future success?",
+  "How well do you understand the company's goals and objectives?",
+  "How valued do you feel as an employee of this company?",
 ];
 
 export function SurveyForm({ onSubmit }: { onSubmit: () => void }) {
@@ -57,8 +62,8 @@ export function SurveyForm({ onSubmit }: { onSubmit: () => void }) {
             }}
           />
           <div className="flex justify-between text-xs">
-            <span>1 (Lowest)</span>
-            <span>5 (Highest)</span>
+            <span>1 (Strongly Disagree)</span>
+            <span>5 (Strongly Agree)</span>
           </div>
         </div>
       ))}

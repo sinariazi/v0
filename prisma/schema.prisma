@@ -32,6 +32,12 @@ enum UserStatus {
   FORCE_CHANGE_PASSWORD
 }
 
+enum SurveyStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
 model User {
   id              Int        @id @default(autoincrement())
   email           String     @unique
@@ -75,6 +81,7 @@ model Survey {
   organizationId String
   organization   Organization     @relation(fields: [organizationId], references: [id])
   createdAt      DateTime         @default(now())
+  status         SurveyStatus     @default(ACTIVE)
   responses      SurveyResponse[]
 }
 
