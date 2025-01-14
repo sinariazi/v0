@@ -11,10 +11,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { SurveyForm } from "@/components/SurveyForm";
 import { SurveyResults } from "@/components/SurveyResults";
+import { GenerateNewSurveyButton } from "@/components/GenerateNewSurveyButton";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function SurveysPage() {
   const [showForm, setShowForm] = useState(false);
   const [surveys, setSurveys] = useState([]);
+  const { toast } = useToast();
 
   useEffect(() => {
     fetchSurveys();
@@ -34,6 +37,15 @@ export default function SurveysPage() {
     }
   };
 
+  const handleNewSurveyGenerated = () => {
+    toast({
+      title: "New Survey Generated",
+      description:
+        "Email invitations have been sent to all users in your organization.",
+    });
+    fetchSurveys(); // Refresh the survey list
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -41,6 +53,10 @@ export default function SurveysPage() {
         <CardDescription>Create and view survey results</CardDescription>
       </CardHeader>
       <CardContent>
+        <div className="flex justify-between mb-4">
+          <Button onClick={() => setShowForm(true)}>Create New Survey</Button>
+          <GenerateNewSurveyButton onSuccess={handleNewSurveyGenerated} />
+        </div>
         {showForm ? (
           <SurveyForm
             onSubmit={() => {
@@ -49,12 +65,7 @@ export default function SurveysPage() {
             }}
           />
         ) : (
-          <>
-            <Button onClick={() => setShowForm(true)} className="mb-4">
-              Create New Survey
-            </Button>
-            <SurveyResults surveys={surveys} />
-          </>
+          <SurveyResults surveys={surveys} />
         )}
       </CardContent>
     </Card>

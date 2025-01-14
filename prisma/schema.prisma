@@ -71,11 +71,12 @@ model Organization {
 }
 
 model Survey {
-  id             Int              @id @default(autoincrement())
-  organizationId String
-  organization   Organization     @relation(fields: [organizationId], references: [id])
-  createdAt      DateTime         @default(now())
-  responses      SurveyResponse[]
+  id                 Int              @id @default(autoincrement())
+  organizationId     String
+  organization       Organization     @relation(fields: [organizationId], references: [id])
+  createdAt          DateTime         @default(now())
+  responses          SurveyResponse[]
+  additionalFeedback String?
 }
 
 model SurveyResponse {

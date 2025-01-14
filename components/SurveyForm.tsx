@@ -1,7 +1,12 @@
+"use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
 
 const questions = [
   "How satisfied are you with your current role?",
@@ -20,22 +25,52 @@ export function SurveyForm({ onSubmit }: { onSubmit: () => void }) {
   const [responses, setResponses] = useState<
     { question: string; answer: number }[]
   >(questions.map((q) => ({ question: q, answer: 3 })));
+  const [additionalFeedback, setAdditionalFeedback] = useState("");
+  const { toast } = useToast();
+  const router = useRouter();
+  const { user } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast({
+        title: "Authentication Error",
+        description: "Please sign in to submit a survey",
+        variant: "destructive",
+      });
+      router.push("/"); // Redirect to home page or sign-in page
+      return;
+    }
     try {
       const response = await fetch("/api/surveys/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ responses }),
+        body: JSON.stringify({ responses, additionalFeedback }),
+        credentials: "include", // This ensures cookies are sent with the request
       });
       if (response.ok) {
         onSubmit();
+        toast({
+          title: "Success",
+          description: "Survey submitted successfully",
+        });
+      } else if (response.status === 401) {
+        toast({
+          title: "Authentication Error",
+          description: "Please sign in to submit a survey",
+          variant: "destructive",
+        });
+        router.push("/"); // Redirect to home page or sign-in page
       } else {
-        console.error("Failed to submit survey");
+        throw new Error("Failed to submit survey");
       }
     } catch (error) {
       console.error("Error submitting survey:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit survey. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -62,6 +97,16 @@ export function SurveyForm({ onSubmit }: { onSubmit: () => void }) {
           </div>
         </div>
       ))}
+      <div className="mb-4">
+        <Label htmlFor="additional-feedback">Additional Feedback</Label>
+        <Textarea
+          id="additional-feedback"
+          placeholder="Please provide any additional feedback or comments here..."
+          value={additionalFeedback}
+          onChange={(e) => setAdditionalFeedback(e.target.value)}
+          rows={5}
+        />
+      </div>
       <Button type="submit">Submit Survey</Button>
     </form>
   );
