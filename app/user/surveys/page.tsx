@@ -8,7 +8,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/lib/auth-context";
 
 type SurveyData = {
-  responses: { question: string; answer: number }[];
+  responses: { factor: string; score: number }[];
   additionalFeedback: string;
 };
 

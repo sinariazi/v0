@@ -47,7 +47,7 @@ export default async function handler(
 
     const dbUser = await prisma.user.findUnique({
       where: { cognitoSub },
-      select: { organizationId: true },
+      select: { id: true, organizationId: true },
     });
 
     if (!dbUser) {
@@ -56,24 +56,72 @@ export default async function handler(
         .json({ message: "User not found in the database" });
     }
 
-    const survey = await prisma.survey.create({
-      data: {
-        organizationId: dbUser.organizationId,
-        additionalFeedback,
-        responses: {
-          create: responses.map(
-            (response: { question: string; answer: number }) => ({
-              question: response.question,
-              answer: response.answer,
-            })
-          ),
+    const result = await prisma.$transaction(async (prisma) => {
+      // Create the survey
+      const survey = await prisma.survey.create({
+        data: {
+          organizationId: dbUser.organizationId,
+          userId: dbUser.id,
+          additionalFeedback,
+          responses: {
+            create: responses.map(
+              (response: { factor: string; score: number }) => ({
+                factor: response.factor,
+                score: response.score,
+              })
+            ),
+          },
         },
-      },
+      });
+
+      // Calculate and update average scores for each factor
+      for (const response of responses) {
+        const existingScore = await prisma.averageEngagementScore.findUnique({
+          where: {
+            organizationId_factor: {
+              organizationId: dbUser.organizationId,
+              factor: response.factor,
+            },
+          },
+        });
+
+        if (existingScore) {
+          const newTotalScore = existingScore.totalScore + response.score;
+          const newResponseCount = existingScore.responseCount + 1;
+          const newAverageScore = newTotalScore / newResponseCount;
+
+          await prisma.averageEngagementScore.update({
+            where: {
+              organizationId_factor: {
+                organizationId: dbUser.organizationId,
+                factor: response.factor,
+              },
+            },
+            data: {
+              totalScore: newTotalScore,
+              responseCount: newResponseCount,
+              averageScore: newAverageScore,
+            },
+          });
+        } else {
+          await prisma.averageEngagementScore.create({
+            data: {
+              organizationId: dbUser.organizationId,
+              factor: response.factor,
+              totalScore: response.score,
+              responseCount: 1,
+              averageScore: response.score,
+            },
+          });
+        }
+      }
+
+      return survey;
     });
 
     res
       .status(201)
-      .json({ message: "Survey submitted successfully", surveyId: survey.id });
+      .json({ message: "Survey submitted successfully", surveyId: result.id });
   } catch (error) {
     console.error("Error submitting survey:", error);
     res.status(500).json({ message: "Error submitting survey" });

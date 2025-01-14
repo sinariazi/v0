@@ -1,4 +1,10 @@
 "use client";
+
+type SurveyData = {
+  responses: { factor: string; score: number }[];
+  additionalFeedback: string;
+};
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,30 +14,63 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 
-const questions = [
-  "How satisfied are you with your current role?",
-  "How well does your work align with your career goals?",
-  "How would you rate the work-life balance in your current position?",
-  "How satisfied are you with the recognition you receive for your work?",
-  "How would you rate the communication within your team?",
-  "How satisfied are you with the opportunities for professional growth?",
-  "How would you rate the company's commitment to diversity and inclusion?",
-  "How satisfied are you with your current compensation and benefits?",
-  "How would you rate the overall company culture?",
-  "How likely are you to recommend this company as a great place to work?",
+const engagementFactors = [
+  {
+    factor: "Job Satisfaction",
+    question: "How satisfied are you with your current role?",
+  },
+  {
+    factor: "Career Alignment",
+    question: "How well does your work align with your career goals?",
+  },
+  {
+    factor: "Work-Life Balance",
+    question:
+      "How would you rate the work-life balance in your current position?",
+  },
+  {
+    factor: "Recognition",
+    question:
+      "How satisfied are you with the recognition you receive for your work?",
+  },
+  {
+    factor: "Team Communication",
+    question: "How would you rate the communication within your team?",
+  },
+  {
+    factor: "Professional Growth",
+    question:
+      "How satisfied are you with the opportunities for professional growth?",
+  },
+  {
+    factor: "Diversity and Inclusion",
+    question:
+      "How would you rate the company's commitment to diversity and inclusion?",
+  },
+  {
+    factor: "Compensation and Benefits",
+    question:
+      "How satisfied are you with your current compensation and benefits?",
+  },
+  {
+    factor: "Company Culture",
+    question: "How would you rate the overall company culture?",
+  },
+  {
+    factor: "Recommendation",
+    question:
+      "How likely are you to recommend this company as a great place to work?",
+  },
 ];
 
 export function SurveyForm({
   onSubmit,
 }: {
-  onSubmit: (surveyData: {
-    responses: { question: string; answer: number }[];
-    additionalFeedback: string;
-  }) => Promise<void>;
+  onSubmit: (surveyData: SurveyData) => Promise<void>;
 }) {
   const [responses, setResponses] = useState<
-    { question: string; answer: number }[]
-  >(questions.map((q) => ({ question: q, answer: 3 })));
+    { factor: string; score: number }[]
+  >(engagementFactors.map(({ factor }) => ({ factor, score: 3 })));
   const [additionalFeedback, setAdditionalFeedback] = useState("");
   const { toast } = useToast();
   const router = useRouter();
@@ -94,7 +133,7 @@ export function SurveyForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      {questions.map((question, index) => (
+      {engagementFactors.map(({ factor, question }, index) => (
         <div key={index} className="mb-4">
           <Label htmlFor={`question-${index}`}>{question}</Label>
           <Input
@@ -102,10 +141,10 @@ export function SurveyForm({
             type="range"
             min="1"
             max="5"
-            value={responses[index].answer}
+            value={responses[index].score}
             onChange={(e) => {
               const newResponses = [...responses];
-              newResponses[index].answer = parseInt(e.target.value);
+              newResponses[index].score = parseInt(e.target.value);
               setResponses(newResponses);
             }}
           />
