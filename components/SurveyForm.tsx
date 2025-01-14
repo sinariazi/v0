@@ -21,35 +21,49 @@ const questions = [
   "How likely are you to recommend this company as a great place to work?",
 ];
 
-export function SurveyForm({ onSubmit }: { onSubmit: () => void }) {
+export function SurveyForm({
+  onSubmit,
+}: {
+  onSubmit: (surveyData: {
+    responses: { question: string; answer: number }[];
+    additionalFeedback: string;
+  }) => Promise<void>;
+}) {
   const [responses, setResponses] = useState<
     { question: string; answer: number }[]
   >(questions.map((q) => ({ question: q, answer: 3 })));
   const [additionalFeedback, setAdditionalFeedback] = useState("");
   const { toast } = useToast();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, getAuthToken } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) {
       toast({
         title: "Authentication Error",
-        description: "Please sign in to submit a survey",
+        description: "You must be signed in to submit a survey.",
         variant: "destructive",
       });
-      router.push("/"); // Redirect to home page or sign-in page
+      router.push("/signin");
       return;
     }
     try {
+      const token = await getAuthToken();
+      if (!token) {
+        throw new Error("Failed to get authentication token");
+      }
+
       const response = await fetch("/api/surveys/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({ responses, additionalFeedback }),
-        credentials: "include", // This ensures cookies are sent with the request
       });
       if (response.ok) {
-        onSubmit();
+        await onSubmit({ responses, additionalFeedback });
         toast({
           title: "Success",
           description: "Survey submitted successfully",
@@ -57,18 +71,22 @@ export function SurveyForm({ onSubmit }: { onSubmit: () => void }) {
       } else if (response.status === 401) {
         toast({
           title: "Authentication Error",
-          description: "Please sign in to submit a survey",
+          description: "Your session has expired. Please sign in again.",
           variant: "destructive",
         });
-        router.push("/"); // Redirect to home page or sign-in page
+        router.push("/signin");
       } else {
-        throw new Error("Failed to submit survey");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to submit survey");
       }
     } catch (error) {
       console.error("Error submitting survey:", error);
       toast({
         title: "Error",
-        description: "Failed to submit survey. Please try again.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to submit survey. Please try again.",
         variant: "destructive",
       });
     }

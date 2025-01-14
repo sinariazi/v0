@@ -2,23 +2,13 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import {
-  signIn,
-  signOut,
-  signUp,
+  signIn as amplifySignIn,
+  signOut as amplifySignOut,
   getCurrentUser,
-  confirmSignUp,
-  AuthUser,
-  confirmSignIn,
-  resetPassword,
-  confirmResetPassword,
-  resendSignUpCode,
   fetchUserAttributes,
+  fetchAuthSession,
 } from "aws-amplify/auth";
-import {
-  SignInOutput,
-  ResetPasswordOutput,
-  FetchUserAttributesOutput,
-} from "@aws-amplify/auth";
+import { AuthUser } from "aws-amplify/auth";
 
 interface User {
   username: string;
@@ -35,32 +25,11 @@ interface AuthContextType {
   signIn: (
     username: string,
     password: string
-  ) => Promise<{
-    isSignedIn: boolean;
-    userConfirmationRequired?: boolean;
-    forceChangePassword?: boolean;
-    nextStep?: SignInOutput["nextStep"];
-  }>;
+  ) => Promise<{ isSignedIn: boolean; userConfirmationRequired?: boolean }>;
   signOut: () => Promise<void>;
-  signUp: (
-    username: string,
-    password: string,
-    email: string
-  ) => Promise<{ userConfirmationRequired: boolean }>;
-  confirmSignUp: (username: string, code: string) => Promise<boolean>;
   checkAuthStatus: () => Promise<boolean>;
   isAuthenticated: boolean;
-  completeNewPassword: (
-    currentPassword: string,
-    newPassword: string
-  ) => Promise<{ isSignedIn: boolean; userConfirmationRequired?: boolean }>;
-  forgotPassword: (username: string) => Promise<ResetPasswordOutput>;
-  confirmForgotPassword: (
-    username: string,
-    newPassword: string,
-    code: string
-  ) => Promise<void>;
-  resendConfirmationCode: (username: string) => Promise<void>;
+  getAuthToken: () => Promise<string | null>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -72,27 +41,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const handleSignIn = async (username: string, password: string) => {
     try {
-      const { isSignedIn, nextStep } = await signIn({ username, password });
+      const { isSignedIn, nextStep } = await amplifySignIn({
+        username,
+        password,
+      });
       if (isSignedIn) {
-        const currentUser = await getCurrentUser();
-        const userAttributes = await fetchUserAttributes();
-        setUser({
-          username: currentUser.username,
-          attributes: {
-            email: userAttributes.email || "",
-            email_verified: userAttributes.email_verified === "true",
-          },
-        });
-        setIsAuthenticated(true);
+        await checkAuthStatus();
         return { isSignedIn: true };
-      } else if (
-        nextStep?.signInStep === "CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED"
-      ) {
-        return { isSignedIn: false, forceChangePassword: true, nextStep };
       } else if (nextStep?.signInStep === "CONFIRM_SIGN_UP") {
-        return { isSignedIn: false, userConfirmationRequired: true, nextStep };
+        return { isSignedIn: false, userConfirmationRequired: true };
       }
-      return { isSignedIn: false, nextStep };
+      return { isSignedIn: false };
     } catch (error) {
       console.error("Error signing in:", error);
       throw error;
@@ -101,109 +60,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const handleSignOut = async () => {
     try {
-      await signOut();
+      await amplifySignOut();
       setUser(null);
       setIsAuthenticated(false);
     } catch (error) {
       console.error("Error signing out:", error);
-      throw error;
-    }
-  };
-
-  const handleSignUp = async (
-    username: string,
-    password: string,
-    email: string
-  ) => {
-    try {
-      const { isSignUpComplete, userId, nextStep } = await signUp({
-        username,
-        password,
-        options: {
-          userAttributes: { email },
-        },
-      });
-
-      return { userConfirmationRequired: !isSignUpComplete };
-    } catch (error) {
-      console.error("Error signing up:", error);
-      throw error;
-    }
-  };
-
-  const handleConfirmSignUp = async (username: string, code: string) => {
-    try {
-      await confirmSignUp({ username, confirmationCode: code });
-      return true;
-    } catch (error) {
-      console.error("Error confirming sign up:", error);
-      throw error;
-    }
-  };
-
-  const handleCompleteNewPassword = async (
-    currentPassword: string,
-    newPassword: string
-  ) => {
-    try {
-      const { isSignedIn, nextStep } = await confirmSignIn({
-        challengeResponse: newPassword,
-      });
-      if (isSignedIn) {
-        const currentUser = await getCurrentUser();
-        const userAttributes = await fetchUserAttributes();
-        setUser({
-          username: currentUser.username,
-          attributes: {
-            email: userAttributes.email || "",
-            email_verified: userAttributes.email_verified === "true",
-          },
-        });
-        setIsAuthenticated(true);
-        return { isSignedIn: true };
-      } else if (nextStep?.signInStep === "CONFIRM_SIGN_UP") {
-        const currentUser = await getCurrentUser();
-        await resendSignUpCode({ username: currentUser.username });
-        return { isSignedIn: false, userConfirmationRequired: true };
-      }
-      return { isSignedIn: false };
-    } catch (error) {
-      console.error("Error completing new password:", error);
-      throw error;
-    }
-  };
-
-  const handleForgotPassword = async (username: string) => {
-    try {
-      return await resetPassword({ username });
-    } catch (error) {
-      console.error("Error sending password reset email:", error);
-      throw error;
-    }
-  };
-
-  const handleConfirmForgotPassword = async (
-    username: string,
-    newPassword: string,
-    code: string
-  ) => {
-    try {
-      await confirmResetPassword({
-        username,
-        newPassword,
-        confirmationCode: code,
-      });
-    } catch (error) {
-      console.error("Error confirming password reset:", error);
-      throw error;
-    }
-  };
-
-  const handleResendConfirmationCode = async (username: string) => {
-    try {
-      await resendSignUpCode({ username });
-    } catch (error) {
-      console.error("Error resending confirmation code:", error);
       throw error;
     }
   };
@@ -226,16 +87,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(null);
       setIsAuthenticated(false);
       return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getAuthToken = async () => {
+    try {
+      const session = await fetchAuthSession();
+      return session.tokens?.accessToken?.toString() || null;
+    } catch (error) {
+      console.error("Error getting auth token:", error);
+      return null;
     }
   };
 
   useEffect(() => {
-    const checkAuth = async () => {
-      setLoading(true);
-      await checkAuthStatus();
-      setLoading(false);
-    };
-    checkAuth();
+    checkAuthStatus();
   }, []);
 
   const value = {
@@ -243,14 +111,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     loading,
     signIn: handleSignIn,
     signOut: handleSignOut,
-    signUp: handleSignUp,
-    confirmSignUp: handleConfirmSignUp,
     checkAuthStatus,
     isAuthenticated,
-    completeNewPassword: handleCompleteNewPassword,
-    forgotPassword: handleForgotPassword,
-    confirmForgotPassword: handleConfirmForgotPassword,
-    resendConfirmationCode: handleResendConfirmationCode,
+    getAuthToken,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

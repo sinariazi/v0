@@ -104,6 +104,9 @@ export default function Header() {
                   <Moon className="h-5 w-5" />
                 )}
               </Button>
+              <span className="text-sm font-medium">
+                {user.attributes.email}
+              </span>
               <Button
                 variant="ghost"
                 onClick={() => router.push("/user/profile")}

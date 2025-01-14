@@ -7,6 +7,11 @@ import { SurveyForm } from "@/components/SurveyForm";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/lib/auth-context";
 
+type SurveyData = {
+  responses: { question: string; answer: number }[];
+  additionalFeedback: string;
+};
+
 export default function UserSurveysPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -19,17 +24,25 @@ export default function UserSurveysPage() {
     }
   }, [user, loading, router]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (surveyData: SurveyData) => {
     setIsSubmitting(true);
     try {
-      // Here you would typically send the survey data to your API
-      // For now, we'll just simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast({
-        title: "Survey Submitted",
-        description: "Thank you for your feedback!",
+      const response = await fetch("/api/surveys/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(surveyData),
+        credentials: "include",
       });
+      if (response.ok) {
+        toast({
+          title: "Survey Submitted",
+          description: "Thank you for your feedback!",
+        });
+      } else {
+        throw new Error("Failed to submit survey");
+      }
     } catch (error) {
+      console.error("Error submitting survey:", error);
       toast({
         title: "Error",
         description: "Failed to submit survey. Please try again.",
@@ -54,7 +67,7 @@ export default function UserSurveysPage() {
         <CardTitle>User Surveys</CardTitle>
       </CardHeader>
       <CardContent>
-        <SurveyForm onSubmit={handleSubmit} />
+        <SurveyForm onSubmit={(data) => handleSubmit(data)} />
       </CardContent>
     </Card>
   );
