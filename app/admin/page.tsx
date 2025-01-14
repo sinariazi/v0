@@ -14,6 +14,7 @@ import {
   BarChart,
   FileText,
   Zap,
+  User,
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -55,7 +56,13 @@ export default function AdminDashboard() {
           title="Subscription"
           description="Manage your subscription plan"
           icon={Zap}
-          href="/admin/subscription"
+          href="/subscription"
+        />
+        <DashboardCard
+          title="User Area"
+          description="Access the user dashboard"
+          icon={User}
+          href="/user/profile"
         />
       </div>
     </div>

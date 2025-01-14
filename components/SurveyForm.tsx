@@ -1,11 +1,15 @@
+"use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
 
 const questions = [
   "How satisfied are you with your current role?",
-  "How engaged do you feel in your day-to-day work?",
   "How well does your work align with your career goals?",
   "How would you rate the work-life balance in your current position?",
   "How satisfied are you with the recognition you receive for your work?",
@@ -15,32 +19,58 @@ const questions = [
   "How satisfied are you with your current compensation and benefits?",
   "How would you rate the overall company culture?",
   "How likely are you to recommend this company as a great place to work?",
-  "How well do you feel supported by your manager?",
-  "How confident are you in the company's future success?",
-  "How well do you understand the company's goals and objectives?",
-  "How valued do you feel as an employee of this company?",
 ];
 
 export function SurveyForm({ onSubmit }: { onSubmit: () => void }) {
   const [responses, setResponses] = useState<
     { question: string; answer: number }[]
   >(questions.map((q) => ({ question: q, answer: 3 })));
+  const [additionalFeedback, setAdditionalFeedback] = useState("");
+  const { toast } = useToast();
+  const router = useRouter();
+  const { user } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast({
+        title: "Authentication Error",
+        description: "Please sign in to submit a survey",
+        variant: "destructive",
+      });
+      router.push("/"); // Redirect to home page or sign-in page
+      return;
+    }
     try {
       const response = await fetch("/api/surveys/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ responses }),
+        body: JSON.stringify({ responses, additionalFeedback }),
+        credentials: "include", // This ensures cookies are sent with the request
       });
       if (response.ok) {
         onSubmit();
+        toast({
+          title: "Success",
+          description: "Survey submitted successfully",
+        });
+      } else if (response.status === 401) {
+        toast({
+          title: "Authentication Error",
+          description: "Please sign in to submit a survey",
+          variant: "destructive",
+        });
+        router.push("/"); // Redirect to home page or sign-in page
       } else {
-        console.error("Failed to submit survey");
+        throw new Error("Failed to submit survey");
       }
     } catch (error) {
       console.error("Error submitting survey:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit survey. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -62,11 +92,21 @@ export function SurveyForm({ onSubmit }: { onSubmit: () => void }) {
             }}
           />
           <div className="flex justify-between text-xs">
-            <span>1 (Strongly Disagree)</span>
-            <span>5 (Strongly Agree)</span>
+            <span>1 (Lowest)</span>
+            <span>5 (Highest)</span>
           </div>
         </div>
       ))}
+      <div className="mb-4">
+        <Label htmlFor="additional-feedback">Additional Feedback</Label>
+        <Textarea
+          id="additional-feedback"
+          placeholder="Please provide any additional feedback or comments here..."
+          value={additionalFeedback}
+          onChange={(e) => setAdditionalFeedback(e.target.value)}
+          rows={5}
+        />
+      </div>
       <Button type="submit">Submit Survey</Button>
     </form>
   );

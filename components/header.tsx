@@ -5,14 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X, Loader2, LogIn, LogOut } from "lucide-react";
+import { Moon, Sun, Menu, X, Loader2, LogIn, LogOut, User } from "lucide-react";
 import SignInModal from "./SignInModal";
 import { useAuth } from "@/lib/auth-context";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [isSignInOpen, setIsSignInOpen] = useState(false); // Update 2: Added state variable for SignInModal
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
   const { user, loading, signOut } = useAuth();
   const router = useRouter();
 
@@ -104,6 +104,13 @@ export default function Header() {
                   <Moon className="h-5 w-5" />
                 )}
               </Button>
+              <Button
+                variant="ghost"
+                onClick={() => router.push("/user/profile")}
+              >
+                <User className="mr-2 h-4 w-4" />
+                User Area
+              </Button>
               <Button variant="ghost" onClick={handleSignOut}>
                 <LogOut className="mr-2 h-4 w-4" />
                 Sign Out
@@ -136,8 +143,6 @@ export default function Header() {
                   )}
                 </Button>
                 <Button variant="ghost" onClick={() => setIsSignInOpen(true)}>
-                  {" "}
-                  {/* Update 3: Updated onClick handler */}
                   <LogIn className="mr-2 h-4 w-4" />
                   Sign In
                 </Button>
@@ -189,8 +194,7 @@ export default function Header() {
       <SignInModal
         isOpen={isSignInOpen}
         onClose={() => setIsSignInOpen(false)}
-      />{" "}
-      {/* Update 4: Added SignInModal component */}
+      />
     </header>
   );
 }

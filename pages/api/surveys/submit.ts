@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth-utils";
-import { AuthUser } from "aws-amplify/auth";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,15 +11,15 @@ export default async function handler(
   }
 
   try {
-    const user: AuthUser | null = await getCurrentUser(req);
+    const user = await getCurrentUser(req);
     if (!user) {
       return res.status(401).json({ message: "Not authenticated" });
     }
 
-    const { responses } = req.body;
+    const { responses, additionalFeedback } = req.body;
 
     const dbUser = await prisma.user.findUnique({
-      where: { email: user.signInDetails?.loginId },
+      where: { cognitoSub: user.userId },
       select: { organizationId: true },
     });
 
@@ -31,6 +30,7 @@ export default async function handler(
     const survey = await prisma.survey.create({
       data: {
         organizationId: dbUser.organizationId,
+        additionalFeedback,
         responses: {
           create: responses.map(
             (response: { question: string; answer: number }) => ({
