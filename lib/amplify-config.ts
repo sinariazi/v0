@@ -5,7 +5,11 @@ export function configureAmplify() {
   const userPoolClientId = process.env.NEXT_PUBLIC_AWS_USER_POOL_WEB_CLIENT_ID;
   const region = process.env.NEXT_PUBLIC_AWS_REGION;
 
-  console.log('Configuring Amplify with:', { userPoolId, userPoolClientId, region });
+  console.log("Configuring Amplify with:", {
+    userPoolId,
+    userPoolClientId,
+    region,
+  });
 
   if (!userPoolId || !userPoolClientId || !region) {
     console.error(
@@ -28,15 +32,8 @@ export function configureAmplify() {
           loginWith: {
             email: true,
             phone: false,
-            username: false
+            username: false,
           },
-          passwordFormat: {
-            minLength: 8,
-            requireLowercase: true,
-            requireUppercase: true,
-            requireNumbers: true,
-            requireSpecialCharacters: true,
-          }
         },
       },
     });
@@ -50,7 +47,6 @@ export function configureAmplify() {
 }
 
 // Ensure Amplify is configured on the server side
-if (typeof window === 'undefined') {
+if (typeof window === "undefined") {
   configureAmplify();
 }
-

@@ -1,15 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import {
-  CognitoIdentityProviderClient,
   AdminCreateUserCommand,
-  MessageActionType,
+  CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
-import { fromEnv } from "@aws-sdk/credential-providers";
 import prisma from "@/lib/prisma";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
-  credentials: fromEnv(),
 });
 
 export default async function handler(
@@ -41,6 +38,7 @@ export default async function handler(
       Username: email,
       UserAttributes: [
         { Name: "email", Value: email },
+        { Name: "email_verified", Value: "true" },
         { Name: "given_name", Value: firstName },
         { Name: "family_name", Value: lastName },
         { Name: "gender", Value: gender },
@@ -49,7 +47,6 @@ export default async function handler(
       ],
       DesiredDeliveryMediums: ["EMAIL"],
       ForceAliasCreation: false,
-      // We don't set MessageAction here, so Cognito will send the default welcome message with temporary password
     });
 
     const cognitoResponse = await cognitoClient.send(createUserCommand);
@@ -79,7 +76,7 @@ export default async function handler(
         cognitoUsername: email,
         organizationId,
         status: "FORCE_CHANGE_PASSWORD",
-        emailVerified: false,
+        emailVerified: true,
       },
     });
 
@@ -90,11 +87,9 @@ export default async function handler(
     });
   } catch (error) {
     console.error("Error creating user:", error);
-    res
-      .status(500)
-      .json({
-        message: "Error creating user",
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
+    res.status(500).json({
+      message: "Error creating user",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 }

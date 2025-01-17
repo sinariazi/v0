@@ -1,4 +1,7 @@
+"use client";
+
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   Dialog,
   DialogContent,
@@ -9,9 +12,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth-context";
-import { configureAmplify } from "../lib/amplify-config";
 import { useToast } from "@/components/ui/use-toast";
 import SignUpModal from "./SignUpModal";
+import ChangePasswordModal from "./ChangePasswordModal";
 
 interface SignInModalProps {
   isOpen: boolean;
@@ -26,68 +29,64 @@ export default function SignInModal({
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [confirmationCode, setConfirmationCode] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [isConfigured, setIsConfigured] = useState(false);
   const [isPasswordResetRequired, setIsPasswordResetRequired] = useState(false);
   const [isForgotPasswordFlow, setIsForgotPasswordFlow] = useState(false);
+  const [isConfirmSignInRequired, setIsConfirmSignInRequired] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
+  const [isRouterReady, setIsRouterReady] = useState(false);
   const {
     signIn,
-    completeNewPassword,
-    forgotPassword,
-    confirmForgotPassword,
+    confirmSignIn,
+    resetPassword,
+    confirmResetPassword,
     loading,
     user,
   } = useAuth();
   const { toast } = useToast();
+  const router = useRouter();
 
   useEffect(() => {
-    const configured = configureAmplify();
-    console.log("Amplify configuration result:", configured);
-    setIsConfigured(configured);
-    if (!configured) {
-      setError(
-        "Amplify configuration failed. Please check your environment variables."
-      );
-    }
+    setIsRouterReady(true);
   }, []);
 
   useEffect(() => {
     if (propIsOpen) {
       setIsForgotPasswordFlow(false);
       setIsPasswordResetRequired(false);
+      setIsConfirmSignInRequired(false);
       setError(null);
     }
     setIsOpen(propIsOpen);
   }, [propIsOpen]);
 
   useEffect(() => {
-    if (user) {
+    if (user && isRouterReady) {
       onClose();
+      router.push("/admin");
     }
-  }, [user, onClose]);
+  }, [user, router, onClose, isRouterReady]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     try {
-      console.log("Attempting to sign in with:", { email, password: "******" });
       const result = await signIn(email, password);
-      console.log("Sign-in result:", result);
       if (result.isSignedIn) {
         console.log("Sign-in successful");
-        onClose();
-      } else if (result.forceChangePassword) {
-        console.log("Password change required");
-        setIsPasswordResetRequired(true);
-      } else if (result.userConfirmationRequired) {
-        console.log("User confirmation required");
-        setError(
-          "Please confirm your account. Check your email for a confirmation code."
-        );
+        if (isRouterReady) {
+          onClose();
+          router.push("/admin");
+        }
+      } else if (
+        result.nextStep?.signInStep ===
+        "CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED"
+      ) {
+        setIsChangePasswordOpen(true);
       } else {
-        console.log("Unexpected sign-in result:", result);
         throw new Error("Unexpected sign-in result");
       }
     } catch (error) {
@@ -102,34 +101,27 @@ export default function SignInModal({
     }
   };
 
-  const handlePasswordReset = async (e: React.FormEvent) => {
+  const handleConfirmSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (newPassword !== confirmNewPassword) {
-      setError("New passwords do not match.");
-      return;
-    }
     try {
-      console.log("Attempting to complete new password");
-      const result = await completeNewPassword(password, newPassword);
-      console.log("Complete new password result:", result);
+      const result = await confirmSignIn(newPassword);
       if (result.isSignedIn) {
-        console.log("Password changed and signed in successfully");
-        toast({
-          title: "Success",
-          description:
-            "Your password has been changed and you are now signed in.",
-        });
-        onClose();
+        console.log("Sign-in confirmation successful");
+        if (isRouterReady) {
+          onClose();
+          router.push("/admin");
+        }
       } else {
-        console.log("Failed to change password, result:", result);
-        setError("Failed to change password. Please try again.");
+        throw new Error("Unexpected confirm sign-in result");
       }
     } catch (error) {
-      console.error("Error changing password:", error);
-      setError(
-        "An error occurred while changing the password. Please try again."
-      );
+      console.error("Error confirming sign-in:", error);
+      if (error instanceof Error) {
+        setError(`Failed to confirm sign-in: ${error.message}`);
+      } else {
+        setError("Failed to confirm sign-in. Please try again.");
+      }
     }
   };
 
@@ -137,7 +129,7 @@ export default function SignInModal({
     e.preventDefault();
     setError(null);
     try {
-      await forgotPassword(email);
+      await resetPassword(email);
       setIsForgotPasswordFlow(true);
       setError("Password reset code sent. Please check your email.");
     } catch (error) {
@@ -154,7 +146,7 @@ export default function SignInModal({
       return;
     }
     try {
-      await confirmForgotPassword(email, newPassword, password); // Using 'password' field for the confirmation code
+      await confirmResetPassword(email, newPassword, confirmationCode);
       setError(
         "Password reset successful. You can now sign in with your new password."
       );
@@ -175,7 +167,6 @@ export default function SignInModal({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          disabled={!isConfigured}
         />
       </div>
       <div>
@@ -186,11 +177,10 @@ export default function SignInModal({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          disabled={!isConfigured}
         />
       </div>
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit" disabled={!isConfigured || loading}>
+      <Button type="submit" disabled={loading}>
         {loading ? "Signing In..." : "Sign In"}
       </Button>
       <div className="flex justify-between items-center mt-4">
@@ -204,19 +194,8 @@ export default function SignInModal({
     </form>
   );
 
-  const renderPasswordResetForm = () => (
-    <form onSubmit={handlePasswordReset} className="space-y-4">
-      <div>
-        <Label htmlFor="currentPassword">Current Password</Label>
-        <Input
-          id="currentPassword"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          disabled={!isConfigured}
-        />
-      </div>
+  const renderConfirmSignInForm = () => (
+    <form onSubmit={handleConfirmSignIn} className="space-y-4">
       <div>
         <Label htmlFor="newPassword">New Password</Label>
         <Input
@@ -225,23 +204,11 @@ export default function SignInModal({
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           required
-          disabled={!isConfigured}
-        />
-      </div>
-      <div>
-        <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
-        <Input
-          id="confirmNewPassword"
-          type="password"
-          value={confirmNewPassword}
-          onChange={(e) => setConfirmNewPassword(e.target.value)}
-          required
-          disabled={!isConfigured}
         />
       </div>
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit" disabled={!isConfigured || loading}>
-        {loading ? "Changing Password..." : "Change Password"}
+      <Button type="submit" disabled={loading}>
+        {loading ? "Confirming..." : "Set New Password"}
       </Button>
     </form>
   );
@@ -256,11 +223,10 @@ export default function SignInModal({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          disabled={!isConfigured}
         />
       </div>
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit" disabled={!isConfigured || loading}>
+      <Button type="submit" disabled={loading}>
         {loading ? "Sending Reset Code..." : "Send Reset Code"}
       </Button>
       <Button variant="link" onClick={() => setIsForgotPasswordFlow(false)}>
@@ -276,10 +242,9 @@ export default function SignInModal({
         <Input
           id="confirmationCode"
           type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={confirmationCode}
+          onChange={(e) => setConfirmationCode(e.target.value)}
           required
-          disabled={!isConfigured}
         />
       </div>
       <div>
@@ -290,7 +255,6 @@ export default function SignInModal({
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           required
-          disabled={!isConfigured}
         />
       </div>
       <div>
@@ -301,11 +265,10 @@ export default function SignInModal({
           value={confirmNewPassword}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
           required
-          disabled={!isConfigured}
         />
       </div>
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit" disabled={!isConfigured || loading}>
+      <Button type="submit" disabled={loading}>
         {loading ? "Resetting Password..." : "Reset Password"}
       </Button>
     </form>
@@ -329,6 +292,8 @@ export default function SignInModal({
                 ? "Forgot Password"
                 : isPasswordResetRequired
                 ? "Reset Password"
+                : isConfirmSignInRequired
+                ? "Set New Password"
                 : "Sign In"}
             </DialogTitle>
           </DialogHeader>
@@ -336,14 +301,23 @@ export default function SignInModal({
             ? error && error.includes("Password reset code sent")
               ? renderForgotPasswordConfirmationForm()
               : renderForgotPasswordForm()
-            : isPasswordResetRequired
-            ? renderPasswordResetForm()
+            : isConfirmSignInRequired
+            ? renderConfirmSignInForm()
             : renderSignInForm()}
         </DialogContent>
       </Dialog>
       <SignUpModal
         isOpen={isSignUpOpen}
         onClose={() => setIsSignUpOpen(false)}
+      />
+      <ChangePasswordModal
+        isOpen={isChangePasswordOpen}
+        onClose={() => setIsChangePasswordOpen(false)}
+        email={email}
+        onPasswordChanged={() => {
+          setIsChangePasswordOpen(false);
+          onClose();
+        }}
       />
     </>
   );
