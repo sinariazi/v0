@@ -11,6 +11,6 @@
     }
   ],
   "env": {
-    "DATABASE_URL": "postgresql://postgres:B-%3F%24%5B~yP3%3A2Apn%7Cij37%24PcqvXHfU@database-mw-1.cbuq8qs8sctd.eu-central-1.rds.amazonaws.com:5432/postgres"
+    "DATABASE_URL": "postgresql://postgres:IQSRm-B3ll-_ao2x%288~5%28hHD~%29DZ@database-mw-1.cbuq8qs8sctd.eu-central-1.rds.amazonaws.com:5432/postgres"
   }
 }

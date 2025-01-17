@@ -4,11 +4,8 @@ import { Providers } from "./providers";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { AuthProvider } from "@/lib/auth-context";
-import { configureAmplify } from "@/lib/amplify-config";
 
 const inter = Inter({ subsets: ["latin"] });
-
-configureAmplify();
 
 export const metadata = {
   title: "Mood Whisper - Employee Engagement Platform",
