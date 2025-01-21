@@ -8,6 +8,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useAuth } from "@/lib/auth-context";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -18,30 +25,37 @@ interface SignUpModalProps {
 
 export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmationCode, setConfirmationCode] = useState("");
-  const [isConfirming, setIsConfirming] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { signUp, confirmSignUp } = useAuth();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
+  const [team, setTeam] = useState("");
+  const [organizationId, setOrganizationId] = useState("");
+  const { signUp } = useAuth();
   const { toast } = useToast();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-
     try {
-      await signUp(email, password, email);
-      setIsConfirming(true);
+      // Sign up with email and other user details
+      const signUpResult = await signUp(
+        email,
+        firstName,
+        lastName,
+        gender,
+        team,
+        organizationId
+      );
+      console.log("Sign up result:", signUpResult);
+
       toast({
         title: "Success",
-        description: "Please check your email for the confirmation code",
+        description:
+          "Your account has been created. Please check your email for a temporary password to sign in.",
       });
+      onClose();
     } catch (error) {
       console.error("Error signing up:", error);
       setError(
@@ -49,101 +63,90 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
           ? error.message
           : "Failed to sign up. Please try again."
       );
-    }
-  };
-
-  const handleConfirmSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-
-    try {
-      await confirmSignUp(email, confirmationCode);
       toast({
-        title: "Success",
-        description: "Your account has been confirmed. You can now sign in.",
+        title: "Error",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to sign up. Please try again.",
+        variant: "destructive",
       });
-      onClose();
-    } catch (error) {
-      console.error("Error confirming sign up:", error);
-      setError(
-        error instanceof Error
-          ? error.message
-          : "Failed to confirm sign up. Please try again."
-      );
     }
   };
-
-  const renderSignUpForm = () => (
-    <form onSubmit={handleSignUp} className="space-y-4">
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <Label htmlFor="password">Password</Label>
-        <Input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <Label htmlFor="confirmPassword">Confirm Password</Label>
-        <Input
-          id="confirmPassword"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </div>
-      {error && (
-        <p className="text-red-500" role="alert">
-          {error}
-        </p>
-      )}
-      <Button type="submit">Sign Up</Button>
-    </form>
-  );
-
-  const renderConfirmationForm = () => (
-    <form onSubmit={handleConfirmSignUp} className="space-y-4">
-      <div>
-        <Label htmlFor="confirmationCode">Confirmation Code</Label>
-        <Input
-          id="confirmationCode"
-          type="text"
-          value={confirmationCode}
-          onChange={(e) => setConfirmationCode(e.target.value)}
-          required
-        />
-      </div>
-      {error && (
-        <p className="text-red-500" role="alert">
-          {error}
-        </p>
-      )}
-      <Button type="submit">Confirm Sign Up</Button>
-    </form>
-  );
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            {isConfirming ? "Confirm Sign Up" : "Sign Up"}
-          </DialogTitle>
+          <DialogTitle>Sign Up</DialogTitle>
         </DialogHeader>
-        {isConfirming ? renderConfirmationForm() : renderSignUpForm()}
+        <form onSubmit={handleSignUp} className="space-y-4">
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="firstName">First Name</Label>
+            <Input
+              id="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="lastName">Last Name</Label>
+            <Input
+              id="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="gender">Gender</Label>
+            <Select value={gender} onValueChange={setGender} required>
+              <SelectTrigger id="gender">
+                <SelectValue placeholder="Select gender" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="male">Male</SelectItem>
+                <SelectItem value="female">Female</SelectItem>
+                <SelectItem value="other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Label htmlFor="team">Team</Label>
+            <Input
+              id="team"
+              value={team}
+              onChange={(e) => setTeam(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="organizationId">Organization ID</Label>
+            <Input
+              id="organizationId"
+              value={organizationId}
+              onChange={(e) => setOrganizationId(e.target.value)}
+              required
+            />
+          </div>
+          {error && (
+            <p className="text-red-500" role="alert">
+              {error}
+            </p>
+          )}
+          <Button type="submit">Sign Up</Button>
+        </form>
       </DialogContent>
     </Dialog>
   );

@@ -1,11 +1,7 @@
 "use client";
 
-type SurveyData = {
-  responses: { factor: string; score: number }[];
-  additionalFeedback: string;
-};
-
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,6 +9,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
+
+type SurveyData = {
+  responses: { factor: string; score: number }[];
+  additionalFeedback: string;
+};
 
 const engagementFactors = [
   {
@@ -63,11 +64,7 @@ const engagementFactors = [
   },
 ];
 
-export function SurveyForm({
-  onSubmit,
-}: {
-  onSubmit: (surveyData: SurveyData) => Promise<void>;
-}) {
+export function SurveyForm() {
   const [responses, setResponses] = useState<
     { factor: string; score: number }[]
   >(engagementFactors.map(({ factor }) => ({ factor, score: 3 })));
@@ -102,7 +99,6 @@ export function SurveyForm({
         body: JSON.stringify({ responses, additionalFeedback }),
       });
       if (response.ok) {
-        await onSubmit({ responses, additionalFeedback });
         toast({
           title: "Success",
           description: "Survey submitted successfully",
@@ -144,7 +140,7 @@ export function SurveyForm({
             value={responses[index].score}
             onChange={(e) => {
               const newResponses = [...responses];
-              newResponses[index].score = parseInt(e.target.value);
+              newResponses[index].score = Number.parseInt(e.target.value);
               setResponses(newResponses);
             }}
           />

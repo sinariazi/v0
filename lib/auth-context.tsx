@@ -11,10 +11,6 @@ import {
   confirmResetPassword,
   confirmSignIn,
   updatePassword,
-  signUp,
-  confirmSignUp,
-  type ConfirmSignInInput,
-  type SignUpInput,
 } from "aws-amplify/auth";
 import { configureAmplify } from "./amplify-config";
 
@@ -26,6 +22,9 @@ interface User {
   attributes: {
     email: string;
     email_verified: boolean;
+    given_name: string;
+    family_name: string;
+    gender: string;
   };
 }
 
@@ -40,8 +39,14 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   signIn: (username: string, password: string) => Promise<SignInResult>;
-  signUp: (username: string, password: string, email: string) => Promise<any>;
-  confirmSignUp: (username: string, code: string) => Promise<any>;
+  signUp: (
+    email: string,
+    firstName: string,
+    lastName: string,
+    gender: string,
+    team: string,
+    organizationId: string
+  ) => Promise<any>;
   confirmSignIn: (challengeResponse: string) => Promise<SignInResult>;
   signOut: () => Promise<void>;
   checkAuthStatus: () => Promise<boolean>;
@@ -63,6 +68,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [signInData, setSignInData] = useState<any>(null);
+  const [hasSignedOut, setHasSignedOut] = useState(false);
 
   const handleSignIn = async (
     username: string,
@@ -71,6 +77,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const result = await signIn({ username, password });
       setSignInData(result);
+      setHasSignedOut(false);
 
       if (result.isSignedIn) {
         await checkAuthStatus();
@@ -95,33 +102,37 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleSignUp = async (
-    username: string,
-    password: string,
-    email: string
+    email: string,
+    firstName: string,
+    lastName: string,
+    gender: string,
+    team: string,
+    organizationId: string
   ) => {
     try {
-      const result = await signUp({
-        username,
-        password,
-        options: {
-          userAttributes: {
-            email,
-          },
+      const response = await fetch("/api/auth/create-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      } as SignUpInput);
-      return result;
+        body: JSON.stringify({
+          email,
+          firstName,
+          lastName,
+          gender,
+          team,
+          organizationId,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create user");
+      }
+
+      return await response.json();
     } catch (error) {
       console.error("Error signing up:", error);
-      throw error;
-    }
-  };
-
-  const handleConfirmSignUp = async (username: string, code: string) => {
-    try {
-      const result = await confirmSignUp({ username, confirmationCode: code });
-      return result;
-    } catch (error) {
-      console.error("Error confirming sign up:", error);
       throw error;
     }
   };
@@ -160,6 +171,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(null);
       setIsAuthenticated(false);
       setSignInData(null);
+      setHasSignedOut(true);
     } catch (error) {
       console.error("Error signing out:", error);
       throw error;
@@ -167,6 +179,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const checkAuthStatus = async () => {
+    if (hasSignedOut) {
+      setUser(null);
+      setIsAuthenticated(false);
+      setLoading(false);
+      return false;
+    }
+
     try {
       const currentUser = await getCurrentUser();
       const session = await fetchAuthSession();
@@ -179,13 +198,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             email: (idToken.payload.email as string) || "",
             email_verified:
               (idToken.payload.email_verified as boolean) || false,
+            given_name: (idToken.payload.given_name as string) || "",
+            family_name: (idToken.payload.family_name as string) || "",
+            gender: (idToken.payload.gender as string) || "",
           },
         });
         setIsAuthenticated(true);
         return true;
       }
-      return false;
+      throw new Error("No authenticated user");
     } catch (error) {
+      if (
+        error instanceof Error &&
+        error.name === "UserUnAuthenticatedException"
+      ) {
+        // User is not authenticated, which is a normal state
+        setUser(null);
+        setIsAuthenticated(false);
+        return false;
+      }
+      // Log other types of errors
       console.error("Error checking auth status:", error);
       setUser(null);
       setIsAuthenticated(false);
@@ -196,6 +228,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const getAuthToken = async () => {
+    if (hasSignedOut) {
+      return null;
+    }
+
     try {
       const session = await fetchAuthSession();
       return session.tokens?.accessToken?.toString() || null;
@@ -240,15 +276,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    checkAuthStatus();
-  }, []);
+    if (!hasSignedOut) {
+      checkAuthStatus();
+    }
+  }, [hasSignedOut]);
 
   const value = {
     user,
     loading,
     signIn: handleSignIn,
     signUp: handleSignUp,
-    confirmSignUp: handleConfirmSignUp,
     confirmSignIn: handleConfirmSignIn,
     signOut: handleSignOut,
     checkAuthStatus,

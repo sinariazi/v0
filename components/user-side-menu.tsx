@@ -1,64 +1,89 @@
 "use client";
 
+import type React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  LayoutDashboard,
+  LineChart,
+  FileText,
+  User,
+  Settings,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { User, Calendar, BarChart, ClipboardList } from "lucide-react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  useSidebar,
+} from "@/components/ui/sidebar";
 
-const sidebarNavItems = [
-  {
-    title: "Profile",
-    href: "/user/profile",
-    icon: User,
-  },
-  {
-    title: "1-on-1 Sessions",
-    href: "/user/sessions",
-    icon: Calendar,
-  },
-  {
-    title: "Insights",
-    href: "/user/insights",
-    icon: BarChart,
-  },
-  {
-    title: "Surveys",
-    href: "/user/surveys",
-    icon: ClipboardList,
-  },
+interface MenuItem {
+  href: string;
+  label: string;
+  icon: React.ElementType;
+}
+
+const menuItems: MenuItem[] = [
+  { href: "/user", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/user/insights", label: "Insights", icon: LineChart },
+  { href: "/user/surveys", label: "Surveys", icon: FileText },
+  { href: "/user/profile", label: "Profile", icon: User },
+  { href: "/user/settings", label: "Settings", icon: Settings },
 ];
 
-export function UserSideMenu() {
+export function UserSidebar() {
   const pathname = usePathname();
+  const { toggleSidebar, isMobile } = useSidebar();
+
+  const handleItemClick = () => {
+    if (isMobile) {
+      toggleSidebar();
+    }
+  };
 
   return (
-    <div className="h-full py-6">
-      <div className="space-y-4 py-4">
-        <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            User Area
-          </h2>
-          <nav className="space-y-1">
-            {sidebarNavItems.map((item) => (
-              <Button
-                key={item.href}
-                variant={pathname === item.href ? "secondary" : "ghost"}
-                className={cn(
-                  "w-full justify-start",
-                  pathname === item.href && "bg-muted hover:bg-muted"
-                )}
-                asChild
-              >
-                <Link href={item.href}>
-                  <item.icon className="mr-2 h-4 w-4" />
-                  {item.title}
-                </Link>
-              </Button>
-            ))}
-          </nav>
-        </div>
-      </div>
-    </div>
+    <Sidebar>
+      <SidebarHeader>
+        <h2 className="text-2xl font-bold px-4 py-2">User Area</h2>
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <SidebarMenuItem key={item.href}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname === item.href}
+                    onClick={handleItemClick}
+                  >
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "flex items-center gap-2 w-full px-4 py-2 rounded",
+                        pathname === item.href
+                          ? "bg-primary text-primary-foreground"
+                          : "hover:bg-accent"
+                      )}
+                    >
+                      <item.icon className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   );
 }

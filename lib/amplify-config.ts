@@ -1,24 +1,34 @@
 import { Amplify } from "aws-amplify";
+import { cognitoUserPoolsTokenProvider } from "@aws-amplify/auth/cognito";
+import { KeyValueStorageInterface } from "@aws-amplify/core";
+
+// Create a wrapper for localStorage that conforms to KeyValueStorageInterface
+const localStorageWrapper: KeyValueStorageInterface = {
+  setItem: (key: string, value: string): Promise<void> => {
+    localStorage.setItem(key, value);
+    return Promise.resolve();
+  },
+  getItem: (key: string): Promise<string | null> => {
+    return Promise.resolve(localStorage.getItem(key));
+  },
+  removeItem: (key: string): Promise<void> => {
+    localStorage.removeItem(key);
+    return Promise.resolve();
+  },
+  clear: (): Promise<void> => {
+    localStorage.clear();
+    return Promise.resolve();
+  },
+};
 
 export function configureAmplify() {
   const userPoolId = process.env.NEXT_PUBLIC_AWS_USER_POOL_ID;
   const userPoolClientId = process.env.NEXT_PUBLIC_AWS_USER_POOL_WEB_CLIENT_ID;
   const region = process.env.NEXT_PUBLIC_AWS_REGION;
 
-  console.log("Configuring Amplify with:", {
-    userPoolId,
-    userPoolClientId,
-    region,
-  });
-
   if (!userPoolId || !userPoolClientId || !region) {
     console.error(
-      "Missing required environment variables for Amplify configuration:",
-      {
-        userPoolId,
-        userPoolClientId,
-        region,
-      }
+      "Missing required environment variables for Amplify configuration"
     );
     return false;
   }
@@ -37,6 +47,9 @@ export function configureAmplify() {
         },
       },
     });
+
+    // Use the wrapper instead of localStorage directly
+    cognitoUserPoolsTokenProvider.setKeyValueStorage(localStorageWrapper);
 
     console.log("Amplify configured successfully");
     return true;

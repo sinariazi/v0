@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { configureAmplify } from "@/lib/amplify-config";
 import { CognitoJwtVerifier } from "aws-jwt-verify";
@@ -59,6 +59,11 @@ export default async function handler(
       select: { factor: true, averageScore: true },
     });
 
+    // Set cache headers
+    res.setHeader(
+      "Cache-Control",
+      "public, max-age=60, s-maxage=60, stale-while-revalidate=300"
+    );
     res.status(200).json({ scores: averageScores });
   } catch (error) {
     console.error("Error fetching average scores:", error);
