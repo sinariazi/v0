@@ -1,15 +1,9 @@
 "use client";
 
-import type React from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  LineChart,
-  FileText,
-  User,
-  Settings,
-} from "lucide-react";
+import { Icon } from "@/components/Icon";
 import { cn } from "@/lib/utils";
 import {
   Sidebar,
@@ -17,28 +11,27 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
   useSidebar,
 } from "@/components/ui/sidebar";
+import type * as LucideIcons from "lucide-react";
+
+type IconName = keyof typeof LucideIcons;
 
 interface MenuItem {
   href: string;
   label: string;
-  icon: React.ElementType;
+  icon: IconName;
 }
 
-const menuItems: MenuItem[] = [
-  { href: "/user", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/user/insights", label: "Insights", icon: LineChart },
-  { href: "/user/surveys", label: "Surveys", icon: FileText },
-  { href: "/user/profile", label: "Profile", icon: User },
-  { href: "/user/settings", label: "Settings", icon: Settings },
-];
+interface AppSidebarProps {
+  menuItems: MenuItem[];
+  sectionTitle: string;
+}
 
-export function UserSidebar() {
+export function AppSidebar({ menuItems, sectionTitle }: AppSidebarProps) {
   const pathname = usePathname();
   const { toggleSidebar, isMobile } = useSidebar();
 
@@ -50,12 +43,9 @@ export function UserSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader>
-        <h2 className="text-2xl font-bold px-4 py-2">User Area</h2>
-      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupLabel>{sectionTitle}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
@@ -74,7 +64,7 @@ export function UserSidebar() {
                           : "hover:bg-accent"
                       )}
                     >
-                      <item.icon className="w-5 h-5" />
+                      <Icon name={item.icon} className="w-5 h-5" />
                       <span>{item.label}</span>
                     </Link>
                   </SidebarMenuButton>

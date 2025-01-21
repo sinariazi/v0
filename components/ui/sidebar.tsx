@@ -56,31 +56,6 @@ export const SidebarProvider: React.FC<SidebarProviderProps> = ({
   );
 };
 
-interface SidebarInsetProps {
-  children: ReactNode;
-  className?: string;
-}
-
-export const SidebarInset: React.FC<SidebarInsetProps> = ({
-  children,
-  className = "",
-}) => {
-  const { isOpen, isMobile } = useSidebar();
-
-  return (
-    <div
-      className={cn(
-        "transition-all duration-300",
-        isMobile ? "ml-0" : isOpen ? "ml-64" : "ml-0",
-        "flex flex-col flex-1",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-};
-
 export const Sidebar: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { isOpen, toggleSidebar, isMobile } = useSidebar();
   return (
@@ -97,12 +72,18 @@ export const Sidebar: React.FC<{ children: ReactNode }> = ({ children }) => {
       )}
       <div
         className={cn(
-          "fixed top-0 left-0 h-full bg-background border-r transition-all duration-300 z-40 overflow-y-auto",
-          isMobile ? (isOpen ? "w-64" : "w-0") : isOpen ? "w-64" : "w-0",
+          "bg-background border-r transition-all duration-300 z-40 overflow-y-auto",
+          isMobile
+            ? isOpen
+              ? "w-64 fixed inset-y-0 left-0"
+              : "w-0"
+            : isOpen
+            ? "w-64"
+            : "w-0",
           isMobile && !isOpen ? "-translate-x-full" : "translate-x-0"
         )}
       >
-        <div className="h-full">{children}</div>
+        <div className="h-full py-4">{children}</div>
       </div>
     </>
   );
