@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="mb-4 md:mb-0">
             <span className="text-2xl font-bold">Mood Whisper</span>
             <p className="text-sm text-muted-foreground mt-2">
-              © 2023 Mood Whisper. All rights reserved.
+              © 2024 Mood Whisper. All rights reserved.
             </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-4 md:gap-8">

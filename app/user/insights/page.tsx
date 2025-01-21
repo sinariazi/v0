@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { DateRangeSelector } from "@/components/DateRangeSelector";
 import { EngagementOverTime } from "@/components/charts/EngagementOverTime";
 import { FactorComparison } from "@/components/charts/FactorComparison";
@@ -33,6 +39,9 @@ export default function UserInsightsPage() {
         <Card>
           <CardHeader>
             <CardTitle>Engagement Over Time</CardTitle>
+            <CardDescription>
+              Average engagement score over the selected period
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <EngagementOverTime
@@ -46,6 +55,9 @@ export default function UserInsightsPage() {
         <Card>
           <CardHeader>
             <CardTitle>Factor Comparison</CardTitle>
+            <CardDescription>
+              Average scores for different engagement factors
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <FactorComparison
@@ -59,6 +71,9 @@ export default function UserInsightsPage() {
         <Card>
           <CardHeader>
             <CardTitle>Top Factors</CardTitle>
+            <CardDescription>
+              Highest rated engagement factors (scale: 1-5)
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <TopFactors
@@ -72,6 +87,9 @@ export default function UserInsightsPage() {
         <Card>
           <CardHeader>
             <CardTitle>Response Distribution</CardTitle>
+            <CardDescription>
+              Distribution of responses across the rating scale (1-5)
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <ResponseDistribution

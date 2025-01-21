@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
   Tooltip,
-  Legend,
+  ResponsiveContainer,
+  Cell,
 } from "recharts";
 import { useAuth } from "@/lib/auth-context";
 import { useToast } from "@/components/ui/use-toast";
@@ -67,23 +69,17 @@ export function TopFactors({
 
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <PieChart>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="score"
-        >
+      <BarChart data={data} layout="vertical" margin={{ left: 100 }}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis type="number" domain={[0, 5]} />
+        <YAxis dataKey="factor" type="category" width={100} />
+        <Tooltip />
+        <Bar dataKey="score" fill="#8884d8">
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
-        </Pie>
-        <Tooltip />
-        <Legend />
-      </PieChart>
+        </Bar>
+      </BarChart>
     </ResponsiveContainer>
   );
 }
