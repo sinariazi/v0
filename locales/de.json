@@ -1,0 +1,49 @@
+{
+  "header": {
+    "home": "Startseite",
+    "features": "Funktionen",
+    "howItWorks": "Wie es funktioniert",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "pricing": "Preise",
+    "signIn": "Anmelden",
+    "scheduleDemo": "Demo planen"
+  },
+  "footer": {
+    "home": "Startseite",
+    "features": "Funktionen",
+    "howItWorks": "Wie es funktioniert",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfService": "Nutzungsbedingungen",
+    "copyright": "© 2023 Mood Whisper. Alle Rechte vorbehalten."
+  },
+  "signInModal": {
+    "title": "Anmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signUp": "Noch kein Benutzer? Registrieren",
+    "forgotPassword": "Passwort vergessen?",
+    "signInButton": "Anmelden"
+  },
+  "signUpModal": {
+    "title": "Registrieren",
+    "email": "E-Mail",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "gender": "Geschlecht",
+    "team": "Team",
+    "organizationId": "Organisations-ID",
+    "signUpButton": "Registrieren"
+  },
+  "changePasswordModal": {
+    "title": "Neues Passwort festlegen",
+    "email": "E-Mail",
+    "newPassword": "Neues Passwort",
+    "confirmNewPassword": "Neues Passwort bestätigen",
+    "setNewPasswordButton": "Neues Passwort festlegen"
+  }
+}

@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useAuth } from "@/lib/auth-context";
+import { useLanguage } from "@/lib/language-context";
 import { Linkedin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const { user } = useAuth();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-background border-t">
@@ -18,19 +20,19 @@ export default function Footer() {
                 href="/"
                 className="text-sm text-muted-foreground hover:text-foreground"
               >
-                Home
+                {t("footer.home")}
               </Link>
               <Link
                 href="/features"
                 className="text-sm text-muted-foreground hover:text-foreground"
               >
-                Features
+                {t("footer.features")}
               </Link>
               <Link
                 href="/how-it-works"
                 className="text-sm text-muted-foreground hover:text-foreground"
               >
-                How It Works
+                {t("footer.howItWorks")}
               </Link>
             </>
           )}
@@ -38,31 +40,31 @@ export default function Footer() {
             href="/blog"
             className="text-sm text-muted-foreground hover:text-foreground"
           >
-            Blog
+            {t("footer.blog")}
           </Link>
           <Link
             href="/about"
             className="text-sm text-muted-foreground hover:text-foreground"
           >
-            About
+            {t("footer.about")}
           </Link>
           <Link
             href="/contact"
             className="text-sm text-muted-foreground hover:text-foreground"
           >
-            Contact
+            {t("footer.contact")}
           </Link>
           <Link
             href="/privacy-policy"
             className="text-sm text-muted-foreground hover:text-foreground"
           >
-            Privacy Policy
+            {t("footer.privacyPolicy")}
           </Link>
           <Link
             href="/terms-of-service"
             className="text-sm text-muted-foreground hover:text-foreground"
           >
-            Terms of Service
+            {t("footer.termsOfService")}
           </Link>
         </nav>
 
@@ -129,7 +131,7 @@ export default function Footer() {
 
         <div className="text-center mt-6">
           <p className="text-sm text-muted-foreground">
-            © 2023 Mood Whisper. All rights reserved.
+            {t("footer.copyright")}
           </p>
         </div>
       </div>

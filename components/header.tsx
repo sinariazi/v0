@@ -1,13 +1,29 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/lib/auth-context";
+import { useLanguage } from "@/lib/language-context";
+import {
+  Globe,
+  LogIn,
+  LogOut,
+  Menu,
+  Moon,
+  Sun,
+  User,
+  X
+} from "lucide-react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X, Loader2, LogIn, LogOut, User } from "lucide-react";
+import { useEffect, useState } from "react";
 import SignInModal from "./SignInModal";
-import { useAuth } from "@/lib/auth-context";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,6 +31,7 @@ export default function Header() {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const { user, loading, signOut } = useAuth();
   const router = useRouter();
+  const { language, setLanguage, t } = useLanguage();
 
   const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -65,13 +82,17 @@ export default function Header() {
   const navLinks = user
     ? []
     : [
-        { href: "/", label: "Home" },
-        { href: "/features", label: "Features" },
-        { href: "/how-it-works", label: "How it Works" },
-        { href: "/blog", label: "Blog" },
-        { href: "/about", label: "About" },
-        { href: "/contact", label: "Contact" },
-        { href: "#pricing", label: "Pricing", onClick: scrollToPricing },
+        { href: "/", label: t("header.home") },
+        { href: "/features", label: t("header.features") },
+        { href: "/how-it-works", label: t("header.howItWorks") },
+        { href: "/blog", label: t("header.blog") },
+        { href: "/about", label: t("header.about") },
+        { href: "/contact", label: t("header.contact") },
+        {
+          href: "#pricing",
+          label: t("header.pricing"),
+          onClick: scrollToPricing,
+        },
       ];
 
   return (
@@ -109,7 +130,7 @@ export default function Header() {
               </span>
               <Button
                 variant="ghost"
-                onClick={() => router.push("/user/profile")}
+                onClick={() => router.push("/user/dashboard")}
               >
                 <User className="mr-2 h-4 w-4" />
                 User Area
@@ -145,16 +166,31 @@ export default function Header() {
                     <Moon className="h-5 w-5" />
                   )}
                 </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                      <Globe className="h-5 w-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem onClick={() => setLanguage("en")}>
+                      English
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setLanguage("de")}>
+                      Deutsch
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <Button variant="ghost" onClick={() => setIsSignInOpen(true)}>
                   <LogIn className="mr-2 h-4 w-4" />
-                  Sign In
+                  {t("header.signIn")}
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   className="hidden md:inline-flex"
                 >
-                  <Link href="/schedule-demo">Schedule Demo</Link>
+                  <Link href="/schedule-demo">{t("header.scheduleDemo")}</Link>
                 </Button>
               </div>
             </>
@@ -188,7 +224,7 @@ export default function Header() {
             ))}
             {!user && (
               <Button asChild variant="outline">
-                <Link href="/schedule-demo">Schedule Demo</Link>
+                <Link href="/schedule-demo">{t("header.scheduleDemo")}</Link>
               </Button>
             )}
           </nav>
