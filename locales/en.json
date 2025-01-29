@@ -247,5 +247,10 @@
       "submitFailed": "Failed to submit survey",
       "submitError": "Error submitting survey:"
     }
+  },
+  "surveyResults": {
+    "surveyFrom": "Survey from {{date}}",
+    "answer": "Answer: {{score}}/5",
+    "additionalFeedback": "Additional Feedback:"
   }
 }
