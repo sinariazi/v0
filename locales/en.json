@@ -211,18 +211,41 @@
     "title": "Employee Engagement Survey",
     "description": "Please answer the following questions on a scale of 1-10",
     "questions": {
-      "question1": "How satisfied are you with your current role?",
-      "question2": "How well do you feel your work is recognized?",
-      "question3": "How likely are you to recommend our company as a place to work?"
+      "jobSatisfaction": "How satisfied are you with your current role?",
+      "careerAlignment": "How well does your work align with your career goals?",
+      "workLifeBalance": "How would you rate the work-life balance in your current position?",
+      "recognition": "How satisfied are you with the recognition you receive for your work?",
+      "teamCommunication": "How would you rate the communication within your team?",
+      "professionalGrowth": "How satisfied are you with the opportunities for professional growth?",
+      "diversityAndInclusion": "How would you rate the company's commitment to diversity and inclusion?",
+      "compensationAndBenefits": "How satisfied are you with your current compensation and benefits?",
+      "companyCulture": "How would you rate the overall company culture?",
+      "recommendation": "How likely are you to recommend this company as a great place to work?"
     },
-    "dateLabel": "Survey Date",
+    "scale": {
+      "lowest": "1 (Lowest)",
+      "highest": "5 (Highest)"
+    },
+    "additionalFeedback": {
+      "label": "Additional Feedback",
+      "placeholder": "Please provide any additional feedback or comments here..."
+    },
     "submit": "Submit Survey",
-    "submitting": "Submitting...",
-    "successTitle": "Survey Submitted",
-    "successDescription": "Survey submitted successfully! Your engagement score is: {{score}}",
-    "errorTitle": "Submission Error",
-    "errorDescription": "Failed to submit survey. Please try again.",
-    "submitError": "Failed to submit survey",
-    "errorLogging": "Error submitting survey:"
+    "authError": {
+      "title": "Authentication Error",
+      "description": "You must be signed in to submit a survey.",
+      "sessionExpired": "Your session has expired. Please sign in again."
+    },
+    "success": {
+      "title": "Success",
+      "description": "Survey submitted successfully"
+    },
+    "errors": {
+      "title": "Error",
+      "description": "Failed to submit survey. Please try again.",
+      "failedToken": "Failed to get authentication token",
+      "submitFailed": "Failed to submit survey",
+      "submitError": "Error submitting survey:"
+    }
   }
 }

@@ -211,18 +211,41 @@
     "title": "Mitarbeiter-Engagement-Umfrage",
     "description": "Bitte beantworten Sie die folgenden Fragen auf einer Skala von 1-10",
     "questions": {
-      "question1": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?",
-      "question2": "Wie gut fühlen Sie sich für Ihre Arbeit anerkannt?",
-      "question3": "Wie wahrscheinlich ist es, dass Sie unser Unternehmen als Arbeitsplatz empfehlen würden?"
+      "jobSatisfaction": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?",
+      "careerAlignment": "Wie gut stimmt Ihre Arbeit mit Ihren Karrierezielen überein?",
+      "workLifeBalance": "Wie würden Sie die Work-Life-Balance in Ihrer aktuellen Position bewerten?",
+      "recognition": "Wie zufrieden sind Sie mit der Anerkennung, die Sie für Ihre Arbeit erhalten?",
+      "teamCommunication": "Wie würden Sie die Kommunikation innerhalb Ihres Teams bewerten?",
+      "professionalGrowth": "Wie zufrieden sind Sie mit den Möglichkeiten zur beruflichen Weiterentwicklung?",
+      "diversityAndInclusion": "Wie würden Sie das Engagement des Unternehmens für Vielfalt und Inklusion bewerten?",
+      "compensationAndBenefits": "Wie zufrieden sind Sie mit Ihrer aktuellen Vergütung und den Leistungen?",
+      "companyCulture": "Wie würden Sie die allgemeine Unternehmenskultur bewerten?",
+      "recommendation": "Wie wahrscheinlich ist es, dass Sie dieses Unternehmen als großartigen Arbeitsplatz empfehlen würden?"
     },
-    "dateLabel": "Umfragedatum",
+    "scale": {
+      "lowest": "1 (Niedrigste)",
+      "highest": "5 (Höchste)"
+    },
+    "additionalFeedback": {
+      "label": "Zusätzliches Feedback",
+      "placeholder": "Bitte geben Sie hier zusätzliches Feedback oder Kommentare an..."
+    },
     "submit": "Umfrage einreichen",
-    "submitting": "Wird eingereicht...",
-    "successTitle": "Umfrage eingereicht",
-    "successDescription": "Umfrage erfolgreich eingereicht! Ihr Engagement-Score ist: {{score}}",
-    "errorTitle": "Einreichungsfehler",
-    "errorDescription": "Fehler beim Einreichen der Umfrage. Bitte versuchen Sie es erneut.",
-    "submitError": "Fehler beim Einreichen der Umfrage",
-    "errorLogging": "Fehler beim Einreichen der Umfrage:"
+    "authError": {
+      "title": "Authentifizierungsfehler",
+      "description": "Sie müssen angemeldet sein, um eine Umfrage einzureichen.",
+      "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+    },
+    "success": {
+      "title": "Erfolg",
+      "description": "Umfrage erfolgreich eingereicht"
+    },
+    "errors": {
+      "title": "Fehler",
+      "description": "Fehler beim Einreichen der Umfrage. Bitte versuchen Sie es erneut.",
+      "failedToken": "Fehler beim Abrufen des Authentifizierungstokens",
+      "submitFailed": "Fehler beim Einreichen der Umfrage",
+      "submitError": "Fehler beim Einreichen der Umfrage:"
+    }
   }
 }
