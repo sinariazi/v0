@@ -252,6 +252,24 @@
       "surveyFrom": "Umfrage vom {{date}}",
       "answer": "Antwort: {{score}}/5",
       "additionalFeedback": "Zusätzliches Feedback:"
+    },
+    "testimonials": {
+      "title": "Was unsere Kunden sagen",
+      "sarah": {
+        "name": "Sarah Johnson",
+        "role": "HR-Direktorin, TechCorp",
+        "content": "Der datengesteuerte Ansatz von Mood Whisper hat unsere Mitarbeiter-Engagement-Strategie revolutioniert. Wir haben seit der Implementierung eine 25%ige Steigerung der allgemeinen Arbeitszufriedenheit festgestellt."
+      },
+      "michael": {
+        "name": "Michael Chen",
+        "role": "CEO, InnovateCo",
+        "content": "Die prädiktiven Analysen von Mood Whisper haben uns geholfen, potenzielle Probleme proaktiv anzugehen, was zu einer 15%igen Reduzierung der Fluktuation und einer 20%igen Steigerung der Produktivität geführt hat."
+      },
+      "emily": {
+        "name": "Emily Rodriguez",
+        "role": "Teamleiterin, CreativeStudio",
+        "content": "Die anpassbaren Dashboards ermöglichen es uns, die Metriken zu verfolgen, die für unser Kreativteam am wichtigsten sind. Dank der Erkenntnisse von Mood Whisper haben wir unsere Projektabschlussrate um 30% verbessert."
+      }
     }
   }
   
