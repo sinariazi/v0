@@ -112,5 +112,11 @@
     "insights": "Erkenntnisse",
     "billing": "Abrechnung",
     "subscription": "Abonnement"
+  },
+  "dataInsights": {
+    "title": "Datengesteuerte Erkenntnisse",
+    "chartTitle": "Abteilungszufriedenheit vs. Produktivität",
+    "satisfaction": "Zufriedenheit",
+    "productivity": "Produktivität"
   }
 }

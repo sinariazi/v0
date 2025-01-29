@@ -112,6 +112,12 @@
       "insights": "Insights",
       "billing": "Billing",
       "subscription": "Subscription"
+    },
+    "dataInsights": {
+      "title": "Data-Driven Insights",
+      "chartTitle": "Department Satisfaction vs Productivity",
+      "satisfaction": "Satisfaction",
+      "productivity": "Productivity"
     }
   }
   

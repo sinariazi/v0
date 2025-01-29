@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useLanguage } from "@/lib/language-context";
 
 const data = [
   { department: "Sales", satisfaction: 85, productivity: 90 },
@@ -20,15 +21,17 @@ const data = [
 ];
 
 export default function DataInsights() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-24 px-4">
       <div className="container">
         <h2 className="text-3xl font-bold text-center mb-12">
-          Data-Driven Insights
+          {t("dataInsights.title")}
         </h2>
         <Card>
           <CardHeader>
-            <CardTitle>Department Satisfaction vs Productivity</CardTitle>
+            <CardTitle>{t("dataInsights.chartTitle")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-[400px]">
@@ -41,12 +44,12 @@ export default function DataInsights() {
                   <Bar
                     dataKey="satisfaction"
                     fill="#3b82f6"
-                    name="Satisfaction"
+                    name={t("dataInsights.satisfaction")}
                   />
                   <Bar
                     dataKey="productivity"
                     fill="#10b981"
-                    name="Productivity"
+                    name={t("dataInsights.productivity")}
                   />
                 </BarChart>
               </ResponsiveContainer>
