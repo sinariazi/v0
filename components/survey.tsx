@@ -1,16 +1,20 @@
-import { useState, FormEvent, ChangeEvent } from "react";
-import { useRouter } from "next/router";
+"use client";
+
+import { useState, type FormEvent, type ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useLanguage } from "@/lib/language-context";
+import { useToast } from "@/components/ui/use-toast";
 
 interface SurveyQuestion {
   id: "question1" | "question2" | "question3";
@@ -22,10 +26,12 @@ export default function SurveyPage() {
   const [question2, setQuestion2] = useState("");
   const [question3, setQuestion3] = useState("");
   const [surveyDate, setSurveyDate] = useState(
-    new Date().toISOString().split("T")[0],
+    new Date().toISOString().split("T")[0]
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+  const { t } = useLanguage();
+  const { toast } = useToast();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,25 +46,33 @@ export default function SurveyPage() {
         body: JSON.stringify({
           userId: "placeholder-user-id", // Replace with actual user ID from authentication
           organizationId: "placeholder-org-id", // Replace with actual organization ID
-          question1Score: parseInt(question1),
-          question2Score: parseInt(question2),
-          question3Score: parseInt(question3),
+          question1Score: Number.parseInt(question1),
+          question2Score: Number.parseInt(question2),
+          question3Score: Number.parseInt(question3),
           surveyDate,
         }),
       });
 
       if (response.ok) {
         const result = await response.json();
-        alert(
-          `Survey submitted successfully! Your engagement score is: ${result.engagementScore.toFixed(2)}`,
-        );
+        toast({
+          title: t("survey.successTitle"),
+          description:
+            t("survey.successDescription") +
+            " " +
+            result.engagementScore.toFixed(2),
+        });
         router.push("/"); // Redirect to home page or a thank you page
       } else {
-        throw new Error("Failed to submit survey");
+        throw new Error(t("survey.submitError"));
       }
     } catch (error) {
-      console.error("Error submitting survey:", error);
-      alert("Failed to submit survey. Please try again.");
+      console.error(t("survey.errorLogging"), error);
+      toast({
+        title: t("survey.errorTitle"),
+        description: t("survey.errorDescription"),
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -71,22 +85,17 @@ export default function SurveyPage() {
     };
 
   const questions: SurveyQuestion[] = [
-    { id: "question1", label: "How satisfied are you with your current role?" },
-    { id: "question2", label: "How well do you feel your work is recognized?" },
-    {
-      id: "question3",
-      label: "How likely are you to recommend our company as a place to work?",
-    },
+    { id: "question1", label: t("survey.questions.question1") },
+    { id: "question2", label: t("survey.questions.question2") },
+    { id: "question3", label: t("survey.questions.question3") },
   ];
 
   return (
     <div className="container mx-auto py-10">
       <Card className="max-w-md mx-auto">
         <CardHeader>
-          <CardTitle>Employee Engagement Survey</CardTitle>
-          <CardDescription>
-            Please answer the following questions on a scale of 1-10
-          </CardDescription>
+          <CardTitle>{t("survey.title")}</CardTitle>
+          <CardDescription>{t("survey.description")}</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -102,22 +111,22 @@ export default function SurveyPage() {
                     question.id === "question1"
                       ? question1
                       : question.id === "question2"
-                        ? question2
-                        : question3
+                      ? question2
+                      : question3
                   }
                   onChange={handleInputChange(
                     question.id === "question1"
                       ? setQuestion1
                       : question.id === "question2"
-                        ? setQuestion2
-                        : setQuestion3,
+                      ? setQuestion2
+                      : setQuestion3
                   )}
                   required
                 />
               </div>
             ))}
             <div className="space-y-2">
-              <Label htmlFor="surveyDate">Survey Date</Label>
+              <Label htmlFor="surveyDate">{t("survey.dateLabel")}</Label>
               <Input
                 id="surveyDate"
                 type="date"
@@ -129,7 +138,7 @@ export default function SurveyPage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Submit Survey"}
+              {isSubmitting ? t("survey.submitting") : t("survey.submit")}
             </Button>
           </CardFooter>
         </form>

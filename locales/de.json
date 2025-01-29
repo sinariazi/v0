@@ -1,131 +1,228 @@
 {
-    "header": {
-      "home": "Startseite",
-      "features": "Funktionen",
-      "howItWorks": "Wie es funktioniert",
-      "blog": "Blog",
-      "about": "Über uns",
-      "contact": "Kontakt",
-      "pricing": "Preise",
-      "signIn": "Anmelden",
-      "scheduleDemo": "Demo planen"
-    },
-    "footer": {
-      "home": "Startseite",
-      "features": "Funktionen",
-      "howItWorks": "Wie es funktioniert",
-      "blog": "Blog",
-      "about": "Über uns",
-      "contact": "Kontakt",
-      "privacyPolicy": "Datenschutzrichtlinie",
-      "termsOfService": "Nutzungsbedingungen",
-      "copyright": "© 2025 Mood Whisper. Alle Rechte vorbehalten."
-    },
-    "signInModal": {
-      "title": "Anmelden",
-      "email": "E-Mail",
-      "password": "Passwort",
-      "signUp": "Noch kein Benutzer? Registrieren",
-      "forgotPassword": "Passwort vergessen?",
-      "signInButton": "Anmelden",
-      "failedToSignIn": "Anmeldung fehlgeschlagen",
-      "failedToSignInCheckCredentials": "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten und versuchen Sie es erneut.",
-      "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
-      "failedToConfirmSignInTryAgain": "Bestätigung der Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.",
-      "passwordResetCodeSent": "Passwort-Reset-Code gesendet. Bitte überprüfen Sie Ihre E-Mail.",
-      "failedToSendPasswordResetEmail": "Fehler beim Senden der Passwort-Reset-E-Mail. Bitte versuchen Sie es erneut.",
-      "newPasswordsDoNotMatch": "Neue Passwörter stimmen nicht überein.",
-      "passwordResetSuccessful": "Passwort erfolgreich zurückgesetzt. Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
-      "failedToResetPassword": "Fehler beim Zurücksetzen des Passworts. Bitte versuchen Sie es erneut.",
-      "newPassword": "Neues Passwort",
-      "signingIn": "Anmeldung läuft...",
-      "signIn": "Anmelden",
-      "notAUserYet": "Noch kein Benutzer? Registrieren",
-      "confirming": "Bestätigung läuft...",
-      "setNewPassword": "Neues Passwort festlegen",
-      "sendingResetCode": "Reset-Code wird gesendet...",
-      "sendResetCode": "Reset-Code senden",
-      "backToSignIn": "Zurück zur Anmeldung",
-      "resetCode": "Reset-Code",
-      "confirmNewPassword": "Neues Passwort bestätigen",
-      "resettingPassword": "Passwort wird zurückgesetzt...",
-      "resetPassword": "Passwort zurücksetzen"
-    },
-    "signUpModal": {
-      "title": "Registrieren",
-      "email": "E-Mail",
-      "firstName": "Vorname",
-      "lastName": "Nachname",
-      "gender": "Geschlecht",
-      "selectGender": "Geschlecht auswählen",
-      "male": "Männlich",
-      "female": "Weiblich",
-      "other": "Andere",
-      "team": "Team",
-      "organizationId": "Organisations-ID",
-      "signUpButton": "Registrieren",
-      "success": "Erfolg",
-      "accountCreatedCheckEmail": "Ihr Konto wurde erstellt. Bitte überprüfen Sie Ihre E-Mail für ein temporäres Passwort zur Anmeldung.",
-      "error": "Fehler",
-      "failedToSignUp": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."
-    },
-    "changePasswordModal": {
-      "title": "Neues Passwort festlegen",
-      "email": "E-Mail",
-      "newPassword": "Neues Passwort",
-      "confirmNewPassword": "Neues Passwort bestätigen",
-      "setNewPasswordButton": "Neues Passwort festlegen",
-      "newPasswordsDoNotMatch": "Neue Passwörter stimmen nicht überein.",
-      "success": "Erfolg",
-      "passwordChangedSuccessfully": "Passwort erfolgreich geändert. Sie sind jetzt angemeldet.",
-      "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
-      "failedToChangePassword": "Fehler beim Ändern des Passworts. Bitte versuchen Sie es erneut."
-    },
-    "hero": {
-      "title": "Datengesteuerte Mitarbeiterengagement mit Mood Whisper",
-      "description": "Nutzen Sie die Kraft von Echtzeit-Analysen, um die Zufriedenheit und Produktivität am Arbeitsplatz zu steigern.",
-      "startFreeTrial": "Kostenlose Testversion starten",
-      "scheduleDemo": "Demo planen",
-      "chart": {
-        "happiness": "Zufriedenheit",
-        "engagement": "Engagement"
-      }
-    },
-    "home": {
-      "featuresSection": {
-        "title": "Leistungsstarke Funktionen für Mitarbeiterengagement",
-        "description": "Entdecken Sie die umfassenden Tools und Möglichkeiten, die Mood Whisper zur führenden Plattform für Mitarbeiterengagement machen.",
-        "exploreButton": "Unsere Funktionen entdecken"
-      }
-    },
-    "cta": {
-      "title": "Bereit, die Kraft der Daten zu nutzen?",
-      "description": "Schließen Sie sich der datengesteuerten Revolution im Mitarbeiterengagement an. Beginnen Sie noch heute Ihre Reise zu einem produktiveren und glücklicheren Arbeitsplatz mit Mood Whisper.",
-      "startFreeTrial": "Kostenlose Testversion starten",
-      "scheduleDemo": "Demo planen"
-    },
-    "adminSideMenu": {
-      "title": "Admin-Panel",
-      "dashboard": "Dashboard",
-      "userManagement": "Benutzerverwaltung",
-      "surveys": "Umfragen",
-      "insights": "Erkenntnisse",
-      "billing": "Abrechnung",
-      "subscription": "Abonnement"
-    },
-    "dataInsights": {
-      "title": "Datengesteuerte Erkenntnisse",
-      "chartTitle": "Abteilungszufriedenheit vs. Produktivität",
-      "satisfaction": "Zufriedenheit",
-      "productivity": "Produktivität"
-    },
-    "dateRangeSelector": {
-      "placeholder": "Zeitraum auswählen",
-      "last30Days": "Letzte 30 Tage",
-      "last90Days": "Letzte 90 Tage",
-      "last180Days": "Letzte 180 Tage",
-      "allTime": "Gesamter Zeitraum"
+  "header": {
+    "home": "Startseite",
+    "features": "Funktionen",
+    "howItWorks": "Wie es funktioniert",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "pricing": "Preise",
+    "signIn": "Anmelden",
+    "scheduleDemo": "Demo planen"
+  },
+  "footer": {
+    "home": "Startseite",
+    "features": "Funktionen",
+    "howItWorks": "Wie es funktioniert",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfService": "Nutzungsbedingungen",
+    "copyright": "© 2025 Mood Whisper. Alle Rechte vorbehalten."
+  },
+  "signInModal": {
+    "title": "Anmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signUp": "Noch kein Benutzer? Registrieren",
+    "forgotPassword": "Passwort vergessen?",
+    "signInButton": "Anmelden",
+    "failedToSignIn": "Anmeldung fehlgeschlagen",
+    "failedToSignInCheckCredentials": "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten und versuchen Sie es erneut.",
+    "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
+    "failedToConfirmSignInTryAgain": "Bestätigung der Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "passwordResetCodeSent": "Passwort-Reset-Code gesendet. Bitte überprüfen Sie Ihre E-Mail.",
+    "failedToSendPasswordResetEmail": "Fehler beim Senden der Passwort-Reset-E-Mail. Bitte versuchen Sie es erneut.",
+    "newPasswordsDoNotMatch": "Neue Passwörter stimmen nicht überein.",
+    "passwordResetSuccessful": "Passwort erfolgreich zurückgesetzt. Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
+    "failedToResetPassword": "Fehler beim Zurücksetzen des Passworts. Bitte versuchen Sie es erneut.",
+    "newPassword": "Neues Passwort",
+    "signingIn": "Anmeldung läuft...",
+    "signIn": "Anmelden",
+    "notAUserYet": "Noch kein Benutzer? Registrieren",
+    "confirming": "Bestätigung läuft...",
+    "setNewPassword": "Neues Passwort festlegen",
+    "sendingResetCode": "Reset-Code wird gesendet...",
+    "sendResetCode": "Reset-Code senden",
+    "backToSignIn": "Zurück zur Anmeldung",
+    "resetCode": "Reset-Code",
+    "confirmNewPassword": "Neues Passwort bestätigen",
+    "resettingPassword": "Passwort wird zurückgesetzt...",
+    "resetPassword": "Passwort zurücksetzen"
+  },
+  "signUpModal": {
+    "title": "Registrieren",
+    "email": "E-Mail",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "gender": "Geschlecht",
+    "selectGender": "Geschlecht auswählen",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "other": "Andere",
+    "team": "Team",
+    "organizationId": "Organisations-ID",
+    "signUpButton": "Registrieren",
+    "success": "Erfolg",
+    "accountCreatedCheckEmail": "Ihr Konto wurde erstellt. Bitte überprüfen Sie Ihre E-Mail für ein temporäres Passwort zur Anmeldung.",
+    "error": "Fehler",
+    "failedToSignUp": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+  },
+  "changePasswordModal": {
+    "title": "Neues Passwort festlegen",
+    "email": "E-Mail",
+    "newPassword": "Neues Passwort",
+    "confirmNewPassword": "Neues Passwort bestätigen",
+    "setNewPasswordButton": "Neues Passwort festlegen",
+    "newPasswordsDoNotMatch": "Neue Passwörter stimmen nicht überein.",
+    "success": "Erfolg",
+    "passwordChangedSuccessfully": "Passwort erfolgreich geändert. Sie sind jetzt angemeldet.",
+    "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
+    "failedToChangePassword": "Fehler beim Ändern des Passworts. Bitte versuchen Sie es erneut."
+  },
+  "hero": {
+    "title": "Datengesteuerte Mitarbeiterengagement mit Mood Whisper",
+    "description": "Nutzen Sie die Kraft von Echtzeit-Analysen, um die Zufriedenheit und Produktivität am Arbeitsplatz zu steigern.",
+    "startFreeTrial": "Kostenlose Testversion starten",
+    "scheduleDemo": "Demo planen",
+    "chart": {
+      "happiness": "Zufriedenheit",
+      "engagement": "Engagement"
     }
+  },
+  "home": {
+    "featuresSection": {
+      "title": "Leistungsstarke Funktionen für Mitarbeiterengagement",
+      "description": "Entdecken Sie die umfassenden Tools und Möglichkeiten, die Mood Whisper zur führenden Plattform für Mitarbeiterengagement machen.",
+      "exploreButton": "Unsere Funktionen entdecken"
+    }
+  },
+  "cta": {
+    "title": "Bereit, die Kraft der Daten zu nutzen?",
+    "description": "Schließen Sie sich der datengesteuerten Revolution im Mitarbeiterengagement an. Beginnen Sie noch heute Ihre Reise zu einem produktiveren und glücklicheren Arbeitsplatz mit Mood Whisper.",
+    "startFreeTrial": "Kostenlose Testversion starten",
+    "scheduleDemo": "Demo planen"
+  },
+  "adminSideMenu": {
+    "title": "Admin-Panel",
+    "dashboard": "Dashboard",
+    "userManagement": "Benutzerverwaltung",
+    "surveys": "Umfragen",
+    "insights": "Erkenntnisse",
+    "billing": "Abrechnung",
+    "subscription": "Abonnement"
+  },
+  "dataInsights": {
+    "title": "Datengesteuerte Erkenntnisse",
+    "chartTitle": "Abteilungszufriedenheit vs. Produktivität",
+    "satisfaction": "Zufriedenheit",
+    "productivity": "Produktivität"
+  },
+  "dateRangeSelector": {
+    "placeholder": "Zeitraum auswählen",
+    "last30Days": "Letzte 30 Tage",
+    "last90Days": "Letzte 90 Tage",
+    "last180Days": "Letzte 180 Tage",
+    "allTime": "Gesamter Zeitraum"
+  },
+  "howItWorks": {
+    "title": "Wie es funktioniert",
+    "step1": {
+      "title": "Registrieren",
+      "description": "Erstellen Sie Ihr Mood Whisper-Konto und richten Sie Ihr Organisationsprofil ein."
+    },
+    "step2": {
+      "title": "Team einladen",
+      "description": "Laden Sie Ihre Mitarbeiter ein, der Plattform beizutreten und ihre Stimmungen zu teilen."
+    },
+    "step3": {
+      "title": "Verfolgen & Analysieren",
+      "description": "Überwachen Sie Echtzeit-Stimmungsdaten und analysieren Sie Trends, um die Zufriedenheit am Arbeitsplatz zu verbessern."
+    },
+    "step4": {
+      "title": "Handeln",
+      "description": "Setzen Sie Änderungen basierend auf Erkenntnissen um, um das Mitarbeiterengagement und die Produktivität zu steigern."
+    }
+  },
+  "predictionModels": {
+    "title": "Prädiktive Analysen für Mitarbeiterengagement",
+    "chart": {
+      "title": "Engagement-Vorhersagemodell",
+      "actualEngagement": "Tatsächliches Engagement",
+      "predictedEngagement": "Vorhergesagtes Engagement"
+    },
+    "howItWorks": {
+      "title": "Wie unser Vorhersagemodell funktioniert",
+      "description": "Unser Vorhersagemodell hilft Ihnen, Engagement-Trends zu antizipieren und ermöglicht es Ihnen, proaktive Maßnahmen zu ergreifen, um eine hohe Mitarbeiterzufriedenheit und Produktivität aufrechtzuerhalten."
+    },
+    "features": {
+      "feature1": "Nutzt fortschrittliche Machine-Learning-Algorithmen",
+      "feature2": "Analysiert historische Engagement-Daten",
+      "feature3": "Berücksichtigt verschiedene Faktoren wie Teamdynamik, Arbeitsbelastung und Unternehmensereignisse",
+      "feature4": "Lernt kontinuierlich und verbessert Vorhersagen im Laufe der Zeit",
+      "feature5": "Liefert umsetzbare Erkenntnisse zur Verbesserung des Mitarbeiterengagements"
+    },
+    "noFeaturesAvailable": "Keine Funktionen verfügbar"
+  },
+  "pricing": {
+    "title": "Preispläne",
+    "perMonth": "/Monat",
+    "getStarted": "Jetzt starten",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "price": "99 €",
+        "description": "Perfekt für kleine Teams, die gerade anfangen",
+        "features": {
+          "employees": "Bis zu 25 Mitarbeiter",
+          "moodTracking": "Grundlegende Stimmungsverfolgung",
+          "weeklyReports": "Wöchentliche Berichte",
+          "emailSupport": "E-Mail-Support"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "299 €",
+        "description": "Ideal für wachsende Unternehmen mit fortgeschrittenen Bedürfnissen",
+        "features": {
+          "employees": "Bis zu 100 Mitarbeiter",
+          "advancedAnalytics": "Erweiterte Stimmungsanalysen",
+          "dailyReports": "Tägliche Berichte",
+          "collaborationTools": "Team-Kollaborationstools",
+          "prioritySupport": "Prioritäts-E-Mail-Support"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Individuell",
+        "description": "Maßgeschneiderte Lösungen für große Organisationen",
+        "features": {
+          "employees": "Unbegrenzte Mitarbeiter",
+          "customIntegrations": "Individuelle Integrationen",
+          "accountManager": "Dedizierter Account Manager",
+          "phoneSupport": "24/7 Telefonsupport",
+          "onSiteTraining": "Vor-Ort-Schulungen"
+        }
+      }
+    }
+  },
+  "survey": {
+    "title": "Mitarbeiter-Engagement-Umfrage",
+    "description": "Bitte beantworten Sie die folgenden Fragen auf einer Skala von 1-10",
+    "questions": {
+      "question1": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?",
+      "question2": "Wie gut fühlen Sie sich für Ihre Arbeit anerkannt?",
+      "question3": "Wie wahrscheinlich ist es, dass Sie unser Unternehmen als Arbeitsplatz empfehlen würden?"
+    },
+    "dateLabel": "Umfragedatum",
+    "submit": "Umfrage einreichen",
+    "submitting": "Wird eingereicht...",
+    "successTitle": "Umfrage eingereicht",
+    "successDescription": "Umfrage erfolgreich eingereicht! Ihr Engagement-Score ist: {{score}}",
+    "errorTitle": "Einreichungsfehler",
+    "errorDescription": "Fehler beim Einreichen der Umfrage. Bitte versuchen Sie es erneut.",
+    "submitError": "Fehler beim Einreichen der Umfrage",
+    "errorLogging": "Fehler beim Einreichen der Umfrage:"
   }
-  
-  
+}

@@ -125,5 +125,104 @@
     "last90Days": "Last 90 days",
     "last180Days": "Last 180 days",
     "allTime": "All time"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Sign Up",
+      "description": "Create your Mood Whisper account and set up your organization profile."
+    },
+    "step2": {
+      "title": "Invite Team",
+      "description": "Invite your employees to join the platform and start sharing their moods."
+    },
+    "step3": {
+      "title": "Track & Analyze",
+      "description": "Monitor real-time mood data and analyze trends to improve workplace satisfaction."
+    },
+    "step4": {
+      "title": "Take Action",
+      "description": "Implement changes based on insights to boost employee engagement and productivity."
+    }
+  },
+  "predictionModels": {
+    "title": "Predictive Analytics for Employee Engagement",
+    "chart": {
+      "title": "Engagement Prediction Model",
+      "actualEngagement": "Actual Engagement",
+      "predictedEngagement": "Predicted Engagement"
+    },
+    "howItWorks": {
+      "title": "How Our Prediction Model Works",
+      "description": "Our prediction model helps you anticipate engagement trends, allowing you to take proactive measures to maintain high employee satisfaction and productivity."
+    },
+    "features": {
+      "feature1": "Utilizes advanced machine learning algorithms",
+      "feature2": "Analyzes historical engagement data",
+      "feature3": "Considers various factors such as team dynamics, workload, and company events",
+      "feature4": "Continuously learns and improves predictions over time",
+      "feature5": "Provides actionable insights to improve employee engagement"
+    },
+    "noFeaturesAvailable": "No features available"
+  },
+  "pricing": {
+    "title": "Pricing Plans",
+    "perMonth": "/month",
+    "getStarted": "Get Started",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "price": "$99",
+        "description": "Perfect for small teams just getting started",
+        "features": {
+          "employees": "Up to 25 employees",
+          "moodTracking": "Basic mood tracking",
+          "weeklyReports": "Weekly reports",
+          "emailSupport": "Email support"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$299",
+        "description": "Ideal for growing companies with advanced needs",
+        "features": {
+          "employees": "Up to 100 employees",
+          "advancedAnalytics": "Advanced mood analytics",
+          "dailyReports": "Daily reports",
+          "collaborationTools": "Team collaboration tools",
+          "prioritySupport": "Priority email support"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Custom",
+        "description": "Tailored solutions for large organizations",
+        "features": {
+          "employees": "Unlimited employees",
+          "customIntegrations": "Custom integrations",
+          "accountManager": "Dedicated account manager",
+          "phoneSupport": "24/7 phone support",
+          "onSiteTraining": "On-site training"
+        }
+      }
+    }
+  },
+  "survey": {
+    "title": "Employee Engagement Survey",
+    "description": "Please answer the following questions on a scale of 1-10",
+    "questions": {
+      "question1": "How satisfied are you with your current role?",
+      "question2": "How well do you feel your work is recognized?",
+      "question3": "How likely are you to recommend our company as a place to work?"
+    },
+    "dateLabel": "Survey Date",
+    "submit": "Submit Survey",
+    "submitting": "Submitting...",
+    "successTitle": "Survey Submitted",
+    "successDescription": "Survey submitted successfully! Your engagement score is: {{score}}",
+    "errorTitle": "Submission Error",
+    "errorDescription": "Failed to submit survey. Please try again.",
+    "submitError": "Failed to submit survey",
+    "errorLogging": "Error submitting survey:"
   }
 }
