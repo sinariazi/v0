@@ -1,0 +1,274 @@
+{
+  "header": {
+    "home": "Inicio",
+    "features": "Características",
+    "howItWorks": "Cómo funciona",
+    "blog": "Blog",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "pricing": "Precios",
+    "signIn": "Iniciar sesión",
+    "scheduleDemo": "Programar demo"
+  },
+  "footer": {
+    "home": "Inicio",
+    "features": "Características",
+    "howItWorks": "Cómo funciona",
+    "blog": "Blog",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfService": "Términos de servicio",
+    "copyright": "© 2025 Mood Whisper. Todos los derechos reservados."
+  },
+  "signInModal": {
+    "title": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signUp": "¿No eres usuario? Regístrate",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "signInButton": "Iniciar sesión",
+    "failedToSignIn": "Error al iniciar sesión",
+    "failedToSignInCheckCredentials": "Error al iniciar sesión. Por favor, verifica tus credenciales e intenta de nuevo.",
+    "failedToConfirmSignIn": "Error al confirmar el inicio de sesión",
+    "failedToConfirmSignInTryAgain": "Error al confirmar el inicio de sesión. Por favor, intenta de nuevo.",
+    "passwordResetCodeSent": "Código de restablecimiento de contraseña enviado. Por favor, revisa tu correo electrónico.",
+    "failedToSendPasswordResetEmail": "Error al enviar el correo de restablecimiento de contraseña. Por favor, intenta de nuevo.",
+    "newPasswordsDoNotMatch": "Las nuevas contraseñas no coinciden.",
+    "passwordResetSuccessful": "Contraseña restablecida con éxito. Ahora puedes iniciar sesión con tu nueva contraseña.",
+    "failedToResetPassword": "Error al restablecer la contraseña. Por favor, intenta de nuevo.",
+    "newPassword": "Nueva contraseña",
+    "signingIn": "Iniciando sesión...",
+    "signIn": "Iniciar sesión",
+    "notAUserYet": "¿No eres usuario? Regístrate",
+    "confirming": "Confirmando...",
+    "setNewPassword": "Establecer nueva contraseña",
+    "sendingResetCode": "Enviando código de restablecimiento...",
+    "sendResetCode": "Enviar código de restablecimiento",
+    "backToSignIn": "Volver a iniciar sesión",
+    "resetCode": "Código de restablecimiento",
+    "confirmNewPassword": "Confirmar nueva contraseña",
+    "resettingPassword": "Restableciendo contraseña...",
+    "resetPassword": "Restablecer contraseña"
+  },
+  "signUpModal": {
+    "title": "Registrarse",
+    "email": "Correo electrónico",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "gender": "Género",
+    "selectGender": "Seleccionar género",
+    "male": "Masculino",
+    "female": "Femenino",
+    "other": "Otro",
+    "team": "Equipo",
+    "organizationId": "ID de la organización",
+    "signUpButton": "Registrarse",
+    "success": "Éxito",
+    "accountCreatedCheckEmail": "Tu cuenta ha sido creada. Por favor, revisa tu correo electrónico para obtener una contraseña temporal para iniciar sesión.",
+    "error": "Error",
+    "failedToSignUp": "Error al registrarse. Por favor, intenta de nuevo."
+  },
+  "changePasswordModal": {
+    "title": "Establecer nueva contraseña",
+    "email": "Correo electrónico",
+    "newPassword": "Nueva contraseña",
+    "confirmNewPassword": "Confirmar nueva contraseña",
+    "setNewPasswordButton": "Establecer nueva contraseña",
+    "newPasswordsDoNotMatch": "Las nuevas contraseñas no coinciden.",
+    "success": "Éxito",
+    "passwordChangedSuccessfully": "Contraseña cambiada con éxito. Ahora has iniciado sesión.",
+    "failedToConfirmSignIn": "Error al confirmar el inicio de sesión",
+    "failedToChangePassword": "Error al cambiar la contraseña. Por favor, intenta de nuevo."
+  },
+  "hero": {
+    "title": "Compromiso de los empleados basado en datos con Mood Whisper",
+    "description": "Aprovecha el poder de los análisis en tiempo real para aumentar la felicidad y la productividad en el lugar de trabajo.",
+    "startFreeTrial": "Comenzar prueba gratuita",
+    "scheduleDemo": "Programar demo",
+    "chart": {
+      "happiness": "Felicidad",
+      "engagement": "Compromiso"
+    }
+  },
+  "home": {
+    "featuresSection": {
+      "title": "Potentes características para el compromiso de los empleados",
+      "description": "Descubre las herramientas y capacidades integrales que hacen de Mood Whisper la plataforma líder en compromiso de los empleados.",
+      "exploreButton": "Explorar nuestras características"
+    }
+  },
+  "cta": {
+    "title": "¿Listo para aprovechar el poder de los datos?",
+    "description": "Únete a la revolución basada en datos en el compromiso de los empleados. Comienza tu viaje hacia un lugar de trabajo más productivo y feliz con Mood Whisper hoy.",
+    "startFreeTrial": "Comenzar prueba gratuita",
+    "scheduleDemo": "Programar demo"
+  },
+  "adminSideMenu": {
+    "title": "Panel de administración",
+    "dashboard": "Panel de control",
+    "userManagement": "Gestión de usuarios",
+    "surveys": "Encuestas",
+    "insights": "Insights",
+    "billing": "Facturación",
+    "subscription": "Suscripción"
+  },
+  "dataInsights": {
+    "title": "Insights basados en datos",
+    "chartTitle": "Satisfacción del departamento vs Productividad",
+    "satisfaction": "Satisfacción",
+    "productivity": "Productividad"
+  },
+  "dateRangeSelector": {
+    "placeholder": "Seleccionar período de tiempo",
+    "last30Days": "Últimos 30 días",
+    "last90Days": "Últimos 90 días",
+    "last180Days": "Últimos 180 días",
+    "allTime": "Todo el tiempo"
+  },
+  "howItWorks": {
+    "title": "Cómo funciona",
+    "step1": {
+      "title": "Regístrate",
+      "description": "Crea tu cuenta de Mood Whisper y configura el perfil de tu organización."
+    },
+    "step2": {
+      "title": "Invita al equipo",
+      "description": "Invita a tus empleados a unirse a la plataforma y comenzar a compartir sus estados de ánimo."
+    },
+    "step3": {
+      "title": "Seguimiento y análisis",
+      "description": "Monitorea los datos de estado de ánimo en tiempo real y analiza tendencias para mejorar la satisfacción en el lugar de trabajo."
+    },
+    "step4": {
+      "title": "Toma acción",
+      "description": "Implementa cambios basados en insights para aumentar el compromiso de los empleados y la productividad."
+    }
+  },
+  "predictionModels": {
+    "title": "Análisis predictivo para el compromiso de los empleados",
+    "chart": {
+      "title": "Modelo de predicción de compromiso",
+      "actualEngagement": "Compromiso real",
+      "predictedEngagement": "Compromiso previsto"
+    },
+    "howItWorks": {
+      "title": "Cómo funciona nuestro modelo de predicción",
+      "description": "Nuestro modelo de predicción te ayuda a anticipar tendencias de compromiso, permitiéndote tomar medidas proactivas para mantener una alta satisfacción y productividad de los empleados."
+    },
+    "features": {
+      "feature1": "Utiliza algoritmos avanzados de aprendizaje automático",
+      "feature2": "Analiza datos históricos de compromiso",
+      "feature3": "Considera varios factores como la dinámica del equipo, la carga de trabajo y los eventos de la empresa",
+      "feature4": "Aprende continuamente y mejora las predicciones con el tiempo",
+      "feature5": "Proporciona insights accionables para mejorar el compromiso de los empleados"
+    },
+    "noFeaturesAvailable": "No hay características disponibles"
+  },
+  "pricing": {
+    "title": "Planes de precios",
+    "perMonth": "/mes",
+    "getStarted": "Comenzar",
+    "plans": {
+      "starter": {
+        "name": "Inicial",
+        "price": "99 €",
+        "description": "Perfecto para equipos pequeños que están comenzando",
+        "features": {
+          "employees": "Hasta 25 empleados",
+          "moodTracking": "Seguimiento básico del estado de ánimo",
+          "weeklyReports": "Informes semanales",
+          "emailSupport": "Soporte por correo electrónico"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "299 €",
+        "description": "Ideal para empresas en crecimiento con necesidades avanzadas",
+        "features": {
+          "employees": "Hasta 100 empleados",
+          "advancedAnalytics": "Análisis avanzado del estado de ánimo",
+          "dailyReports": "Informes diarios",
+          "collaborationTools": "Herramientas de colaboración en equipo",
+          "prioritySupport": "Soporte prioritario por correo electrónico"
+        }
+      },
+      "enterprise": {
+        "name": "Empresa",
+        "price": "Personalizado",
+        "description": "Soluciones a medida para grandes organizaciones",
+        "features": {
+          "employees": "Empleados ilimitados",
+          "customIntegrations": "Integraciones personalizadas",
+          "accountManager": "Gerente de cuenta dedicado",
+          "phoneSupport": "Soporte telefónico 24/7",
+          "onSiteTraining": "Capacitación en el sitio"
+        }
+      }
+    }
+  },
+  "survey": {
+    "title": "Encuesta de compromiso de los empleados",
+    "description": "Por favor, responde las siguientes preguntas en una escala del 1 al 5",
+    "questions": {
+      "jobSatisfaction": "¿Qué tan satisfecho estás con tu rol actual?",
+      "careerAlignment": "¿Qué tan bien se alinea tu trabajo con tus objetivos de carrera?",
+      "workLifeBalance": "¿Cómo calificarías el equilibrio entre trabajo y vida personal en tu posición actual?",
+      "recognition": "¿Qué tan satisfecho estás con el reconocimiento que recibes por tu trabajo?",
+      "teamCommunication": "¿Cómo calificarías la comunicación dentro de tu equipo?",
+      "professionalGrowth": "¿Qué tan satisfecho estás con las oportunidades de crecimiento profesional?",
+      "diversityAndInclusion": "¿Cómo calificarías el compromiso de la empresa con la diversidad y la inclusión?",
+      "compensationAndBenefits": "¿Qué tan satisfecho estás con tu compensación y beneficios actuales?",
+      "companyCulture": "¿Cómo calificarías la cultura general de la empresa?",
+      "recommendation": "¿Qué tan probable es que recomiendes esta empresa como un gran lugar para trabajar?"
+    },
+    "scale": {
+      "lowest": "1 (Más bajo)",
+      "highest": "5 (Más alto)"
+    },
+    "additionalFeedback": {
+      "label": "Comentarios adicionales",
+      "placeholder": "Por favor, proporciona cualquier comentario o sugerencia adicional aquí..."
+    },
+    "submit": "Enviar encuesta",
+    "authError": {
+      "title": "Error de autenticación",
+      "description": "Debes iniciar sesión para enviar una encuesta.",
+      "sessionExpired": "Tu sesión ha expirado. Por favor, inicia sesión de nuevo."
+    },
+    "success": {
+      "title": "Éxito",
+      "description": "Encuesta enviada con éxito"
+    },
+    "errors": {
+      "title": "Error",
+      "description": "Error al enviar la encuesta. Por favor, intenta de nuevo.",
+      "failedToken": "Error al obtener el token de autenticación",
+      "submitFailed": "Error al enviar la encuesta",
+      "submitError": "Error al enviar la encuesta:"
+    }
+  },
+  "surveyResults": {
+    "surveyFrom": "Encuesta del {{date}}",
+    "answer": "Respuesta: {{score}}/5",
+    "additionalFeedback": "Comentarios adicionales:"
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros clientes",
+    "sarah": {
+      "name": "Sarah Johnson",
+      "role": "Directora de RRHH, TechCorp",
+      "content": "El enfoque basado en datos de Mood Whisper ha revolucionado nuestra estrategia de compromiso de los empleados. Hemos visto un aumento del 25% en la satisfacción laboral general desde la implementación."
+    },
+    "michael": {
+      "name": "Michael Chen",
+      "role": "CEO, InnovateCo",
+      "content": "Los análisis predictivos de Mood Whisper nos han ayudado a abordar proactivamente problemas potenciales, lo que ha resultado en una disminución del 15% en la rotación y un aumento del 20% en la productividad."
+    },
+    "emily": {
+      "name": "Emily Rodriguez",
+      "role": "Líder de equipo, CreativeStudio",
+      "content": "Los paneles personalizables nos permiten realizar un seguimiento de las métricas que más importan a nuestro equipo creativo. Hemos mejorado nuestra tasa de finalización de proyectos en un 30% gracias a los insights de Mood Whisper."
+    }
+  }
+}
