@@ -90,5 +90,12 @@
       "happiness": "Zufriedenheit",
       "engagement": "Engagement"
     }
+  },
+  "home": {
+    "featuresSection": {
+      "title": "Leistungsstarke Funktionen für Mitarbeiterengagement",
+      "description": "Entdecken Sie die umfassenden Tools und Möglichkeiten, die Mood Whisper zur führenden Plattform für Mitarbeiterengagement machen.",
+      "exploreButton": "Unsere Funktionen entdecken"
+    }
   }
 }

@@ -90,5 +90,12 @@
       "happiness": "Happiness",
       "engagement": "Engagement"
     }
+  },
+  "home": {
+    "featuresSection": {
+      "title": "Powerful Features for Employee Engagement",
+      "description": "Discover the comprehensive tools and capabilities that make Mood Whisper the leading employee engagement platform.",
+      "exploreButton": "Explore Our Features"
+    }
   }
 }
