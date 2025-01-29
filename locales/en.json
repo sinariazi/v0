@@ -1,124 +1,129 @@
 {
-    "header": {
-      "home": "Home",
-      "features": "Features",
-      "howItWorks": "How it Works",
-      "blog": "Blog",
-      "about": "About",
-      "contact": "Contact",
-      "pricing": "Pricing",
-      "signIn": "Sign In",
-      "scheduleDemo": "Schedule Demo"
-    },
-    "footer": {
-      "home": "Home",
-      "features": "Features",
-      "howItWorks": "How it Works",
-      "blog": "Blog",
-      "about": "About",
-      "contact": "Contact",
-      "privacyPolicy": "Privacy Policy",
-      "termsOfService": "Terms of Service",
-      "copyright": "© 2025 Mood Whisper. All rights reserved."
-    },
-    "signInModal": {
-      "title": "Sign In",
-      "email": "Email",
-      "password": "Password",
-      "signUp": "Not a user yet? Sign up",
-      "forgotPassword": "Forgot Password?",
-      "signInButton": "Sign In",
-      "failedToSignIn": "Failed to sign in",
-      "failedToSignInCheckCredentials": "Failed to sign in. Please check your credentials and try again.",
-      "failedToConfirmSignIn": "Failed to confirm sign in",
-      "failedToConfirmSignInTryAgain": "Failed to confirm sign in. Please try again.",
-      "passwordResetCodeSent": "Password reset code sent. Please check your email.",
-      "failedToSendPasswordResetEmail": "Failed to send password reset email. Please try again.",
-      "newPasswordsDoNotMatch": "New passwords do not match.",
-      "passwordResetSuccessful": "Password reset successful. You can now sign in with your new password.",
-      "failedToResetPassword": "Failed to reset password. Please try again.",
-      "newPassword": "New Password",
-      "signingIn": "Signing In...",
-      "signIn": "Sign In",
-      "notAUserYet": "Not a user yet? Sign up",
-      "confirming": "Confirming...",
-      "setNewPassword": "Set New Password",
-      "sendingResetCode": "Sending Reset Code...",
-      "sendResetCode": "Send Reset Code",
-      "backToSignIn": "Back to Sign In",
-      "resetCode": "Reset Code",
-      "confirmNewPassword": "Confirm New Password",
-      "resettingPassword": "Resetting Password...",
-      "resetPassword": "Reset Password"
-    },
-    "signUpModal": {
-      "title": "Sign Up",
-      "email": "Email",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "gender": "Gender",
-      "selectGender": "Select gender",
-      "male": "Male",
-      "female": "Female",
-      "other": "Other",
-      "team": "Team",
-      "organizationId": "Organization ID",
-      "signUpButton": "Sign Up",
-      "success": "Success",
-      "accountCreatedCheckEmail": "Your account has been created. Please check your email for a temporary password to sign in.",
-      "error": "Error",
-      "failedToSignUp": "Failed to sign up. Please try again."
-    },
-    "changePasswordModal": {
-      "title": "Set New Password",
-      "email": "Email",
-      "newPassword": "New Password",
-      "confirmNewPassword": "Confirm New Password",
-      "setNewPasswordButton": "Set New Password",
-      "newPasswordsDoNotMatch": "New passwords do not match.",
-      "success": "Success",
-      "passwordChangedSuccessfully": "Password changed successfully. You are now signed in.",
-      "failedToConfirmSignIn": "Failed to confirm sign in",
-      "failedToChangePassword": "Failed to change password. Please try again."
-    },
-    "hero": {
-      "title": "Data-Driven Employee Engagement with Mood Whisper",
-      "description": "Harness the power of real-time analytics to boost workplace happiness and productivity.",
-      "startFreeTrial": "Start Free Trial",
-      "scheduleDemo": "Schedule Demo",
-      "chart": {
-        "happiness": "Happiness",
-        "engagement": "Engagement"
-      }
-    },
-    "home": {
-      "featuresSection": {
-        "title": "Powerful Features for Employee Engagement",
-        "description": "Discover the comprehensive tools and capabilities that make Mood Whisper the leading employee engagement platform.",
-        "exploreButton": "Explore Our Features"
-      }
-    },
-    "cta": {
-      "title": "Ready to Harness the Power of Data?",
-      "description": "Join the data-driven revolution in employee engagement. Start your journey towards a more productive and happier workplace with Mood Whisper today.",
-      "startFreeTrial": "Start Free Trial",
-      "scheduleDemo": "Schedule Demo"
-    },
-    "adminSideMenu": {
-      "title": "Admin Panel",
-      "dashboard": "Dashboard",
-      "userManagement": "User Management",
-      "surveys": "Surveys",
-      "insights": "Insights",
-      "billing": "Billing",
-      "subscription": "Subscription"
-    },
-    "dataInsights": {
-      "title": "Data-Driven Insights",
-      "chartTitle": "Department Satisfaction vs Productivity",
-      "satisfaction": "Satisfaction",
-      "productivity": "Productivity"
+  "header": {
+    "home": "Home",
+    "features": "Features",
+    "howItWorks": "How it Works",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "pricing": "Pricing",
+    "signIn": "Sign In",
+    "scheduleDemo": "Schedule Demo"
+  },
+  "footer": {
+    "home": "Home",
+    "features": "Features",
+    "howItWorks": "How it Works",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "copyright": "© 2025 Mood Whisper. All rights reserved."
+  },
+  "signInModal": {
+    "title": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "signUp": "Not a user yet? Sign up",
+    "forgotPassword": "Forgot Password?",
+    "signInButton": "Sign In",
+    "failedToSignIn": "Failed to sign in",
+    "failedToSignInCheckCredentials": "Failed to sign in. Please check your credentials and try again.",
+    "failedToConfirmSignIn": "Failed to confirm sign in",
+    "failedToConfirmSignInTryAgain": "Failed to confirm sign in. Please try again.",
+    "passwordResetCodeSent": "Password reset code sent. Please check your email.",
+    "failedToSendPasswordResetEmail": "Failed to send password reset email. Please try again.",
+    "newPasswordsDoNotMatch": "New passwords do not match.",
+    "passwordResetSuccessful": "Password reset successful. You can now sign in with your new password.",
+    "failedToResetPassword": "Failed to reset password. Please try again.",
+    "newPassword": "New Password",
+    "signingIn": "Signing In...",
+    "signIn": "Sign In",
+    "notAUserYet": "Not a user yet? Sign up",
+    "confirming": "Confirming...",
+    "setNewPassword": "Set New Password",
+    "sendingResetCode": "Sending Reset Code...",
+    "sendResetCode": "Send Reset Code",
+    "backToSignIn": "Back to Sign In",
+    "resetCode": "Reset Code",
+    "confirmNewPassword": "Confirm New Password",
+    "resettingPassword": "Resetting Password...",
+    "resetPassword": "Reset Password"
+  },
+  "signUpModal": {
+    "title": "Sign Up",
+    "email": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "gender": "Gender",
+    "selectGender": "Select gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "team": "Team",
+    "organizationId": "Organization ID",
+    "signUpButton": "Sign Up",
+    "success": "Success",
+    "accountCreatedCheckEmail": "Your account has been created. Please check your email for a temporary password to sign in.",
+    "error": "Error",
+    "failedToSignUp": "Failed to sign up. Please try again."
+  },
+  "changePasswordModal": {
+    "title": "Set New Password",
+    "email": "Email",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "setNewPasswordButton": "Set New Password",
+    "newPasswordsDoNotMatch": "New passwords do not match.",
+    "success": "Success",
+    "passwordChangedSuccessfully": "Password changed successfully. You are now signed in.",
+    "failedToConfirmSignIn": "Failed to confirm sign in",
+    "failedToChangePassword": "Failed to change password. Please try again."
+  },
+  "hero": {
+    "title": "Data-Driven Employee Engagement with Mood Whisper",
+    "description": "Harness the power of real-time analytics to boost workplace happiness and productivity.",
+    "startFreeTrial": "Start Free Trial",
+    "scheduleDemo": "Schedule Demo",
+    "chart": {
+      "happiness": "Happiness",
+      "engagement": "Engagement"
     }
+  },
+  "home": {
+    "featuresSection": {
+      "title": "Powerful Features for Employee Engagement",
+      "description": "Discover the comprehensive tools and capabilities that make Mood Whisper the leading employee engagement platform.",
+      "exploreButton": "Explore Our Features"
+    }
+  },
+  "cta": {
+    "title": "Ready to Harness the Power of Data?",
+    "description": "Join the data-driven revolution in employee engagement. Start your journey towards a more productive and happier workplace with Mood Whisper today.",
+    "startFreeTrial": "Start Free Trial",
+    "scheduleDemo": "Schedule Demo"
+  },
+  "adminSideMenu": {
+    "title": "Admin Panel",
+    "dashboard": "Dashboard",
+    "userManagement": "User Management",
+    "surveys": "Surveys",
+    "insights": "Insights",
+    "billing": "Billing",
+    "subscription": "Subscription"
+  },
+  "dataInsights": {
+    "title": "Data-Driven Insights",
+    "chartTitle": "Department Satisfaction vs Productivity",
+    "satisfaction": "Satisfaction",
+    "productivity": "Productivity"
+  },
+  "dateRangeSelector": {
+    "placeholder": "Select time period",
+    "last30Days": "Last 30 days",
+    "last90Days": "Last 90 days",
+    "last180Days": "Last 180 days",
+    "allTime": "All time"
   }
-  
-  
+}

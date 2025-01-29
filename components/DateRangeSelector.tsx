@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useLanguage } from "@/lib/language-context";
 
 interface DateRangeSelectorProps {
   value: string;
@@ -13,16 +14,20 @@ interface DateRangeSelectorProps {
 }
 
 export function DateRangeSelector({ value, onChange }: DateRangeSelectorProps) {
+  const { t } = useLanguage();
+
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select time period" />
+        <SelectValue placeholder={t("dateRangeSelector.placeholder")} />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="30">Last 30 days</SelectItem>
-        <SelectItem value="90">Last 90 days</SelectItem>
-        <SelectItem value="180">Last 180 days</SelectItem>
-        <SelectItem value="all">All time</SelectItem>
+        <SelectItem value="30">{t("dateRangeSelector.last30Days")}</SelectItem>
+        <SelectItem value="90">{t("dateRangeSelector.last90Days")}</SelectItem>
+        <SelectItem value="180">
+          {t("dateRangeSelector.last180Days")}
+        </SelectItem>
+        <SelectItem value="all">{t("dateRangeSelector.allTime")}</SelectItem>
       </SelectContent>
     </Select>
   );
