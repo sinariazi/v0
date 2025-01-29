@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Link from "next/link";
+import { useLanguage } from "@/lib/language-context";
 
 const generateData = () => {
   const data = [];
@@ -29,23 +30,24 @@ const generateData = () => {
 const data = generateData();
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-24 px-4">
       <div className="container mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="lg:w-1/2">
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
-            Data-Driven Employee Engagement with Mood Whisper
+            {t("hero.title")}
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
-            Harness the power of real-time analytics to boost workplace
-            happiness and productivity.
+            {t("hero.description")}
           </p>
           <div className="flex gap-4">
             <Button asChild size="lg">
-              <Link href="/start-free-trial">Start Free Trial</Link>
+              <Link href="/start-free-trial">{t("hero.startFreeTrial")}</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/schedule-demo">Schedule Demo</Link>
+              <Link href="/schedule-demo">{t("hero.scheduleDemo")}</Link>
             </Button>
           </div>
         </div>
@@ -61,12 +63,14 @@ export default function Hero() {
                 dataKey="happiness"
                 stroke="#3b82f6"
                 strokeWidth={2}
+                name={t("hero.chart.happiness")}
               />
               <Line
                 type="monotone"
                 dataKey="engagement"
                 stroke="#10b981"
                 strokeWidth={2}
+                name={t("hero.chart.engagement")}
               />
             </LineChart>
           </ResponsiveContainer>

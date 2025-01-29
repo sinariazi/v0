@@ -19,7 +19,7 @@
     "contact": "Kontakt",
     "privacyPolicy": "Datenschutzrichtlinie",
     "termsOfService": "Nutzungsbedingungen",
-    "copyright": "© 2023 Mood Whisper. Alle Rechte vorbehalten."
+    "copyright": "© 2025 Mood Whisper. Alle Rechte vorbehalten."
   },
   "signInModal": {
     "title": "Anmelden",
@@ -80,5 +80,15 @@
     "passwordChangedSuccessfully": "Passwort erfolgreich geändert. Sie sind jetzt angemeldet.",
     "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
     "failedToChangePassword": "Fehler beim Ändern des Passworts. Bitte versuchen Sie es erneut."
+  },
+  "hero": {
+    "title": "Datengesteuerte Mitarbeiterengagement mit Mood Whisper",
+    "description": "Nutzen Sie die Kraft von Echtzeit-Analysen, um die Zufriedenheit und Produktivität am Arbeitsplatz zu steigern.",
+    "startFreeTrial": "Kostenlose Testversion starten",
+    "scheduleDemo": "Demo planen",
+    "chart": {
+      "happiness": "Zufriedenheit",
+      "engagement": "Engagement"
+    }
   }
 }
