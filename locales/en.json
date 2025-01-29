@@ -103,6 +103,15 @@
       "description": "Join the data-driven revolution in employee engagement. Start your journey towards a more productive and happier workplace with Mood Whisper today.",
       "startFreeTrial": "Start Free Trial",
       "scheduleDemo": "Schedule Demo"
+    },
+    "adminSideMenu": {
+      "title": "Admin Panel",
+      "dashboard": "Dashboard",
+      "userManagement": "User Management",
+      "surveys": "Surveys",
+      "insights": "Insights",
+      "billing": "Billing",
+      "subscription": "Subscription"
     }
   }
   

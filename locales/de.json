@@ -1,109 +1,116 @@
 {
-    "header": {
-      "home": "Startseite",
-      "features": "Funktionen",
-      "howItWorks": "Wie es funktioniert",
-      "blog": "Blog",
-      "about": "Über uns",
-      "contact": "Kontakt",
-      "pricing": "Preise",
-      "signIn": "Anmelden",
-      "scheduleDemo": "Demo planen"
-    },
-    "footer": {
-      "home": "Startseite",
-      "features": "Funktionen",
-      "howItWorks": "Wie es funktioniert",
-      "blog": "Blog",
-      "about": "Über uns",
-      "contact": "Kontakt",
-      "privacyPolicy": "Datenschutzrichtlinie",
-      "termsOfService": "Nutzungsbedingungen",
-      "copyright": "© 2025 Mood Whisper. Alle Rechte vorbehalten."
-    },
-    "signInModal": {
-      "title": "Anmelden",
-      "email": "E-Mail",
-      "password": "Passwort",
-      "signUp": "Noch kein Benutzer? Registrieren",
-      "forgotPassword": "Passwort vergessen?",
-      "signInButton": "Anmelden",
-      "failedToSignIn": "Anmeldung fehlgeschlagen",
-      "failedToSignInCheckCredentials": "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten und versuchen Sie es erneut.",
-      "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
-      "failedToConfirmSignInTryAgain": "Bestätigung der Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.",
-      "passwordResetCodeSent": "Passwort-Reset-Code gesendet. Bitte überprüfen Sie Ihre E-Mail.",
-      "failedToSendPasswordResetEmail": "Fehler beim Senden der Passwort-Reset-E-Mail. Bitte versuchen Sie es erneut.",
-      "newPasswordsDoNotMatch": "Neue Passwörter stimmen nicht überein.",
-      "passwordResetSuccessful": "Passwort erfolgreich zurückgesetzt. Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
-      "failedToResetPassword": "Fehler beim Zurücksetzen des Passworts. Bitte versuchen Sie es erneut.",
-      "newPassword": "Neues Passwort",
-      "signingIn": "Anmeldung läuft...",
-      "signIn": "Anmelden",
-      "notAUserYet": "Noch kein Benutzer? Registrieren",
-      "confirming": "Bestätigung läuft...",
-      "setNewPassword": "Neues Passwort festlegen",
-      "sendingResetCode": "Reset-Code wird gesendet...",
-      "sendResetCode": "Reset-Code senden",
-      "backToSignIn": "Zurück zur Anmeldung",
-      "resetCode": "Reset-Code",
-      "confirmNewPassword": "Neues Passwort bestätigen",
-      "resettingPassword": "Passwort wird zurückgesetzt...",
-      "resetPassword": "Passwort zurücksetzen"
-    },
-    "signUpModal": {
-      "title": "Registrieren",
-      "email": "E-Mail",
-      "firstName": "Vorname",
-      "lastName": "Nachname",
-      "gender": "Geschlecht",
-      "selectGender": "Geschlecht auswählen",
-      "male": "Männlich",
-      "female": "Weiblich",
-      "other": "Andere",
-      "team": "Team",
-      "organizationId": "Organisations-ID",
-      "signUpButton": "Registrieren",
-      "success": "Erfolg",
-      "accountCreatedCheckEmail": "Ihr Konto wurde erstellt. Bitte überprüfen Sie Ihre E-Mail für ein temporäres Passwort zur Anmeldung.",
-      "error": "Fehler",
-      "failedToSignUp": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."
-    },
-    "changePasswordModal": {
-      "title": "Neues Passwort festlegen",
-      "email": "E-Mail",
-      "newPassword": "Neues Passwort",
-      "confirmNewPassword": "Neues Passwort bestätigen",
-      "setNewPasswordButton": "Neues Passwort festlegen",
-      "newPasswordsDoNotMatch": "Neue Passwörter stimmen nicht überein.",
-      "success": "Erfolg",
-      "passwordChangedSuccessfully": "Passwort erfolgreich geändert. Sie sind jetzt angemeldet.",
-      "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
-      "failedToChangePassword": "Fehler beim Ändern des Passworts. Bitte versuchen Sie es erneut."
-    },
-    "hero": {
-      "title": "Datengesteuerte Mitarbeiterengagement mit Mood Whisper",
-      "description": "Nutzen Sie die Kraft von Echtzeit-Analysen, um die Zufriedenheit und Produktivität am Arbeitsplatz zu steigern.",
-      "startFreeTrial": "Kostenlose Testversion starten",
-      "scheduleDemo": "Demo planen",
-      "chart": {
-        "happiness": "Zufriedenheit",
-        "engagement": "Engagement"
-      }
-    },
-    "home": {
-      "featuresSection": {
-        "title": "Leistungsstarke Funktionen für Mitarbeiterengagement",
-        "description": "Entdecken Sie die umfassenden Tools und Möglichkeiten, die Mood Whisper zur führenden Plattform für Mitarbeiterengagement machen.",
-        "exploreButton": "Unsere Funktionen entdecken"
-      }
-    },
-    "cta": {
-      "title": "Bereit, die Kraft der Daten zu nutzen?",
-      "description": "Schließen Sie sich der datengesteuerten Revolution im Mitarbeiterengagement an. Beginnen Sie noch heute Ihre Reise zu einem produktiveren und glücklicheren Arbeitsplatz mit Mood Whisper.",
-      "startFreeTrial": "Kostenlose Testversion starten",
-      "scheduleDemo": "Demo planen"
+  "header": {
+    "home": "Startseite",
+    "features": "Funktionen",
+    "howItWorks": "Wie es funktioniert",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "pricing": "Preise",
+    "signIn": "Anmelden",
+    "scheduleDemo": "Demo planen"
+  },
+  "footer": {
+    "home": "Startseite",
+    "features": "Funktionen",
+    "howItWorks": "Wie es funktioniert",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfService": "Nutzungsbedingungen",
+    "copyright": "© 2025 Mood Whisper. Alle Rechte vorbehalten."
+  },
+  "signInModal": {
+    "title": "Anmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signUp": "Noch kein Benutzer? Registrieren",
+    "forgotPassword": "Passwort vergessen?",
+    "signInButton": "Anmelden",
+    "failedToSignIn": "Anmeldung fehlgeschlagen",
+    "failedToSignInCheckCredentials": "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten und versuchen Sie es erneut.",
+    "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
+    "failedToConfirmSignInTryAgain": "Bestätigung der Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "passwordResetCodeSent": "Passwort-Reset-Code gesendet. Bitte überprüfen Sie Ihre E-Mail.",
+    "failedToSendPasswordResetEmail": "Fehler beim Senden der Passwort-Reset-E-Mail. Bitte versuchen Sie es erneut.",
+    "newPasswordsDoNotMatch": "Neue Passwörter stimmen nicht überein.",
+    "passwordResetSuccessful": "Passwort erfolgreich zurückgesetzt. Sie können sich jetzt mit Ihrem neuen Passwort anmelden.",
+    "failedToResetPassword": "Fehler beim Zurücksetzen des Passworts. Bitte versuchen Sie es erneut.",
+    "newPassword": "Neues Passwort",
+    "signingIn": "Anmeldung läuft...",
+    "signIn": "Anmelden",
+    "notAUserYet": "Noch kein Benutzer? Registrieren",
+    "confirming": "Bestätigung läuft...",
+    "setNewPassword": "Neues Passwort festlegen",
+    "sendingResetCode": "Reset-Code wird gesendet...",
+    "sendResetCode": "Reset-Code senden",
+    "backToSignIn": "Zurück zur Anmeldung",
+    "resetCode": "Reset-Code",
+    "confirmNewPassword": "Neues Passwort bestätigen",
+    "resettingPassword": "Passwort wird zurückgesetzt...",
+    "resetPassword": "Passwort zurücksetzen"
+  },
+  "signUpModal": {
+    "title": "Registrieren",
+    "email": "E-Mail",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "gender": "Geschlecht",
+    "selectGender": "Geschlecht auswählen",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "other": "Andere",
+    "team": "Team",
+    "organizationId": "Organisations-ID",
+    "signUpButton": "Registrieren",
+    "success": "Erfolg",
+    "accountCreatedCheckEmail": "Ihr Konto wurde erstellt. Bitte überprüfen Sie Ihre E-Mail für ein temporäres Passwort zur Anmeldung.",
+    "error": "Fehler",
+    "failedToSignUp": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+  },
+  "changePasswordModal": {
+    "title": "Neues Passwort festlegen",
+    "email": "E-Mail",
+    "newPassword": "Neues Passwort",
+    "confirmNewPassword": "Neues Passwort bestätigen",
+    "setNewPasswordButton": "Neues Passwort festlegen",
+    "newPasswordsDoNotMatch": "Neue Passwörter stimmen nicht überein.",
+    "success": "Erfolg",
+    "passwordChangedSuccessfully": "Passwort erfolgreich geändert. Sie sind jetzt angemeldet.",
+    "failedToConfirmSignIn": "Bestätigung der Anmeldung fehlgeschlagen",
+    "failedToChangePassword": "Fehler beim Ändern des Passworts. Bitte versuchen Sie es erneut."
+  },
+  "hero": {
+    "title": "Datengesteuerte Mitarbeiterengagement mit Mood Whisper",
+    "description": "Nutzen Sie die Kraft von Echtzeit-Analysen, um die Zufriedenheit und Produktivität am Arbeitsplatz zu steigern.",
+    "startFreeTrial": "Kostenlose Testversion starten",
+    "scheduleDemo": "Demo planen",
+    "chart": {
+      "happiness": "Zufriedenheit",
+      "engagement": "Engagement"
     }
+  },
+  "home": {
+    "featuresSection": {
+      "title": "Leistungsstarke Funktionen für Mitarbeiterengagement",
+      "description": "Entdecken Sie die umfassenden Tools und Möglichkeiten, die Mood Whisper zur führenden Plattform für Mitarbeiterengagement machen.",
+      "exploreButton": "Unsere Funktionen entdecken"
+    }
+  },
+  "cta": {
+    "title": "Bereit, die Kraft der Daten zu nutzen?",
+    "description": "Schließen Sie sich der datengesteuerten Revolution im Mitarbeiterengagement an. Beginnen Sie noch heute Ihre Reise zu einem produktiveren und glücklicheren Arbeitsplatz mit Mood Whisper.",
+    "startFreeTrial": "Kostenlose Testversion starten",
+    "scheduleDemo": "Demo planen"
+  },
+  "adminSideMenu": {
+    "title": "Admin-Panel",
+    "dashboard": "Dashboard",
+    "userManagement": "Benutzerverwaltung",
+    "surveys": "Umfragen",
+    "insights": "Erkenntnisse",
+    "billing": "Abrechnung",
+    "subscription": "Abonnement"
   }
-  
-  
+}
