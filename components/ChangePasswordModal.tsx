@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth-context";
 import { useToast } from "@/components/ui/use-toast";
+import { useLanguage } from "@/lib/language-context";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;
@@ -31,13 +32,14 @@ export default function ChangePasswordModal({
   const [error, setError] = useState<string | null>(null);
   const { confirmSignIn } = useAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     if (newPassword !== confirmPassword) {
-      setError("New passwords do not match");
+      setError(t("changePasswordModal.newPasswordsDoNotMatch"));
       return;
     }
 
@@ -45,19 +47,19 @@ export default function ChangePasswordModal({
       const result = await confirmSignIn(newPassword);
       if (result.isSignedIn) {
         toast({
-          title: "Success",
-          description: "Password changed successfully. You are now signed in.",
+          title: t("changePasswordModal.success"),
+          description: t("changePasswordModal.passwordChangedSuccessfully"),
         });
         onPasswordChanged();
       } else {
-        throw new Error("Failed to confirm sign in");
+        throw new Error(t("changePasswordModal.failedToConfirmSignIn"));
       }
     } catch (error) {
       console.error("Error changing password:", error);
       setError(
         error instanceof Error
           ? error.message
-          : "Failed to change password. Please try again."
+          : t("changePasswordModal.failedToChangePassword")
       );
     }
   };
@@ -66,15 +68,17 @@ export default function ChangePasswordModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Set New Password</DialogTitle>
+          <DialogTitle>{t("changePasswordModal.title")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t("changePasswordModal.email")}</Label>
             <Input id="email" type="email" value={email} disabled />
           </div>
           <div>
-            <Label htmlFor="newPassword">New Password</Label>
+            <Label htmlFor="newPassword">
+              {t("changePasswordModal.newPassword")}
+            </Label>
             <Input
               id="newPassword"
               type="password"
@@ -84,7 +88,9 @@ export default function ChangePasswordModal({
             />
           </div>
           <div>
-            <Label htmlFor="confirmPassword">Confirm New Password</Label>
+            <Label htmlFor="confirmPassword">
+              {t("changePasswordModal.confirmNewPassword")}
+            </Label>
             <Input
               id="confirmPassword"
               type="password"
@@ -98,7 +104,9 @@ export default function ChangePasswordModal({
               {error}
             </p>
           )}
-          <Button type="submit">Set New Password</Button>
+          <Button type="submit">
+            {t("changePasswordModal.setNewPasswordButton")}
+          </Button>
         </form>
       </DialogContent>
     </Dialog>

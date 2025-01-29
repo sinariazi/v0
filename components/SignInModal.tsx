@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth-context";
 import { useToast } from "@/components/ui/use-toast";
+import { useLanguage } from "@/lib/language-context";
 import SignUpModal from "./SignUpModal";
 import ChangePasswordModal from "./ChangePasswordModal";
 
@@ -48,6 +49,7 @@ export default function SignInModal({
   } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
+  const { t } = useLanguage();
 
   useEffect(() => {
     setIsRouterReady(true);
@@ -92,11 +94,9 @@ export default function SignInModal({
     } catch (error) {
       console.error("Error signing in:", error);
       if (error instanceof Error) {
-        setError(`Failed to sign in: ${error.message}`);
+        setError(`${t("signInModal.failedToSignIn")}: ${error.message}`);
       } else {
-        setError(
-          "Failed to sign in. Please check your credentials and try again."
-        );
+        setError(t("signInModal.failedToSignInCheckCredentials"));
       }
     }
   };
@@ -118,9 +118,9 @@ export default function SignInModal({
     } catch (error) {
       console.error("Error confirming sign-in:", error);
       if (error instanceof Error) {
-        setError(`Failed to confirm sign-in: ${error.message}`);
+        setError(`${t("signInModal.failedToConfirmSignIn")}: ${error.message}`);
       } else {
-        setError("Failed to confirm sign-in. Please try again.");
+        setError(t("signInModal.failedToConfirmSignInTryAgain"));
       }
     }
   };
@@ -131,10 +131,10 @@ export default function SignInModal({
     try {
       await resetPassword(email);
       setIsForgotPasswordFlow(true);
-      setError("Password reset code sent. Please check your email.");
+      setError(t("signInModal.passwordResetCodeSent"));
     } catch (error) {
       console.error("Error sending password reset email:", error);
-      setError("Failed to send password reset email. Please try again.");
+      setError(t("signInModal.failedToSendPasswordResetEmail"));
     }
   };
 
@@ -142,25 +142,23 @@ export default function SignInModal({
     e.preventDefault();
     setError(null);
     if (newPassword !== confirmNewPassword) {
-      setError("New passwords do not match.");
+      setError(t("signInModal.newPasswordsDoNotMatch"));
       return;
     }
     try {
       await confirmResetPassword(email, newPassword, confirmationCode);
-      setError(
-        "Password reset successful. You can now sign in with your new password."
-      );
+      setError(t("signInModal.passwordResetSuccessful"));
       setIsForgotPasswordFlow(false);
     } catch (error) {
       console.error("Error confirming password reset:", error);
-      setError("Failed to reset password. Please try again.");
+      setError(t("signInModal.failedToResetPassword"));
     }
   };
 
   const renderSignInForm = () => (
     <form onSubmit={handleSignIn} className="space-y-4">
       <div>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">{t("signInModal.email")}</Label>
         <Input
           id="email"
           type="email"
@@ -170,7 +168,7 @@ export default function SignInModal({
         />
       </div>
       <div>
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password">{t("signInModal.password")}</Label>
         <Input
           id="password"
           type="password"
@@ -181,14 +179,14 @@ export default function SignInModal({
       </div>
       {error && <p className="text-red-500">{error}</p>}
       <Button type="submit" disabled={loading}>
-        {loading ? "Signing In..." : "Sign In"}
+        {loading ? t("signInModal.signingIn") : t("signInModal.signIn")}
       </Button>
       <div className="flex justify-between items-center mt-4">
         <Button variant="link" onClick={() => setIsSignUpOpen(true)}>
-          Not a user yet? Sign up
+          {t("signInModal.notAUserYet")}
         </Button>
         <Button variant="link" onClick={() => setIsForgotPasswordFlow(true)}>
-          Forgot Password?
+          {t("signInModal.forgotPassword")}
         </Button>
       </div>
     </form>
@@ -197,7 +195,7 @@ export default function SignInModal({
   const renderConfirmSignInForm = () => (
     <form onSubmit={handleConfirmSignIn} className="space-y-4">
       <div>
-        <Label htmlFor="newPassword">New Password</Label>
+        <Label htmlFor="newPassword">{t("signInModal.newPassword")}</Label>
         <Input
           id="newPassword"
           type="password"
@@ -208,7 +206,9 @@ export default function SignInModal({
       </div>
       {error && <p className="text-red-500">{error}</p>}
       <Button type="submit" disabled={loading}>
-        {loading ? "Confirming..." : "Set New Password"}
+        {loading
+          ? t("signInModal.confirming")
+          : t("signInModal.setNewPassword")}
       </Button>
     </form>
   );
@@ -216,7 +216,7 @@ export default function SignInModal({
   const renderForgotPasswordForm = () => (
     <form onSubmit={handleForgotPassword} className="space-y-4">
       <div>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">{t("signInModal.email")}</Label>
         <Input
           id="email"
           type="email"
@@ -227,10 +227,12 @@ export default function SignInModal({
       </div>
       {error && <p className="text-red-500">{error}</p>}
       <Button type="submit" disabled={loading}>
-        {loading ? "Sending Reset Code..." : "Send Reset Code"}
+        {loading
+          ? t("signInModal.sendingResetCode")
+          : t("signInModal.sendResetCode")}
       </Button>
       <Button variant="link" onClick={() => setIsForgotPasswordFlow(false)}>
-        Back to Sign In
+        {t("signInModal.backToSignIn")}
       </Button>
     </form>
   );
@@ -238,7 +240,7 @@ export default function SignInModal({
   const renderForgotPasswordConfirmationForm = () => (
     <form onSubmit={handleConfirmForgotPassword} className="space-y-4">
       <div>
-        <Label htmlFor="confirmationCode">Reset Code</Label>
+        <Label htmlFor="confirmationCode">{t("signInModal.resetCode")}</Label>
         <Input
           id="confirmationCode"
           type="text"
@@ -248,7 +250,7 @@ export default function SignInModal({
         />
       </div>
       <div>
-        <Label htmlFor="newPassword">New Password</Label>
+        <Label htmlFor="newPassword">{t("signInModal.newPassword")}</Label>
         <Input
           id="newPassword"
           type="password"
@@ -258,7 +260,9 @@ export default function SignInModal({
         />
       </div>
       <div>
-        <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
+        <Label htmlFor="confirmNewPassword">
+          {t("signInModal.confirmNewPassword")}
+        </Label>
         <Input
           id="confirmNewPassword"
           type="password"
@@ -269,7 +273,9 @@ export default function SignInModal({
       </div>
       {error && <p className="text-red-500">{error}</p>}
       <Button type="submit" disabled={loading}>
-        {loading ? "Resetting Password..." : "Reset Password"}
+        {loading
+          ? t("signInModal.resettingPassword")
+          : t("signInModal.resetPassword")}
       </Button>
     </form>
   );
@@ -289,16 +295,16 @@ export default function SignInModal({
           <DialogHeader>
             <DialogTitle>
               {isForgotPasswordFlow
-                ? "Forgot Password"
+                ? t("signInModal.forgotPassword")
                 : isPasswordResetRequired
-                ? "Reset Password"
+                ? t("signInModal.resetPassword")
                 : isConfirmSignInRequired
-                ? "Set New Password"
-                : "Sign In"}
+                ? t("signInModal.setNewPassword")
+                : t("signInModal.signIn")}
             </DialogTitle>
           </DialogHeader>
           {isForgotPasswordFlow
-            ? error && error.includes("Password reset code sent")
+            ? error && error.includes(t("signInModal.passwordResetCodeSent"))
               ? renderForgotPasswordConfirmationForm()
               : renderForgotPasswordForm()
             : isConfirmSignInRequired
