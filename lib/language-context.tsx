@@ -1,11 +1,11 @@
 "use client";
 
-import type React from "react";
-import { createContext, useContext, useState, useEffect } from "react";
-import en from "@/locales/en.json";
 import de from "@/locales/de.json";
+import en from "@/locales/en.json";
 import es from "@/locales/es.json";
 import it from "@/locales/it.json";
+import type React from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type Language = "en" | "de" | "es" | "it";
 
