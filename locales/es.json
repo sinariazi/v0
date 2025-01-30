@@ -270,5 +270,37 @@
       "role": "Líder de equipo, CreativeStudio",
       "content": "Los paneles personalizables nos permiten realizar un seguimiento de las métricas que más importan a nuestro equipo creativo. Hemos mejorado nuestra tasa de finalización de proyectos en un 30% gracias a los insights de Mood Whisper."
     }
+  },
+  "adminDashboard": {
+    "title": "Panel de Administración",
+    "userManagement": {
+      "title": "Gestión de Usuarios",
+      "description": "Administre sus usuarios y sus permisos"
+    },
+    "surveys": {
+      "title": "Encuestas",
+      "description": "Cree y administre encuestas de empleados"
+    },
+    "insights": {
+      "title": "Insights",
+      "description": "Ver y analizar datos de compromiso de los empleados"
+    },
+    "billing": {
+      "title": "Facturación",
+      "description": "Administre su suscripción e información de facturación"
+    },
+    "surveyResults": {
+      "title": "Resultados de Encuestas",
+      "description": "Ver y analizar respuestas de encuestas"
+    },
+    "subscription": {
+      "title": "Suscripción",
+      "description": "Administre su plan de suscripción"
+    },
+    "userArea": {
+      "title": "Área de Usuario",
+      "description": "Acceda al panel de control del usuario"
+    },
+    "goTo": "Ir a "
   }
 }

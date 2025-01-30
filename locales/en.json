@@ -270,5 +270,37 @@
       "role": "Team Lead, CreativeStudio",
       "content": "The customizable dashboards allow us to track the metrics that matter most to our creative team. We've improved our project completion rate by 30% thanks to the insights from Mood Whisper."
     }
+  },
+  "adminDashboard": {
+    "title": "Admin Dashboard",
+    "userManagement": {
+      "title": "User Management",
+      "description": "Manage your users and their permissions"
+    },
+    "surveys": {
+      "title": "Surveys",
+      "description": "Create and manage employee surveys"
+    },
+    "insights": {
+      "title": "Insights",
+      "description": "View and analyze employee engagement data"
+    },
+    "billing": {
+      "title": "Billing",
+      "description": "Manage your subscription and billing information"
+    },
+    "surveyResults": {
+      "title": "Survey Results",
+      "description": "View and analyze survey responses"
+    },
+    "subscription": {
+      "title": "Subscription",
+      "description": "Manage your subscription plan"
+    },
+    "userArea": {
+      "title": "User Area",
+      "description": "Access the user dashboard"
+    },
+    "goTo": "Go to"
   }
 }

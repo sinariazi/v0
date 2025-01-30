@@ -270,5 +270,37 @@
       "role": "Teamleiterin, CreativeStudio",
       "content": "Die anpassbaren Dashboards ermöglichen es uns, die Metriken zu verfolgen, die für unser Kreativteam am wichtigsten sind. Dank der Erkenntnisse von Mood Whisper haben wir unsere Projektabschlussrate um 30% verbessert."
     }
+  },
+  "adminDashboard": {
+    "title": "Admin-Dashboard",
+    "userManagement": {
+      "title": "Benutzerverwaltung",
+      "description": "Verwalten Sie Ihre Benutzer und deren Berechtigungen"
+    },
+    "surveys": {
+      "title": "Umfragen",
+      "description": "Erstellen und verwalten Sie Mitarbeiterumfragen"
+    },
+    "insights": {
+      "title": "Erkenntnisse",
+      "description": "Anzeigen und Analysieren von Mitarbeiterengagement-Daten"
+    },
+    "billing": {
+      "title": "Abrechnung",
+      "description": "Verwalten Sie Ihre Abonnement- und Rechnungsinformationen"
+    },
+    "surveyResults": {
+      "title": "Umfrageergebnisse",
+      "description": "Anzeigen und Analysieren von Umfrageantworten"
+    },
+    "subscription": {
+      "title": "Abonnement",
+      "description": "Verwalten Sie Ihren Abonnementplan"
+    },
+    "userArea": {
+      "title": "Benutzerbereich",
+      "description": "Zugriff auf das Benutzer-Dashboard"
+    },
+    "goTo": "Gehe zu "
   }
 }
