@@ -302,5 +302,38 @@
       "description": "Acceda al panel de control del usuario"
     },
     "goTo": "Ir a "
+  },
+  "userManagement": {
+    "searchPlaceholder": "Buscar usuarios...",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "role": "Rol",
+    "status": "Estado",
+    "gender": "Género",
+    "team": "Equipo",
+    "organizationId": "ID de organización",
+    "actions": "Acciones",
+    "selectRole": "Seleccionar un rol",
+    "employee": "Empleado",
+    "manager": "Gerente",
+    "admin": "Administrador",
+    "selectGender": "Seleccionar género",
+    "male": "Masculino",
+    "female": "Femenino",
+    "other": "Otro",
+    "save": "Guardar",
+    "remove": "Eliminar",
+    "addUserDialogTitle": "Añadir nuevo usuario",
+    "addUser": "Añadir usuario",
+    "importUsersDialogTitle": "Importar usuarios",
+    "importUsersDialogDescription": "Sube un archivo CSV que contenga información del usuario. El archivo debe incluir columnas para correo electrónico, nombre, apellido y columnas opcionales para rol, género y equipo.",
+    "importUsersAlertDescription": "Formato CSV requerido: correo electrónico, nombre, apellido, rol (opcional), género (opcional), equipo (opcional)",
+    "selectCSVFile": "Seleccionar archivo CSV",
+    "cancel": "Cancelar",
+    "importing": "Importando...",
+    "import": "Importar",
+    "downloadSampleCSV": "Descargar CSV de muestra",
+    "LoadingUsers": "Cargando usuarios..."
   }
 }

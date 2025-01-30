@@ -1,22 +1,16 @@
 "use client";
 
-import React, {
-  useReducer,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useToast } from "@/components/ui/use-toast";
-import { UserTable } from "./UserTable";
-import { AddUserDialog } from "./AddUserDialog";
-import { UserManagementContext } from "./UserManagementContext";
-import { userManagementReducer, initialState } from "./userManagementReducer";
-import { useFetchUsers } from "./useFetchUsers";
-import { User } from "./types";
-import { ImportUsersDialog } from "./ImportUsersDialog";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import { useLanguage } from "@/lib/language-context";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import { AddUserDialog } from "./AddUserDialog";
+import { ImportUsersDialog } from "./ImportUsersDialog";
+import { User } from "./types";
+import { useFetchUsers } from "./useFetchUsers";
+import { UserManagementContext } from "./UserManagementContext";
+import { initialState, userManagementReducer } from "./userManagementReducer";
+import { UserTable } from "./UserTable";
 
 export function UserManagement() {
   const [state, dispatch] = useReducer(userManagementReducer, initialState);
@@ -25,6 +19,7 @@ export function UserManagement() {
   const fetchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isImportDialogOpen, setIsImportDialogOpen] = useState(false);
   const [adminEmail, setAdminEmail] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   const debouncedFetchUsers = useCallback(() => {
     if (fetchTimeoutRef.current) {
@@ -207,7 +202,7 @@ export function UserManagement() {
   );
 
   if (state.isLoading) {
-    return <div>Loading users...</div>;
+    return <div>{t("userManagement.LoadingUsers")}</div>;
   }
 
   return (
@@ -224,7 +219,7 @@ export function UserManagement() {
         <div className="flex space-x-4">
           <AddUserDialog debouncedFetchUsers={debouncedFetchUsers} />
           <Button onClick={() => setIsImportDialogOpen(true)}>
-            Import Users
+            {t("userManagement.importUsersDialogTitle")}
           </Button>
         </div>
         <UserTable />

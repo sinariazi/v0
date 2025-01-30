@@ -1,12 +1,3 @@
-import React, { useContext, useMemo, useState, useEffect } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,13 +7,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { useLanguage } from "@/lib/language-context";
+import { useContext, useMemo, useState } from "react";
+import type { Gender, User, UserRole } from "./types";
 import { UserManagementContext } from "./UserManagementContext";
-import { User, UserRole, Gender } from "./types";
 
 export function UserTable() {
   const { state, dispatch, handleUpdateUser, handleRemoveUser } = useContext(
     UserManagementContext
   );
+  const { t } = useLanguage();
   const [changedUsers, setChangedUsers] = useState<{ [key: number]: boolean }>(
     {}
   );
@@ -62,7 +64,7 @@ export function UserTable() {
   return (
     <>
       <Input
-        placeholder="Search users..."
+        placeholder={t("userManagement.searchPlaceholder")}
         value={state.searchTerm}
         onChange={(e) =>
           dispatch({ type: "SET_SEARCH_TERM", payload: e.target.value })
@@ -72,15 +74,15 @@ export function UserTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>First Name</TableHead>
-            <TableHead>Last Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Role</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Gender</TableHead>
-            <TableHead>Team</TableHead>
-            <TableHead>Organization ID</TableHead>
-            <TableHead>Actions</TableHead>
+            <TableHead>{t("userManagement.firstName")}</TableHead>
+            <TableHead>{t("userManagement.lastName")}</TableHead>
+            <TableHead>{t("userManagement.email")}</TableHead>
+            <TableHead>{t("userManagement.role")}</TableHead>
+            <TableHead>{t("userManagement.status")}</TableHead>
+            <TableHead>{t("userManagement.gender")}</TableHead>
+            <TableHead>{t("userManagement.team")}</TableHead>
+            <TableHead>{t("userManagement.organizationId")}</TableHead>
+            <TableHead>{t("userManagement.actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -123,12 +125,18 @@ export function UserTable() {
                   }
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a role" />
+                    <SelectValue placeholder={t("userManagement.selectRole")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="EMPLOYEE">Employee</SelectItem>
-                    <SelectItem value="MANAGER">Manager</SelectItem>
-                    <SelectItem value="ADMIN">Admin</SelectItem>
+                    <SelectItem value="EMPLOYEE">
+                      {t("userManagement.employee")}
+                    </SelectItem>
+                    <SelectItem value="MANAGER">
+                      {t("userManagement.manager")}
+                    </SelectItem>
+                    <SelectItem value="ADMIN">
+                      {t("userManagement.admin")}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </TableCell>
@@ -141,12 +149,20 @@ export function UserTable() {
                   }
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select gender" />
+                    <SelectValue
+                      placeholder={t("userManagement.selectGender")}
+                    />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="MALE">Male</SelectItem>
-                    <SelectItem value="FEMALE">Female</SelectItem>
-                    <SelectItem value="OTHER">Other</SelectItem>
+                    <SelectItem value="MALE">
+                      {t("userManagement.male")}
+                    </SelectItem>
+                    <SelectItem value="FEMALE">
+                      {t("userManagement.female")}
+                    </SelectItem>
+                    <SelectItem value="OTHER">
+                      {t("userManagement.other")}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </TableCell>
@@ -175,14 +191,14 @@ export function UserTable() {
                     disabled={!changedUsers[user.id]}
                     className="flex-1"
                   >
-                    Save
+                    {t("userManagement.save")}
                   </Button>
                   <Button
                     onClick={() => handleRemoveUser(user.id)}
                     variant="destructive"
                     className="flex-1"
                   >
-                    Remove
+                    {t("userManagement.remove")}
                   </Button>
                 </div>
               </TableCell>

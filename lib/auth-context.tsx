@@ -1,17 +1,16 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { Amplify } from "aws-amplify";
 import {
-  fetchAuthSession,
-  getCurrentUser,
-  signIn,
-  signOut,
-  resetPassword,
   confirmResetPassword,
   confirmSignIn,
+  fetchAuthSession,
+  getCurrentUser,
+  resetPassword,
+  signIn,
+  signOut,
   updatePassword,
 } from "aws-amplify/auth";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { configureAmplify } from "./amplify-config";
 
 // Ensure Amplify is configured

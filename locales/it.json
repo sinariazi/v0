@@ -302,5 +302,38 @@
       "description": "Accedi alla dashboard utente"
     },
     "goTo": "Vai a "
+  },
+  "userManagement": {
+    "searchPlaceholder": "Cerca utenti...",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "role": "Ruolo",
+    "status": "Stato",
+    "gender": "Genere",
+    "team": "Team",
+    "organizationId": "ID Organizzazione",
+    "actions": "Azioni",
+    "selectRole": "Seleziona un ruolo",
+    "employee": "Dipendente",
+    "manager": "Manager",
+    "admin": "Amministratore",
+    "selectGender": "Seleziona genere",
+    "male": "Maschio",
+    "female": "Femmina",
+    "other": "Altro",
+    "save": "Salva",
+    "remove": "Rimuovi",
+    "addUserDialogTitle": "Aggiungi nuovo utente",
+    "addUser": "Aggiungi utente",
+    "importUsersDialogTitle": "Importa utenti",
+    "importUsersDialogDescription": "Carica un file CSV contenente le informazioni dell'utente. Il file deve includere colonne per e-mail, nome, cognome e colonne opzionali per ruolo, genere e team.",
+    "importUsersAlertDescription": "Formato CSV richiesto: e-mail, nome, cognome, ruolo (opzionale), genere (opzionale), team (opzionale)",
+    "selectCSVFile": "Seleziona file CSV",
+    "cancel": "Annulla",
+    "importing": "Importazione in corso...",
+    "import": "Importa",
+    "downloadSampleCSV": "Scarica CSV di esempio",
+    "LoadingUsers": "Caricamento utenti in corso..."
   }
 }

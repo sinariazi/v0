@@ -302,5 +302,38 @@
       "description": "Zugriff auf das Benutzer-Dashboard"
     },
     "goTo": "Gehe zu "
+  },
+  "userManagement": {
+    "searchPlaceholder": "Benutzer suchen...",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "role": "Rolle",
+    "status": "Status",
+    "gender": "Geschlecht",
+    "team": "Team",
+    "organizationId": "Organisations-ID",
+    "actions": "Aktionen",
+    "selectRole": "Rolle auswählen",
+    "employee": "Mitarbeiter",
+    "manager": "Manager",
+    "admin": "Administrator",
+    "selectGender": "Geschlecht auswählen",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "other": "Divers",
+    "save": "Speichern",
+    "remove": "Entfernen",
+    "addUserDialogTitle": "Neuen Benutzer hinzufügen",
+    "addUser": "Benutzer hinzufügen",
+    "importUsersDialogTitle": "Benutzer importieren",
+    "importUsersDialogDescription": "Laden Sie eine CSV-Datei mit Benutzerinformationen hoch. Die Datei sollte Spalten für E-Mail, Vorname, Nachname und optionale Spalten für Rolle, Geschlecht und Team enthalten.",
+    "importUsersAlertDescription": "Erforderliches CSV-Format: E-Mail, Vorname, Nachname, Rolle (optional), Geschlecht (optional), Team (optional)",
+    "selectCSVFile": "CSV-Datei auswählen",
+    "cancel": "Abbrechen",
+    "importing": "Importieren...",
+    "import": "Importieren",
+    "downloadSampleCSV": "Beispiel-CSV herunterladen",
+    "LoadingUsers": "Benutzer werden geladen..."
   }
 }
