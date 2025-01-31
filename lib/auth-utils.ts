@@ -1,15 +1,20 @@
-import { getCurrentUser } from "aws-amplify/auth";
+import {
+  getCurrentUser as getAmplifyCurrentUser,
+  fetchUserAttributes,
+  type AuthUser,
+  type FetchUserAttributesOutput,
+} from "aws-amplify/auth";
 import { NextApiRequest } from "next";
 import { configureAmplify } from "./amplify-config";
 
-export async function getCurrentUserServer(req: NextApiRequest) {
+// Ensure Amplify is configured
+configureAmplify();
+
+export async function getCurrentUser(
+  req?: NextApiRequest
+): Promise<AuthUser | null> {
   try {
-    // Ensure Amplify is configured before getting the current user
-    const isConfigured = configureAmplify();
-    if (!isConfigured) {
-      throw new Error("Amplify configuration failed");
-    }
-    const user = await getCurrentUser();
+    const user = await getAmplifyCurrentUser();
     return user;
   } catch (error) {
     console.error("Error getting current user:", error);
@@ -17,3 +22,24 @@ export async function getCurrentUserServer(req: NextApiRequest) {
   }
 }
 
+export async function getCurrentUserServer(): Promise<
+  (AuthUser & { attributes: FetchUserAttributesOutput }) | null
+> {
+  try {
+    const user = await getAmplifyCurrentUser();
+    if (user) {
+      const attributes = await fetchUserAttributes();
+      return {
+        ...user,
+        attributes,
+      };
+    }
+    return null;
+  } catch (error) {
+    console.error(
+      "Error getting current user on server:",
+      error instanceof Error ? error.message : "Unknown error"
+    );
+    return null;
+  }
+}

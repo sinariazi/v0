@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -16,9 +17,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/lib/language-context";
 import { AlertCircle, CheckCircle2, XCircle } from "lucide-react";
+import { useEffect, useState } from "react";
 
 type StripeEvent = {
   id: string;
@@ -33,6 +34,7 @@ type StripeEvent = {
 };
 
 export function BillingSection() {
+  const { t } = useLanguage();
   const [events, setEvents] = useState<StripeEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -50,7 +52,7 @@ export function BillingSection() {
       const data = await response.json();
       setEvents(data.events);
     } catch (err) {
-      setError("Failed to load events. Please try again later.");
+      setError(t("billing.errorLoadingEvents"));
     } finally {
       setLoading(false);
     }
@@ -66,12 +68,8 @@ export function BillingSection() {
     }
   };
 
-  const formatDate = (timestamp: number) => {
-    return new Date(timestamp * 1000).toLocaleString();
-  };
-
   if (loading) {
-    return <div>Loading billing information...</div>;
+    return <div>{t("billing.loading")}</div>;
   }
 
   if (error) {
@@ -81,17 +79,17 @@ export function BillingSection() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Billing Events</CardTitle>
-        <CardDescription>Recent Stripe events for your account</CardDescription>
+        <CardTitle>{t("billing.title")}</CardTitle>
+        <CardDescription>{t("billing.description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Event Type</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Object ID</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead>{t("billing.table.eventType")}</TableHead>
+              <TableHead>{t("billing.table.date")}</TableHead>
+              <TableHead>{t("billing.table.objectId")}</TableHead>
+              <TableHead>{t("billing.table.status")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -103,7 +101,9 @@ export function BillingSection() {
                     <span>{event.type}</span>
                   </div>
                 </TableCell>
-                <TableCell>{formatDate(event.created)}</TableCell>
+                <TableCell>
+                  {new Date(event.created * 1000).toLocaleString()}
+                </TableCell>
                 <TableCell>{event.data.object.id}</TableCell>
                 <TableCell>
                   <Badge
@@ -123,7 +123,7 @@ export function BillingSection() {
           </TableBody>
         </Table>
         <div className="mt-4">
-          <Button onClick={fetchEvents}>Refresh Events</Button>
+          <Button onClick={fetchEvents}>{t("billing.refresh")}</Button>
         </div>
       </CardContent>
     </Card>

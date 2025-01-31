@@ -15,7 +15,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useAuth } from "@/lib/auth-context";
 import { useToast } from "@/components/ui/use-toast";
+import { useLanguage } from "@/lib/language-context";
 
 interface SignUpModalProps {
   isOpen: boolean;
@@ -24,63 +26,48 @@ interface SignUpModalProps {
 
 export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [role, setRole] = useState<"EMPLOYEE" | "MANAGER" | "ADMIN">(
-    "EMPLOYEE"
-  );
-  const [gender, setGender] = useState<"MALE" | "FEMALE" | "OTHER">("OTHER");
+  const [gender, setGender] = useState("");
   const [team, setTeam] = useState("");
   const [organizationId, setOrganizationId] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const { signUp } = useAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          firstName,
-          lastName,
-          role,
-          gender,
-          team,
-          organizationId,
-        }),
-      });
+      // Sign up with email and other user details
+      const signUpResult = await signUp(
+        email,
+        firstName,
+        lastName,
+        gender,
+        team,
+        organizationId
+      );
+      console.log("Sign up result:", signUpResult);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to sign up");
-      }
-
-      const data = await response.json();
       toast({
-        title: "Success",
-        description:
-          "Your account has been created. Please check your email for the temporary password.",
+        title: t("signUpModal.success"),
+        description: t("signUpModal.accountCreatedCheckEmail"),
       });
       onClose();
     } catch (error) {
       console.error("Error signing up:", error);
       setError(
-        error instanceof Error
-          ? error.message
-          : "Failed to sign up. Please try again."
+        error instanceof Error ? error.message : t("signUpModal.failedToSignUp")
       );
       toast({
-        title: "Error",
+        title: t("signUpModal.error"),
         description:
           error instanceof Error
             ? error.message
-            : "Failed to sign up. Please try again.",
+            : t("signUpModal.failedToSignUp"),
         variant: "destructive",
       });
     }
@@ -90,11 +77,11 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Sign Up</DialogTitle>
+          <DialogTitle>{t("signUpModal.title")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSignUp} className="space-y-4">
           <div>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t("signUpModal.email")}</Label>
             <Input
               id="email"
               type="email"
@@ -104,7 +91,7 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
             />
           </div>
           <div>
-            <Label htmlFor="firstName">First Name</Label>
+            <Label htmlFor="firstName">{t("signUpModal.firstName")}</Label>
             <Input
               id="firstName"
               value={firstName}
@@ -113,7 +100,7 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
             />
           </div>
           <div>
-            <Label htmlFor="lastName">Last Name</Label>
+            <Label htmlFor="lastName">{t("signUpModal.lastName")}</Label>
             <Input
               id="lastName"
               value={lastName}
@@ -122,52 +109,33 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
             />
           </div>
           <div>
-            <Label htmlFor="role">Role</Label>
-            <Select
-              value={role}
-              onValueChange={(value: "EMPLOYEE" | "MANAGER" | "ADMIN") =>
-                setRole(value)
-              }
-              required
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select a role" />
+            <Label htmlFor="gender">{t("signUpModal.gender")}</Label>
+            <Select value={gender} onValueChange={setGender} required>
+              <SelectTrigger id="gender">
+                <SelectValue placeholder={t("signUpModal.selectGender")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="EMPLOYEE">Employee</SelectItem>
-                <SelectItem value="MANAGER">Manager</SelectItem>
-                <SelectItem value="ADMIN">Admin</SelectItem>
+                <SelectItem value="male">{t("signUpModal.male")}</SelectItem>
+                <SelectItem value="female">
+                  {t("signUpModal.female")}
+                </SelectItem>
+                <SelectItem value="other">{t("signUpModal.other")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div>
-            <Label htmlFor="gender">Gender</Label>
-            <Select
-              value={gender}
-              onValueChange={(value: "MALE" | "FEMALE" | "OTHER") =>
-                setGender(value)
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select gender" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="MALE">Male</SelectItem>
-                <SelectItem value="FEMALE">Female</SelectItem>
-                <SelectItem value="OTHER">Other</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label htmlFor="team">Team</Label>
+            <Label htmlFor="team">{t("signUpModal.team")}</Label>
             <Input
               id="team"
               value={team}
               onChange={(e) => setTeam(e.target.value)}
+              required
             />
           </div>
           <div>
-            <Label htmlFor="organizationId">Organization ID</Label>
+            <Label htmlFor="organizationId">
+              {t("signUpModal.organizationId")}
+            </Label>
             <Input
               id="organizationId"
               value={organizationId}
@@ -175,8 +143,12 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
               required
             />
           </div>
-          {error && <p className="text-red-500">{error}</p>}
-          <Button type="submit">Sign Up</Button>
+          {error && (
+            <p className="text-red-500" role="alert">
+              {error}
+            </p>
+          )}
+          <Button type="submit">{t("signUpModal.signUpButton")}</Button>
         </form>
       </DialogContent>
     </Dialog>

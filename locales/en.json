@@ -1,0 +1,352 @@
+{
+  "header": {
+    "home": "Home",
+    "features": "Features",
+    "howItWorks": "How it Works",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "pricing": "Pricing",
+    "signIn": "Sign In",
+    "scheduleDemo": "Schedule Demo"
+  },
+  "footer": {
+    "home": "Home",
+    "features": "Features",
+    "howItWorks": "How it Works",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "copyright": "© 2025 Mood Whisper. All rights reserved."
+  },
+  "signInModal": {
+    "title": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "signUp": "Not a user yet? Sign up",
+    "forgotPassword": "Forgot Password?",
+    "signInButton": "Sign In",
+    "failedToSignIn": "Failed to sign in",
+    "failedToSignInCheckCredentials": "Failed to sign in. Please check your credentials and try again.",
+    "failedToConfirmSignIn": "Failed to confirm sign in",
+    "failedToConfirmSignInTryAgain": "Failed to confirm sign in. Please try again.",
+    "passwordResetCodeSent": "Password reset code sent. Please check your email.",
+    "failedToSendPasswordResetEmail": "Failed to send password reset email. Please try again.",
+    "newPasswordsDoNotMatch": "New passwords do not match.",
+    "passwordResetSuccessful": "Password reset successful. You can now sign in with your new password.",
+    "failedToResetPassword": "Failed to reset password. Please try again.",
+    "newPassword": "New Password",
+    "signingIn": "Signing In...",
+    "signIn": "Sign In",
+    "notAUserYet": "Not a user yet? Sign up",
+    "confirming": "Confirming...",
+    "setNewPassword": "Set New Password",
+    "sendingResetCode": "Sending Reset Code...",
+    "sendResetCode": "Send Reset Code",
+    "backToSignIn": "Back to Sign In",
+    "resetCode": "Reset Code",
+    "confirmNewPassword": "Confirm New Password",
+    "resettingPassword": "Resetting Password...",
+    "resetPassword": "Reset Password"
+  },
+  "signUpModal": {
+    "title": "Sign Up",
+    "email": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "gender": "Gender",
+    "selectGender": "Select gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "team": "Team",
+    "organizationId": "Organization ID",
+    "signUpButton": "Sign Up",
+    "success": "Success",
+    "accountCreatedCheckEmail": "Your account has been created. Please check your email for a temporary password to sign in.",
+    "error": "Error",
+    "failedToSignUp": "Failed to sign up. Please try again."
+  },
+  "changePasswordModal": {
+    "title": "Set New Password",
+    "email": "Email",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "setNewPasswordButton": "Set New Password",
+    "newPasswordsDoNotMatch": "New passwords do not match.",
+    "success": "Success",
+    "passwordChangedSuccessfully": "Password changed successfully. You are now signed in.",
+    "failedToConfirmSignIn": "Failed to confirm sign in",
+    "failedToChangePassword": "Failed to change password. Please try again."
+  },
+  "hero": {
+    "title": "Data-Driven Employee Engagement with Mood Whisper",
+    "description": "Harness the power of real-time analytics to boost workplace happiness and productivity.",
+    "startFreeTrial": "Start Free Trial",
+    "scheduleDemo": "Schedule Demo",
+    "chart": {
+      "happiness": "Happiness",
+      "engagement": "Engagement"
+    }
+  },
+  "home": {
+    "featuresSection": {
+      "title": "Powerful Features for Employee Engagement",
+      "description": "Discover the comprehensive tools and capabilities that make Mood Whisper the leading employee engagement platform.",
+      "exploreButton": "Explore Our Features"
+    }
+  },
+  "cta": {
+    "title": "Ready to Harness the Power of Data?",
+    "description": "Join the data-driven revolution in employee engagement. Start your journey towards a more productive and happier workplace with Mood Whisper today.",
+    "startFreeTrial": "Start Free Trial",
+    "scheduleDemo": "Schedule Demo"
+  },
+  "adminSideMenu": {
+    "title": "Admin Panel",
+    "dashboard": "Dashboard",
+    "userManagement": "User Management",
+    "surveys": "Surveys",
+    "insights": "Insights",
+    "billing": "Billing",
+    "subscription": "Subscription"
+  },
+  "dataInsights": {
+    "title": "Data-Driven Insights",
+    "chartTitle": "Department Satisfaction vs Productivity",
+    "satisfaction": "Satisfaction",
+    "productivity": "Productivity"
+  },
+  "dateRangeSelector": {
+    "placeholder": "Select time period",
+    "last30Days": "Last 30 days",
+    "last90Days": "Last 90 days",
+    "last180Days": "Last 180 days",
+    "allTime": "All time"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Sign Up",
+      "description": "Create your Mood Whisper account and set up your organization profile."
+    },
+    "step2": {
+      "title": "Invite Team",
+      "description": "Invite your employees to join the platform and start sharing their moods."
+    },
+    "step3": {
+      "title": "Track & Analyze",
+      "description": "Monitor real-time mood data and analyze trends to improve workplace satisfaction."
+    },
+    "step4": {
+      "title": "Take Action",
+      "description": "Implement changes based on insights to boost employee engagement and productivity."
+    }
+  },
+  "predictionModels": {
+    "title": "Predictive Analytics for Employee Engagement",
+    "chart": {
+      "title": "Engagement Prediction Model",
+      "actualEngagement": "Actual Engagement",
+      "predictedEngagement": "Predicted Engagement"
+    },
+    "howItWorks": {
+      "title": "How Our Prediction Model Works",
+      "description": "Our prediction model helps you anticipate engagement trends, allowing you to take proactive measures to maintain high employee satisfaction and productivity."
+    },
+    "features": {
+      "feature1": "Utilizes advanced machine learning algorithms",
+      "feature2": "Analyzes historical engagement data",
+      "feature3": "Considers various factors such as team dynamics, workload, and company events",
+      "feature4": "Continuously learns and improves predictions over time",
+      "feature5": "Provides actionable insights to improve employee engagement"
+    },
+    "noFeaturesAvailable": "No features available"
+  },
+  "pricing": {
+    "title": "Pricing Plans",
+    "perMonth": "/month",
+    "getStarted": "Get Started",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "price": "$99",
+        "description": "Perfect for small teams just getting started",
+        "features": {
+          "employees": "Up to 25 employees",
+          "moodTracking": "Basic mood tracking",
+          "weeklyReports": "Weekly reports",
+          "emailSupport": "Email support"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$299",
+        "description": "Ideal for growing companies with advanced needs",
+        "features": {
+          "employees": "Up to 100 employees",
+          "advancedAnalytics": "Advanced mood analytics",
+          "dailyReports": "Daily reports",
+          "collaborationTools": "Team collaboration tools",
+          "prioritySupport": "Priority email support"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Custom",
+        "description": "Tailored solutions for large organizations",
+        "features": {
+          "employees": "Unlimited employees",
+          "customIntegrations": "Custom integrations",
+          "accountManager": "Dedicated account manager",
+          "phoneSupport": "24/7 phone support",
+          "onSiteTraining": "On-site training"
+        }
+      }
+    }
+  },
+  "survey": {
+    "title": "Employee Engagement Survey",
+    "description": "Please answer the following questions on a scale of 1-10",
+    "questions": {
+      "jobSatisfaction": "How satisfied are you with your current role?",
+      "careerAlignment": "How well does your work align with your career goals?",
+      "workLifeBalance": "How would you rate the work-life balance in your current position?",
+      "recognition": "How satisfied are you with the recognition you receive for your work?",
+      "teamCommunication": "How would you rate the communication within your team?",
+      "professionalGrowth": "How satisfied are you with the opportunities for professional growth?",
+      "diversityAndInclusion": "How would you rate the company's commitment to diversity and inclusion?",
+      "compensationAndBenefits": "How satisfied are you with your current compensation and benefits?",
+      "companyCulture": "How would you rate the overall company culture?",
+      "recommendation": "How likely are you to recommend this company as a great place to work?"
+    },
+    "scale": {
+      "lowest": "1 (Lowest)",
+      "highest": "5 (Highest)"
+    },
+    "additionalFeedback": {
+      "label": "Additional Feedback",
+      "placeholder": "Please provide any additional feedback or comments here..."
+    },
+    "submit": "Submit Survey",
+    "authError": {
+      "title": "Authentication Error",
+      "description": "You must be signed in to submit a survey.",
+      "sessionExpired": "Your session has expired. Please sign in again."
+    },
+    "success": {
+      "title": "Success",
+      "description": "Survey submitted successfully"
+    },
+    "errors": {
+      "title": "Error",
+      "description": "Failed to submit survey. Please try again.",
+      "failedToken": "Failed to get authentication token",
+      "submitFailed": "Failed to submit survey",
+      "submitError": "Error submitting survey:"
+    }
+  },
+  "surveyResults": {
+    "surveyFrom": "Survey from {{date}}",
+    "answer": "Answer: {{score}}/5",
+    "additionalFeedback": "Additional Feedback:"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "sarah": {
+      "name": "Sarah Johnson",
+      "role": "HR Director, TechCorp",
+      "content": "Mood Whisper's data-driven approach has revolutionized our employee engagement strategy. We've seen a 25% increase in overall job satisfaction since implementation."
+    },
+    "michael": {
+      "name": "Michael Chen",
+      "role": "CEO, InnovateCo",
+      "content": "The predictive analytics from Mood Whisper have helped us proactively address potential issues, resulting in a 15% decrease in turnover and a 20% boost in productivity."
+    },
+    "emily": {
+      "name": "Emily Rodriguez",
+      "role": "Team Lead, CreativeStudio",
+      "content": "The customizable dashboards allow us to track the metrics that matter most to our creative team. We've improved our project completion rate by 30% thanks to the insights from Mood Whisper."
+    }
+  },
+  "adminDashboard": {
+    "title": "Admin Dashboard",
+    "userManagement": {
+      "title": "User Management",
+      "description": "Manage your users and their permissions"
+    },
+    "surveys": {
+      "title": "Surveys",
+      "description": "Create and manage employee surveys"
+    },
+    "insights": {
+      "title": "Insights",
+      "description": "View and analyze employee engagement data"
+    },
+    "billing": {
+      "title": "Billing",
+      "description": "Manage your subscription and billing information"
+    },
+    "surveyResults": {
+      "title": "Survey Results",
+      "description": "View and analyze survey responses"
+    },
+    "subscription": {
+      "title": "Subscription",
+      "description": "Manage your subscription plan"
+    },
+    "userArea": {
+      "title": "User Area",
+      "description": "Access the user dashboard"
+    },
+    "goTo": "Go to"
+  },
+  "userManagement": {
+    "searchPlaceholder": "Search users...",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "role": "Role",
+    "status": "Status",
+    "gender": "Gender",
+    "team": "Team",
+    "organizationId": "Organization ID",
+    "actions": "Actions",
+    "selectRole": "Select a role",
+    "employee": "Employee",
+    "manager": "Manager",
+    "admin": "Admin",
+    "selectGender": "Select gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "save": "Save",
+    "remove": "Remove",
+    "addUserDialogTitle": "Add New User",
+    "addUser": "Add User",
+    "importUsersDialogTitle": "Import Users",
+    "importUsersDialogDescription": "Upload a CSV file containing user information. The file should include columns for email, firstName, lastName, and optional columns for role, gender, team.",
+    "importUsersAlertDescription": "Required CSV format: email, firstName, lastName, role (optional), gender (optional), team (optional)",
+    "selectCSVFile": "Select CSV File",
+    "cancel": "Cancel",
+    "importing": "Importing...",
+    "import": "Import",
+    "downloadSampleCSV": "Download sample CSV",
+    "LoadingUsers": "Loading users..."
+  },
+  "billing": {
+    "title": "Billing Events",
+    "description": "Recent Stripe events for your account",
+    "loading": "Loading billing information...",
+    "errorLoadingEvents": "Failed to load events. Please try again later.",
+    "refresh": "Refresh Events",
+    "table": {
+      "eventType": "Event Type",
+      "date": "Date",
+      "objectId": "Object ID",
+      "status": "Status"
+    }
+  }
+}

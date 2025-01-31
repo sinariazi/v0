@@ -1,20 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/lib/auth-context";
+import { useLanguage } from "@/lib/language-context";
+import { LogIn, LogOut, Menu, Moon, Sun, User, X } from "lucide-react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X, Loader2, LogIn, LogOut } from "lucide-react";
+import { useEffect, useState } from "react";
 import SignInModal from "./SignInModal";
-import { useAuth } from "@/lib/auth-context";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [isSignInOpen, setIsSignInOpen] = useState(false); // Update 2: Added state variable for SignInModal
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
   const { user, loading, signOut } = useAuth();
   const router = useRouter();
+  const { language, setLanguage, t } = useLanguage();
 
   const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -65,14 +73,25 @@ export default function Header() {
   const navLinks = user
     ? []
     : [
-        { href: "/", label: "Home" },
-        { href: "/features", label: "Features" },
-        { href: "/how-it-works", label: "How it Works" },
-        { href: "/blog", label: "Blog" },
-        { href: "/about", label: "About" },
-        { href: "/contact", label: "Contact" },
-        { href: "#pricing", label: "Pricing", onClick: scrollToPricing },
+        { href: "/", label: t("header.home") },
+        { href: "/features", label: t("header.features") },
+        { href: "/how-it-works", label: t("header.howItWorks") },
+        { href: "/blog", label: t("header.blog") },
+        { href: "/about", label: t("header.about") },
+        { href: "/contact", label: t("header.contact") },
+        {
+          href: "#pricing",
+          label: t("header.pricing"),
+          onClick: scrollToPricing,
+        },
       ];
+
+  const languageOptions = {
+    en: "English",
+    de: "Deutsch",
+    es: "Español",
+    it: "Italiano",
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -91,18 +110,45 @@ export default function Header() {
           <span className="text-2xl font-bold">Mood Whisper</span>
         </Link>
         <div className="flex items-center space-x-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          >
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <span className="uppercase">{language}</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {Object.entries(languageOptions).map(([langCode, langName]) => (
+                <DropdownMenuItem
+                  key={langCode}
+                  onClick={() => setLanguage(langCode as any)}
+                >
+                  {langName}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           {user ? (
             <div className="flex items-center space-x-4">
+              <span className="text-sm font-medium">
+                {user.attributes.email}
+              </span>
               <Button
                 variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                onClick={() => router.push("/user/dashboard")}
               >
-                {theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
+                <User className="mr-2 h-4 w-4" />
+                User Area
               </Button>
               <Button variant="ghost" onClick={handleSignOut}>
                 <LogOut className="mr-2 h-4 w-4" />
@@ -124,29 +170,16 @@ export default function Header() {
                 ))}
               </nav>
               <div className="flex items-center space-x-4">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                >
-                  {theme === "dark" ? (
-                    <Sun className="h-5 w-5" />
-                  ) : (
-                    <Moon className="h-5 w-5" />
-                  )}
-                </Button>
                 <Button variant="ghost" onClick={() => setIsSignInOpen(true)}>
-                  {" "}
-                  {/* Update 3: Updated onClick handler */}
                   <LogIn className="mr-2 h-4 w-4" />
-                  Sign In
+                  {t("header.signIn")}
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   className="hidden md:inline-flex"
                 >
-                  <Link href="/schedule-demo">Schedule Demo</Link>
+                  <Link href="/schedule-demo">{t("header.scheduleDemo")}</Link>
                 </Button>
               </div>
             </>
@@ -180,7 +213,7 @@ export default function Header() {
             ))}
             {!user && (
               <Button asChild variant="outline">
-                <Link href="/schedule-demo">Schedule Demo</Link>
+                <Link href="/schedule-demo">{t("header.scheduleDemo")}</Link>
               </Button>
             )}
           </nav>
@@ -189,8 +222,7 @@ export default function Header() {
       <SignInModal
         isOpen={isSignInOpen}
         onClose={() => setIsSignInOpen(false)}
-      />{" "}
-      {/* Update 4: Added SignInModal component */}
+      />
     </header>
   );
 }

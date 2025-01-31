@@ -1,27 +1,29 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Testimonials() {
+  const { t } = useLanguage();
+
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "HR Director, TechCorp",
-      content:
-        "Mood Whisper's data-driven approach has revolutionized our employee engagement strategy. We've seen a 25% increase in overall job satisfaction since implementation.",
+      name: t("testimonials.sarah.name"),
+      role: t("testimonials.sarah.role"),
+      content: t("testimonials.sarah.content"),
       avatar: "/placeholder.svg?height=40&width=40",
     },
     {
-      name: "Michael Chen",
-      role: "CEO, InnovateCo",
-      content:
-        "The predictive analytics from Mood Whisper have helped us proactively address potential issues, resulting in a 15% decrease in turnover and a 20% boost in productivity.",
+      name: t("testimonials.michael.name"),
+      role: t("testimonials.michael.role"),
+      content: t("testimonials.michael.content"),
       avatar: "/placeholder.svg?height=40&width=40",
     },
     {
-      name: "Emily Rodriguez",
-      role: "Team Lead, CreativeStudio",
-      content:
-        "The customizable dashboards allow us to track the metrics that matter most to our creative team. We've improved our project completion rate by 30% thanks to the insights from Mood Whisper.",
+      name: t("testimonials.emily.name"),
+      role: t("testimonials.emily.role"),
+      content: t("testimonials.emily.content"),
       avatar: "/placeholder.svg?height=40&width=40",
     },
   ];
@@ -30,7 +32,7 @@ export default function Testimonials() {
     <section className="py-24 px-4">
       <div className="container">
         <h2 className="text-3xl font-bold text-center mb-12">
-          What Our Clients Say
+          {t("testimonials.title")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (

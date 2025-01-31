@@ -48,25 +48,65 @@ model User {
   emailVerified   Boolean    @default(false)
   organization    Organization @relation(fields: [organizationId], references: [id])
   customer        Customer?
+  surveys         Survey[]
 
   @@index([email])
   @@index([organizationId])
 }
 
 model Organization {
-  id           String    @id @default(uuid())
-  name         String
-  industry     String
-  size         String
-  country      String
-  city         String
-  street       String
-  email        String
-  phoneNumber  String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  users        User[]
-  customer     Customer?
+  id                    String    @id @default(uuid())
+  name                  String
+  industry              String
+  size                  String
+  country               String
+  city                  String
+  street                String
+  email                 String
+  phoneNumber           String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  users                 User[]
+  customer              Customer?
+  surveys               Survey[]
+  averageEngagementScores AverageEngagementScore[]
+}
+
+model Survey {
+  id                 Int              @id @default(autoincrement())
+  organizationId     String
+  userId             Int
+  organization       Organization     @relation(fields: [organizationId], references: [id])
+  user               User             @relation(fields: [userId], references: [id])
+  createdAt          DateTime         @default(now())
+  responses          SurveyResponse[]
+  additionalFeedback String?
+
+  @@index([organizationId])
+  @@index([userId])
+}
+
+model SurveyResponse {
+  id       Int    @id @default(autoincrement())
+  surveyId Int
+  survey   Survey @relation(fields: [surveyId], references: [id])
+  factor   String
+  score    Int
+
+  @@index([surveyId])
+}
+
+model AverageEngagementScore {
+  id             Int    @id @default(autoincrement())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  factor         String
+  totalScore     Int
+  responseCount  Int
+  averageScore   Float
+
+  @@unique([organizationId, factor])
+  @@index([organizationId])
 }
 
 model Customer {
