@@ -11,7 +11,7 @@ import { configureAmplify } from "./amplify-config";
 configureAmplify();
 
 export async function getCurrentUser(
-  req: NextApiRequest
+  req?: NextApiRequest
 ): Promise<AuthUser | null> {
   try {
     const user = await getAmplifyCurrentUser();

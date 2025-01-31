@@ -1,12 +1,16 @@
 import type { AppProps } from "next/app";
-import { Amplify } from "aws-amplify";
-import { configureAmplify } from "@/lib/amplify-config";
-
-// Configure Amplify
-configureAmplify();
+import { AuthProvider } from "@/lib/auth-context";
+import "@/app/globals.css";
+import { Providers } from "@/app/providers";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Providers>
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    </Providers>
+  );
 }
 
 export default MyApp;

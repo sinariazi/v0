@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { useLanguage } from "@/lib/language-context";
 
 const predictionData = [
   { month: "Jan", actual: 72, predicted: 70 },
@@ -28,24 +29,26 @@ const predictionData = [
 ];
 
 export default function PredictionModels() {
+  const { t } = useLanguage();
+
   const features = [
-    "Utilizes advanced machine learning algorithms",
-    "Analyzes historical engagement data",
-    "Considers various factors such as team dynamics, workload, and company events",
-    "Continuously learns and improves predictions over time",
-    "Provides actionable insights to improve employee engagement",
+    t("predictionModels.features.feature1"),
+    t("predictionModels.features.feature2"),
+    t("predictionModels.features.feature3"),
+    t("predictionModels.features.feature4"),
+    t("predictionModels.features.feature5"),
   ];
 
   return (
     <section className="py-24 px-4">
       <div className="container">
         <h2 className="text-3xl font-bold text-center mb-12">
-          Predictive Analytics for Employee Engagement
+          {t("predictionModels.title")}
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
-              <CardTitle>Engagement Prediction Model</CardTitle>
+              <CardTitle>{t("predictionModels.chart.title")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="h-[400px]">
@@ -60,14 +63,14 @@ export default function PredictionModels() {
                       type="monotone"
                       dataKey="actual"
                       stroke="#3b82f6"
-                      name="Actual Engagement"
+                      name={t("predictionModels.chart.actualEngagement")}
                       strokeWidth={2}
                     />
                     <Line
                       type="monotone"
                       dataKey="predicted"
                       stroke="#10b981"
-                      name="Predicted Engagement"
+                      name={t("predictionModels.chart.predictedEngagement")}
                       strokeWidth={2}
                       strokeDasharray="5 5"
                     />
@@ -78,7 +81,7 @@ export default function PredictionModels() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>How Our Prediction Model Works</CardTitle>
+              <CardTitle>{t("predictionModels.howItWorks.title")}</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="list-disc pl-6 space-y-2">
@@ -87,13 +90,11 @@ export default function PredictionModels() {
                     <li key={index}>{feature}</li>
                   ))
                 ) : (
-                  <li>No features available</li>
+                  <li>{t("predictionModels.noFeaturesAvailable")}</li>
                 )}
               </ul>
               <p className="mt-4">
-                Our prediction model helps you anticipate engagement trends,
-                allowing you to take proactive measures to maintain high
-                employee satisfaction and productivity.
+                {t("predictionModels.howItWorks.description")}
               </p>
             </CardContent>
           </Card>

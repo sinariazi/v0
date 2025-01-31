@@ -1,3 +1,5 @@
+"use client";
+
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,42 +10,45 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Pricing() {
+  const { t } = useLanguage();
+
   const plans = [
     {
-      name: "Starter",
+      name: t("pricing.plans.starter.name"),
       price: "$99",
-      description: "Perfect for small teams just getting started",
+      description: t("pricing.plans.starter.description"),
       features: [
-        "Up to 25 employees",
-        "Basic mood tracking",
-        "Weekly reports",
-        "Email support",
+        t("pricing.plans.starter.features.employees"),
+        t("pricing.plans.starter.features.moodTracking"),
+        t("pricing.plans.starter.features.weeklyReports"),
+        t("pricing.plans.starter.features.emailSupport"),
       ],
     },
     {
-      name: "Pro",
+      name: t("pricing.plans.pro.name"),
       price: "$299",
-      description: "Ideal for growing companies with advanced needs",
+      description: t("pricing.plans.pro.description"),
       features: [
-        "Up to 100 employees",
-        "Advanced mood analytics",
-        "Daily reports",
-        "Team collaboration tools",
-        "Priority email support",
+        t("pricing.plans.pro.features.employees"),
+        t("pricing.plans.pro.features.advancedAnalytics"),
+        t("pricing.plans.pro.features.dailyReports"),
+        t("pricing.plans.pro.features.collaborationTools"),
+        t("pricing.plans.pro.features.prioritySupport"),
       ],
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      description: "Tailored solutions for large organizations",
+      name: t("pricing.plans.enterprise.name"),
+      price: t("pricing.plans.enterprise.price"),
+      description: t("pricing.plans.enterprise.description"),
       features: [
-        "Unlimited employees",
-        "Custom integrations",
-        "Dedicated account manager",
-        "24/7 phone support",
-        "On-site training",
+        t("pricing.plans.enterprise.features.employees"),
+        t("pricing.plans.enterprise.features.customIntegrations"),
+        t("pricing.plans.enterprise.features.accountManager"),
+        t("pricing.plans.enterprise.features.phoneSupport"),
+        t("pricing.plans.enterprise.features.onSiteTraining"),
       ],
     },
   ];
@@ -51,7 +56,9 @@ export default function Pricing() {
   return (
     <section id="pricing" className="py-24 px-4 bg-muted scroll-mt-16">
       <div className="container">
-        <h2 className="text-3xl font-bold text-center mb-12">Pricing Plans</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">
+          {t("pricing.title")}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
             <Card key={index} className="flex flex-col">
@@ -63,7 +70,9 @@ export default function Pricing() {
                 <p className="text-4xl font-bold mb-4">
                   {plan.price}
                   <span className="text-xl font-normal text-muted-foreground">
-                    {plan.price !== "Custom" ? "/month" : ""}
+                    {plan.price !== t("pricing.plans.enterprise.price")
+                      ? t("pricing.perMonth")
+                      : ""}
                   </span>
                 </p>
                 <ul className="space-y-2">
@@ -76,7 +85,7 @@ export default function Pricing() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full">Get Started</Button>
+                <Button className="w-full">{t("pricing.getStarted")}</Button>
               </CardFooter>
             </Card>
           ))}

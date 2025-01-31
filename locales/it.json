@@ -1,0 +1,352 @@
+{
+  "header": {
+    "home": "Home",
+    "features": "Funzionalità",
+    "howItWorks": "Come funziona",
+    "blog": "Blog",
+    "about": "Chi siamo",
+    "contact": "Contatti",
+    "pricing": "Prezzi",
+    "signIn": "Accedi",
+    "scheduleDemo": "Prenota una demo"
+  },
+  "footer": {
+    "home": "Home",
+    "features": "Funzionalità",
+    "howItWorks": "Come funziona",
+    "blog": "Blog",
+    "about": "Chi siamo",
+    "contact": "Contatti",
+    "privacyPolicy": "Informativa sulla privacy",
+    "termsOfService": "Termini di servizio",
+    "copyright": "© 2025 Mood Whisper. Tutti i diritti riservati."
+  },
+  "signInModal": {
+    "title": "Accedi",
+    "email": "Email",
+    "password": "Password",
+    "signUp": "Non sei un utente? Registrati",
+    "forgotPassword": "Password dimenticata?",
+    "signInButton": "Accedi",
+    "failedToSignIn": "Accesso fallito",
+    "failedToSignInCheckCredentials": "Accesso fallito. Controlla le tue credenziali e riprova.",
+    "failedToConfirmSignIn": "Conferma dell'accesso fallita",
+    "failedToConfirmSignInTryAgain": "Conferma dell'accesso fallita. Riprova.",
+    "passwordResetCodeSent": "Codice di reset della password inviato. Controlla la tua email.",
+    "failedToSendPasswordResetEmail": "Invio dell'email di reset della password fallito. Riprova.",
+    "newPasswordsDoNotMatch": "Le nuove password non corrispondono.",
+    "passwordResetSuccessful": "Reset della password riuscito. Ora puoi accedere con la tua nuova password.",
+    "failedToResetPassword": "Reset della password fallito. Riprova.",
+    "newPassword": "Nuova password",
+    "signingIn": "Accesso in corso...",
+    "signIn": "Accedi",
+    "notAUserYet": "Non sei ancora un utente? Registrati",
+    "confirming": "Conferma in corso...",
+    "setNewPassword": "Imposta nuova password",
+    "sendingResetCode": "Invio del codice di reset in corso...",
+    "sendResetCode": "Invia codice di reset",
+    "backToSignIn": "Torna all'accesso",
+    "resetCode": "Codice di reset",
+    "confirmNewPassword": "Conferma nuova password",
+    "resettingPassword": "Reset della password in corso...",
+    "resetPassword": "Reimposta password"
+  },
+  "signUpModal": {
+    "title": "Registrati",
+    "email": "Email",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "gender": "Genere",
+    "selectGender": "Seleziona genere",
+    "male": "Maschio",
+    "female": "Femmina",
+    "other": "Altro",
+    "team": "Team",
+    "organizationId": "ID Organizzazione",
+    "signUpButton": "Registrati",
+    "success": "Successo",
+    "accountCreatedCheckEmail": "Il tuo account è stato creato. Controlla la tua email per la password temporanea per accedere.",
+    "error": "Errore",
+    "failedToSignUp": "Registrazione fallita. Riprova."
+  },
+  "changePasswordModal": {
+    "title": "Imposta nuova password",
+    "email": "Email",
+    "newPassword": "Nuova password",
+    "confirmNewPassword": "Conferma nuova password",
+    "setNewPasswordButton": "Imposta nuova password",
+    "newPasswordsDoNotMatch": "Le nuove password non corrispondono.",
+    "success": "Successo",
+    "passwordChangedSuccessfully": "Password cambiata con successo. Ora hai effettuato l'accesso.",
+    "failedToConfirmSignIn": "Conferma dell'accesso fallita",
+    "failedToChangePassword": "Cambio della password fallito. Riprova."
+  },
+  "hero": {
+    "title": "Coinvolgimento dei dipendenti basato sui dati con Mood Whisper",
+    "description": "Sfrutta il potere dell'analisi in tempo reale per aumentare la felicità e la produttività sul posto di lavoro.",
+    "startFreeTrial": "Inizia la prova gratuita",
+    "scheduleDemo": "Prenota una demo",
+    "chart": {
+      "happiness": "Felicità",
+      "engagement": "Coinvolgimento"
+    }
+  },
+  "home": {
+    "featuresSection": {
+      "title": "Potenti funzionalità per il coinvolgimento dei dipendenti",
+      "description": "Scopri gli strumenti e le capacità complete che rendono Mood Whisper la piattaforma leader per il coinvolgimento dei dipendenti.",
+      "exploreButton": "Esplora le nostre funzionalità"
+    }
+  },
+  "cta": {
+    "title": "Pronto a sfruttare il potere dei dati?",
+    "description": "Unisciti alla rivoluzione basata sui dati nel coinvolgimento dei dipendenti. Inizia il tuo viaggio verso un luogo di lavoro più produttivo e felice con Mood Whisper oggi.",
+    "startFreeTrial": "Inizia la prova gratuita",
+    "scheduleDemo": "Prenota una demo"
+  },
+  "adminSideMenu": {
+    "title": "Pannello di amministrazione",
+    "dashboard": "Dashboard",
+    "userManagement": "Gestione utenti",
+    "surveys": "Sondaggi",
+    "insights": "Approfondimenti",
+    "billing": "Fatturazione",
+    "subscription": "Abbonamento"
+  },
+  "dataInsights": {
+    "title": "Approfondimenti basati sui dati",
+    "chartTitle": "Soddisfazione del dipartimento vs Produttività",
+    "satisfaction": "Soddisfazione",
+    "productivity": "Produttività"
+  },
+  "dateRangeSelector": {
+    "placeholder": "Seleziona periodo",
+    "last30Days": "Ultimi 30 giorni",
+    "last90Days": "Ultimi 90 giorni",
+    "last180Days": "Ultimi 180 giorni",
+    "allTime": "Tutto il tempo"
+  },
+  "howItWorks": {
+    "title": "Come funziona",
+    "step1": {
+      "title": "Registrati",
+      "description": "Crea il tuo account Mood Whisper e configura il profilo della tua organizzazione."
+    },
+    "step2": {
+      "title": "Invita il team",
+      "description": "Invita i tuoi dipendenti a unirsi alla piattaforma e iniziare a condividere i loro stati d'animo."
+    },
+    "step3": {
+      "title": "Traccia e analizza",
+      "description": "Monitora i dati sullo stato d'animo in tempo reale e analizza le tendenze per migliorare la soddisfazione sul posto di lavoro."
+    },
+    "step4": {
+      "title": "Agisci",
+      "description": "Implementa cambiamenti basati sugli approfondimenti per aumentare il coinvolgimento dei dipendenti e la produttività."
+    }
+  },
+  "predictionModels": {
+    "title": "Analisi predittiva per il coinvolgimento dei dipendenti",
+    "chart": {
+      "title": "Modello di previsione del coinvolgimento",
+      "actualEngagement": "Coinvolgimento effettivo",
+      "predictedEngagement": "Coinvolgimento previsto"
+    },
+    "howItWorks": {
+      "title": "Come funziona il nostro modello di previsione",
+      "description": "Il nostro modello di previsione ti aiuta ad anticipare le tendenze di coinvolgimento, permettendoti di adottare misure proattive per mantenere alta la soddisfazione e la produttività dei dipendenti."
+    },
+    "features": {
+      "feature1": "Utilizza algoritmi avanzati di machine learning",
+      "feature2": "Analizza i dati storici di coinvolgimento",
+      "feature3": "Considera vari fattori come le dinamiche del team, il carico di lavoro e gli eventi aziendali",
+      "feature4": "Apprende continuamente e migliora le previsioni nel tempo",
+      "feature5": "Fornisce approfondimenti attuabili per migliorare il coinvolgimento dei dipendenti"
+    },
+    "noFeaturesAvailable": "Nessuna funzionalità disponibile"
+  },
+  "pricing": {
+    "title": "Piani tariffari",
+    "perMonth": "/mese",
+    "getStarted": "Inizia",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "price": "99 €",
+        "description": "Perfetto per piccoli team che stanno iniziando",
+        "features": {
+          "employees": "Fino a 25 dipendenti",
+          "moodTracking": "Tracciamento base dell'umore",
+          "weeklyReports": "Report settimanali",
+          "emailSupport": "Supporto via email"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "299 €",
+        "description": "Ideale per aziende in crescita con esigenze avanzate",
+        "features": {
+          "employees": "Fino a 100 dipendenti",
+          "advancedAnalytics": "Analisi avanzata dell'umore",
+          "dailyReports": "Report giornalieri",
+          "collaborationTools": "Strumenti di collaborazione del team",
+          "prioritySupport": "Supporto email prioritario"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Personalizzato",
+        "description": "Soluzioni su misura per grandi organizzazioni",
+        "features": {
+          "employees": "Dipendenti illimitati",
+          "customIntegrations": "Integrazioni personalizzate",
+          "accountManager": "Manager dell'account dedicato",
+          "phoneSupport": "Supporto telefonico 24/7",
+          "onSiteTraining": "Formazione in loco"
+        }
+      }
+    }
+  },
+  "survey": {
+    "title": "Sondaggio sul coinvolgimento dei dipendenti",
+    "description": "Per favore, rispondi alle seguenti domande su una scala da 1 a 5",
+    "questions": {
+      "jobSatisfaction": "Quanto sei soddisfatto del tuo ruolo attuale?",
+      "careerAlignment": "Quanto bene il tuo lavoro si allinea con i tuoi obiettivi di carriera?",
+      "workLifeBalance": "Come valuteresti l'equilibrio tra lavoro e vita privata nella tua posizione attuale?",
+      "recognition": "Quanto sei soddisfatto del riconoscimento che ricevi per il tuo lavoro?",
+      "teamCommunication": "Come valuteresti la comunicazione all'interno del tuo team?",
+      "professionalGrowth": "Quanto sei soddisfatto delle opportunità di crescita professionale?",
+      "diversityAndInclusion": "Come valuteresti l'impegno dell'azienda per la diversità e l'inclusione?",
+      "compensationAndBenefits": "Quanto sei soddisfatto della tua attuale retribuzione e dei benefici?",
+      "companyCulture": "Come valuteresti la cultura aziendale complessiva?",
+      "recommendation": "Quanto è probabile che raccomanderesti questa azienda come un ottimo posto di lavoro?"
+    },
+    "scale": {
+      "lowest": "1 (Più basso)",
+      "highest": "5 (Più alto)"
+    },
+    "additionalFeedback": {
+      "label": "Feedback aggiuntivo",
+      "placeholder": "Per favore, fornisci qui qualsiasi feedback o commento aggiuntivo..."
+    },
+    "submit": "Invia sondaggio",
+    "authError": {
+      "title": "Errore di autenticazione",
+      "description": "Devi essere autenticato per inviare un sondaggio.",
+      "sessionExpired": "La tua sessione è scaduta. Per favore, accedi di nuovo."
+    },
+    "success": {
+      "title": "Successo",
+      "description": "Sondaggio inviato con successo"
+    },
+    "errors": {
+      "title": "Errore",
+      "description": "Invio del sondaggio fallito. Per favore, riprova.",
+      "failedToken": "Impossibile ottenere il token di autenticazione",
+      "submitFailed": "Invio del sondaggio fallito",
+      "submitError": "Errore nell'invio del sondaggio:"
+    }
+  },
+  "surveyResults": {
+    "surveyFrom": "Sondaggio del {{date}}",
+    "answer": "Risposta: {{score}}/5",
+    "additionalFeedback": "Feedback aggiuntivo:"
+  },
+  "testimonials": {
+    "title": "Cosa dicono i nostri clienti",
+    "sarah": {
+      "name": "Sarah Johnson",
+      "role": "Direttore HR, TechCorp",
+      "content": "L'approccio basato sui dati di Mood Whisper ha rivoluzionato la nostra strategia di coinvolgimento dei dipendenti. Abbiamo visto un aumento del 25% nella soddisfazione lavorativa complessiva dall'implementazione."
+    },
+    "michael": {
+      "name": "Michael Chen",
+      "role": "CEO, InnovateCo",
+      "content": "Le analisi predittive di Mood Whisper ci hanno aiutato ad affrontare proattivamente potenziali problemi, risultando in una diminuzione del 15% del turnover e un aumento del 20% della produttività."
+    },
+    "emily": {
+      "name": "Emily Rodriguez",
+      "role": "Team Leader, CreativeStudio",
+      "content": "Le dashboard personalizzabili ci permettono di tracciare le metriche più importanti per il nostro team creativo. Grazie agli approfondimenti di Mood Whisper, abbiamo migliorato il nostro tasso di completamento dei progetti del 30%."
+    }
+  },
+  "adminDashboard": {
+    "title": "Dashboard Amministratore",
+    "userManagement": {
+      "title": "Gestione Utenti",
+      "description": "Gestisci i tuoi utenti e le loro autorizzazioni"
+    },
+    "surveys": {
+      "title": "Sondaggi",
+      "description": "Crea e gestisci sondaggi per i dipendenti"
+    },
+    "insights": {
+      "title": "Approfondimenti",
+      "description": "Visualizza e analizza i dati di coinvolgimento dei dipendenti"
+    },
+    "billing": {
+      "title": "Fatturazione",
+      "description": "Gestisci le tue informazioni di abbonamento e fatturazione"
+    },
+    "surveyResults": {
+      "title": "Risultati Sondaggi",
+      "description": "Visualizza e analizza le risposte ai sondaggi"
+    },
+    "subscription": {
+      "title": "Abbonamento",
+      "description": "Gestisci il tuo piano di abbonamento"
+    },
+    "userArea": {
+      "title": "Area Utente",
+      "description": "Accedi alla dashboard utente"
+    },
+    "goTo": "Vai a "
+  },
+  "userManagement": {
+    "searchPlaceholder": "Cerca utenti...",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "role": "Ruolo",
+    "status": "Stato",
+    "gender": "Genere",
+    "team": "Team",
+    "organizationId": "ID Organizzazione",
+    "actions": "Azioni",
+    "selectRole": "Seleziona un ruolo",
+    "employee": "Dipendente",
+    "manager": "Manager",
+    "admin": "Amministratore",
+    "selectGender": "Seleziona genere",
+    "male": "Maschio",
+    "female": "Femmina",
+    "other": "Altro",
+    "save": "Salva",
+    "remove": "Rimuovi",
+    "addUserDialogTitle": "Aggiungi nuovo utente",
+    "addUser": "Aggiungi utente",
+    "importUsersDialogTitle": "Importa utenti",
+    "importUsersDialogDescription": "Carica un file CSV contenente le informazioni dell'utente. Il file deve includere colonne per e-mail, nome, cognome e colonne opzionali per ruolo, genere e team.",
+    "importUsersAlertDescription": "Formato CSV richiesto: e-mail, nome, cognome, ruolo (opzionale), genere (opzionale), team (opzionale)",
+    "selectCSVFile": "Seleziona file CSV",
+    "cancel": "Annulla",
+    "importing": "Importazione in corso...",
+    "import": "Importa",
+    "downloadSampleCSV": "Scarica CSV di esempio",
+    "LoadingUsers": "Caricamento utenti in corso..."
+  },
+  "billing": {
+    "title": "Eventi di fatturazione",
+    "description": "Eventi Stripe recenti per il tuo account",
+    "loading": "Caricamento informazioni di fatturazione in corso...",
+    "errorLoadingEvents": "Impossibile caricare gli eventi. Riprova più tardi.",
+    "refresh": "Aggiorna eventi",
+    "table": {
+      "eventType": "Tipo di evento",
+      "date": "Data",
+      "objectId": "ID oggetto",
+      "status": "Stato"
+    }
+  }
+}
