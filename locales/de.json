@@ -335,5 +335,18 @@
     "import": "Importieren",
     "downloadSampleCSV": "Beispiel-CSV herunterladen",
     "LoadingUsers": "Benutzer werden geladen..."
+  },
+  "billing": {
+    "title": "Abrechnungsereignisse",
+    "description": "Aktuelle Stripe-Ereignisse für Ihr Konto",
+    "loading": "Lade Abrechnungsinformationen...",
+    "errorLoadingEvents": "Fehler beim Laden der Ereignisse. Bitte versuchen Sie es später erneut.",
+    "refresh": "Ereignisse aktualisieren",
+    "table": {
+      "eventType": "Ereignistyp",
+      "date": "Datum",
+      "objectId": "Objekt-ID",
+      "status": "Status"
+    }
   }
 }

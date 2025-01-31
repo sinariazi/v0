@@ -335,5 +335,18 @@
     "import": "Importar",
     "downloadSampleCSV": "Descargar CSV de muestra",
     "LoadingUsers": "Cargando usuarios..."
+  },
+  "billing": {
+    "title": "Eventos de facturación",
+    "description": "Eventos recientes de Stripe para su cuenta",
+    "loading": "Cargando información de facturación...",
+    "errorLoadingEvents": "Error al cargar eventos. Por favor, inténtelo de nuevo más tarde.",
+    "refresh": "Actualizar eventos",
+    "table": {
+      "eventType": "Tipo de evento",
+      "date": "Fecha",
+      "objectId": "ID de objeto",
+      "status": "Estado"
+    }
   }
 }

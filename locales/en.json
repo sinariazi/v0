@@ -335,5 +335,18 @@
     "import": "Import",
     "downloadSampleCSV": "Download sample CSV",
     "LoadingUsers": "Loading users..."
+  },
+  "billing": {
+    "title": "Billing Events",
+    "description": "Recent Stripe events for your account",
+    "loading": "Loading billing information...",
+    "errorLoadingEvents": "Failed to load events. Please try again later.",
+    "refresh": "Refresh Events",
+    "table": {
+      "eventType": "Event Type",
+      "date": "Date",
+      "objectId": "Object ID",
+      "status": "Status"
+    }
   }
 }
