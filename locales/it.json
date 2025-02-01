@@ -348,5 +348,20 @@
       "objectId": "ID oggetto",
       "status": "Stato"
     }
+  },
+  "subscriptionSuccess": {
+    "loading": "Cargando...",
+    "error": {
+      "title": "Error",
+      "description": "Hubo un problema al verificar tu suscripción",
+      "returnButton": "Volver a la página de suscripción"
+    },
+    "success": {
+      "title": "¡Suscripción exitosa!",
+      "description": "Gracias por suscribirte a Mood Whisper",
+      "activePlan": "Tu suscripción al plan {{plan}} está ahora activa.",
+      "nextBillingDate": "Próxima fecha de facturación: {{date}}",
+      "dashboardButton": "Ir al Panel de Control"
+    }
   }
 }

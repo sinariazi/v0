@@ -348,5 +348,21 @@
       "objectId": "Object ID",
       "status": "Status"
     }
+  },
+
+  "subscriptionSuccess": {
+    "loading": "Loading...",
+    "error": {
+      "title": "Error",
+      "description": "There was a problem verifying your subscription",
+      "returnButton": "Return to Subscription Page"
+    },
+    "success": {
+      "title": "Subscription Successful!",
+      "description": "Thank you for subscribing to Mood Whisper",
+      "activePlan": "Your subscription to the {{plan}} plan is now active.",
+      "nextBillingDate": "Next billing date: {{date}}",
+      "dashboardButton": "Go to Dashboard"
+    }
   }
 }

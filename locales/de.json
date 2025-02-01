@@ -348,5 +348,20 @@
       "objectId": "Objekt-ID",
       "status": "Status"
     }
+  },
+  "subscriptionSuccess": {
+    "loading": "Wird geladen...",
+    "error": {
+      "title": "Fehler",
+      "description": "Es gab ein Problem bei der Überprüfung Ihres Abonnements",
+      "returnButton": "Zurück zur Abonnement-Seite"
+    },
+    "success": {
+      "title": "Abonnement erfolgreich!",
+      "description": "Vielen Dank für Ihr Abonnement bei Mood Whisper",
+      "activePlan": "Ihr Abonnement für den {{plan}}-Plan ist jetzt aktiv.",
+      "nextBillingDate": "Nächstes Abrechnungsdatum: {{date}}",
+      "dashboardButton": "Zum Dashboard"
+    }
   }
 }
