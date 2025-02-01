@@ -249,7 +249,11 @@
     }
   },
   "surveyResults": {
+    "title": "Risultati del sondaggio",
+    "noResults": "Nessun risultato del sondaggio disponibile.",
     "surveyFrom": "Sondaggio del {{date}}",
+    "organization": "Organizzazione",
+    "error": "Errore nel recupero dei risultati del sondaggio. Si prega di riprovare più tardi.",
     "answer": "Risposta: {{score}}/5",
     "additionalFeedback": "Feedback aggiuntivo:"
   },
@@ -350,18 +354,18 @@
     }
   },
   "subscriptionSuccess": {
-    "loading": "Cargando...",
+    "loading": "Caricamento in corso...",
     "error": {
-      "title": "Error",
-      "description": "Hubo un problema al verificar tu suscripción",
-      "returnButton": "Volver a la página de suscripción"
+      "title": "Errore",
+      "description": "Si è verificato un problema durante la verifica dell'abbonamento",
+      "returnButton": "Torna alla pagina dell'abbonamento"
     },
     "success": {
-      "title": "¡Suscripción exitosa!",
-      "description": "Gracias por suscribirte a Mood Whisper",
-      "activePlan": "Tu suscripción al plan {{plan}} está ahora activa.",
-      "nextBillingDate": "Próxima fecha de facturación: {{date}}",
-      "dashboardButton": "Ir al Panel de Control"
+      "title": "Abbonamento riuscito!",
+      "description": "Grazie per esserti abbonato a Mood Whisper",
+      "activePlan": "Il tuo abbonamento al piano {{plan}} è ora attivo.",
+      "nextBillingDate": "Prossima data di fatturazione: {{date}}",
+      "dashboardButton": "Vai alla Dashboard"
     }
   }
 }

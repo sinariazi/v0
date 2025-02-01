@@ -249,7 +249,11 @@
     }
   },
   "surveyResults": {
+    "title": "Resultados de la encuesta",
+    "noResults": "No hay resultados de encuestas disponibles.",
     "surveyFrom": "Encuesta del {{date}}",
+    "organization": "Organización",
+    "error": "Error al obtener los resultados de la encuesta. Por favor, inténtelo de nuevo más tarde.",
     "answer": "Respuesta: {{score}}/5",
     "additionalFeedback": "Comentarios adicionales:"
   },

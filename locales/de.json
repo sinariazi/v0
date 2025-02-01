@@ -209,7 +209,7 @@
   },
   "survey": {
     "title": "Mitarbeiter-Engagement-Umfrage",
-    "description": "Bitte beantworten Sie die folgenden Fragen auf einer Skala von 1-10",
+    "description": "Bitte beantworten Sie die folgenden Fragen auf einer Skala von 1-5",
     "questions": {
       "jobSatisfaction": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?",
       "careerAlignment": "Wie gut stimmt Ihre Arbeit mit Ihren Karrierezielen überein?",
@@ -249,7 +249,11 @@
     }
   },
   "surveyResults": {
+    "title": "Umfrageergebnisse",
+    "noResults": "Keine Umfrageergebnisse verfügbar.",
     "surveyFrom": "Umfrage vom {{date}}",
+    "organization": "Organisation",
+    "error": "Fehler beim Abrufen der Umfrageergebnisse. Bitte versuchen Sie es später erneut.",
     "answer": "Antwort: {{score}}/5",
     "additionalFeedback": "Zusätzliches Feedback:"
   },

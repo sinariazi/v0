@@ -209,7 +209,7 @@
   },
   "survey": {
     "title": "Employee Engagement Survey",
-    "description": "Please answer the following questions on a scale of 1-10",
+    "description": "Please answer the following questions on a scale of 1-5",
     "questions": {
       "jobSatisfaction": "How satisfied are you with your current role?",
       "careerAlignment": "How well does your work align with your career goals?",
@@ -249,7 +249,11 @@
     }
   },
   "surveyResults": {
+    "title": "Survey Results",
+    "noResults": "No survey results available.",
     "surveyFrom": "Survey from {{date}}",
+    "organization": "Organization",
+    "error": "Error fetching survey results. Please try again later.",
     "answer": "Answer: {{score}}/5",
     "additionalFeedback": "Additional Feedback:"
   },
@@ -349,7 +353,6 @@
       "status": "Status"
     }
   },
-
   "subscriptionSuccess": {
     "loading": "Loading...",
     "error": {
