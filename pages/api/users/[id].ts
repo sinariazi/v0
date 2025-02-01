@@ -1,12 +1,12 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import {
-  CognitoIdentityProviderClient,
-  AdminUpdateUserAttributesCommand,
   AdminDeleteUserCommand,
+  AdminUpdateUserAttributesCommand,
+  CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
 import { Prisma } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -29,11 +29,20 @@ export default async function handler(
         return res.status(404).json({ message: "User not found" });
       }
 
-      // Check if the organization exists, if not create it
+      // Check if the organization exists, if not create it with default values
       const organization = await prisma.organization.upsert({
         where: { id: organizationId },
         update: {},
-        create: { id: organizationId, name: `Organization ${organizationId}` },
+        create: {
+          id: organizationId,
+          name: `Organization ${organizationId}`,
+          industry: "Other", // Provide default values for other required fields
+          size: "1-10",
+          country: "US",
+          city: "Unknown",
+          street: "Unknown",
+          email: "unknown@example.com",
+        },
       });
 
       // Update user in database
@@ -74,12 +83,10 @@ export default async function handler(
           .status(400)
           .json({ message: "Error updating user", error: error.message });
       } else {
-        res
-          .status(500)
-          .json({
-            message: "Error updating user",
-            error: "An unexpected error occurred",
-          });
+        res.status(500).json({
+          message: "Error updating user",
+          error: "An unexpected error occurred",
+        });
       }
     }
   } else if (req.method === "DELETE") {

@@ -81,6 +81,11 @@ model Survey {
   createdAt          DateTime         @default(now())
   responses          SurveyResponse[]
   additionalFeedback String?
+  question1Score     Int
+  question2Score     Int
+  question3Score     Int
+  engagementScore    Float? // Allow null values
+  surveyDate         DateTime?
 
   @@index([organizationId])
   @@index([userId])
