@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { buffer } from "micro";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -22,7 +22,11 @@ export default async function handler(
   }
 
   const buf = await buffer(req);
-  const sig = req.headers["stripe-signature"]!;
+  const sig = req.headers["stripe-signature"];
+
+  if (typeof sig !== "string") {
+    return res.status(400).json({ message: "Invalid stripe signature" });
+  }
 
   let event: Stripe.Event;
 
@@ -70,10 +74,7 @@ export default async function handler(
       case "customer.source.deleted":
       case "customer.source.expiring":
       case "customer.source.updated":
-        await handleCustomerSourceEvent(
-          event.type,
-          event.data.object as Stripe.Source
-        );
+        await handleCustomerSourceEvent(event.type);
         break;
 
       // Customer subscription events
@@ -95,10 +96,7 @@ export default async function handler(
       case "customer.tax_id.created":
       case "customer.tax_id.deleted":
       case "customer.tax_id.updated":
-        await handleCustomerTaxIdEvent(
-          event.type,
-          event.data.object as Stripe.TaxId
-        );
+        await handleCustomerTaxIdEvent(event.type);
         break;
 
       // Invoice events
@@ -150,10 +148,18 @@ async function handleCustomerSubscriptionEvent(
   subscription: Stripe.Subscription
 ) {
   console.log(`Customer subscription event: ${eventType}`);
-  const customerId = subscription.customer as string;
+  const customerId =
+    typeof subscription.customer === "string"
+      ? subscription.customer
+      : subscription.customer.id;
   const subscriptionId = subscription.id;
   const status = subscription.status;
-  const planId = subscription.items.data[0].price.id;
+  const planId = subscription.items.data[0]?.price?.id;
+
+  if (!planId) {
+    console.error("No plan ID found in subscription");
+    return;
+  }
 
   try {
     await prisma.customer.update({

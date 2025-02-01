@@ -1,18 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/lib/auth-context";
+import { useEffect, useState } from "react";
 import {
-  BarChart,
   Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
 } from "recharts";
-import { useAuth } from "@/lib/auth-context";
-import { useToast } from "@/components/ui/use-toast";
 
 interface ResponseCount {
   score: number;
@@ -77,7 +77,15 @@ export function ResponseDistribution({
     fetchData();
   }, [dateRange, shouldFetch, getAuthToken, toast, onDataFetched]);
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({
+    active,
+    payload,
+    label,
+  }: {
+    active?: boolean;
+    payload?: { value: number }[];
+    label?: string;
+  }) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-background p-2 border border-border rounded shadow-lg">
@@ -100,7 +108,7 @@ export function ResponseDistribution({
         <YAxis />
         <Tooltip content={<CustomTooltip />} />
         <Bar dataKey="count">
-          {data.map((entry, index) => (
+          {data.map((_, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Bar>
