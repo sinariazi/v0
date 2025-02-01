@@ -1,21 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth-context";
-import { useToast } from "@/components/ui/use-toast";
 import { useLanguage } from "@/lib/language-context";
-import SignUpModal from "./SignUpModal";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import ChangePasswordModal from "./ChangePasswordModal";
+import SignUpModal from "./SignUpModal";
 
 interface SignInModalProps {
   isOpen: boolean;
@@ -47,7 +46,6 @@ export default function SignInModal({
     loading,
     user,
   } = useAuth();
-  const { toast } = useToast();
   const router = useRouter();
   const { t } = useLanguage();
 

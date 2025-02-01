@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,18 +8,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  CreditCard,
-  Users,
-  ClipboardList,
-  BarChart,
-  FileText,
-  Zap,
-  User,
-} from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
+import {
+  BarChart,
+  ClipboardList,
+  CreditCard,
+  FileText,
+  User,
+  Users,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function AdminDashboardClient() {
   const { t } = useLanguage();
@@ -82,7 +83,7 @@ function DashboardCard({
 }: {
   title: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   href: string;
 }) {
   const { t } = useLanguage();

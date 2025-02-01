@@ -11,11 +11,6 @@ import { useRouter } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 
-type SurveyData = {
-  responses: { factor: string; score: number }[];
-  additionalFeedback: string;
-};
-
 export function SurveyForm() {
   const { t } = useLanguage();
   const engagementFactors = [
@@ -125,7 +120,7 @@ export function SurveyForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {engagementFactors.map(({ factor, question }, index) => (
+      {engagementFactors.map(({ question }, index) => (
         <div key={index} className="mb-4">
           <Label htmlFor={`question-${index}`}>{question}</Label>
           <Input

@@ -1,14 +1,16 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import formidable from "formidable";
-import fs from "fs";
-import csv from "csv-parser";
 import prisma from "@/lib/prisma";
 import {
-  CognitoIdentityProviderClient,
   AdminCreateUserCommand,
   AdminGetUserCommand,
+  CognitoIdentityProviderClient,
+  type AttributeType,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
+import { Gender } from "@prisma/client";
+import csv from "csv-parser";
+import formidable from "formidable";
+import fs from "fs";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export const config = {
   api: {
@@ -21,6 +23,21 @@ const cognitoClient = new CognitoIdentityProviderClient({
   credentials: fromEnv(),
 });
 
+interface CSVUser {
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender?: Gender;
+  role?: string;
+  team?: string;
+}
+
+interface ImportResult {
+  message: string;
+  importedCount: number;
+  errors: string[];
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -31,7 +48,6 @@ export default async function handler(
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  // Get the admin user's email from the request
   const adminEmail = req.headers["x-admin-email"] as string;
   if (!adminEmail) {
     console.error("Admin email is missing from the request headers");
@@ -40,7 +56,6 @@ export default async function handler(
 
   console.log("Admin email:", adminEmail);
 
-  // Get the admin user's organization ID
   let adminOrganizationId: string;
   try {
     adminOrganizationId = await getAdminOrganizationId(adminEmail);
@@ -105,12 +120,10 @@ export default async function handler(
       return res.status(200).json(importResult);
     } catch (error) {
       console.error("Unhandled error during import process:", error);
-      return res
-        .status(500)
-        .json({
-          message: "An unexpected error occurred during the import process",
-          error: error instanceof Error ? error.message : "Unknown error",
-        });
+      return res.status(500).json({
+        message: "An unexpected error occurred during the import process",
+        error: error instanceof Error ? error.message : "Unknown error",
+      });
     } finally {
       // Clean up the temporary file
       fs.unlink(fileToProcess.filepath, (err) => {
@@ -138,32 +151,54 @@ async function getAdminOrganizationId(adminEmail: string): Promise<string> {
   return organizationIdAttribute.Value;
 }
 
-async function parseCSV(filePath: string): Promise<any[]> {
+async function parseCSV(filePath: string): Promise<CSVUser[]> {
   return new Promise((resolve, reject) => {
-    const results: any[] = [];
+    const results: CSVUser[] = [];
     fs.createReadStream(filePath)
       .pipe(
         csv({
-          mapValues: ({ header, value }) => value.trim(),
+          mapValues: ({ value }) => value.trim(),
         })
       )
-      .on("data", (data) => {
+      .on("data", (data: Omit<CSVUser, "gender"> & { gender?: string }) => {
         // Validate required fields
         if (!data.email || !data.firstName || !data.lastName) {
           reject(new Error("Missing required fields in CSV"));
           return;
         }
-        results.push(data);
+
+        // Convert gender string to Gender enum
+        let gender: Gender | undefined;
+        if (data.gender) {
+          switch (data.gender.toUpperCase()) {
+            case "MALE":
+              gender = Gender.MALE;
+              break;
+            case "FEMALE":
+              gender = Gender.FEMALE;
+              break;
+            case "OTHER":
+              gender = Gender.OTHER;
+              break;
+            default:
+              gender = Gender.OTHER;
+          }
+        }
+
+        results.push({
+          ...data,
+          gender,
+        });
       })
       .on("end", () => resolve(results))
-      .on("error", (error) => reject(error));
+      .on("error", (error: Error) => reject(error));
   });
 }
 
 async function importUsers(
-  users: any[],
+  users: CSVUser[],
   adminEmail: string
-): Promise<{ message: string; importedCount: number; errors: string[] }> {
+): Promise<ImportResult> {
   let importedCount = 0;
   const errors: string[] = [];
 
@@ -188,11 +223,11 @@ async function importUsers(
       }
 
       // Create user in Cognito
-      const userAttributes = [
+      const userAttributes: AttributeType[] = [
         { Name: "email", Value: user.email },
         { Name: "given_name", Value: user.firstName },
         { Name: "family_name", Value: user.lastName },
-        { Name: "gender", Value: user.gender || "OTHER" },
+        { Name: "gender", Value: user.gender || Gender.OTHER },
         { Name: "custom:organization_id", Value: organizationId },
       ];
 
@@ -228,7 +263,7 @@ async function importUsers(
           lastName: user.lastName,
           email: user.email,
           role: (user.role as "EMPLOYEE" | "MANAGER" | "ADMIN") || "EMPLOYEE",
-          gender: user.gender || "OTHER",
+          gender: user.gender || Gender.OTHER,
           team: user.team,
           cognitoSub,
           cognitoUsername: user.email,

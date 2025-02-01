@@ -1,8 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { configureAmplify } from "@/lib/amplify-config";
 import { getDateRangeFilter } from "@/lib/date-utils";
 import prisma from "@/lib/prisma";
 import { CognitoJwtVerifier } from "aws-jwt-verify";
-import { configureAmplify } from "@/lib/amplify-config";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 configureAmplify();
 
@@ -11,11 +11,6 @@ const verifier = CognitoJwtVerifier.create({
   tokenUse: "access",
   clientId: process.env.NEXT_PUBLIC_AWS_USER_POOL_WEB_CLIENT_ID!,
 });
-
-interface JwtPayload {
-  sub: string;
-  [key: string]: any;
-}
 
 export default async function handler(
   req: NextApiRequest,
