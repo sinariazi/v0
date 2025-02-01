@@ -60,7 +60,7 @@
     "selectGender": "Geschlecht auswählen",
     "male": "Männlich",
     "female": "Weiblich",
-    "other": "Andere",
+    "other": "Divers",
     "team": "Team",
     "organizationId": "Organisations-ID",
     "signUpButton": "Registrieren",
@@ -240,13 +240,15 @@
       "title": "Erfolg",
       "description": "Umfrage erfolgreich eingereicht"
     },
-    "errors": {
+    "error": {
       "title": "Fehler",
       "description": "Fehler beim Einreichen der Umfrage. Bitte versuchen Sie es erneut.",
-      "failedToken": "Fehler beim Abrufen des Authentifizierungstokens",
-      "submitFailed": "Fehler beim Einreichen der Umfrage",
-      "submitError": "Fehler beim Einreichen der Umfrage:"
-    }
+      "fetchError": "Fehler beim Abrufen der Umfrageergebnisse. Bitte versuchen Sie es später erneut."
+    },
+    "noResults": "Keine Umfrageergebnisse verfügbar.",
+    "surveyFrom": "Umfrage vom {{date}}",
+    "organization": "Organisation",
+    "additionalFeedback": "Zusätzliches Feedback:"
   },
   "surveyResults": {
     "title": "Umfrageergebnisse",
@@ -283,7 +285,12 @@
     },
     "surveys": {
       "title": "Umfragen",
-      "description": "Erstellen und verwalten Sie Mitarbeiterumfragen"
+      "description": "Erstellen und verwalten Sie Mitarbeiterumfragen",
+      "createNew": "Neue Umfrage erstellen",
+      "emailSent": "Neue Umfrage generiert und E-Mail an Mitarbeiter gesendet.",
+      "generateNew": "Neue Umfrage generieren",
+      "fetchError": "Fehler beim Abrufen der Umfragen",
+      "fetchErrorDetails": "Fehler beim Abrufen der Umfragen:"
     },
     "insights": {
       "title": "Erkenntnisse",
@@ -305,7 +312,7 @@
       "title": "Benutzerbereich",
       "description": "Zugriff auf das Benutzer-Dashboard"
     },
-    "goTo": "Gehe zu "
+    "goTo": "Gehe zu"
   },
   "userManagement": {
     "searchPlaceholder": "Benutzer suchen...",

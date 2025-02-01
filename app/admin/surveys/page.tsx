@@ -1,73 +1,59 @@
-"use client";
+import { notFound } from "next/navigation"
+import prisma from "@/lib/prisma"
+import { getCurrentUserServer } from "@/lib/auth-utils"
+import { redirect } from "next/navigation"
+import { SurveysClient } from "./SurveysClient"
 
-import { useState, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { SurveyForm } from "@/components/SurveyForm";
-import { SurveyResults } from "@/components/SurveyResults";
-import { GenerateNewSurveyButton } from "@/components/GenerateNewSurveyButton";
-import { useToast } from "@/components/ui/use-toast";
+export default async function SurveysPage() {
+  const user = await getCurrentUserServer()
 
-export default function SurveysPage() {
-  const [showForm, setShowForm] = useState(false);
-  const [surveys, setSurveys] = useState([]);
-  const { toast } = useToast();
+  if (!user || !user.attributes.email) {
+    console.error("User not authenticated or email not found")
+    redirect("/")
+  }
 
-  useEffect(() => {
-    fetchSurveys();
-  }, []);
+  try {
+    const dbUser = await prisma.user.findUnique({
+      where: { email: user.attributes.email },
+      select: { organizationId: true, role: true },
+    })
 
-  const fetchSurveys = async () => {
-    try {
-      const response = await fetch("/api/surveys");
-      if (response.ok) {
-        const data = await response.json();
-        setSurveys(data);
-      } else {
-        console.error("Failed to fetch surveys");
-      }
-    } catch (error) {
-      console.error("Error fetching surveys:", error);
+    if (!dbUser || dbUser.role !== "ADMIN") {
+      console.error("User not found in database or not an admin")
+      redirect("/")
     }
-  };
 
-  const handleNewSurveyGenerated = () => {
-    toast({
-      title: "New Survey Generated",
-      description:
-        "Email invitations have been sent to all users in your organization.",
-    });
-    fetchSurveys(); // Refresh the survey list
-  };
+    const surveys = await prisma.survey.findMany({
+      where: { organizationId: dbUser.organizationId },
+      take: 10,
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        responses: true,
+        organization: true,
+      },
+    })
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Employee Engagement Surveys</CardTitle>
-        <CardDescription>Create and view survey results</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex justify-between mb-4">
-          <Button onClick={() => setShowForm(true)}>Create New Survey</Button>
-          <GenerateNewSurveyButton onSuccess={handleNewSurveyGenerated} />
-        </div>
-        {showForm ? (
-          <SurveyForm
-            onSubmit={() => {
-              setShowForm(false);
-              fetchSurveys();
-            }}
-          />
-        ) : (
-          <SurveyResults surveys={surveys} />
-        )}
-      </CardContent>
-    </Card>
-  );
+    // Transform the surveys data to match the expected Survey interface
+    const transformedSurveys = surveys.map((survey) => ({
+      id: survey.id,
+      createdAt: survey.createdAt.toISOString(),
+      responses: survey.responses.map((response) => ({
+        question: response.factor,
+        answer: response.score,
+      })),
+      additionalFeedback: survey.additionalFeedback || undefined,
+      organization: {
+        id: survey.organization.id,
+        name: survey.organization.name,
+      },
+    }))
+
+    return <SurveysClient initialSurveys={transformedSurveys} />
+  } catch (error) {
+    console.error("Error fetching surveys:", error)
+    notFound()
+  }
 }
+

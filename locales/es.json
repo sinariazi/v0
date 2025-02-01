@@ -240,13 +240,15 @@
       "title": "Éxito",
       "description": "Encuesta enviada con éxito"
     },
-    "errors": {
+    "error": {
       "title": "Error",
       "description": "Error al enviar la encuesta. Por favor, intenta de nuevo.",
-      "failedToken": "Error al obtener el token de autenticación",
-      "submitFailed": "Error al enviar la encuesta",
-      "submitError": "Error al enviar la encuesta:"
-    }
+      "fetchError": "Error al obtener los resultados de la encuesta. Por favor, inténtalo de nuevo más tarde."
+    },
+    "noResults": "No hay resultados de encuestas disponibles.",
+    "surveyFrom": "Encuesta del {{date}}",
+    "organization": "Organización",
+    "additionalFeedback": "Comentarios adicionales:"
   },
   "surveyResults": {
     "title": "Resultados de la encuesta",
@@ -283,7 +285,12 @@
     },
     "surveys": {
       "title": "Encuestas",
-      "description": "Cree y administre encuestas de empleados"
+      "description": "Cree y administre encuestas de empleados",
+      "createNew": "Crear nueva encuesta",
+      "emailSent": "Nueva encuesta generada y correo electrónico enviado a los empleados.",
+      "generateNew": "Generar nueva encuesta",
+      "fetchError": "Error al obtener las encuestas",
+      "fetchErrorDetails": "Error al obtener las encuestas:"
     },
     "insights": {
       "title": "Insights",

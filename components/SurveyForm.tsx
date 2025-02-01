@@ -11,7 +11,16 @@ import { useRouter } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 
-export function SurveyForm() {
+interface SurveyFormProps {
+  onSubmit: () => void;
+}
+
+type SurveyData = {
+  responses: { factor: string; score: number }[];
+  additionalFeedback: string;
+};
+
+export function SurveyForm({ onSubmit }: SurveyFormProps) {
   const { t } = useLanguage();
   const engagementFactors = [
     {
@@ -94,6 +103,7 @@ export function SurveyForm() {
           title: t("survey.success.title"),
           description: t("survey.success.description"),
         });
+        onSubmit(); // Call the onSubmit prop
       } else if (response.status === 401) {
         toast({
           title: t("survey.authError.title"),
@@ -120,7 +130,7 @@ export function SurveyForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {engagementFactors.map(({ question }, index) => (
+      {engagementFactors.map(({ factor, question }, index) => (
         <div key={index} className="mb-4">
           <Label htmlFor={`question-${index}`}>{question}</Label>
           <Input

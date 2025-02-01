@@ -240,13 +240,15 @@
       "title": "Success",
       "description": "Survey submitted successfully"
     },
-    "errors": {
+    "error": {
       "title": "Error",
       "description": "Failed to submit survey. Please try again.",
-      "failedToken": "Failed to get authentication token",
-      "submitFailed": "Failed to submit survey",
-      "submitError": "Error submitting survey:"
-    }
+      "fetchError": "Error fetching survey results. Please try again later."
+    },
+    "noResults": "No survey results available.",
+    "surveyFrom": "Survey from {{date}}",
+    "organization": "Organization",
+    "additionalFeedback": "Additional Feedback:"
   },
   "surveyResults": {
     "title": "Survey Results",
@@ -283,7 +285,12 @@
     },
     "surveys": {
       "title": "Surveys",
-      "description": "Create and manage employee surveys"
+      "description": "Create and manage employee surveys",
+      "createNew": "Create New Survey",
+      "emailSent": "New survey generated and email sent to employees.",
+      "generateNew": "Generate New Survey",
+      "fetchError": "Failed to fetch surveys",
+      "fetchErrorDetails": "Error fetching surveys:"
     },
     "insights": {
       "title": "Insights",

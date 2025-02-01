@@ -25,22 +25,22 @@
     "title": "Accedi",
     "email": "Email",
     "password": "Password",
-    "signUp": "Non sei un utente? Registrati",
+    "signUp": "Non sei ancora utente? Registrati",
     "forgotPassword": "Password dimenticata?",
     "signInButton": "Accedi",
     "failedToSignIn": "Accesso fallito",
     "failedToSignInCheckCredentials": "Accesso fallito. Controlla le tue credenziali e riprova.",
     "failedToConfirmSignIn": "Conferma dell'accesso fallita",
-    "failedToConfirmSignInTryAgain": "Conferma dell'accesso fallita. Riprova.",
+    "failedToConfirmSignInTryAgain": "Conferma dell'accesso fallita. Per favore riprova.",
     "passwordResetCodeSent": "Codice di reset della password inviato. Controlla la tua email.",
-    "failedToSendPasswordResetEmail": "Invio dell'email di reset della password fallito. Riprova.",
+    "failedToSendPasswordResetEmail": "Invio dell'email di reset della password fallito. Per favore riprova.",
     "newPasswordsDoNotMatch": "Le nuove password non corrispondono.",
-    "passwordResetSuccessful": "Reset della password riuscito. Ora puoi accedere con la tua nuova password.",
-    "failedToResetPassword": "Reset della password fallito. Riprova.",
+    "passwordResetSuccessful": "Reset della password completato con successo. Ora puoi accedere con la tua nuova password.",
+    "failedToResetPassword": "Reset della password fallito. Per favore riprova.",
     "newPassword": "Nuova password",
     "signingIn": "Accesso in corso...",
     "signIn": "Accedi",
-    "notAUserYet": "Non sei ancora un utente? Registrati",
+    "notAUserYet": "Non sei ancora utente? Registrati",
     "confirming": "Conferma in corso...",
     "setNewPassword": "Imposta nuova password",
     "sendingResetCode": "Invio del codice di reset in corso...",
@@ -67,7 +67,7 @@
     "success": "Successo",
     "accountCreatedCheckEmail": "Il tuo account è stato creato. Controlla la tua email per la password temporanea per accedere.",
     "error": "Errore",
-    "failedToSignUp": "Registrazione fallita. Riprova."
+    "failedToSignUp": "Registrazione fallita. Per favore riprova."
   },
   "changePasswordModal": {
     "title": "Imposta nuova password",
@@ -77,9 +77,9 @@
     "setNewPasswordButton": "Imposta nuova password",
     "newPasswordsDoNotMatch": "Le nuove password non corrispondono.",
     "success": "Successo",
-    "passwordChangedSuccessfully": "Password cambiata con successo. Ora hai effettuato l'accesso.",
+    "passwordChangedSuccessfully": "Password cambiata con successo. Ora sei connesso.",
     "failedToConfirmSignIn": "Conferma dell'accesso fallita",
-    "failedToChangePassword": "Cambio della password fallito. Riprova."
+    "failedToChangePassword": "Cambio password fallito. Per favore riprova."
   },
   "hero": {
     "title": "Coinvolgimento dei dipendenti basato sui dati con Mood Whisper",
@@ -100,7 +100,7 @@
   },
   "cta": {
     "title": "Pronto a sfruttare il potere dei dati?",
-    "description": "Unisciti alla rivoluzione basata sui dati nel coinvolgimento dei dipendenti. Inizia il tuo viaggio verso un luogo di lavoro più produttivo e felice con Mood Whisper oggi.",
+    "description": "Unisciti alla rivoluzione basata sui dati nel coinvolgimento dei dipendenti. Inizia oggi il tuo viaggio verso un luogo di lavoro più produttivo e felice con Mood Whisper.",
     "startFreeTrial": "Inizia la prova gratuita",
     "scheduleDemo": "Prenota una demo"
   },
@@ -120,7 +120,7 @@
     "productivity": "Produttività"
   },
   "dateRangeSelector": {
-    "placeholder": "Seleziona periodo",
+    "placeholder": "Seleziona periodo di tempo",
     "last30Days": "Ultimi 30 giorni",
     "last90Days": "Ultimi 90 giorni",
     "last180Days": "Ultimi 180 giorni",
@@ -142,7 +142,7 @@
     },
     "step4": {
       "title": "Agisci",
-      "description": "Implementa cambiamenti basati sugli approfondimenti per aumentare il coinvolgimento dei dipendenti e la produttività."
+      "description": "Implementa cambiamenti basati sugli approfondimenti per aumentare il coinvolgimento e la produttività dei dipendenti."
     }
   },
   "predictionModels": {
@@ -154,11 +154,11 @@
     },
     "howItWorks": {
       "title": "Come funziona il nostro modello di previsione",
-      "description": "Il nostro modello di previsione ti aiuta ad anticipare le tendenze di coinvolgimento, permettendoti di adottare misure proattive per mantenere alta la soddisfazione e la produttività dei dipendenti."
+      "description": "Il nostro modello di previsione ti aiuta ad anticipare le tendenze di coinvolgimento, permettendoti di adottare misure proattive per mantenere un'alta soddisfazione e produttività dei dipendenti."
     },
     "features": {
       "feature1": "Utilizza algoritmi avanzati di machine learning",
-      "feature2": "Analizza i dati storici di coinvolgimento",
+      "feature2": "Analizza dati storici sul coinvolgimento",
       "feature3": "Considera vari fattori come le dinamiche del team, il carico di lavoro e gli eventi aziendali",
       "feature4": "Apprende continuamente e migliora le previsioni nel tempo",
       "feature5": "Fornisce approfondimenti attuabili per migliorare il coinvolgimento dei dipendenti"
@@ -172,7 +172,7 @@
     "plans": {
       "starter": {
         "name": "Starter",
-        "price": "99 €",
+        "price": "€99",
         "description": "Perfetto per piccoli team che stanno iniziando",
         "features": {
           "employees": "Fino a 25 dipendenti",
@@ -183,7 +183,7 @@
       },
       "pro": {
         "name": "Pro",
-        "price": "299 €",
+        "price": "€299",
         "description": "Ideale per aziende in crescita con esigenze avanzate",
         "features": {
           "employees": "Fino a 100 dipendenti",
@@ -213,7 +213,7 @@
     "questions": {
       "jobSatisfaction": "Quanto sei soddisfatto del tuo ruolo attuale?",
       "careerAlignment": "Quanto bene il tuo lavoro si allinea con i tuoi obiettivi di carriera?",
-      "workLifeBalance": "Come valuteresti l'equilibrio tra lavoro e vita privata nella tua posizione attuale?",
+      "workLifeBalance": "Come valuteresti l'equilibrio tra lavoro e vita personale nella tua posizione attuale?",
       "recognition": "Quanto sei soddisfatto del riconoscimento che ricevi per il tuo lavoro?",
       "teamCommunication": "Come valuteresti la comunicazione all'interno del tuo team?",
       "professionalGrowth": "Quanto sei soddisfatto delle opportunità di crescita professionale?",
@@ -240,13 +240,15 @@
       "title": "Successo",
       "description": "Sondaggio inviato con successo"
     },
-    "errors": {
+    "error": {
       "title": "Errore",
-      "description": "Invio del sondaggio fallito. Per favore, riprova.",
-      "failedToken": "Impossibile ottenere il token di autenticazione",
-      "submitFailed": "Invio del sondaggio fallito",
-      "submitError": "Errore nell'invio del sondaggio:"
-    }
+      "description": "Invio del sondaggio fallito. Per favore riprova.",
+      "fetchError": "Errore nel recupero dei risultati del sondaggio. Per favore riprova più tardi."
+    },
+    "noResults": "Nessun risultato del sondaggio disponibile.",
+    "surveyFrom": "Sondaggio del {{date}}",
+    "organization": "Organizzazione",
+    "additionalFeedback": "Feedback aggiuntivo:"
   },
   "surveyResults": {
     "title": "Risultati del sondaggio",
@@ -262,7 +264,7 @@
     "sarah": {
       "name": "Sarah Johnson",
       "role": "Direttore HR, TechCorp",
-      "content": "L'approccio basato sui dati di Mood Whisper ha rivoluzionato la nostra strategia di coinvolgimento dei dipendenti. Abbiamo visto un aumento del 25% nella soddisfazione lavorativa complessiva dall'implementazione."
+      "content": "L'approccio basato sui dati di Mood Whisper ha rivoluzionato la nostra strategia di coinvolgimento dei dipendenti. Abbiamo visto un aumento del 25% nella soddisfazione lavorativa generale dall'implementazione."
     },
     "michael": {
       "name": "Michael Chen",
@@ -271,30 +273,35 @@
     },
     "emily": {
       "name": "Emily Rodriguez",
-      "role": "Team Leader, CreativeStudio",
-      "content": "Le dashboard personalizzabili ci permettono di tracciare le metriche più importanti per il nostro team creativo. Grazie agli approfondimenti di Mood Whisper, abbiamo migliorato il nostro tasso di completamento dei progetti del 30%."
+      "role": "Team Lead, CreativeStudio",
+      "content": "Le dashboard personalizzabili ci permettono di tracciare le metriche più importanti per il nostro team creativo. Abbiamo migliorato il nostro tasso di completamento dei progetti del 30% grazie agli approfondimenti di Mood Whisper."
     }
   },
   "adminDashboard": {
-    "title": "Dashboard Amministratore",
+    "title": "Dashboard di amministrazione",
     "userManagement": {
-      "title": "Gestione Utenti",
+      "title": "Gestione utenti",
       "description": "Gestisci i tuoi utenti e le loro autorizzazioni"
     },
     "surveys": {
       "title": "Sondaggi",
-      "description": "Crea e gestisci sondaggi per i dipendenti"
+      "description": "Crea e gestisci sondaggi per i dipendenti",
+      "createNew": "Crea nuovo sondaggio",
+      "emailSent": "Nuovo sondaggio generato e email inviata ai dipendenti.",
+      "generateNew": "Genera nuovo sondaggio",
+      "fetchError": "Errore nel recupero dei sondaggi",
+      "fetchErrorDetails": "Errore nel recupero dei sondaggi:"
     },
     "insights": {
       "title": "Approfondimenti",
-      "description": "Visualizza e analizza i dati di coinvolgimento dei dipendenti"
+      "description": "Visualizza e analizza i dati sul coinvolgimento dei dipendenti"
     },
     "billing": {
       "title": "Fatturazione",
       "description": "Gestisci le tue informazioni di abbonamento e fatturazione"
     },
     "surveyResults": {
-      "title": "Risultati Sondaggi",
+      "title": "Risultati dei sondaggi",
       "description": "Visualizza e analizza le risposte ai sondaggi"
     },
     "subscription": {
@@ -302,10 +309,10 @@
       "description": "Gestisci il tuo piano di abbonamento"
     },
     "userArea": {
-      "title": "Area Utente",
+      "title": "Area utente",
       "description": "Accedi alla dashboard utente"
     },
-    "goTo": "Vai a "
+    "goTo": "Vai a"
   },
   "userManagement": {
     "searchPlaceholder": "Cerca utenti...",
@@ -331,20 +338,20 @@
     "addUserDialogTitle": "Aggiungi nuovo utente",
     "addUser": "Aggiungi utente",
     "importUsersDialogTitle": "Importa utenti",
-    "importUsersDialogDescription": "Carica un file CSV contenente le informazioni dell'utente. Il file deve includere colonne per e-mail, nome, cognome e colonne opzionali per ruolo, genere e team.",
-    "importUsersAlertDescription": "Formato CSV richiesto: e-mail, nome, cognome, ruolo (opzionale), genere (opzionale), team (opzionale)",
+    "importUsersDialogDescription": "Carica un file CSV contenente le informazioni degli utenti. Il file dovrebbe includere colonne per email, nome, cognome e colonne opzionali per ruolo, genere, team.",
+    "importUsersAlertDescription": "Formato CSV richiesto: email, nome, cognome, ruolo (opzionale), genere (opzionale), team (opzionale)",
     "selectCSVFile": "Seleziona file CSV",
     "cancel": "Annulla",
     "importing": "Importazione in corso...",
     "import": "Importa",
     "downloadSampleCSV": "Scarica CSV di esempio",
-    "LoadingUsers": "Caricamento utenti in corso..."
+    "LoadingUsers": "Caricamento utenti..."
   },
   "billing": {
     "title": "Eventi di fatturazione",
     "description": "Eventi Stripe recenti per il tuo account",
-    "loading": "Caricamento informazioni di fatturazione in corso...",
-    "errorLoadingEvents": "Impossibile caricare gli eventi. Riprova più tardi.",
+    "loading": "Caricamento informazioni di fatturazione...",
+    "errorLoadingEvents": "Errore nel caricamento degli eventi. Per favore riprova più tardi.",
     "refresh": "Aggiorna eventi",
     "table": {
       "eventType": "Tipo di evento",
@@ -354,10 +361,10 @@
     }
   },
   "subscriptionSuccess": {
-    "loading": "Caricamento in corso...",
+    "loading": "Caricamento...",
     "error": {
       "title": "Errore",
-      "description": "Si è verificato un problema durante la verifica dell'abbonamento",
+      "description": "C'è stato un problema nella verifica del tuo abbonamento",
       "returnButton": "Torna alla pagina dell'abbonamento"
     },
     "success": {
