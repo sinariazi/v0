@@ -11,18 +11,18 @@ import { useRouter } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 
+type EngagementFactor = {
+  factor: string;
+  question: string;
+};
+
 interface SurveyFormProps {
   onSubmit: () => void;
 }
 
-type SurveyData = {
-  responses: { factor: string; score: number }[];
-  additionalFeedback: string;
-};
-
 export function SurveyForm({ onSubmit }: SurveyFormProps) {
   const { t } = useLanguage();
-  const engagementFactors = [
+  const engagementFactors: EngagementFactor[] = [
     {
       factor: "Job Satisfaction",
       question: t("survey.questions.jobSatisfaction"),
@@ -66,7 +66,7 @@ export function SurveyForm({ onSubmit }: SurveyFormProps) {
   ];
 
   const [responses, setResponses] = useState<
-    { factor: string; score: number }[]
+    Array<{ factor: string; score: number }>
   >(engagementFactors.map(({ factor }) => ({ factor, score: 3 })));
   const [additionalFeedback, setAdditionalFeedback] = useState("");
   const { toast } = useToast();
@@ -115,7 +115,7 @@ export function SurveyForm({ onSubmit }: SurveyFormProps) {
         const errorData = await response.json();
         throw new Error(errorData.message || t("survey.errors.submitFailed"));
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(t("survey.errors.submitError"), error);
       toast({
         title: t("survey.errors.title"),
@@ -130,7 +130,7 @@ export function SurveyForm({ onSubmit }: SurveyFormProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      {engagementFactors.map(({ factor, question }, index) => (
+      {engagementFactors.map(({ question }, index) => (
         <div key={index} className="mb-4">
           <Label htmlFor={`question-${index}`}>{question}</Label>
           <Input

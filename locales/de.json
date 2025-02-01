@@ -310,7 +310,11 @@
     },
     "userArea": {
       "title": "Benutzerbereich",
-      "description": "Zugriff auf das Benutzer-Dashboard"
+      "description": "Zugriff auf das Benutzer-Dashboard",
+      "recentActivity": "Letzte Aktivitäten",
+      "recentActivityDescription": "Sehen Sie Ihre letzten Umfragen und Engagement-Aktivitäten.",
+      "upcomingSurveys": "Bevorstehende Umfragen",
+      "upcomingSurveysDescription": "Sehen Sie die für Sie geplanten bevorstehenden Umfragen."
     },
     "goTo": "Gehe zu"
   },

@@ -310,7 +310,11 @@
     },
     "userArea": {
       "title": "User Area",
-      "description": "Access the user dashboard"
+      "description": "Access the user dashboard",
+      "recentActivity": "Recent Activity",
+      "recentActivityDescription": "View your recent surveys and engagement activities.",
+      "upcomingSurveys": "Upcoming Surveys",
+      "upcomingSurveysDescription": "Check out the upcoming surveys scheduled for you."
     },
     "goTo": "Go to"
   },
