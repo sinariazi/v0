@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,12 +8,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+interface SubscriptionDetails {
+  plan: string;
+  nextBillingDate: string;
+}
 
 export default function SubscriptionSuccessPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [subscriptionDetails, setSubscriptionDetails] = useState<any>(null);
+  const [subscriptionDetails, setSubscriptionDetails] =
+    useState<SubscriptionDetails | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -34,7 +40,7 @@ export default function SubscriptionSuccessPage() {
           throw new Error("Failed to verify subscription");
         }
 
-        const data = await response.json();
+        const data: SubscriptionDetails = await response.json();
         setSubscriptionDetails(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
@@ -78,14 +84,20 @@ export default function SubscriptionSuccessPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p>
-          Your subscription to the {subscriptionDetails.plan} plan is now
-          active.
-        </p>
-        <p>
-          Next billing date:{" "}
-          {new Date(subscriptionDetails.nextBillingDate).toLocaleDateString()}
-        </p>
+        {subscriptionDetails && (
+          <>
+            <p>
+              Your subscription to the {subscriptionDetails.plan} plan is now
+              active.
+            </p>
+            <p>
+              Next billing date:{" "}
+              {new Date(
+                subscriptionDetails.nextBillingDate
+              ).toLocaleDateString()}
+            </p>
+          </>
+        )}
         <Button onClick={() => router.push("/dashboard")}>
           Go to Dashboard
         </Button>

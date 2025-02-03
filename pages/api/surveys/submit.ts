@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prisma";
 import { configureAmplify } from "@/lib/amplify-config";
+import prisma from "@/lib/prisma";
 import { CognitoJwtVerifier } from "aws-jwt-verify";
 import jwt from "jsonwebtoken";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 configureAmplify();
 
@@ -63,6 +63,16 @@ export default async function handler(
           organizationId: dbUser.organizationId,
           userId: dbUser.id,
           additionalFeedback,
+          question1Score:
+            responses.find((r: { factor: string }) => r.factor === "question1")
+              ?.score || 0,
+          question2Score:
+            responses.find((r: { factor: string }) => r.factor === "question2")
+              ?.score || 0,
+          question3Score:
+            responses.find((r: { factor: string }) => r.factor === "question3")
+              ?.score || 0,
+          status: "COMPLETED",
           responses: {
             create: responses.map(
               (response: { factor: string; score: number }) => ({

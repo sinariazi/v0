@@ -1,18 +1,15 @@
 import {
-  getCurrentUser as getAmplifyCurrentUser,
   fetchUserAttributes,
+  getCurrentUser as getAmplifyCurrentUser,
   type AuthUser,
   type FetchUserAttributesOutput,
 } from "aws-amplify/auth";
-import { NextApiRequest } from "next";
 import { configureAmplify } from "./amplify-config";
 
 // Ensure Amplify is configured
 configureAmplify();
 
-export async function getCurrentUser(
-  req?: NextApiRequest
-): Promise<AuthUser | null> {
+export async function getCurrentUser(): Promise<AuthUser | null> {
   try {
     const user = await getAmplifyCurrentUser();
     return user;

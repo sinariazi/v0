@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth-utils";
+import prisma from "@/lib/prisma";
 import { AuthUser } from "aws-amplify/auth";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,7 +12,7 @@ export default async function handler(
   }
 
   try {
-    const user: AuthUser | null = await getCurrentUser(req);
+    const user: AuthUser | null = await getCurrentUser();
     if (!user) {
       return res.status(401).json({ message: "Not authenticated" });
     }

@@ -1,11 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
-import { Gender } from "@prisma/client";
 import {
-  CognitoIdentityProviderClient,
   AdminCreateUserCommand,
-  AdminUpdateUserAttributesCommand,
+  CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
+import { Gender } from "@prisma/client";
+import { NextApiRequest, NextApiResponse } from "next";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,

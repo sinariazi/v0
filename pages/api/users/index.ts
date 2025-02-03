@@ -1,11 +1,12 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
+import type { Gender, UserRole } from "@/types";
 import {
-  CognitoIdentityProviderClient,
   AdminCreateUserCommand,
   AdminSetUserPasswordCommand,
+  CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -41,7 +42,14 @@ export default async function handler(
     }
   } else if (req.method === "POST") {
     try {
-      const { firstName, lastName, email, role, gender, team } = req.body;
+      const { firstName, lastName, email, role, gender, team } = req.body as {
+        firstName: string;
+        lastName: string;
+        email: string;
+        role: UserRole;
+        gender: Gender;
+        team?: string;
+      };
 
       // Get the admin's organization ID
       const adminEmail = req.headers["x-admin-email"] as string;
