@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth-utils";
 import { sendSurveyInvitation } from "@/lib/email";
+import prisma from "@/lib/prisma";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,25 +12,29 @@ export default async function handler(
   }
 
   try {
-    const user = await getCurrentUser(req);
+    const user = await getCurrentUser();
     if (!user) {
       return res.status(401).json({ message: "Not authenticated" });
     }
 
     const dbUser = await prisma.user.findUnique({
       where: { email: user.signInDetails?.loginId },
-      select: { organizationId: true, role: true },
+      select: { id: true, organizationId: true, role: true }, // Select the user's ID as well
     });
 
-    if (!dbUser || dbUser.role !== 'ADMIN') {
+    if (!dbUser || dbUser.role !== "ADMIN") {
       return res.status(403).json({ message: "Not authorized" });
     }
 
-    // Create a new survey
+    // Create a new survey with placeholder values for required fields
     const newSurvey = await prisma.survey.create({
       data: {
         organizationId: dbUser.organizationId,
-        status: 'ACTIVE',
+        userId: dbUser.id, // Use the admin's ID as a placeholder
+        question1Score: 0, // Placeholder value
+        question2Score: 0, // Placeholder value
+        question3Score: 0, // Placeholder value
+        status: "ACTIVE",
       },
     });
 
@@ -44,10 +48,14 @@ export default async function handler(
       await sendSurveyInvitation(user.email, newSurvey.id);
     }
 
-    res.status(200).json({ message: "New survey generated and invitations sent", surveyId: newSurvey.id });
+    res
+      .status(200)
+      .json({
+        message: "New survey generated and invitations sent",
+        surveyId: newSurvey.id,
+      });
   } catch (error) {
     console.error("Error generating new survey:", error);
     res.status(500).json({ message: "Error generating new survey" });
   }
 }
-
