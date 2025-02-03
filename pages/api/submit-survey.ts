@@ -16,17 +16,26 @@ export default async function handler(
     question2Score,
     question3Score,
     surveyDate,
-  } = req.body;
+  } = req.body as {
+    userId: number;
+    organizationId: string;
+    question1Score: number;
+    question2Score: number;
+    question3Score: number;
+    surveyDate: string;
+  };
 
   if (
     !userId ||
     !organizationId ||
-    !question1Score ||
-    !question2Score ||
-    !question3Score ||
+    typeof question1Score !== "number" ||
+    typeof question2Score !== "number" ||
+    typeof question3Score !== "number" ||
     !surveyDate
   ) {
-    return res.status(400).json({ message: "Missing required fields" });
+    return res
+      .status(400)
+      .json({ message: "Missing required fields or invalid data types" });
   }
 
   try {

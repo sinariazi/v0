@@ -19,7 +19,7 @@ export default async function handler(
 
     const dbUser = await prisma.user.findUnique({
       where: { email: user.signInDetails?.loginId },
-      select: { id: true, organizationId: true, role: true }, // Select the user's ID as well
+      select: { id: true, organizationId: true, role: true },
     });
 
     if (!dbUser || dbUser.role !== "ADMIN") {
@@ -30,11 +30,15 @@ export default async function handler(
     const newSurvey = await prisma.survey.create({
       data: {
         organizationId: dbUser.organizationId,
-        userId: dbUser.id, // Use the admin's ID as a placeholder
+        userId: dbUser.id,
         question1Score: 0, // Placeholder value
         question2Score: 0, // Placeholder value
         question3Score: 0, // Placeholder value
         status: "ACTIVE",
+        additionalFeedback: "", // Add an empty string as a placeholder
+        responses: {
+          create: [], // We'll create empty responses for now
+        },
       },
     });
 

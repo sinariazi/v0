@@ -61,7 +61,6 @@ model Organization {
   size                  String
   country               String
   city                  String
-  street                String
   email                 String
   phoneNumber           String?
   createdAt             DateTime  @default(now())
@@ -86,7 +85,7 @@ model Survey {
   question3Score     Int
   engagementScore    Float?
   surveyDate         DateTime?
-  status             String?          @default("ACTIVE") // Add status field with default value
+  status             String?          @default("ACTIVE")
 
   @@index([organizationId])
   @@index([userId])

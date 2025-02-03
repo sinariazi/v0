@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import prisma from "@/lib/prisma";
 import {
   CognitoIdentityProviderClient,
   ListUsersCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
-import prisma from "@/lib/prisma";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -89,11 +89,9 @@ export default async function handler(
       }
     }
 
-    res
-      .status(200)
-      .json({
-        message: `Synced ${syncedCount} users from Cognito to the database.`,
-      });
+    res.status(200).json({
+      message: `Synced ${syncedCount} users from Cognito to the database.`,
+    });
   } catch (error) {
     console.error("Error syncing users from Cognito:", error);
     res.status(500).json({ message: "Error syncing users from Cognito" });

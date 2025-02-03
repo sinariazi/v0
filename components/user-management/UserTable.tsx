@@ -16,8 +16,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useLanguage } from "@/lib/language-context";
+import type { Gender, User, UserRole } from "@/types";
 import { useContext, useMemo, useState } from "react";
-import type { Gender, User, UserRole } from "./types";
 import { UserManagementContext } from "./UserManagementContext";
 
 export function UserTable() {
@@ -52,7 +52,7 @@ export function UserTable() {
     value: string | UserRole | Gender
   ) => {
     const updatedUser = { ...user, [field]: value };
-    dispatch({ type: "UPDATE_USER", payload: updatedUser });
+    dispatch({ type: "UPDATE_USER", payload: updatedUser as User });
     setChangedUsers((prev) => ({ ...prev, [user.id]: true }));
   };
 
