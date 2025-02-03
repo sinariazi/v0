@@ -247,8 +247,7 @@
     },
     "noResults": "Nessun risultato del sondaggio disponibile.",
     "surveyFrom": "Sondaggio del {{date}}",
-    "organization": "Organizzazione",
-    "additionalFeedback": "Feedback aggiuntivo:"
+    "organization": "Organizzazione"
   },
   "surveyResults": {
     "title": "Risultati del sondaggio",

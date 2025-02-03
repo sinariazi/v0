@@ -247,8 +247,7 @@
     },
     "noResults": "No survey results available.",
     "surveyFrom": "Survey from {{date}}",
-    "organization": "Organization",
-    "additionalFeedback": "Additional Feedback:"
+    "organization": "Organization"
   },
   "surveyResults": {
     "title": "Survey Results",

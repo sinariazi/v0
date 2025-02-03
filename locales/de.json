@@ -247,8 +247,7 @@
     },
     "noResults": "Keine Umfrageergebnisse verfügbar.",
     "surveyFrom": "Umfrage vom {{date}}",
-    "organization": "Organisation",
-    "additionalFeedback": "Zusätzliches Feedback:"
+    "organization": "Organisation"
   },
   "surveyResults": {
     "title": "Umfrageergebnisse",
