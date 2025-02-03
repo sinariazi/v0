@@ -309,8 +309,12 @@
       "description": "Gestisci il tuo piano di abbonamento"
     },
     "userArea": {
-      "title": "Area utente",
-      "description": "Accedi alla dashboard utente"
+      "title": "Area Utente",
+      "description": "Accedi alla dashboard utente",
+      "recentActivity": "Attività Recente",
+      "recentActivityDescription": "Visualizza i tuoi sondaggi recenti e le attività di coinvolgimento.",
+      "upcomingSurveys": "Sondaggi Imminenti",
+      "upcomingSurveysDescription": "Controlla i prossimi sondaggi programmati per te."
     },
     "goTo": "Vai a"
   },
@@ -374,5 +378,28 @@
       "nextBillingDate": "Prossima data di fatturazione: {{date}}",
       "dashboardButton": "Vai alla Dashboard"
     }
+  },
+  "startFreeTrialPage": {
+    "title": "Inizia la tua prova gratuita",
+    "description": "Compila il modulo sottostante per iniziare",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "gender": "Genere",
+    "selectGender": "Seleziona genere",
+    "email": "Email",
+    "companyName": "Nome dell'azienda",
+    "companyPhoneNumber": "Numero di telefono dell'azienda",
+    "companyIndustry": "Settore dell'azienda",
+    "selectIndustry": "Seleziona settore",
+    "companySize": "Dimensione dell'azienda",
+    "selectCompanySize": "Seleziona dimensione dell'azienda",
+    "country": "Paese",
+    "city": "Città",
+    "street": "Via",
+    "startFreeTrial": "Inizia la prova gratuita",
+    "creating": "Creazione in corso...",
+    "organizationCreatedSuccessfully": "Organizzazione creata con successo",
+    "organizationCreatedDescription": "Il tuo account organizzazione è stato creato con ID: {{organizationId}}. Sei stato assegnato come amministratore per questa organizzazione.",
+    "goToDashboard": "Vai alla dashboard"
   }
 }

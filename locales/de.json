@@ -378,5 +378,28 @@
       "nextBillingDate": "Nächstes Abrechnungsdatum: {{date}}",
       "dashboardButton": "Zum Dashboard"
     }
+  },
+  "startFreeTrialPage": {
+    "title": "Kostenlose Testversion starten",
+    "description": "Füllen Sie das untenstehende Formular aus, um zu beginnen",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "gender": "Geschlecht",
+    "selectGender": "Geschlecht auswählen",
+    "email": "E-Mail",
+    "companyName": "Firmenname",
+    "companyPhoneNumber": "Telefonnummer der Firma",
+    "companyIndustry": "Branche",
+    "selectIndustry": "Branche auswählen",
+    "companySize": "Firmengröße",
+    "selectCompanySize": "Firmengröße auswählen",
+    "country": "Land",
+    "city": "Stadt",
+    "street": "Straße",
+    "startFreeTrial": "Kostenlose Testversion starten",
+    "creating": "Erstellen...",
+    "organizationCreatedSuccessfully": "Organisation erfolgreich erstellt",
+    "organizationCreatedDescription": "Ihr Organisationskonto wurde mit der ID: {{organizationId}} erstellt. Sie wurden als Administrator für diese Organisation zugewiesen.",
+    "goToDashboard": "Zum Dashboard gehen"
   }
 }

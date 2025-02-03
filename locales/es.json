@@ -1,382 +1,405 @@
 {
   "header": {
-    "home": "Home",
-    "features": "Funzionalità",
-    "howItWorks": "Come funziona",
+    "home": "Inicio",
+    "features": "Características",
+    "howItWorks": "Cómo funciona",
     "blog": "Blog",
-    "about": "Chi siamo",
-    "contact": "Contatti",
-    "pricing": "Prezzi",
-    "signIn": "Accedi",
-    "scheduleDemo": "Prenota una demo"
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "pricing": "Precios",
+    "signIn": "Iniciar sesión",
+    "scheduleDemo": "Programar demo"
   },
   "footer": {
-    "home": "Home",
-    "features": "Funzionalità",
-    "howItWorks": "Come funziona",
+    "home": "Inicio",
+    "features": "Características",
+    "howItWorks": "Cómo funciona",
     "blog": "Blog",
-    "about": "Chi siamo",
-    "contact": "Contatti",
-    "privacyPolicy": "Informativa sulla privacy",
-    "termsOfService": "Termini di servizio",
-    "copyright": "© 2025 Mood Whisper. Tutti i diritti riservati."
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfService": "Términos de servicio",
+    "copyright": "© 2025 Mood Whisper. Todos los derechos reservados."
   },
   "signInModal": {
-    "title": "Accedi",
-    "email": "Email",
-    "password": "Password",
-    "signUp": "Non sei ancora utente? Registrati",
-    "forgotPassword": "Password dimenticata?",
-    "signInButton": "Accedi",
-    "failedToSignIn": "Accesso fallito",
-    "failedToSignInCheckCredentials": "Accesso fallito. Controlla le tue credenziali e riprova.",
-    "failedToConfirmSignIn": "Conferma dell'accesso fallita",
-    "failedToConfirmSignInTryAgain": "Conferma dell'accesso fallita. Per favore riprova.",
-    "passwordResetCodeSent": "Codice di reset della password inviato. Controlla la tua email.",
-    "failedToSendPasswordResetEmail": "Invio dell'email di reset della password fallito. Per favore riprova.",
-    "newPasswordsDoNotMatch": "Le nuove password non corrispondono.",
-    "passwordResetSuccessful": "Reset della password completato con successo. Ora puoi accedere con la tua nuova password.",
-    "failedToResetPassword": "Reset della password fallito. Per favore riprova.",
-    "newPassword": "Nuova password",
-    "signingIn": "Accesso in corso...",
-    "signIn": "Accedi",
-    "notAUserYet": "Non sei ancora utente? Registrati",
-    "confirming": "Conferma in corso...",
-    "setNewPassword": "Imposta nuova password",
-    "sendingResetCode": "Invio del codice di reset in corso...",
-    "sendResetCode": "Invia codice di reset",
-    "backToSignIn": "Torna all'accesso",
-    "resetCode": "Codice di reset",
-    "confirmNewPassword": "Conferma nuova password",
-    "resettingPassword": "Reset della password in corso...",
-    "resetPassword": "Reimposta password"
+    "title": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signUp": "¿No eres usuario? Regístrate",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "signInButton": "Iniciar sesión",
+    "failedToSignIn": "Error al iniciar sesión",
+    "failedToSignInCheckCredentials": "Error al iniciar sesión. Por favor, verifica tus credenciales e intenta de nuevo.",
+    "failedToConfirmSignIn": "Error al confirmar el inicio de sesión",
+    "failedToConfirmSignInTryAgain": "Error al confirmar el inicio de sesión. Por favor, intenta de nuevo.",
+    "passwordResetCodeSent": "Código de restablecimiento de contraseña enviado. Por favor, revisa tu correo electrónico.",
+    "failedToSendPasswordResetEmail": "Error al enviar el correo de restablecimiento de contraseña. Por favor, intenta de nuevo.",
+    "newPasswordsDoNotMatch": "Las nuevas contraseñas no coinciden.",
+    "passwordResetSuccessful": "Contraseña restablecida con éxito. Ahora puedes iniciar sesión con tu nueva contraseña.",
+    "failedToResetPassword": "Error al restablecer la contraseña. Por favor, intenta de nuevo.",
+    "newPassword": "Nueva contraseña",
+    "signingIn": "Iniciando sesión...",
+    "signIn": "Iniciar sesión",
+    "notAUserYet": "¿No eres usuario? Regístrate",
+    "confirming": "Confirmando...",
+    "setNewPassword": "Establecer nueva contraseña",
+    "sendingResetCode": "Enviando código de restablecimiento...",
+    "sendResetCode": "Enviar código de restablecimiento",
+    "backToSignIn": "Volver a iniciar sesión",
+    "resetCode": "Código de restablecimiento",
+    "confirmNewPassword": "Confirmar nueva contraseña",
+    "resettingPassword": "Restableciendo contraseña...",
+    "resetPassword": "Restablecer contraseña"
   },
   "signUpModal": {
-    "title": "Registrati",
-    "email": "Email",
-    "firstName": "Nome",
-    "lastName": "Cognome",
-    "gender": "Genere",
-    "selectGender": "Seleziona genere",
-    "male": "Maschio",
-    "female": "Femmina",
-    "other": "Altro",
-    "team": "Team",
-    "organizationId": "ID Organizzazione",
-    "signUpButton": "Registrati",
-    "success": "Successo",
-    "accountCreatedCheckEmail": "Il tuo account è stato creato. Controlla la tua email per la password temporanea per accedere.",
-    "error": "Errore",
-    "failedToSignUp": "Registrazione fallita. Per favore riprova."
+    "title": "Registrarse",
+    "email": "Correo electrónico",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "gender": "Género",
+    "selectGender": "Seleccionar género",
+    "male": "Masculino",
+    "female": "Femenino",
+    "other": "Otro",
+    "team": "Equipo",
+    "organizationId": "ID de la organización",
+    "signUpButton": "Registrarse",
+    "success": "Éxito",
+    "accountCreatedCheckEmail": "Tu cuenta ha sido creada. Por favor, revisa tu correo electrónico para obtener una contraseña temporal para iniciar sesión.",
+    "error": "Error",
+    "failedToSignUp": "Error al registrarse. Por favor, intenta de nuevo."
   },
   "changePasswordModal": {
-    "title": "Imposta nuova password",
-    "email": "Email",
-    "newPassword": "Nuova password",
-    "confirmNewPassword": "Conferma nuova password",
-    "setNewPasswordButton": "Imposta nuova password",
-    "newPasswordsDoNotMatch": "Le nuove password non corrispondono.",
-    "success": "Successo",
-    "passwordChangedSuccessfully": "Password cambiata con successo. Ora sei connesso.",
-    "failedToConfirmSignIn": "Conferma dell'accesso fallita",
-    "failedToChangePassword": "Cambio password fallito. Per favore riprova."
+    "title": "Establecer nueva contraseña",
+    "email": "Correo electrónico",
+    "newPassword": "Nueva contraseña",
+    "confirmNewPassword": "Confirmar nueva contraseña",
+    "setNewPasswordButton": "Establecer nueva contraseña",
+    "newPasswordsDoNotMatch": "Las nuevas contraseñas no coinciden.",
+    "success": "Éxito",
+    "passwordChangedSuccessfully": "Contraseña cambiada con éxito. Ahora has iniciado sesión.",
+    "failedToConfirmSignIn": "Error al confirmar el inicio de sesión",
+    "failedToChangePassword": "Error al cambiar la contraseña. Por favor, intenta de nuevo."
   },
   "hero": {
-    "title": "Coinvolgimento dei dipendenti basato sui dati con Mood Whisper",
-    "description": "Sfrutta il potere dell'analisi in tempo reale per aumentare la felicità e la produttività sul posto di lavoro.",
-    "startFreeTrial": "Inizia la prova gratuita",
-    "scheduleDemo": "Prenota una demo",
+    "title": "Compromiso de los empleados basado en datos con Mood Whisper",
+    "description": "Aprovecha el poder de los análisis en tiempo real para aumentar la felicidad y la productividad en el lugar de trabajo.",
+    "startFreeTrial": "Comenzar prueba gratuita",
+    "scheduleDemo": "Programar demo",
     "chart": {
-      "happiness": "Felicità",
-      "engagement": "Coinvolgimento"
+      "happiness": "Felicidad",
+      "engagement": "Compromiso"
     }
   },
   "home": {
     "featuresSection": {
-      "title": "Potenti funzionalità per il coinvolgimento dei dipendenti",
-      "description": "Scopri gli strumenti e le capacità complete che rendono Mood Whisper la piattaforma leader per il coinvolgimento dei dipendenti.",
-      "exploreButton": "Esplora le nostre funzionalità"
+      "title": "Potentes características para el compromiso de los empleados",
+      "description": "Descubre las herramientas y capacidades integrales que hacen de Mood Whisper la plataforma líder en compromiso de los empleados.",
+      "exploreButton": "Explorar nuestras características"
     }
   },
   "cta": {
-    "title": "Pronto a sfruttare il potere dei dati?",
-    "description": "Unisciti alla rivoluzione basata sui dati nel coinvolgimento dei dipendenti. Inizia oggi il tuo viaggio verso un luogo di lavoro più produttivo e felice con Mood Whisper.",
-    "startFreeTrial": "Inizia la prova gratuita",
-    "scheduleDemo": "Prenota una demo"
+    "title": "¿Listo para aprovechar el poder de los datos?",
+    "description": "Únete a la revolución basada en datos en el compromiso de los empleados. Comienza tu viaje hacia un lugar de trabajo más productivo y feliz con Mood Whisper hoy.",
+    "startFreeTrial": "Comenzar prueba gratuita",
+    "scheduleDemo": "Programar demo"
   },
   "adminSideMenu": {
-    "title": "Pannello di amministrazione",
-    "dashboard": "Dashboard",
-    "userManagement": "Gestione utenti",
-    "surveys": "Sondaggi",
-    "insights": "Approfondimenti",
-    "billing": "Fatturazione",
-    "subscription": "Abbonamento"
+    "title": "Panel de administración",
+    "dashboard": "Panel de control",
+    "userManagement": "Gestión de usuarios",
+    "surveys": "Encuestas",
+    "insights": "Insights",
+    "billing": "Facturación",
+    "subscription": "Suscripción"
   },
   "dataInsights": {
-    "title": "Approfondimenti basati sui dati",
-    "chartTitle": "Soddisfazione del dipartimento vs Produttività",
-    "satisfaction": "Soddisfazione",
-    "productivity": "Produttività"
+    "title": "Insights basados en datos",
+    "chartTitle": "Satisfacción del departamento vs Productividad",
+    "satisfaction": "Satisfacción",
+    "productivity": "Productividad"
   },
   "dateRangeSelector": {
-    "placeholder": "Seleziona periodo di tempo",
-    "last30Days": "Ultimi 30 giorni",
-    "last90Days": "Ultimi 90 giorni",
-    "last180Days": "Ultimi 180 giorni",
-    "allTime": "Tutto il tempo"
+    "placeholder": "Seleccionar período de tiempo",
+    "last30Days": "Últimos 30 días",
+    "last90Days": "Últimos 90 días",
+    "last180Days": "Últimos 180 días",
+    "allTime": "Todo el tiempo"
   },
   "howItWorks": {
-    "title": "Come funziona",
+    "title": "Cómo funciona",
     "step1": {
-      "title": "Registrati",
-      "description": "Crea il tuo account Mood Whisper e configura il profilo della tua organizzazione."
+      "title": "Regístrate",
+      "description": "Crea tu cuenta de Mood Whisper y configura el perfil de tu organización."
     },
     "step2": {
-      "title": "Invita il team",
-      "description": "Invita i tuoi dipendenti a unirsi alla piattaforma e iniziare a condividere i loro stati d'animo."
+      "title": "Invita al equipo",
+      "description": "Invita a tus empleados a unirse a la plataforma y comenzar a compartir sus estados de ánimo."
     },
     "step3": {
-      "title": "Traccia e analizza",
-      "description": "Monitora i dati sullo stato d'animo in tempo reale e analizza le tendenze per migliorare la soddisfazione sul posto di lavoro."
+      "title": "Seguimiento y análisis",
+      "description": "Monitorea los datos de estado de ánimo en tiempo real y analiza tendencias para mejorar la satisfacción en el lugar de trabajo."
     },
     "step4": {
-      "title": "Agisci",
-      "description": "Implementa cambiamenti basati sugli approfondimenti per aumentare il coinvolgimento e la produttività dei dipendenti."
+      "title": "Toma acción",
+      "description": "Implementa cambios basados en insights para aumentar el compromiso de los empleados y la productividad."
     }
   },
   "predictionModels": {
-    "title": "Analisi predittiva per il coinvolgimento dei dipendenti",
+    "title": "Análisis predictivo para el compromiso de los empleados",
     "chart": {
-      "title": "Modello di previsione del coinvolgimento",
-      "actualEngagement": "Coinvolgimento effettivo",
-      "predictedEngagement": "Coinvolgimento previsto"
+      "title": "Modelo de predicción de compromiso",
+      "actualEngagement": "Compromiso real",
+      "predictedEngagement": "Compromiso previsto"
     },
     "howItWorks": {
-      "title": "Come funziona il nostro modello di previsione",
-      "description": "Il nostro modello di previsione ti aiuta ad anticipare le tendenze di coinvolgimento, permettendoti di adottare misure proattive per mantenere un'alta soddisfazione e produttività dei dipendenti."
+      "title": "Cómo funciona nuestro modelo de predicción",
+      "description": "Nuestro modelo de predicción te ayuda a anticipar tendencias de compromiso, permitiéndote tomar medidas proactivas para mantener una alta satisfacción y productividad de los empleados."
     },
     "features": {
-      "feature1": "Utilizza algoritmi avanzati di machine learning",
-      "feature2": "Analizza dati storici sul coinvolgimento",
-      "feature3": "Considera vari fattori come le dinamiche del team, il carico di lavoro e gli eventi aziendali",
-      "feature4": "Apprende continuamente e migliora le previsioni nel tempo",
-      "feature5": "Fornisce approfondimenti attuabili per migliorare il coinvolgimento dei dipendenti"
+      "feature1": "Utiliza algoritmos avanzados de aprendizaje automático",
+      "feature2": "Analiza datos históricos de compromiso",
+      "feature3": "Considera varios factores como la dinámica del equipo, la carga de trabajo y los eventos de la empresa",
+      "feature4": "Aprende continuamente y mejora las predicciones con el tiempo",
+      "feature5": "Proporciona insights accionables para mejorar el compromiso de los empleados"
     },
-    "noFeaturesAvailable": "Nessuna funzionalità disponibile"
+    "noFeaturesAvailable": "No hay características disponibles"
   },
   "pricing": {
-    "title": "Piani tariffari",
-    "perMonth": "/mese",
-    "getStarted": "Inizia",
+    "title": "Planes de precios",
+    "perMonth": "/mes",
+    "getStarted": "Comenzar",
     "plans": {
       "starter": {
-        "name": "Starter",
-        "price": "€99",
-        "description": "Perfetto per piccoli team che stanno iniziando",
+        "name": "Inicial",
+        "price": "99 €",
+        "description": "Perfecto para equipos pequeños que están comenzando",
         "features": {
-          "employees": "Fino a 25 dipendenti",
-          "moodTracking": "Tracciamento base dell'umore",
-          "weeklyReports": "Report settimanali",
-          "emailSupport": "Supporto via email"
+          "employees": "Hasta 25 empleados",
+          "moodTracking": "Seguimiento básico del estado de ánimo",
+          "weeklyReports": "Informes semanales",
+          "emailSupport": "Soporte por correo electrónico"
         }
       },
       "pro": {
         "name": "Pro",
-        "price": "€299",
-        "description": "Ideale per aziende in crescita con esigenze avanzate",
+        "price": "299 €",
+        "description": "Ideal para empresas en crecimiento con necesidades avanzadas",
         "features": {
-          "employees": "Fino a 100 dipendenti",
-          "advancedAnalytics": "Analisi avanzata dell'umore",
-          "dailyReports": "Report giornalieri",
-          "collaborationTools": "Strumenti di collaborazione del team",
-          "prioritySupport": "Supporto email prioritario"
+          "employees": "Hasta 100 empleados",
+          "advancedAnalytics": "Análisis avanzado del estado de ánimo",
+          "dailyReports": "Informes diarios",
+          "collaborationTools": "Herramientas de colaboración en equipo",
+          "prioritySupport": "Soporte prioritario por correo electrónico"
         }
       },
       "enterprise": {
-        "name": "Enterprise",
-        "price": "Personalizzato",
-        "description": "Soluzioni su misura per grandi organizzazioni",
+        "name": "Empresa",
+        "price": "Personalizado",
+        "description": "Soluciones a medida para grandes organizaciones",
         "features": {
-          "employees": "Dipendenti illimitati",
-          "customIntegrations": "Integrazioni personalizzate",
-          "accountManager": "Manager dell'account dedicato",
-          "phoneSupport": "Supporto telefonico 24/7",
-          "onSiteTraining": "Formazione in loco"
+          "employees": "Empleados ilimitados",
+          "customIntegrations": "Integraciones personalizadas",
+          "accountManager": "Gerente de cuenta dedicado",
+          "phoneSupport": "Soporte telefónico 24/7",
+          "onSiteTraining": "Capacitación en el sitio"
         }
       }
     }
   },
   "survey": {
-    "title": "Sondaggio sul coinvolgimento dei dipendenti",
-    "description": "Per favore, rispondi alle seguenti domande su una scala da 1 a 5",
+    "title": "Encuesta de compromiso de los empleados",
+    "description": "Por favor, responde las siguientes preguntas en una escala del 1 al 5",
     "questions": {
-      "jobSatisfaction": "Quanto sei soddisfatto del tuo ruolo attuale?",
-      "careerAlignment": "Quanto bene il tuo lavoro si allinea con i tuoi obiettivi di carriera?",
-      "workLifeBalance": "Come valuteresti l'equilibrio tra lavoro e vita personale nella tua posizione attuale?",
-      "recognition": "Quanto sei soddisfatto del riconoscimento che ricevi per il tuo lavoro?",
-      "teamCommunication": "Come valuteresti la comunicazione all'interno del tuo team?",
-      "professionalGrowth": "Quanto sei soddisfatto delle opportunità di crescita professionale?",
-      "diversityAndInclusion": "Come valuteresti l'impegno dell'azienda per la diversità e l'inclusione?",
-      "compensationAndBenefits": "Quanto sei soddisfatto della tua attuale retribuzione e dei benefici?",
-      "companyCulture": "Come valuteresti la cultura aziendale complessiva?",
-      "recommendation": "Quanto è probabile che raccomanderesti questa azienda come un ottimo posto di lavoro?"
+      "jobSatisfaction": "¿Qué tan satisfecho estás con tu rol actual?",
+      "careerAlignment": "¿Qué tan bien se alinea tu trabajo con tus objetivos de carrera?",
+      "workLifeBalance": "¿Cómo calificarías el equilibrio entre trabajo y vida personal en tu posición actual?",
+      "recognition": "¿Qué tan satisfecho estás con el reconocimiento que recibes por tu trabajo?",
+      "teamCommunication": "¿Cómo calificarías la comunicación dentro de tu equipo?",
+      "professionalGrowth": "¿Qué tan satisfecho estás con las oportunidades de crecimiento profesional?",
+      "diversityAndInclusion": "¿Cómo calificarías el compromiso de la empresa con la diversidad y la inclusión?",
+      "compensationAndBenefits": "¿Qué tan satisfecho estás con tu compensación y beneficios actuales?",
+      "companyCulture": "¿Cómo calificarías la cultura general de la empresa?",
+      "recommendation": "¿Qué tan probable es que recomiendes esta empresa como un gran lugar para trabajar?"
     },
     "scale": {
-      "lowest": "1 (Più basso)",
-      "highest": "5 (Più alto)"
+      "lowest": "1 (Más bajo)",
+      "highest": "5 (Más alto)"
     },
     "additionalFeedback": {
-      "label": "Feedback aggiuntivo",
-      "placeholder": "Per favore, fornisci qui qualsiasi feedback o commento aggiuntivo..."
+      "label": "Comentarios adicionales",
+      "placeholder": "Por favor, proporciona cualquier comentario o sugerencia adicional aquí..."
     },
-    "submit": "Invia sondaggio",
+    "submit": "Enviar encuesta",
     "authError": {
-      "title": "Errore di autenticazione",
-      "description": "Devi essere autenticato per inviare un sondaggio.",
-      "sessionExpired": "La tua sessione è scaduta. Per favore, accedi di nuovo."
+      "title": "Error de autenticación",
+      "description": "Debes iniciar sesión para enviar una encuesta.",
+      "sessionExpired": "Tu sesión ha expirado. Por favor, inicia sesión de nuevo."
     },
     "success": {
-      "title": "Successo",
-      "description": "Sondaggio inviato con successo"
+      "title": "Éxito",
+      "description": "Encuesta enviada con éxito"
     },
     "error": {
-      "title": "Errore",
-      "description": "Invio del sondaggio fallito. Per favore riprova.",
-      "fetchError": "Errore nel recupero dei risultati del sondaggio. Per favore riprova più tardi."
+      "title": "Error",
+      "description": "Error al enviar la encuesta. Por favor, intenta de nuevo.",
+      "fetchError": "Error al obtener los resultados de la encuesta. Por favor, inténtalo de nuevo más tarde."
     },
-    "noResults": "Nessun risultato del sondaggio disponibile.",
-    "surveyFrom": "Sondaggio del {{date}}",
-    "organization": "Organizzazione",
-    "additionalFeedback": "Feedback aggiuntivo:"
+    "noResults": "No hay resultados de encuestas disponibles.",
+    "surveyFrom": "Encuesta del {{date}}",
+    "organization": "Organización",
+    "additionalFeedback": "Comentarios adicionales:"
   },
   "surveyResults": {
-    "title": "Risultati del sondaggio",
-    "noResults": "Nessun risultato del sondaggio disponibile.",
-    "surveyFrom": "Sondaggio del {{date}}",
-    "organization": "Organizzazione",
-    "error": "Errore nel recupero dei risultati del sondaggio. Si prega di riprovare più tardi.",
-    "answer": "Risposta: {{score}}/5",
-    "additionalFeedback": "Feedback aggiuntivo:"
+    "title": "Resultados de la encuesta",
+    "noResults": "No hay resultados de encuestas disponibles.",
+    "surveyFrom": "Encuesta del {{date}}",
+    "organization": "Organización",
+    "error": "Error al obtener los resultados de la encuesta. Por favor, inténtelo de nuevo más tarde.",
+    "answer": "Respuesta: {{score}}/5",
+    "additionalFeedback": "Comentarios adicionales:"
   },
   "testimonials": {
-    "title": "Cosa dicono i nostri clienti",
+    "title": "Lo que dicen nuestros clientes",
     "sarah": {
       "name": "Sarah Johnson",
-      "role": "Direttore HR, TechCorp",
-      "content": "L'approccio basato sui dati di Mood Whisper ha rivoluzionato la nostra strategia di coinvolgimento dei dipendenti. Abbiamo visto un aumento del 25% nella soddisfazione lavorativa generale dall'implementazione."
+      "role": "Directora de RRHH, TechCorp",
+      "content": "El enfoque basado en datos de Mood Whisper ha revolucionado nuestra estrategia de compromiso de los empleados. Hemos visto un aumento del 25% en la satisfacción laboral general desde la implementación."
     },
     "michael": {
       "name": "Michael Chen",
       "role": "CEO, InnovateCo",
-      "content": "Le analisi predittive di Mood Whisper ci hanno aiutato ad affrontare proattivamente potenziali problemi, risultando in una diminuzione del 15% del turnover e un aumento del 20% della produttività."
+      "content": "Los análisis predictivos de Mood Whisper nos han ayudado a abordar proactivamente problemas potenciales, lo que ha resultado en una disminución del 15% en la rotación y un aumento del 20% en la productividad."
     },
     "emily": {
       "name": "Emily Rodriguez",
-      "role": "Team Lead, CreativeStudio",
-      "content": "Le dashboard personalizzabili ci permettono di tracciare le metriche più importanti per il nostro team creativo. Abbiamo migliorato il nostro tasso di completamento dei progetti del 30% grazie agli approfondimenti di Mood Whisper."
+      "role": "Líder de equipo, CreativeStudio",
+      "content": "Los paneles personalizables nos permiten realizar un seguimiento de las métricas que más importan a nuestro equipo creativo. Hemos mejorado nuestra tasa de finalización de proyectos en un 30% gracias a los insights de Mood Whisper."
     }
   },
   "adminDashboard": {
-    "title": "Dashboard di amministrazione",
+    "title": "Panel de Administración",
     "userManagement": {
-      "title": "Gestione utenti",
-      "description": "Gestisci i tuoi utenti e le loro autorizzazioni"
+      "title": "Gestión de Usuarios",
+      "description": "Administre sus usuarios y sus permisos"
     },
     "surveys": {
-      "title": "Sondaggi",
-      "description": "Crea e gestisci sondaggi per i dipendenti",
-      "createNew": "Crea nuovo sondaggio",
-      "emailSent": "Nuovo sondaggio generato e email inviata ai dipendenti.",
-      "generateNew": "Genera nuovo sondaggio",
-      "fetchError": "Errore nel recupero dei sondaggi",
-      "fetchErrorDetails": "Errore nel recupero dei sondaggi:"
+      "title": "Encuestas",
+      "description": "Cree y administre encuestas de empleados",
+      "createNew": "Crear nueva encuesta",
+      "emailSent": "Nueva encuesta generada y correo electrónico enviado a los empleados.",
+      "generateNew": "Generar nueva encuesta",
+      "fetchError": "Error al obtener las encuestas",
+      "fetchErrorDetails": "Error al obtener las encuestas:"
     },
     "insights": {
-      "title": "Approfondimenti",
-      "description": "Visualizza e analizza i dati sul coinvolgimento dei dipendenti"
+      "title": "Insights",
+      "description": "Ver y analizar datos de compromiso de los empleados"
     },
     "billing": {
-      "title": "Fatturazione",
-      "description": "Gestisci le tue informazioni di abbonamento e fatturazione"
+      "title": "Facturación",
+      "description": "Administre su suscripción e información de facturación"
     },
     "surveyResults": {
-      "title": "Risultati dei sondaggi",
-      "description": "Visualizza e analizza le risposte ai sondaggi"
+      "title": "Resultados de Encuestas",
+      "description": "Ver y analizar respuestas de encuestas"
     },
     "subscription": {
-      "title": "Abbonamento",
-      "description": "Gestisci il tuo piano di abbonamento"
+      "title": "Suscripción",
+      "description": "Administre su plan de suscripción"
     },
     "userArea": {
-      "title": "Area Utente",
-      "description": "Accedi alla dashboard utente",
-      "recentActivity": "Attività Recente",
-      "recentActivityDescription": "Visualizza i tuoi sondaggi recenti e le attività di coinvolgimento.",
-      "upcomingSurveys": "Sondaggi Imminenti",
-      "upcomingSurveysDescription": "Controlla i prossimi sondaggi programmati per te."
+      "title": "Área de Usuario",
+      "description": "Acceda al panel de control del usuario",
+      "recentActivity": "Actividad Reciente",
+      "recentActivityDescription": "Ver sus encuestas recientes y actividades de participación.",
+      "upcomingSurveys": "Próximas Encuestas",
+      "upcomingSurveysDescription": "Consulte las próximas encuestas programadas para usted."
     },
-    "goTo": "Vai a"
+    "goTo": "Ir a "
   },
   "userManagement": {
-    "searchPlaceholder": "Cerca utenti...",
-    "firstName": "Nome",
-    "lastName": "Cognome",
-    "email": "Email",
-    "role": "Ruolo",
-    "status": "Stato",
-    "gender": "Genere",
-    "team": "Team",
-    "organizationId": "ID Organizzazione",
-    "actions": "Azioni",
-    "selectRole": "Seleziona un ruolo",
-    "employee": "Dipendente",
-    "manager": "Manager",
-    "admin": "Amministratore",
-    "selectGender": "Seleziona genere",
-    "male": "Maschio",
-    "female": "Femmina",
-    "other": "Altro",
-    "save": "Salva",
-    "remove": "Rimuovi",
-    "addUserDialogTitle": "Aggiungi nuovo utente",
-    "addUser": "Aggiungi utente",
-    "importUsersDialogTitle": "Importa utenti",
-    "importUsersDialogDescription": "Carica un file CSV contenente le informazioni degli utenti. Il file dovrebbe includere colonne per email, nome, cognome e colonne opzionali per ruolo, genere, team.",
-    "importUsersAlertDescription": "Formato CSV richiesto: email, nome, cognome, ruolo (opzionale), genere (opzionale), team (opzionale)",
-    "selectCSVFile": "Seleziona file CSV",
-    "cancel": "Annulla",
-    "importing": "Importazione in corso...",
-    "import": "Importa",
-    "downloadSampleCSV": "Scarica CSV di esempio",
-    "LoadingUsers": "Caricamento utenti..."
+    "searchPlaceholder": "Buscar usuarios...",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "role": "Rol",
+    "status": "Estado",
+    "gender": "Género",
+    "team": "Equipo",
+    "organizationId": "ID de organización",
+    "actions": "Acciones",
+    "selectRole": "Seleccionar un rol",
+    "employee": "Empleado",
+    "manager": "Gerente",
+    "admin": "Administrador",
+    "selectGender": "Seleccionar género",
+    "male": "Masculino",
+    "female": "Femenino",
+    "other": "Otro",
+    "save": "Guardar",
+    "remove": "Eliminar",
+    "addUserDialogTitle": "Añadir nuevo usuario",
+    "addUser": "Añadir usuario",
+    "importUsersDialogTitle": "Importar usuarios",
+    "importUsersDialogDescription": "Sube un archivo CSV que contenga información del usuario. El archivo debe incluir columnas para correo electrónico, nombre, apellido y columnas opcionales para rol, género y equipo.",
+    "importUsersAlertDescription": "Formato CSV requerido: correo electrónico, nombre, apellido, rol (opcional), género (opcional), equipo (opcional)",
+    "selectCSVFile": "Seleccionar archivo CSV",
+    "cancel": "Cancelar",
+    "importing": "Importando...",
+    "import": "Importar",
+    "downloadSampleCSV": "Descargar CSV de muestra",
+    "LoadingUsers": "Cargando usuarios..."
   },
   "billing": {
-    "title": "Eventi di fatturazione",
-    "description": "Eventi Stripe recenti per il tuo account",
-    "loading": "Caricamento informazioni di fatturazione...",
-    "errorLoadingEvents": "Errore nel caricamento degli eventi. Per favore riprova più tardi.",
-    "refresh": "Aggiorna eventi",
+    "title": "Eventos de facturación",
+    "description": "Eventos recientes de Stripe para su cuenta",
+    "loading": "Cargando información de facturación...",
+    "errorLoadingEvents": "Error al cargar eventos. Por favor, inténtelo de nuevo más tarde.",
+    "refresh": "Actualizar eventos",
     "table": {
-      "eventType": "Tipo di evento",
-      "date": "Data",
-      "objectId": "ID oggetto",
-      "status": "Stato"
+      "eventType": "Tipo de evento",
+      "date": "Fecha",
+      "objectId": "ID de objeto",
+      "status": "Estado"
     }
   },
   "subscriptionSuccess": {
-    "loading": "Caricamento...",
+    "loading": "Cargando...",
     "error": {
-      "title": "Errore",
-      "description": "C'è stato un problema nella verifica del tuo abbonamento",
-      "returnButton": "Torna alla pagina dell'abbonamento"
+      "title": "Error",
+      "description": "Hubo un problema al verificar tu suscripción",
+      "returnButton": "Volver a la página de suscripción"
     },
     "success": {
-      "title": "Abbonamento riuscito!",
-      "description": "Grazie per esserti abbonato a Mood Whisper",
-      "activePlan": "Il tuo abbonamento al piano {{plan}} è ora attivo.",
-      "nextBillingDate": "Prossima data di fatturazione: {{date}}",
-      "dashboardButton": "Vai alla Dashboard"
+      "title": "¡Suscripción exitosa!",
+      "description": "Gracias por suscribirte a Mood Whisper",
+      "activePlan": "Tu suscripción al plan {{plan}} está ahora activa.",
+      "nextBillingDate": "Próxima fecha de facturación: {{date}}",
+      "dashboardButton": "Ir al Panel de Control"
     }
+  },
+  "startFreeTrialPage": {
+    "title": "Comienza tu prueba gratuita",
+    "description": "Completa el siguiente formulario para comenzar",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "gender": "Género",
+    "selectGender": "Seleccionar género",
+    "email": "Correo electrónico",
+    "companyName": "Nombre de la empresa",
+    "companyPhoneNumber": "Número de teléfono de la empresa",
+    "companyIndustry": "Industria de la empresa",
+    "selectIndustry": "Seleccionar industria",
+    "companySize": "Tamaño de la empresa",
+    "selectCompanySize": "Seleccionar tamaño de la empresa",
+    "country": "País",
+    "city": "Ciudad",
+    "street": "Calle",
+    "startFreeTrial": "Comenzar prueba gratuita",
+    "creating": "Creando...",
+    "organizationCreatedSuccessfully": "Organización creada con éxito",
+    "organizationCreatedDescription": "Su cuenta de organización ha sido creada con la ID: {{organizationId}}. Ha sido asignado como administrador para esta organización.",
+    "goToDashboard": "Ir al panel"
   }
 }
