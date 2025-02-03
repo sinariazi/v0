@@ -209,7 +209,7 @@
   },
   "survey": {
     "title": "Employee Engagement Survey",
-    "description": "Please answer the following questions on a scale of 1-10",
+    "description": "Please answer the following questions on a scale of 1-5",
     "questions": {
       "jobSatisfaction": "How satisfied are you with your current role?",
       "careerAlignment": "How well does your work align with your career goals?",
@@ -240,16 +240,21 @@
       "title": "Success",
       "description": "Survey submitted successfully"
     },
-    "errors": {
+    "error": {
       "title": "Error",
       "description": "Failed to submit survey. Please try again.",
-      "failedToken": "Failed to get authentication token",
-      "submitFailed": "Failed to submit survey",
-      "submitError": "Error submitting survey:"
-    }
+      "fetchError": "Error fetching survey results. Please try again later."
+    },
+    "noResults": "No survey results available.",
+    "surveyFrom": "Survey from {{date}}",
+    "organization": "Organization"
   },
   "surveyResults": {
+    "title": "Survey Results",
+    "noResults": "No survey results available.",
     "surveyFrom": "Survey from {{date}}",
+    "organization": "Organization",
+    "error": "Error fetching survey results. Please try again later.",
     "answer": "Answer: {{score}}/5",
     "additionalFeedback": "Additional Feedback:"
   },
@@ -279,7 +284,12 @@
     },
     "surveys": {
       "title": "Surveys",
-      "description": "Create and manage employee surveys"
+      "description": "Create and manage employee surveys",
+      "createNew": "Create New Survey",
+      "emailSent": "New survey generated and email sent to employees.",
+      "generateNew": "Generate New Survey",
+      "fetchError": "Failed to fetch surveys",
+      "fetchErrorDetails": "Error fetching surveys:"
     },
     "insights": {
       "title": "Insights",
@@ -299,7 +309,11 @@
     },
     "userArea": {
       "title": "User Area",
-      "description": "Access the user dashboard"
+      "description": "Access the user dashboard",
+      "recentActivity": "Recent Activity",
+      "recentActivityDescription": "View your recent surveys and engagement activities.",
+      "upcomingSurveys": "Upcoming Surveys",
+      "upcomingSurveysDescription": "Check out the upcoming surveys scheduled for you."
     },
     "goTo": "Go to"
   },
@@ -348,5 +362,43 @@
       "objectId": "Object ID",
       "status": "Status"
     }
+  },
+  "subscriptionSuccess": {
+    "loading": "Loading...",
+    "error": {
+      "title": "Error",
+      "description": "There was a problem verifying your subscription",
+      "returnButton": "Return to Subscription Page"
+    },
+    "success": {
+      "title": "Subscription Successful!",
+      "description": "Thank you for subscribing to Mood Whisper",
+      "activePlan": "Your subscription to the {{plan}} plan is now active.",
+      "nextBillingDate": "Next billing date: {{date}}",
+      "dashboardButton": "Go to Dashboard"
+    }
+  },
+  "startFreeTrialPage": {
+    "title": "Start Your Free Trial",
+    "description": "Fill out the form below to get started",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "gender": "Gender",
+    "selectGender": "Select gender",
+    "email": "Email",
+    "companyName": "Company Name",
+    "companyPhoneNumber": "Company Phone Number",
+    "companyIndustry": "Company Industry",
+    "selectIndustry": "Select industry",
+    "companySize": "Company Size",
+    "selectCompanySize": "Select company size",
+    "country": "Country",
+    "city": "City",
+    "street": "Street",
+    "startFreeTrial": "Start Free Trial",
+    "creating": "Creating...",
+    "organizationCreatedSuccessfully": "Organization Created Successfully",
+    "organizationCreatedDescription": "Your organization account has been created with the ID: {{organizationId}}. You have been assigned as an admin for this organization.",
+    "goToDashboard": "Go to Dashboard"
   }
 }

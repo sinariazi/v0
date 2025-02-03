@@ -16,9 +16,19 @@
 # production
 /build
 
+
 # misc
 .DS_Store
 *.pem
+*.log
+*.lock
+*.sqlite
+*.swp
+*.out
+*.pid
+*.seed
+*.pid.lock
+
 
 # debug
 npm-debug.log*
@@ -34,3 +44,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+#Environment Variables
+.env.local 
+.env.development
+.env.production
+.env

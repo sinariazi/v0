@@ -1,11 +1,11 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import prisma from "@/lib/prisma";
 import {
   CognitoIdentityProviderClient,
   ListUsersCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
-import prisma from "@/lib/prisma";
-import { Gender, UserStatus } from "@prisma/client";
+import type { Gender, UserStatus } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -14,15 +14,11 @@ const cognitoClient = new CognitoIdentityProviderClient({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
-
-  console.log("Starting user sync...");
-  console.log("AWS Region:", process.env.NEXT_PUBLIC_AWS_REGION);
-  console.log("User Pool ID:", process.env.NEXT_PUBLIC_AWS_USER_POOL_ID);
 
   try {
     // Ensure default organization exists
@@ -32,6 +28,11 @@ export default async function handler(
       create: {
         id: "default-org-id",
         name: "Default Organization",
+        industry: "Other",
+        size: "1-10",
+        country: "Unknown",
+        city: "Unknown",
+        email: "unknown@example.com",
       },
     });
 
@@ -41,20 +42,18 @@ export default async function handler(
 
     const cognitoUsers = await cognitoClient.send(command);
 
-    console.log("Cognito users:", cognitoUsers);
-
     let syncedCount = 0;
     for (const cognitoUser of cognitoUsers.Users || []) {
       const email = cognitoUser.Attributes?.find(
-        (attr) => attr.Name === "email",
+        (attr) => attr.Name === "email"
       )?.Value;
       const sub = cognitoUser.Attributes?.find(
-        (attr) => attr.Name === "sub",
+        (attr) => attr.Name === "sub"
       )?.Value;
-      const name =
-        cognitoUser.Attributes?.find((attr) => attr.Name === "name")?.Value ||
-        "";
-      const family =
+      const firstName =
+        cognitoUser.Attributes?.find((attr) => attr.Name === "given_name")
+          ?.Value || "";
+      const lastName =
         cognitoUser.Attributes?.find((attr) => attr.Name === "family_name")
           ?.Value || "";
       const gender =
@@ -63,30 +62,32 @@ export default async function handler(
       const team =
         cognitoUser.Attributes?.find((attr) => attr.Name === "custom:team")
           ?.Value || null;
+      const userStatus = (cognitoUser.UserStatus as UserStatus) || "UNKNOWN";
+      const cognitoUsername = cognitoUser.Username || "";
 
       if (email && sub) {
         await prisma.user.upsert({
           where: { cognitoSub: sub },
           update: {
             email,
-            name,
-            family,
+            firstName,
+            lastName,
             gender,
             team,
-            cognitoUsername: cognitoUser.Username || "",
-            status: (cognitoUser.UserStatus as UserStatus) || "UNKNOWN",
+            cognitoUsername,
+            status: userStatus,
           },
           create: {
             email,
-            name,
-            family,
+            firstName,
+            lastName,
             gender,
             team,
             cognitoSub: sub,
-            cognitoUsername: cognitoUser.Username || "",
+            cognitoUsername,
             role: "EMPLOYEE",
             organizationId: defaultOrg.id,
-            status: (cognitoUser.UserStatus as UserStatus) || "UNKNOWN",
+            status: userStatus,
           },
         });
         syncedCount++;

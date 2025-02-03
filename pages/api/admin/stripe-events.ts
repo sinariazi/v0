@@ -1,6 +1,6 @@
+import { getCurrentUser } from "@/lib/auth-utils";
 import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
-import { getCurrentUser } from "@/lib/auth-utils";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-12-18.acacia" as const,
@@ -15,7 +15,7 @@ export default async function handler(
   }
 
   try {
-    const user = await getCurrentUser(req);
+    const user = await getCurrentUser();
     if (!user) {
       return res.status(401).json({ message: "Not authenticated" });
     }

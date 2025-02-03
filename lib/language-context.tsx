@@ -7,7 +7,7 @@ import it from "@/locales/it.json";
 import type React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
-type Language = "en" | "de" | "es" | "it";
+export type Language = "en" | "de" | "es" | "it";
 
 interface LanguageContextType {
   language: Language;
@@ -33,7 +33,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   const [language, setLanguage] = useState<Language>("en");
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language;
+    const savedLanguage = localStorage.getItem("language") as Language | null;
     if (savedLanguage) {
       setLanguage(savedLanguage);
     }
@@ -46,7 +46,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const t = (key: string): string => {
     const keys = key.split(".");
-    let value: any =
+    let value: Record<string, unknown> | string =
       language === "en"
         ? en
         : language === "de"
@@ -56,7 +56,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
         : it;
     for (const k of keys) {
       if (value && typeof value === "object" && k in value) {
-        value = value[k];
+        value = value[k] as Record<string, unknown> | string;
       } else {
         return key; // Return the key if the path is not found
       }

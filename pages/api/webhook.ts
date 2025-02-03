@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import Stripe from "stripe";
-import { buffer } from "micro";
 import prisma from "@/lib/prisma";
+import { buffer } from "micro";
+import type { NextApiRequest, NextApiResponse } from "next";
+import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-12-18.acacia" as const,
@@ -22,7 +22,11 @@ export default async function handler(
   }
 
   const buf = await buffer(req);
-  const sig = req.headers["stripe-signature"]!;
+  const sig = req.headers["stripe-signature"];
+
+  if (typeof sig !== "string") {
+    return res.status(400).json({ message: "Invalid stripe signature" });
+  }
 
   let event: Stripe.Event;
 
@@ -48,30 +52,21 @@ export default async function handler(
       case "account.external_account.deleted":
       case "account.external_account.updated":
       case "account.updated":
-        await handleAccountEvent(
-          event.type,
-          event.data.object as Stripe.Account
-        );
+        await handleAccountEvent(event.type);
         break;
 
       // Customer events
       case "customer.created":
       case "customer.deleted":
       case "customer.updated":
-        await handleCustomerEvent(
-          event.type,
-          event.data.object as Stripe.Customer
-        );
+        await handleCustomerEvent(event.type);
         break;
 
       // Customer discount events
       case "customer.discount.created":
       case "customer.discount.deleted":
       case "customer.discount.updated":
-        await handleCustomerDiscountEvent(
-          event.type,
-          event.data.object as Stripe.Discount
-        );
+        await handleCustomerDiscountEvent(event.type);
         break;
 
       // Customer source events
@@ -79,10 +74,7 @@ export default async function handler(
       case "customer.source.deleted":
       case "customer.source.expiring":
       case "customer.source.updated":
-        await handleCustomerSourceEvent(
-          event.type,
-          event.data.object as Stripe.Source
-        );
+        await handleCustomerSourceEvent(event.type);
         break;
 
       // Customer subscription events
@@ -104,10 +96,7 @@ export default async function handler(
       case "customer.tax_id.created":
       case "customer.tax_id.deleted":
       case "customer.tax_id.updated":
-        await handleCustomerTaxIdEvent(
-          event.type,
-          event.data.object as Stripe.TaxId
-        );
+        await handleCustomerTaxIdEvent(event.type);
         break;
 
       // Invoice events
@@ -120,10 +109,7 @@ export default async function handler(
       case "invoice.paid":
       case "invoice.payment_action_required":
       case "invoice.payment_failed":
-        await handleInvoiceEvent(
-          event.type,
-          event.data.object as Stripe.Invoice
-        );
+        await handleInvoiceEvent(event.type);
         break;
 
       default:
@@ -137,31 +123,22 @@ export default async function handler(
   }
 }
 
-async function handleAccountEvent(eventType: string, account: Stripe.Account) {
+async function handleAccountEvent(eventType: string) {
   console.log(`Account event: ${eventType}`);
   // Implement logic to handle account events
 }
 
-async function handleCustomerEvent(
-  eventType: string,
-  customer: Stripe.Customer
-) {
+async function handleCustomerEvent(eventType: string) {
   console.log(`Customer event: ${eventType}`);
   // Implement logic to handle customer events
 }
 
-async function handleCustomerDiscountEvent(
-  eventType: string,
-  discount: Stripe.Discount
-) {
+async function handleCustomerDiscountEvent(eventType: string) {
   console.log(`Customer discount event: ${eventType}`);
   // Implement logic to handle customer discount events
 }
 
-async function handleCustomerSourceEvent(
-  eventType: string,
-  source: Stripe.Source
-) {
+async function handleCustomerSourceEvent(eventType: string) {
   console.log(`Customer source event: ${eventType}`);
   // Implement logic to handle customer source events
 }
@@ -171,10 +148,18 @@ async function handleCustomerSubscriptionEvent(
   subscription: Stripe.Subscription
 ) {
   console.log(`Customer subscription event: ${eventType}`);
-  const customerId = subscription.customer as string;
+  const customerId =
+    typeof subscription.customer === "string"
+      ? subscription.customer
+      : subscription.customer.id;
   const subscriptionId = subscription.id;
   const status = subscription.status;
-  const planId = subscription.items.data[0].price.id;
+  const planId = subscription.items.data[0]?.price?.id;
+
+  if (!planId) {
+    console.error("No plan ID found in subscription");
+    return;
+  }
 
   try {
     await prisma.customer.update({
@@ -192,15 +177,12 @@ async function handleCustomerSubscriptionEvent(
   }
 }
 
-async function handleCustomerTaxIdEvent(
-  eventType: string,
-  taxId: Stripe.TaxId
-) {
+async function handleCustomerTaxIdEvent(eventType: string) {
   console.log(`Customer tax ID event: ${eventType}`);
   // Implement logic to handle customer tax ID events
 }
 
-async function handleInvoiceEvent(eventType: string, invoice: Stripe.Invoice) {
+async function handleInvoiceEvent(eventType: string) {
   console.log(`Invoice event: ${eventType}`);
   // Implement logic to handle invoice events
 }

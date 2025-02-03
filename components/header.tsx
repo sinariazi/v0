@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/lib/auth-context";
+import type { Language } from "@/lib/language-context";
 import { useLanguage } from "@/lib/language-context";
 import { LogIn, LogOut, Menu, Moon, Sun, User, X } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -15,6 +16,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import SignInModal from "./SignInModal";
+
+type NavLink = {
+  href: string;
+  label: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+};
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,7 +77,7 @@ export default function Header() {
     }
   };
 
-  const navLinks = user
+  const navLinks: NavLink[] = user
     ? []
     : [
         { href: "/", label: t("header.home") },
@@ -86,7 +93,7 @@ export default function Header() {
         },
       ];
 
-  const languageOptions = {
+  const languageOptions: Record<Language, string> = {
     en: "English",
     de: "Deutsch",
     es: "Español",
@@ -131,7 +138,7 @@ export default function Header() {
               {Object.entries(languageOptions).map(([langCode, langName]) => (
                 <DropdownMenuItem
                   key={langCode}
-                  onClick={() => setLanguage(langCode as any)}
+                  onClick={() => setLanguage(langCode as Language)}
                 >
                   {langName}
                 </DropdownMenuItem>

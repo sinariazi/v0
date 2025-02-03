@@ -1,9 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/language-context";
+import { cn } from "@/lib/utils";
 import {
   BarChart,
   ClipboardList,
@@ -17,7 +16,6 @@ import { usePathname, useRouter } from "next/navigation";
 export function AdminSideMenu() {
   const pathname = usePathname();
   const router = useRouter();
-  const { toast } = useToast();
   const { t } = useLanguage();
 
   const sidebarNavItems = [

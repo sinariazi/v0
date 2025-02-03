@@ -240,16 +240,21 @@
       "title": "Éxito",
       "description": "Encuesta enviada con éxito"
     },
-    "errors": {
+    "error": {
       "title": "Error",
       "description": "Error al enviar la encuesta. Por favor, intenta de nuevo.",
-      "failedToken": "Error al obtener el token de autenticación",
-      "submitFailed": "Error al enviar la encuesta",
-      "submitError": "Error al enviar la encuesta:"
-    }
+      "fetchError": "Error al obtener los resultados de la encuesta. Por favor, inténtalo de nuevo más tarde."
+    },
+    "noResults": "No hay resultados de encuestas disponibles.",
+    "surveyFrom": "Encuesta del {{date}}",
+    "organization": "Organización"
   },
   "surveyResults": {
+    "title": "Resultados de la encuesta",
+    "noResults": "No hay resultados de encuestas disponibles.",
     "surveyFrom": "Encuesta del {{date}}",
+    "organization": "Organización",
+    "error": "Error al obtener los resultados de la encuesta. Por favor, inténtelo de nuevo más tarde.",
     "answer": "Respuesta: {{score}}/5",
     "additionalFeedback": "Comentarios adicionales:"
   },
@@ -279,7 +284,12 @@
     },
     "surveys": {
       "title": "Encuestas",
-      "description": "Cree y administre encuestas de empleados"
+      "description": "Cree y administre encuestas de empleados",
+      "createNew": "Crear nueva encuesta",
+      "emailSent": "Nueva encuesta generada y correo electrónico enviado a los empleados.",
+      "generateNew": "Generar nueva encuesta",
+      "fetchError": "Error al obtener las encuestas",
+      "fetchErrorDetails": "Error al obtener las encuestas:"
     },
     "insights": {
       "title": "Insights",
@@ -299,7 +309,11 @@
     },
     "userArea": {
       "title": "Área de Usuario",
-      "description": "Acceda al panel de control del usuario"
+      "description": "Acceda al panel de control del usuario",
+      "recentActivity": "Actividad Reciente",
+      "recentActivityDescription": "Ver sus encuestas recientes y actividades de participación.",
+      "upcomingSurveys": "Próximas Encuestas",
+      "upcomingSurveysDescription": "Consulte las próximas encuestas programadas para usted."
     },
     "goTo": "Ir a "
   },
@@ -348,5 +362,43 @@
       "objectId": "ID de objeto",
       "status": "Estado"
     }
+  },
+  "subscriptionSuccess": {
+    "loading": "Cargando...",
+    "error": {
+      "title": "Error",
+      "description": "Hubo un problema al verificar tu suscripción",
+      "returnButton": "Volver a la página de suscripción"
+    },
+    "success": {
+      "title": "¡Suscripción exitosa!",
+      "description": "Gracias por suscribirte a Mood Whisper",
+      "activePlan": "Tu suscripción al plan {{plan}} está ahora activa.",
+      "nextBillingDate": "Próxima fecha de facturación: {{date}}",
+      "dashboardButton": "Ir al Panel de Control"
+    }
+  },
+  "startFreeTrialPage": {
+    "title": "Comienza tu prueba gratuita",
+    "description": "Completa el siguiente formulario para comenzar",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "gender": "Género",
+    "selectGender": "Seleccionar género",
+    "email": "Correo electrónico",
+    "companyName": "Nombre de la empresa",
+    "companyPhoneNumber": "Número de teléfono de la empresa",
+    "companyIndustry": "Industria de la empresa",
+    "selectIndustry": "Seleccionar industria",
+    "companySize": "Tamaño de la empresa",
+    "selectCompanySize": "Seleccionar tamaño de la empresa",
+    "country": "País",
+    "city": "Ciudad",
+    "street": "Calle",
+    "startFreeTrial": "Comenzar prueba gratuita",
+    "creating": "Creando...",
+    "organizationCreatedSuccessfully": "Organización creada con éxito",
+    "organizationCreatedDescription": "Su cuenta de organización ha sido creada con la ID: {{organizationId}}. Ha sido asignado como administrador para esta organización.",
+    "goToDashboard": "Ir al panel"
   }
 }

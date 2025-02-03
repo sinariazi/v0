@@ -1,24 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
 import { DateRangeSelector } from "@/components/DateRangeSelector";
 import { EngagementOverTime } from "@/components/charts/EngagementOverTime";
 import { FactorComparison } from "@/components/charts/FactorComparison";
-import { TopFactors } from "@/components/charts/TopFactors";
 import { ResponseDistribution } from "@/components/charts/ResponseDistribution";
-import { useAuth } from "@/lib/auth-context";
+import { TopFactors } from "@/components/charts/TopFactors";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 export default function UserInsightsPage() {
   const [dateRange, setDateRange] = useState("30");
   const [shouldFetchData, setShouldFetchData] = useState(true);
-  const { getAuthToken } = useAuth();
 
   useEffect(() => {
     setShouldFetchData(true);
