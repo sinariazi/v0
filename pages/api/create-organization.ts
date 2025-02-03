@@ -28,7 +28,6 @@ export default async function handler(
     companySize,
     companyCountry,
     companyCity,
-    companyStreet,
     companyPhoneNumber,
     gender,
   } = req.body;
