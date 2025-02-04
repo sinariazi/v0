@@ -434,7 +434,7 @@
     "startFreeTrial": "Start Free Trial",
     "creating": "Creating...",
     "organizationCreatedSuccessfully": "Organization Created Successfully",
-    "organizationCreatedDescription": "Your organization account has been created with the ID: {{organizationId}}. You have been assigned as an admin for this organization.",
+    "organizationCreatedDescription": "Your organization account has been created with the ID: {{organizationId}}. You have been assigned as an admin for this organization. Your free trial will end on {{trialEndDate}}.",
     "goToDashboard": "Go to Dashboard",
     "confirmationTitle": "Organization Created Successfully",
     "buttonText": "Start Free Trial"

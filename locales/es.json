@@ -378,7 +378,7 @@
       "dashboardButton": "Ir al Panel de Control"
     }
   },
- "gender": {
+  "gender": {
     "male": "Masculino",
     "female": "Femenino",
     "other": "Otro"
@@ -434,9 +434,10 @@
     "startFreeTrial": "Iniciar prueba gratuita",
     "creating": "Creando...",
     "organizationCreatedSuccessfully": "Organización creada con éxito",
-    "organizationCreatedDescription": "Su cuenta de organización ha sido creada con el ID: {{organizationId}}. Se le ha asignado como administrador de esta organización.",
+    "organizationCreatedDescription": "Su cuenta de organización ha sido creada con el ID: {{organizationId}}. Se le ha asignado como administrador de esta organización. Su prueba gratuita finalizará el {{trialEndDate}}.",
     "goToDashboard": "Ir al panel de control",
     "confirmationTitle": "Organización creada con éxito",
     "buttonText": "Iniciar prueba gratuita"
   }
 }
+

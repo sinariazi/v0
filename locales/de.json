@@ -434,7 +434,7 @@
     "startFreeTrial": "Kostenlose Testversion starten",
     "creating": "Wird erstellt...",
     "organizationCreatedSuccessfully": "Organisation erfolgreich erstellt",
-    "organizationCreatedDescription": "Ihr Organisationskonto wurde mit der ID {{organizationId}} erstellt. Sie wurden als Administrator für diese Organisation zugewiesen.",
+    "organizationCreatedDescription": "Ihr Organisationskonto wurde mit der ID {{organizationId}} erstellt. Sie wurden als Administrator für diese Organisation zugewiesen. Ihre kostenlose Testversion endet am {{trialEndDate}}.",
     "goToDashboard": "Zum Dashboard",
     "confirmationTitle": "Organisation erfolgreich erstellt",
     "buttonText": "Kostenlose Testversion starten"

@@ -55,19 +55,20 @@ model User {
 }
 
 model Organization {
-  id                    String    @id @default(uuid())
-  name                  String
-  industry              String
-  size                  String
-  country               String
-  city                  String
-  email                 String
-  phoneNumber           String?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
-  users                 User[]
-  customer              Customer?
-  surveys               Survey[]
+  id                      String    @id @default(uuid())
+  name                    String
+  industry                String
+  size                    String
+  country                 String
+  city                    String
+  email                   String
+  phoneNumber             String?
+  trialEndDate            DateTime  // New field added
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  users                   User[]
+  customer                Customer?
+  surveys                 Survey[]
   averageEngagementScores AverageEngagementScore[]
 }
 
@@ -130,5 +131,6 @@ model Customer {
   updatedAt           DateTime     @updatedAt
   user                User?        @relation(fields: [userId], references: [id])
   organization        Organization? @relation(fields: [organizationId], references: [id])
+  trialStatus         String?
 }
 

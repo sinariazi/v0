@@ -26,6 +26,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useLanguage } from "@/lib/language-context";
+import { addMonths, format } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -79,6 +80,7 @@ export default function StartFreeTrialPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [organizationId, setOrganizationId] = useState("");
+  const [trialEndDate, setTrialEndDate] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -86,6 +88,7 @@ export default function StartFreeTrialPage() {
     setIsSubmitting(true);
 
     try {
+      const trialEndDate = addMonths(new Date(), 3);
       const response = await fetch("/api/create-organization", {
         method: "POST",
         headers: {
@@ -102,12 +105,14 @@ export default function StartFreeTrialPage() {
           companyCity: companyCity.toLowerCase(),
           companyPhoneNumber,
           gender,
+          trialEndDate: trialEndDate.toISOString(),
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
         setOrganizationId(data.organizationId);
+        setTrialEndDate(format(trialEndDate, "MMMM d, yyyy"));
         setShowConfirmation(true);
       } else {
         throw new Error("Failed to create organization");
@@ -295,8 +300,7 @@ export default function StartFreeTrialPage() {
               {t("startFreeTrialPage.confirmationTitle")}
             </DialogTitle>
             <DialogDescription>
-              {t("startFreeTrialPage.organizationCreatedDescription") +
-                { organizationId }}
+              {t(`startFreeTrialPage.organizationCreatedDescription ${organizationId} ${trialEndDate}`)}
             </DialogDescription>
           </DialogHeader>
           <Button onClick={handleConfirmationClose}>

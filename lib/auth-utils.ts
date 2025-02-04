@@ -40,3 +40,26 @@ export async function getCurrentUserServer(): Promise<
     return null;
   }
 }
+
+export async function checkTrialStatus(): Promise<{
+  trialStatus: string;
+  trialEndDate: Date | null;
+}> {
+  try {
+    const response = await fetch("/api/check-trial-status");
+    if (!response.ok) {
+      throw new Error("Failed to check trial status");
+    }
+    const data = await response.json();
+    return {
+      trialStatus: data.trialStatus,
+      trialEndDate: data.trialEndDate ? new Date(data.trialEndDate) : null,
+    };
+  } catch (error) {
+    console.error(
+      "Error checking trial status:",
+      error instanceof Error ? error.message : "Unknown error"
+    );
+    return { trialStatus: "ERROR", trialEndDate: null };
+  }
+}

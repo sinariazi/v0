@@ -434,7 +434,7 @@
     "startFreeTrial": "Inizia la prova gratuita",
     "creating": "Creazione in corso...",
     "organizationCreatedSuccessfully": "Organizzazione creata con successo",
-    "organizationCreatedDescription": "Il tuo account organizzazione è stato creato con l'ID: {{organizationId}}. Sei stato assegnato come amministratore per questa organizzazione.",
+    "organizationCreatedDescription": "Il tuo account organizzazione è stato creato con l'ID: {{organizationId}}. Sei stato assegnato come amministratore per questa organizzazione. La tua prova gratuita terminerà il {{trialEndDate}}.",
     "goToDashboard": "Vai alla dashboard",
     "confirmationTitle": "Organizzazione creata con successo",
     "buttonText": "Inizia la prova gratuita"
