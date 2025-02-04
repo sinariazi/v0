@@ -247,8 +247,7 @@
     },
     "noResults": "No survey results available.",
     "surveyFrom": "Survey from {{date}}",
-    "organization": "Organization",
-    "additionalFeedback": "Additional Feedback:"
+    "organization": "Organization"
   },
   "surveyResults": {
     "title": "Survey Results",
@@ -378,5 +377,28 @@
       "nextBillingDate": "Next billing date: {{date}}",
       "dashboardButton": "Go to Dashboard"
     }
+  },
+  "startFreeTrialPage": {
+    "title": "Start Your Free Trial",
+    "description": "Fill out the form below to get started",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "gender": "Gender",
+    "selectGender": "Select gender",
+    "email": "Email",
+    "companyName": "Company Name",
+    "companyPhoneNumber": "Company Phone Number",
+    "companyIndustry": "Company Industry",
+    "selectIndustry": "Select industry",
+    "companySize": "Company Size",
+    "selectCompanySize": "Select company size",
+    "country": "Country",
+    "city": "City",
+    "street": "Street",
+    "startFreeTrial": "Start Free Trial",
+    "creating": "Creating...",
+    "organizationCreatedSuccessfully": "Organization Created Successfully",
+    "organizationCreatedDescription": "Your organization account has been created with the ID: {{organizationId}}. You have been assigned as an admin for this organization.",
+    "goToDashboard": "Go to Dashboard"
   }
 }

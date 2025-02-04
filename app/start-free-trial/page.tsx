@@ -25,6 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useLanguage } from "@/lib/language-context"; // Add this import
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -64,6 +65,7 @@ const capitalizeWords = (str: string) => {
 };
 
 export default function StartFreeTrialPage() {
+  const { t } = useLanguage(); // Add this line to use the translation function
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -112,7 +114,7 @@ export default function StartFreeTrialPage() {
       }
     } catch (error) {
       console.error("Error creating organization:", error);
-      alert("Failed to create organization. Please try again.");
+      alert(t("errors.failedToCreateOrganization"));
     } finally {
       setIsSubmitting(false);
     }
@@ -127,16 +129,14 @@ export default function StartFreeTrialPage() {
     <div className="container mx-auto py-10">
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle>Start Your Free Trial</CardTitle>
-          <CardDescription>
-            Fill out the form below to get started
-          </CardDescription>
+          <CardTitle>{t("startFreeTrial.title")}</CardTitle>
+          <CardDescription>{t("startFreeTrial.description")}</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">First Name</Label>
+                <Label htmlFor="firstName">{t("forms.firstName")}</Label>
                 <Input
                   id="firstName"
                   value={firstName}
@@ -145,7 +145,7 @@ export default function StartFreeTrialPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">Last Name</Label>
+                <Label htmlFor="lastName">{t("forms.lastName")}</Label>
                 <Input
                   id="lastName"
                   value={lastName}
@@ -155,20 +155,20 @@ export default function StartFreeTrialPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="gender">Gender</Label>
+              <Label htmlFor="gender">{t("forms.gender")}</Label>
               <Select value={gender} onValueChange={setGender} required>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select gender" />
+                  <SelectValue placeholder={t("forms.selectGender")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="MALE">Male</SelectItem>
-                  <SelectItem value="FEMALE">Female</SelectItem>
-                  <SelectItem value="OTHER">Other</SelectItem>
+                  <SelectItem value="MALE">{t("gender.male")}</SelectItem>
+                  <SelectItem value="FEMALE">{t("gender.female")}</SelectItem>
+                  <SelectItem value="OTHER">{t("gender.other")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t("forms.email")}</Label>
               <Input
                 id="email"
                 type="email"
@@ -178,7 +178,7 @@ export default function StartFreeTrialPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companyName">Company Name</Label>
+              <Label htmlFor="companyName">{t("forms.companyName")}</Label>
               <Input
                 id="companyName"
                 value={companyName}
@@ -187,7 +187,9 @@ export default function StartFreeTrialPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companyPhoneNumber">Company Phone Number</Label>
+              <Label htmlFor="companyPhoneNumber">
+                {t("forms.companyPhoneNumber")}
+              </Label>
               <Input
                 id="companyPhoneNumber"
                 type="tel"
@@ -196,45 +198,47 @@ export default function StartFreeTrialPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companyIndustry">Company Industry</Label>
+              <Label htmlFor="companyIndustry">
+                {t("forms.companyIndustry")}
+              </Label>
               <Select
                 value={companyIndustry}
                 onValueChange={setCompanyIndustry}
                 required
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select industry" />
+                  <SelectValue placeholder={t("forms.selectIndustry")} />
                 </SelectTrigger>
                 <SelectContent>
                   {industries.map((industry) => (
                     <SelectItem key={industry} value={industry}>
-                      {industry}
+                      {t(`industries.${industry.toLowerCase()}`)}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companySize">Company Size</Label>
+              <Label htmlFor="companySize">{t("forms.companySize")}</Label>
               <Select
                 value={companySize}
                 onValueChange={setCompanySize}
                 required
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select company size" />
+                  <SelectValue placeholder={t("forms.selectCompanySize")} />
                 </SelectTrigger>
                 <SelectContent>
                   {companySizes.map((size) => (
                     <SelectItem key={size} value={size}>
-                      {size}
+                      {t(`companySizes.${size.replace("+", "Plus")}`)}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companyCountry">Country</Label>
+              <Label htmlFor="companyCountry">{t("forms.country")}</Label>
               <Input
                 id="companyCountry"
                 value={capitalizeWords(companyCountry)}
@@ -245,7 +249,7 @@ export default function StartFreeTrialPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companyCity">City</Label>
+              <Label htmlFor="companyCity">{t("forms.city")}</Label>
               <Input
                 id="companyCity"
                 value={capitalizeWords(companyCity)}
@@ -256,7 +260,9 @@ export default function StartFreeTrialPage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Creating..." : "Start Free Trial"}
+              {isSubmitting
+                ? t("forms.creating")
+                : t("startFreeTrial.buttonText")}
             </Button>
           </CardFooter>
         </form>
@@ -265,14 +271,14 @@ export default function StartFreeTrialPage() {
       <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Organization Created Successfully</DialogTitle>
+            <DialogTitle>{t("startFreeTrial.confirmationTitle")}</DialogTitle>
             <DialogDescription>
-              Your organization account has been created with the ID:{" "}
-              {organizationId}. You have been assigned as an admin for this
-              organization.
+              {t(`startFreeTrial.confirmationDescription ${organizationId}`)}
             </DialogDescription>
           </DialogHeader>
-          <Button onClick={handleConfirmationClose}>Go to Dashboard</Button>
+          <Button onClick={handleConfirmationClose}>
+            {t("startFreeTrial.goToDashboard")}
+          </Button>
         </DialogContent>
       </Dialog>
     </div>
