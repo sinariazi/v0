@@ -1,5 +1,7 @@
 export type UserRole = "EMPLOYEE" | "MANAGER" | "ADMIN";
+
 export type Gender = "MALE" | "FEMALE" | "OTHER";
+
 export type UserStatus =
   | "UNCONFIRMED"
   | "CONFIRMED"
@@ -22,4 +24,19 @@ export interface User {
   gender: Gender;
   organizationId: string;
   team: string | null;
+  createdAt: Date;
+}
+
+export interface Organization {
+  id: string;
+  name: string;
+  industry: string;
+  size: string;
+  country: string;
+  city: string;
+  email: string;
+  phoneNumber: string | null;
+  trialEndDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
