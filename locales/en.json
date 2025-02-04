@@ -378,6 +378,43 @@
       "dashboardButton": "Go to Dashboard"
     }
   },
+  "gender": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  },
+  "industries": {
+    "technology": "Technology",
+    "healthcare": "Healthcare",
+    "finance": "Finance",
+    "education": "Education",
+    "retail": "Retail",
+    "manufacturing": "Manufacturing",
+    "construction": "Construction",
+    "agriculture": "Agriculture",
+    "entertainment": "Entertainment",
+    "hospitality": "Hospitality",
+    "transportation": "Transportation",
+    "energy": "Energy",
+    "real_estate": "Real Estate",
+    "media": "Media",
+    "telecommunications": "Telecommunications",
+    "consulting": "Consulting",
+    "non_profit": "Non-profit",
+    "other": "Other"
+  },
+  "companySizes": {
+    "1-10": "1-10",
+    "11-50": "11-50",
+    "51-200": "51-200",
+    "201-500": "201-500",
+    "501-1000": "501-1000",
+    "1001-5000": "1001-5000",
+    "5000Plus": "5000+"
+  },
+  "errors": {
+    "failedToCreateOrganization": "Failed to create organization. Please try again."
+  },
   "startFreeTrialPage": {
     "title": "Start Your Free Trial",
     "description": "Fill out the form below to get started",
@@ -394,11 +431,12 @@
     "selectCompanySize": "Select company size",
     "country": "Country",
     "city": "City",
-    "street": "Street",
     "startFreeTrial": "Start Free Trial",
     "creating": "Creating...",
     "organizationCreatedSuccessfully": "Organization Created Successfully",
     "organizationCreatedDescription": "Your organization account has been created with the ID: {{organizationId}}. You have been assigned as an admin for this organization.",
-    "goToDashboard": "Go to Dashboard"
+    "goToDashboard": "Go to Dashboard",
+    "confirmationTitle": "Organization Created Successfully",
+    "buttonText": "Start Free Trial"
   }
 }

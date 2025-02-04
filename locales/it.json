@@ -378,6 +378,43 @@
       "dashboardButton": "Vai alla Dashboard"
     }
   },
+  "gender": {
+    "male": "Maschio",
+    "female": "Femmina",
+    "other": "Altro"
+  },
+  "industries": {
+    "technology": "Tecnologia",
+    "healthcare": "Sanità",
+    "finance": "Finanza",
+    "education": "Istruzione",
+    "retail": "Vendita al dettaglio",
+    "manufacturing": "Produzione",
+    "construction": "Costruzioni",
+    "agriculture": "Agricoltura",
+    "entertainment": "Intrattenimento",
+    "hospitality": "Ospitalità",
+    "transportation": "Trasporti",
+    "energy": "Energia",
+    "real_estate": "Immobiliare",
+    "media": "Media",
+    "telecommunications": "Telecomunicazioni",
+    "consulting": "Consulenza",
+    "non_profit": "Organizzazione non profit",
+    "other": "Altro"
+  },
+  "companySizes": {
+    "1-10": "1-10",
+    "11-50": "11-50",
+    "51-200": "51-200",
+    "201-500": "201-500",
+    "501-1000": "501-1000",
+    "1001-5000": "1001-5000",
+    "5000Plus": "Più di 5000"
+  },
+  "errors": {
+    "failedToCreateOrganization": "Impossibile creare l'organizzazione. Si prega di riprovare."
+  },
   "startFreeTrialPage": {
     "title": "Inizia la tua prova gratuita",
     "description": "Compila il modulo sottostante per iniziare",
@@ -388,17 +425,18 @@
     "email": "Email",
     "companyName": "Nome dell'azienda",
     "companyPhoneNumber": "Numero di telefono dell'azienda",
-    "companyIndustry": "Settore dell'azienda",
+    "companyIndustry": "Settore",
     "selectIndustry": "Seleziona settore",
     "companySize": "Dimensione dell'azienda",
     "selectCompanySize": "Seleziona dimensione dell'azienda",
     "country": "Paese",
     "city": "Città",
-    "street": "Via",
     "startFreeTrial": "Inizia la prova gratuita",
     "creating": "Creazione in corso...",
     "organizationCreatedSuccessfully": "Organizzazione creata con successo",
-    "organizationCreatedDescription": "Il tuo account organizzazione è stato creato con ID: {{organizationId}}. Sei stato assegnato come amministratore per questa organizzazione.",
-    "goToDashboard": "Vai alla dashboard"
+    "organizationCreatedDescription": "Il tuo account organizzazione è stato creato con l'ID: {{organizationId}}. Sei stato assegnato come amministratore per questa organizzazione.",
+    "goToDashboard": "Vai alla dashboard",
+    "confirmationTitle": "Organizzazione creata con successo",
+    "buttonText": "Inizia la prova gratuita"
   }
 }

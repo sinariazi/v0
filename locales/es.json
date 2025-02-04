@@ -378,9 +378,46 @@
       "dashboardButton": "Ir al Panel de Control"
     }
   },
+ "gender": {
+    "male": "Masculino",
+    "female": "Femenino",
+    "other": "Otro"
+  },
+  "industries": {
+    "technology": "Tecnología",
+    "healthcare": "Salud",
+    "finance": "Finanzas",
+    "education": "Educación",
+    "retail": "Comercio minorista",
+    "manufacturing": "Fabricación",
+    "construction": "Construcción",
+    "agriculture": "Agricultura",
+    "entertainment": "Entretenimiento",
+    "hospitality": "Hostelería",
+    "transportation": "Transporte",
+    "energy": "Energía",
+    "real_estate": "Bienes raíces",
+    "media": "Medios de comunicación",
+    "telecommunications": "Telecomunicaciones",
+    "consulting": "Consultoría",
+    "non_profit": "Organización sin fines de lucro",
+    "other": "Otro"
+  },
+  "companySizes": {
+    "1-10": "1-10",
+    "11-50": "11-50",
+    "51-200": "51-200",
+    "201-500": "201-500",
+    "501-1000": "501-1000",
+    "1001-5000": "1001-5000",
+    "5000Plus": "Más de 5000"
+  },
+  "errors": {
+    "failedToCreateOrganization": "Error al crear la organización. Por favor, inténtelo de nuevo."
+  },
   "startFreeTrialPage": {
-    "title": "Comienza tu prueba gratuita",
-    "description": "Completa el siguiente formulario para comenzar",
+    "title": "Comience su prueba gratuita",
+    "description": "Complete el formulario a continuación para comenzar",
     "firstName": "Nombre",
     "lastName": "Apellido",
     "gender": "Género",
@@ -388,17 +425,18 @@
     "email": "Correo electrónico",
     "companyName": "Nombre de la empresa",
     "companyPhoneNumber": "Número de teléfono de la empresa",
-    "companyIndustry": "Industria de la empresa",
+    "companyIndustry": "Industria",
     "selectIndustry": "Seleccionar industria",
     "companySize": "Tamaño de la empresa",
     "selectCompanySize": "Seleccionar tamaño de la empresa",
     "country": "País",
     "city": "Ciudad",
-    "street": "Calle",
-    "startFreeTrial": "Comenzar prueba gratuita",
+    "startFreeTrial": "Iniciar prueba gratuita",
     "creating": "Creando...",
     "organizationCreatedSuccessfully": "Organización creada con éxito",
-    "organizationCreatedDescription": "Su cuenta de organización ha sido creada con la ID: {{organizationId}}. Ha sido asignado como administrador para esta organización.",
-    "goToDashboard": "Ir al panel"
+    "organizationCreatedDescription": "Su cuenta de organización ha sido creada con el ID: {{organizationId}}. Se le ha asignado como administrador de esta organización.",
+    "goToDashboard": "Ir al panel de control",
+    "confirmationTitle": "Organización creada con éxito",
+    "buttonText": "Iniciar prueba gratuita"
   }
 }
