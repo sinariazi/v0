@@ -1,10 +1,12 @@
+import { getCurrentUser } from "@/lib/auth-utils";
 import prisma from "@/lib/prisma";
 import {
   AdminCreateUserCommand,
   CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
-import { NextApiRequest, NextApiResponse } from "next";
+import { addMonths } from "date-fns";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const cognitoClient = new CognitoIdentityProviderClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -17,6 +19,11 @@ export default async function handler(
 ) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
+  }
+
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    return res.status(401).json({ message: "Unauthorized" });
   }
 
   const {
@@ -38,6 +45,9 @@ export default async function handler(
       .replace(/\s+/g, "-")
       .toLowerCase()}-${Math.random().toString(36).substr(2, 6)}`;
 
+    // Calculate trialEndDate (3 months from now)
+    const trialEndDate = addMonths(new Date(), 3);
+
     // Create organization
     const organization = await prisma.organization.create({
       data: {
@@ -49,6 +59,7 @@ export default async function handler(
         city: companyCity.toLowerCase(),
         email: email,
         phoneNumber: companyPhoneNumber,
+        trialEndDate: trialEndDate,
       },
     });
 
@@ -103,7 +114,8 @@ export default async function handler(
         organizationId: organization.id,
         subscriptionStatus: "TRIAL",
         subscriptionPlan: "FREE_TRIAL",
-        trialEndDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+        trialEndDate: trialEndDate,
+        trialStatus: "ACTIVE",
       },
     });
 
@@ -113,6 +125,7 @@ export default async function handler(
       organizationId,
       userId: user.id,
       customerId: customer.id,
+      trialEndDate: trialEndDate,
     });
   } catch (error) {
     console.error("Error creating organization, user, and customer:", error);

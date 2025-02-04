@@ -378,8 +378,45 @@
       "dashboardButton": "Zum Dashboard"
     }
   },
+  "gender": {
+    "male": "Männlich",
+    "female": "Weiblich",
+    "other": "Divers"
+  },
+  "industries": {
+    "technology": "Technologie",
+    "healthcare": "Gesundheitswesen",
+    "finance": "Finanzen",
+    "education": "Bildung",
+    "retail": "Einzelhandel",
+    "manufacturing": "Produktion",
+    "construction": "Baugewerbe",
+    "agriculture": "Landwirtschaft",
+    "entertainment": "Unterhaltung",
+    "hospitality": "Gastgewerbe",
+    "transportation": "Transport",
+    "energy": "Energie",
+    "real_estate": "Immobilien",
+    "media": "Medien",
+    "telecommunications": "Telekommunikation",
+    "consulting": "Beratung",
+    "non_profit": "Gemeinnützige Organisation",
+    "other": "Andere"
+  },
+  "companySizes": {
+    "1-10": "1-10",
+    "11-50": "11-50",
+    "51-200": "51-200",
+    "201-500": "201-500",
+    "501-1000": "501-1000",
+    "1001-5000": "1001-5000",
+    "5000Plus": "Über 5000"
+  },
+  "errors": {
+    "failedToCreateOrganization": "Fehler beim Erstellen der Organisation. Bitte versuchen Sie es erneut."
+  },
   "startFreeTrialPage": {
-    "title": "Kostenlose Testversion starten",
+    "title": "Starten Sie Ihre kostenlose Testversion",
     "description": "Füllen Sie das untenstehende Formular aus, um zu beginnen",
     "firstName": "Vorname",
     "lastName": "Nachname",
@@ -387,18 +424,19 @@
     "selectGender": "Geschlecht auswählen",
     "email": "E-Mail",
     "companyName": "Firmenname",
-    "companyPhoneNumber": "Telefonnummer der Firma",
+    "companyPhoneNumber": "Telefonnummer des Unternehmens",
     "companyIndustry": "Branche",
     "selectIndustry": "Branche auswählen",
-    "companySize": "Firmengröße",
-    "selectCompanySize": "Firmengröße auswählen",
+    "companySize": "Unternehmensgröße",
+    "selectCompanySize": "Unternehmensgröße auswählen",
     "country": "Land",
     "city": "Stadt",
-    "street": "Straße",
     "startFreeTrial": "Kostenlose Testversion starten",
-    "creating": "Erstellen...",
+    "creating": "Wird erstellt...",
     "organizationCreatedSuccessfully": "Organisation erfolgreich erstellt",
-    "organizationCreatedDescription": "Ihr Organisationskonto wurde mit der ID: {{organizationId}} erstellt. Sie wurden als Administrator für diese Organisation zugewiesen.",
-    "goToDashboard": "Zum Dashboard gehen"
+    "organizationCreatedDescription": "Ihr Organisationskonto wurde mit der ID {{organizationId}} erstellt. Sie wurden als Administrator für diese Organisation zugewiesen. Ihre kostenlose Testversion endet am {{trialEndDate}}.",
+    "goToDashboard": "Zum Dashboard",
+    "confirmationTitle": "Organisation erfolgreich erstellt",
+    "buttonText": "Kostenlose Testversion starten"
   }
 }

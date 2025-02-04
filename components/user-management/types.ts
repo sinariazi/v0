@@ -22,6 +22,7 @@ export interface User {
   gender: Gender;
   organizationId: string;
   team: string | null;
+  createdAt: Date;
 }
 
 export type State = {
