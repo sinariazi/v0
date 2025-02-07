@@ -1,5 +1,5 @@
+import { Gender, UserRole } from "@/components/user-management/types";
 import prisma from "@/lib/prisma";
-import type { Gender, UserRole } from "@/types";
 import {
   AdminCreateUserCommand,
   AdminSetUserPasswordCommand,
