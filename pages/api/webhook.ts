@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-12-18.acacia" as const,
+  apiVersion: "2025-01-27.acacia" as const,
 });
 
 export const config = {

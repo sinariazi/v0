@@ -1,9 +1,10 @@
 import { getCurrentUser } from "@/lib/auth-utils";
-import { NextApiRequest, NextApiResponse } from "next";
+import prisma from "@/lib/prisma";
+import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-12-18.acacia" as const,
+  apiVersion: "2025-01-27.acacia" as const,
 });
 
 export default async function handler(
@@ -20,7 +21,17 @@ export default async function handler(
       return res.status(401).json({ message: "Not authenticated" });
     }
 
-    // TODO: Check if the user has admin privileges
+    // Check if the user has admin privileges
+    const dbUser = await prisma.user.findUnique({
+      where: { cognitoSub: user.username },
+      select: { role: true },
+    });
+
+    if (!dbUser || dbUser.role !== "ADMIN") {
+      return res
+        .status(403)
+        .json({ message: "Forbidden: Admin access required" });
+    }
 
     const events = await stripe.events.list({
       limit: 20,
