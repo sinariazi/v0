@@ -16,9 +16,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useLanguage } from "@/lib/language-context";
-import type { Gender, User, UserRole } from "@/types";
 import { useContext, useMemo, useState } from "react";
 import { UserManagementContext } from "./UserManagementContext";
+import { Gender, User, UserRole } from "./types";
 
 export function UserTable() {
   const { state, dispatch, handleUpdateUser, handleRemoveUser } = useContext(
