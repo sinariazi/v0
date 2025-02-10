@@ -1,6 +1,7 @@
+// next.config.js
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   env: {
     DATABASE_URL: process.env.DATABASE_URL,
     NEXT_PUBLIC_AWS_REGION: process.env.NEXT_PUBLIC_AWS_REGION,
