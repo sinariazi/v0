@@ -56,7 +56,7 @@ export default function AddUserDialogClient({
         variant: "destructive",
       });
     }
-  }, [state.newUser, debouncedFetchUsers, toast, dispatch, t]); // Added dispatch to dependencies
+  }, [state.newUser, debouncedFetchUsers, toast, dispatch]);
 
   return (
     <Dialog

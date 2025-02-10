@@ -38,7 +38,7 @@ export default async function handler(
       });
       res.status(200).json(users);
     } catch (error) {
-      res.status(500).json({ message: "Error fetching users" });
+      res.status(500).json({ message: "Error fetching users", error });
     }
   } else if (req.method === "POST") {
     try {
