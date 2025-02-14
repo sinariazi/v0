@@ -169,10 +169,22 @@
     "title": "Preispläne",
     "perMonth": "/Monat",
     "getStarted": "Jetzt starten",
+    "startFreeTrial": "Kostenlose Testversion starten",
     "plans": {
+      "freeTrial": {
+        "name": "Kostenlose Testversion",
+        "price": "€0",
+        "description": "Testen Sie Mood Whisper kostenlos",
+        "features": {
+          "duration": "90-tägige Testversion",
+          "employees": "Bis zu 200 Mitarbeiter",
+          "basicFeatures": "Grundlegende Funktionen",
+          "emailSupport": "E-Mail-Support"
+        }
+      },
       "starter": {
         "name": "Starter",
-        "price": "99 €",
+        "price": "€99",
         "description": "Perfekt für kleine Teams, die gerade anfangen",
         "features": {
           "employees": "Bis zu 25 Mitarbeiter",
@@ -183,7 +195,7 @@
       },
       "pro": {
         "name": "Pro",
-        "price": "299 €",
+        "price": "€299",
         "description": "Ideal für wachsende Unternehmen mit fortgeschrittenen Bedürfnissen",
         "features": {
           "employees": "Bis zu 100 Mitarbeiter",
@@ -444,5 +456,22 @@
     "description": "Wir verwenden Cookies, um Ihr Browsererlebnis zu verbessern, personalisierte Anzeigen oder Inhalte bereitzustellen und unseren Verkehr zu analysieren. Durch Klicken auf \"Alle akzeptieren\" stimmen Sie der Verwendung von Cookies zu.",
     "rejectAll": "Alle ablehnen",
     "acceptAll": "Alle akzeptieren"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "getInTouch": "Kontakt aufnehmen",
+    "formDescription": "Füllen Sie das Formular aus, und wir melden uns so bald wie möglich bei Ihnen.",
+    "name": "Name",
+    "namePlaceholder": "Geben Sie Ihren Namen ein",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "message": "Nachricht",
+    "messagePlaceholder": "Geben Sie Ihre Nachricht ein",
+    "sendMessage": "Nachricht senden",
+    "contactInformation": "Kontaktinformationen",
+    "contactInfoDescription": "Sie können uns auch über die folgenden Informationen erreichen.",
+    "emailAddress": "support@moodwhisper.com",
+    "phoneNumber": "+43 (660) 729-8774",
+    "address": "Österreich, Wien"
   }
 }
