@@ -25,9 +25,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/language-context";
 import { addMonths, format } from "date-fns";
 import { useRouter } from "next/navigation";
+import type React from "react"; // Added import for React
 import { useState } from "react";
 
 const industries = [
@@ -67,6 +69,7 @@ const capitalizeWords = (str: string) => {
 
 export default function StartFreeTrialPage() {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -115,11 +118,16 @@ export default function StartFreeTrialPage() {
         setTrialEndDate(format(trialEndDate, "MMMM d, yyyy"));
         setShowConfirmation(true);
       } else {
-        throw new Error("Failed to create organization");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create organization");
       }
     } catch (error) {
       console.error("Error creating organization:", error);
-      alert(t("errors.failedToCreateOrganization"));
+      toast({
+        title: t("errors.failedToCreateOrganization"),
+        description: error instanceof Error ? error.message : String(error),
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -300,7 +308,9 @@ export default function StartFreeTrialPage() {
               {t("startFreeTrialPage.confirmationTitle")}
             </DialogTitle>
             <DialogDescription>
-              {t(`startFreeTrialPage.organizationCreatedDescription ${organizationId} ${trialEndDate}`)}
+              {t(
+                `startFreeTrialPage.organizationCreatedDescription ${organizationId} ${trialEndDate}`
+              )}
             </DialogDescription>
           </DialogHeader>
           <Button onClick={handleConfirmationClose}>

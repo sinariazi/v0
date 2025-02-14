@@ -438,5 +438,11 @@
     "goToDashboard": "Vai alla dashboard",
     "confirmationTitle": "Organizzazione creata con successo",
     "buttonText": "Inizia la prova gratuita"
+  },
+  "cookieConsent": {
+    "title": "Consenso sui Cookie",
+    "description": "Utilizziamo i cookie per migliorare la tua esperienza di navigazione, fornire annunci o contenuti personalizzati e analizzare il nostro traffico. Cliccando su \"Accetta tutto\", acconsenti all'uso dei cookie.",
+    "rejectAll": "Rifiuta tutto",
+    "acceptAll": "Accetta tutto"
   }
 }

@@ -438,6 +438,11 @@
     "goToDashboard": "Ir al panel de control",
     "confirmationTitle": "Organización creada con éxito",
     "buttonText": "Iniciar prueba gratuita"
+  },
+  "cookieConsent": {
+    "title": "Consentimiento de Cookies",
+    "description": "Utilizamos cookies para mejorar su experiencia de navegación, mostrar anuncios o contenido personalizado y analizar nuestro tráfico. Al hacer clic en \"Aceptar todo\", usted consiente el uso de cookies.",
+    "rejectAll": "Rechazar todo",
+    "acceptAll": "Aceptar todo"
   }
 }
-
