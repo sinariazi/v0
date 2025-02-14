@@ -169,10 +169,22 @@
     "title": "Preispläne",
     "perMonth": "/Monat",
     "getStarted": "Jetzt starten",
+    "startFreeTrial": "Kostenlose Testversion starten",
     "plans": {
+      "freeTrial": {
+        "name": "Kostenlose Testversion",
+        "price": "€0",
+        "description": "Testen Sie Mood Whisper kostenlos",
+        "features": {
+          "duration": "90-tägige Testversion",
+          "employees": "Bis zu 200 Mitarbeiter",
+          "basicFeatures": "Grundlegende Funktionen",
+          "emailSupport": "E-Mail-Support"
+        }
+      },
       "starter": {
         "name": "Starter",
-        "price": "99 €",
+        "price": "€99",
         "description": "Perfekt für kleine Teams, die gerade anfangen",
         "features": {
           "employees": "Bis zu 25 Mitarbeiter",
@@ -183,7 +195,7 @@
       },
       "pro": {
         "name": "Pro",
-        "price": "299 €",
+        "price": "€299",
         "description": "Ideal für wachsende Unternehmen mit fortgeschrittenen Bedürfnissen",
         "features": {
           "employees": "Bis zu 100 Mitarbeiter",

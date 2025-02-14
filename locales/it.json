@@ -169,7 +169,19 @@
     "title": "Piani tariffari",
     "perMonth": "/mese",
     "getStarted": "Inizia",
+    "startFreeTrial": "Inizia la prova gratuita",
     "plans": {
+      "freeTrial": {
+        "name": "Prova gratuita",
+        "price": "€0",
+        "description": "Prova Mood Whisper gratuitamente",
+        "features": {
+          "duration": "Prova di 90 giorni",
+          "employees": "Fino a 200 dipendenti",
+          "basicFeatures": "Funzionalità di base",
+          "emailSupport": "Supporto via email"
+        }
+      },
       "starter": {
         "name": "Starter",
         "price": "€99",

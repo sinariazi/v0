@@ -1,6 +1,5 @@
 "use client";
 
-import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,14 +10,26 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useLanguage } from "@/lib/language-context";
+import { Check } from "lucide-react";
 
 export default function Pricing() {
   const { t } = useLanguage();
 
   const plans = [
     {
+      name: t("pricing.plans.freeTrial.name"),
+      price: t("pricing.plans.freeTrial.price"),
+      description: t("pricing.plans.freeTrial.description"),
+      features: [
+        t("pricing.plans.freeTrial.features.duration"),
+        t("pricing.plans.freeTrial.features.employees"),
+        t("pricing.plans.freeTrial.features.basicFeatures"),
+        t("pricing.plans.freeTrial.features.emailSupport"),
+      ],
+    },
+    {
       name: t("pricing.plans.starter.name"),
-      price: "$99",
+      price: "€99",
       description: t("pricing.plans.starter.description"),
       features: [
         t("pricing.plans.starter.features.employees"),
@@ -29,7 +40,7 @@ export default function Pricing() {
     },
     {
       name: t("pricing.plans.pro.name"),
-      price: "$299",
+      price: "€299",
       description: t("pricing.plans.pro.description"),
       features: [
         t("pricing.plans.pro.features.employees"),
@@ -59,7 +70,7 @@ export default function Pricing() {
         <h2 className="text-3xl font-bold text-center mb-12">
           {t("pricing.title")}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {plans.map((plan, index) => (
             <Card key={index} className="flex flex-col">
               <CardHeader>
@@ -70,7 +81,8 @@ export default function Pricing() {
                 <p className="text-4xl font-bold mb-4">
                   {plan.price}
                   <span className="text-xl font-normal text-muted-foreground">
-                    {plan.price !== t("pricing.plans.enterprise.price")
+                    {plan.price !== t("pricing.plans.freeTrial.price") &&
+                    plan.price !== t("pricing.plans.enterprise.price")
                       ? t("pricing.perMonth")
                       : ""}
                   </span>
@@ -85,7 +97,11 @@ export default function Pricing() {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full">{t("pricing.getStarted")}</Button>
+                <Button className="w-full">
+                  {plan.name === t("pricing.plans.freeTrial.name")
+                    ? t("pricing.startFreeTrial")
+                    : t("pricing.getStarted")}
+                </Button>
               </CardFooter>
             </Card>
           ))}

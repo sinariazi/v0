@@ -169,10 +169,22 @@
     "title": "Pricing Plans",
     "perMonth": "/month",
     "getStarted": "Get Started",
+    "startFreeTrial": "Start Free Trial",
     "plans": {
+      "freeTrial": {
+        "name": "Free Trial",
+        "price": "€0",
+        "description": "Try Mood Whisper for free",
+        "features": {
+          "duration": "90-day trial",
+          "employees": "Up to 200 employees",
+          "basicFeatures": "Basic features",
+          "emailSupport": "Email support"
+        }
+      },
       "starter": {
         "name": "Starter",
-        "price": "$99",
+        "price": "€99",
         "description": "Perfect for small teams just getting started",
         "features": {
           "employees": "Up to 25 employees",
@@ -183,7 +195,7 @@
       },
       "pro": {
         "name": "Pro",
-        "price": "$299",
+        "price": "€299",
         "description": "Ideal for growing companies with advanced needs",
         "features": {
           "employees": "Up to 100 employees",
