@@ -1,7 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Card,
   CardContent,
@@ -10,66 +7,74 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useLanguage } from "@/lib/language-context";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="container mx-auto py-12">
-      <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">
+        {t("contact.title")}
+      </h1>
       <div className="grid md:grid-cols-2 gap-12">
         <Card>
           <CardHeader>
-            <CardTitle>Get in Touch</CardTitle>
-            <CardDescription>
-              Fill out the form and we&apos;ll get back to you as soon as
-              possible.
-            </CardDescription>
+            <CardTitle>{t("contact.getInTouch")}</CardTitle>
+            <CardDescription>{t("contact.formDescription")}</CardDescription>
           </CardHeader>
           <CardContent>
             <form>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Enter your name" />
+                  <Label htmlFor="name">{t("contact.name")}</Label>
+                  <Input id="name" placeholder={t("contact.namePlaceholder")} />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t("contact.email")}</Label>
                   <Input
                     id="email"
-                    placeholder="Enter your email"
+                    placeholder={t("contact.emailPlaceholder")}
                     type="email"
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Enter your message" />
+                  <Label htmlFor="message">{t("contact.message")}</Label>
+                  <Textarea
+                    id="message"
+                    placeholder={t("contact.messagePlaceholder")}
+                  />
                 </div>
               </div>
             </form>
           </CardContent>
           <CardFooter>
-            <Button className="w-full">Send Message</Button>
+            <Button className="w-full">{t("contact.sendMessage")}</Button>
           </CardFooter>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Contact Information</CardTitle>
+            <CardTitle>{t("contact.contactInformation")}</CardTitle>
             <CardDescription>
-              You can also reach us using the following information.
+              {t("contact.contactInfoDescription")}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center space-x-2">
               <Mail className="h-5 w-5 text-muted-foreground" />
-              <span>support@moodwhisper.com</span>
+              <span>{t("contact.emailAddress")}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Phone className="h-5 w-5 text-muted-foreground" />
-              <span>+1 (555) 123-4567</span>
+              <span>{t("contact.phoneNumber")}</span>
             </div>
             <div className="flex items-center space-x-2">
               <MapPin className="h-5 w-5 text-muted-foreground" />
-              <span>123 Engagement Street, San Francisco, CA 94105</span>
+              <span>{t("contact.address")}</span>
             </div>
           </CardContent>
         </Card>

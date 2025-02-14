@@ -456,5 +456,22 @@
     "description": "Utilizziamo i cookie per migliorare la tua esperienza di navigazione, fornire annunci o contenuti personalizzati e analizzare il nostro traffico. Cliccando su \"Accetta tutto\", acconsenti all'uso dei cookie.",
     "rejectAll": "Rifiuta tutto",
     "acceptAll": "Accetta tutto"
+  },
+  "contact": {
+    "title": "Contattaci",
+    "getInTouch": "Mettiti in contatto",
+    "formDescription": "Compila il modulo e ti risponderemo il prima possibile.",
+    "name": "Nome",
+    "namePlaceholder": "Inserisci il tuo nome",
+    "email": "Email",
+    "emailPlaceholder": "Inserisci la tua email",
+    "message": "Messaggio",
+    "messagePlaceholder": "Inserisci il tuo messaggio",
+    "sendMessage": "Invia messaggio",
+    "contactInformation": "Informazioni di contatto",
+    "contactInfoDescription": "Puoi anche raggiungerci utilizzando le seguenti informazioni.",
+    "emailAddress": "support@moodwhisper.com",
+    "phoneNumber": "+43 (660) 729-8774",
+    "address": "Austria, Vienna"
   }
 }

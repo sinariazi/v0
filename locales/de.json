@@ -456,5 +456,22 @@
     "description": "Wir verwenden Cookies, um Ihr Browsererlebnis zu verbessern, personalisierte Anzeigen oder Inhalte bereitzustellen und unseren Verkehr zu analysieren. Durch Klicken auf \"Alle akzeptieren\" stimmen Sie der Verwendung von Cookies zu.",
     "rejectAll": "Alle ablehnen",
     "acceptAll": "Alle akzeptieren"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "getInTouch": "Kontakt aufnehmen",
+    "formDescription": "Füllen Sie das Formular aus, und wir melden uns so bald wie möglich bei Ihnen.",
+    "name": "Name",
+    "namePlaceholder": "Geben Sie Ihren Namen ein",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "message": "Nachricht",
+    "messagePlaceholder": "Geben Sie Ihre Nachricht ein",
+    "sendMessage": "Nachricht senden",
+    "contactInformation": "Kontaktinformationen",
+    "contactInfoDescription": "Sie können uns auch über die folgenden Informationen erreichen.",
+    "emailAddress": "support@moodwhisper.com",
+    "phoneNumber": "+43 (660) 729-8774",
+    "address": "Österreich, Wien"
   }
 }
