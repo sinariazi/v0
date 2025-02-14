@@ -438,5 +438,11 @@
     "goToDashboard": "Go to Dashboard",
     "confirmationTitle": "Organization Created Successfully",
     "buttonText": "Start Free Trial"
+  },
+  "cookieConsent": {
+    "title": "Cookie Consent",
+    "description": "We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking \"Accept All\", you consent to our use of cookies.",
+    "rejectAll": "Reject All",
+    "acceptAll": "Accept All"
   }
 }

@@ -1,3 +1,4 @@
+import { hasCookieConsent } from "@/lib/cookieConsent";
 import prisma from "@/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -54,6 +55,14 @@ export default async function handler(
         surveyDate: new Date(surveyDate), // Add surveyDate to the data
       },
     });
+
+    // Only set cookies if the user has given consent
+    if (hasCookieConsent()) {
+      res.setHeader(
+        "Set-Cookie",
+        `lastSurveySubmission=${new Date().toISOString()}; Path=/; HttpOnly; SameSite=Strict; Max-Age=2592000`
+      );
+    }
 
     res.status(200).json({
       message: "Survey submitted successfully",

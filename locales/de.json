@@ -438,5 +438,11 @@
     "goToDashboard": "Zum Dashboard",
     "confirmationTitle": "Organisation erfolgreich erstellt",
     "buttonText": "Kostenlose Testversion starten"
+  },
+  "cookieConsent": {
+    "title": "Cookie-Zustimmung",
+    "description": "Wir verwenden Cookies, um Ihr Browsererlebnis zu verbessern, personalisierte Anzeigen oder Inhalte bereitzustellen und unseren Verkehr zu analysieren. Durch Klicken auf \"Alle akzeptieren\" stimmen Sie der Verwendung von Cookies zu.",
+    "rejectAll": "Alle ablehnen",
+    "acceptAll": "Alle akzeptieren"
   }
 }

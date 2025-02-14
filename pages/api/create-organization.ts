@@ -1,4 +1,3 @@
-import { getCurrentUser } from "@/lib/auth-utils";
 import prisma from "@/lib/prisma";
 import {
   AdminCreateUserCommand,
@@ -21,10 +20,11 @@ export default async function handler(
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const currentUser = await getCurrentUser();
-  if (!currentUser) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
+  // Remove the current user check for the start free trial flow
+  // const currentUser = await getCurrentUser(req)
+  // if (!currentUser) {
+  //   return res.status(401).json({ message: "Unauthorized" })
+  // }
 
   const {
     firstName,
