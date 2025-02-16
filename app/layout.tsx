@@ -35,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps) {
       <head>
         <link rel="canonical" href={canonicalUrl} />
       </head>
+      <Analytics />
       <body className={inter.className}>
         <Providers>
           <AuthProvider>
@@ -47,7 +48,6 @@ export default function RootLayout({ children }: LayoutProps) {
             </LanguageProvider>
           </AuthProvider>
         </Providers>
-        <Analytics />
       </body>
     </html>
   );
