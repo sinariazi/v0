@@ -167,56 +167,57 @@
   },
   "pricing": {
     "title": "Pricing Plans",
+    "monthlyToggle": "Monthly",
+    "yearlyToggle": "Yearly",
+    "yearlyDiscount": "Save 15%",
+    "perUser": "per user",
     "perMonth": "/month",
     "getStarted": "Get Started",
     "startFreeTrial": "Start Free Trial",
+    "customPricing": "Custom pricing",
+    "contactUs": "Contact Us",
     "plans": {
       "freeTrial": {
         "name": "Free Trial",
+        "description": "Limited Features for 90 days",
         "price": "€0",
-        "description": "Try Mood Whisper for free",
-        "features": {
-          "duration": "90-day trial",
-          "employees": "Up to 200 employees",
-          "basicFeatures": "Basic features",
-          "emailSupport": "Email support"
-        }
+        "features": "Limited access to employee surveys|Basic analytics and reporting|Email support"
       },
-      "starter": {
-        "name": "Starter",
-        "price": "€99",
-        "description": "Perfect for small teams just getting started",
-        "features": {
-          "employees": "Up to 25 employees",
-          "moodTracking": "Basic mood tracking",
-          "weeklyReports": "Weekly reports",
-          "emailSupport": "Email support"
-        }
+      "essential": {
+        "name": "Essential",
+        "description": "For small teams getting started",
+        "price": "€5",
+        "features": "Unlimited employee engagement surveys|Basic reporting and insights|Pulse surveys with custom questions|Email support|Access to pre-set templates|Simple dashboard for survey results analysis"
       },
-      "pro": {
-        "name": "Pro",
-        "price": "€299",
-        "description": "Ideal for growing companies with advanced needs",
-        "features": {
-          "employees": "Up to 100 employees",
-          "advancedAnalytics": "Advanced mood analytics",
-          "dailyReports": "Daily reports",
-          "collaborationTools": "Team collaboration tools",
-          "prioritySupport": "Priority email support"
-        }
+      "professional": {
+        "name": "Professional",
+        "description": "For growing companies with advanced needs",
+        "price": "€12",
+        "features": "All Essential features, plus:|Advanced reporting and trend analysis|Customizable surveys and templates|Actionable insights and engagement scores|Benchmarking against industry standards|1-on-1 support (email and chat)|Integration with third-party tools|Monthly performance reviews with data insights"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "Custom",
         "description": "Tailored solutions for large organizations",
-        "features": {
-          "employees": "Unlimited employees",
-          "customIntegrations": "Custom integrations",
-          "accountManager": "Dedicated account manager",
-          "phoneSupport": "24/7 phone support",
-          "onSiteTraining": "On-site training"
-        }
+        "price": "Custom",
+        "features": "All Professional features, plus:|Dedicated account manager|Customizable dashboards and advanced analytics|API access for deep integrations|Priority support (phone, email, and chat)|Tailored onboarding and training|Custom reporting based on unique KPIs|Multi-language survey options|Ability to scale across large organizations|In-depth performance and employee engagement training"
       }
+    },
+    "addOns": {
+      "title": "Add-Ons",
+      "analytics": {
+        "name": "Advanced Analytics Package",
+        "price": "€3",
+        "description": "More detailed reports and insights"
+      },
+      "managerTraining": {
+        "name": "Manager Training & Support",
+        "price": "€5",
+        "description": "Leadership development and engagement strategies"
+      }
+    },
+    "note": {
+      "freeTrialDuration": "All plans come with a 90-day free trial.",
+      "customPricing": "Custom pricing is available for companies with over 500 employees or unique needs."
     }
   },
   "survey": {

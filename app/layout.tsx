@@ -34,8 +34,8 @@ export default function RootLayout({ children }: LayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="canonical" href={canonicalUrl} />
+        <Analytics />
       </head>
-      <Analytics />
       <body className={inter.className}>
         <Providers>
           <AuthProvider>

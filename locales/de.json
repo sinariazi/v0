@@ -167,56 +167,57 @@
   },
   "pricing": {
     "title": "Preispläne",
+    "monthlyToggle": "Monatlich",
+    "yearlyToggle": "Jährlich",
+    "yearlyDiscount": "15% sparen",
+    "perUser": "pro Benutzer",
     "perMonth": "/Monat",
     "getStarted": "Jetzt starten",
     "startFreeTrial": "Kostenlose Testversion starten",
+    "customPricing": "Individueller Preis",
+    "contactUs": "Kontaktieren Sie uns",
     "plans": {
       "freeTrial": {
         "name": "Kostenlose Testversion",
+        "description": "Begrenzte Funktionen für 90 Tage",
         "price": "€0",
-        "description": "Testen Sie Mood Whisper kostenlos",
-        "features": {
-          "duration": "90-tägige Testversion",
-          "employees": "Bis zu 200 Mitarbeiter",
-          "basicFeatures": "Grundlegende Funktionen",
-          "emailSupport": "E-Mail-Support"
-        }
+        "features": "Begrenzter Zugang zu Mitarbeiterumfragen|Grundlegende Analysen und Berichte|E-Mail-Support"
       },
-      "starter": {
-        "name": "Starter",
-        "price": "€99",
-        "description": "Perfekt für kleine Teams, die gerade anfangen",
-        "features": {
-          "employees": "Bis zu 25 Mitarbeiter",
-          "moodTracking": "Grundlegende Stimmungsverfolgung",
-          "weeklyReports": "Wöchentliche Berichte",
-          "emailSupport": "E-Mail-Support"
-        }
+      "essential": {
+        "name": "Essential",
+        "description": "Für kleine Teams, die gerade anfangen",
+        "price": "€5",
+        "features": "Unbegrenzte Mitarbeiter-Engagement-Umfragen|Grundlegende Berichte und Erkenntnisse|Pulsumfragen mit benutzerdefinierten Fragen|E-Mail-Support|Zugang zu voreingestellten Vorlagen|Einfaches Dashboard zur Analyse der Umfrageergebnisse"
       },
-      "pro": {
-        "name": "Pro",
-        "price": "€299",
-        "description": "Ideal für wachsende Unternehmen mit fortgeschrittenen Bedürfnissen",
-        "features": {
-          "employees": "Bis zu 100 Mitarbeiter",
-          "advancedAnalytics": "Erweiterte Stimmungsanalysen",
-          "dailyReports": "Tägliche Berichte",
-          "collaborationTools": "Team-Kollaborationstools",
-          "prioritySupport": "Prioritäts-E-Mail-Support"
-        }
+      "professional": {
+        "name": "Professional",
+        "description": "Für wachsende Unternehmen mit fortgeschrittenen Bedürfnissen",
+        "price": "€12",
+        "features": "Alle Essential-Funktionen, plus:|Erweiterte Berichterstattung und Trendanalyse|Anpassbare Umfragen und Vorlagen|Umsetzbare Erkenntnisse und Engagement-Scores|Benchmarking gegen Branchenstandards|1:1-Support (E-Mail und Chat)|Integration mit Drittanbieter-Tools|Monatliche Leistungsüberprüfungen mit Dateneinblicken"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "Individuell",
         "description": "Maßgeschneiderte Lösungen für große Organisationen",
-        "features": {
-          "employees": "Unbegrenzte Mitarbeiter",
-          "customIntegrations": "Individuelle Integrationen",
-          "accountManager": "Dedizierter Account Manager",
-          "phoneSupport": "24/7 Telefonsupport",
-          "onSiteTraining": "Vor-Ort-Schulungen"
-        }
+        "price": "Individuell",
+        "features": "Alle Professional-Funktionen, plus:|Dedizierter Account Manager|Anpassbare Dashboards und erweiterte Analysen|API-Zugang für tiefe Integrationen|Prioritäts-Support (Telefon, E-Mail und Chat)|Maßgeschneidertes Onboarding und Training|Benutzerdefinierte Berichte basierend auf einzigartigen KPIs|Mehrsprachige Umfrageoptionen|Skalierbarkeit für große Organisationen|Vertiefte Leistungs- und Mitarbeiterengagement-Schulungen"
       }
+    },
+    "addOns": {
+      "title": "Zusatzoptionen",
+      "analytics": {
+        "name": "Erweitertes Analysepaket",
+        "price": "€3",
+        "description": "Detailliertere Berichte und Erkenntnisse"
+      },
+      "managerTraining": {
+        "name": "Manager-Schulung & Unterstützung",
+        "price": "€5",
+        "description": "Führungskräfteentwicklung und Engagement-Strategien"
+      }
+    },
+    "note": {
+      "freeTrialDuration": "Alle Pläne kommen mit einer 90-tägigen kostenlosen Testversion.",
+      "customPricing": "Individuelle Preise sind für Unternehmen mit über 500 Mitarbeitern oder besonderen Anforderungen verfügbar."
     }
   },
   "survey": {
