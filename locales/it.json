@@ -167,56 +167,57 @@
   },
   "pricing": {
     "title": "Piani tariffari",
+    "monthlyToggle": "Mensile",
+    "yearlyToggle": "Annuale",
+    "yearlyDiscount": "Risparmia il 15%",
+    "perUser": "per utente",
     "perMonth": "/mese",
     "getStarted": "Inizia",
     "startFreeTrial": "Inizia la prova gratuita",
+    "customPricing": "Prezzo personalizzato",
+    "contactUs": "Contattaci",
     "plans": {
       "freeTrial": {
         "name": "Prova gratuita",
+        "description": "Funzionalità limitate per 90 giorni",
         "price": "€0",
-        "description": "Prova Mood Whisper gratuitamente",
-        "features": {
-          "duration": "Prova di 90 giorni",
-          "employees": "Fino a 200 dipendenti",
-          "basicFeatures": "Funzionalità di base",
-          "emailSupport": "Supporto via email"
-        }
+        "features": "Accesso limitato ai sondaggi dei dipendenti|Analisi e reportistica di base|Supporto via email"
       },
-      "starter": {
-        "name": "Starter",
-        "price": "€99",
-        "description": "Perfetto per piccoli team che stanno iniziando",
-        "features": {
-          "employees": "Fino a 25 dipendenti",
-          "moodTracking": "Tracciamento base dell'umore",
-          "weeklyReports": "Report settimanali",
-          "emailSupport": "Supporto via email"
-        }
+      "essential": {
+        "name": "Essenziale",
+        "description": "Per piccoli team che stanno iniziando",
+        "price": "€5",
+        "features": "Sondaggi illimitati sul coinvolgimento dei dipendenti|Reportistica e analisi di base|Sondaggi pulse con domande personalizzate|Supporto via email|Accesso a modelli preimpostati|Dashboard semplice per l'analisi dei risultati dei sondaggi"
       },
-      "pro": {
-        "name": "Pro",
-        "price": "€299",
-        "description": "Ideale per aziende in crescita con esigenze avanzate",
-        "features": {
-          "employees": "Fino a 100 dipendenti",
-          "advancedAnalytics": "Analisi avanzata dell'umore",
-          "dailyReports": "Report giornalieri",
-          "collaborationTools": "Strumenti di collaborazione del team",
-          "prioritySupport": "Supporto email prioritario"
-        }
+      "professional": {
+        "name": "Professionale",
+        "description": "Per aziende in crescita con esigenze avanzate",
+        "price": "€12",
+        "features": "Tutte le funzionalità Essenziali, più:|Reportistica avanzata e analisi delle tendenze|Sondaggi e modelli personalizzabili|Insights azionabili e punteggi di coinvolgimento|Benchmarking rispetto agli standard di settore|Supporto 1-a-1 (email e chat)|Integrazione con strumenti di terze parti|Revisioni mensili delle prestazioni con insights sui dati"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "Personalizzato",
         "description": "Soluzioni su misura per grandi organizzazioni",
-        "features": {
-          "employees": "Dipendenti illimitati",
-          "customIntegrations": "Integrazioni personalizzate",
-          "accountManager": "Manager dell'account dedicato",
-          "phoneSupport": "Supporto telefonico 24/7",
-          "onSiteTraining": "Formazione in loco"
-        }
+        "price": "Personalizzato",
+        "features": "Tutte le funzionalità Professionali, più:|Account manager dedicato|Dashboard personalizzabili e analisi avanzate|Accesso API per integrazioni profonde|Supporto prioritario (telefono, email e chat)|Onboarding e formazione su misura|Reportistica personalizzata basata su KPI unici|Opzioni di sondaggio multilingue|Capacità di scalare su grandi organizzazioni|Formazione approfondita sulle prestazioni e il coinvolgimento"
       }
+    },
+    "addOns": {
+      "title": "Componenti aggiuntivi",
+      "analytics": {
+        "name": "Pacchetto di analisi avanzate",
+        "price": "€3",
+        "description": "Report e insights più dettagliati"
+      },
+      "managerTraining": {
+        "name": "Formazione e supporto per manager",
+        "price": "€5",
+        "description": "Sviluppo della leadership e strategie di coinvolgimento"
+      }
+    },
+    "note": {
+      "freeTrialDuration": "Tutti i piani includono una prova gratuita di 90 giorni.",
+      "customPricing": "Prezzi personalizzati disponibili per aziende con oltre 500 dipendenti o esigenze uniche."
     }
   },
   "survey": {

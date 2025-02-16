@@ -167,56 +167,57 @@
   },
   "pricing": {
     "title": "Planes de precios",
+    "monthlyToggle": "Mensual",
+    "yearlyToggle": "Anual",
+    "yearlyDiscount": "Ahorra 15%",
+    "perUser": "por usuario",
     "perMonth": "/mes",
     "getStarted": "Comenzar",
     "startFreeTrial": "Iniciar prueba gratuita",
+    "customPricing": "Precio personalizado",
+    "contactUs": "Contáctenos",
     "plans": {
       "freeTrial": {
         "name": "Prueba gratuita",
+        "description": "Funciones limitadas durante 90 días",
         "price": "€0",
-        "description": "Prueba Mood Whisper gratis",
-        "features": {
-          "duration": "Prueba de 90 días",
-          "employees": "Hasta 200 empleados",
-          "basicFeatures": "Funciones básicas",
-          "emailSupport": "Soporte por correo electrónico"
-        }
+        "features": "Acceso limitado a encuestas de empleados|Análisis y reportes básicos|Soporte por correo electrónico"
       },
-      "starter": {
-        "name": "Inicial",
-        "price": "€99",
-        "description": "Perfecto para equipos pequeños que están comenzando",
-        "features": {
-          "employees": "Hasta 25 empleados",
-          "moodTracking": "Seguimiento básico del estado de ánimo",
-          "weeklyReports": "Informes semanales",
-          "emailSupport": "Soporte por correo electrónico"
-        }
+      "essential": {
+        "name": "Esencial",
+        "description": "Para equipos pequeños que están comenzando",
+        "price": "€5",
+        "features": "Encuestas de compromiso de empleados ilimitadas|Informes y análisis básicos|Encuestas de pulso con preguntas personalizadas|Soporte por correo electrónico|Acceso a plantillas predefinidas|Panel simple para análisis de resultados de encuestas"
       },
-      "pro": {
-        "name": "Pro",
-        "price": "€299",
-        "description": "Ideal para empresas en crecimiento con necesidades avanzadas",
-        "features": {
-          "employees": "Hasta 100 empleados",
-          "advancedAnalytics": "Análisis avanzado del estado de ánimo",
-          "dailyReports": "Informes diarios",
-          "collaborationTools": "Herramientas de colaboración en equipo",
-          "prioritySupport": "Soporte prioritario por correo electrónico"
-        }
+      "professional": {
+        "name": "Profesional",
+        "description": "Para empresas en crecimiento con necesidades avanzadas",
+        "price": "€12",
+        "features": "Todas las características Esenciales, más:|Informes avanzados y análisis de tendencias|Encuestas y plantillas personalizables|Insights accionables y puntuaciones de compromiso|Comparación con estándares de la industria|Soporte 1 a 1 (correo electrónico y chat)|Integración con herramientas de terceros|Revisiones de rendimiento mensuales con insights de datos"
       },
       "enterprise": {
         "name": "Empresa",
-        "price": "Personalizado",
         "description": "Soluciones a medida para grandes organizaciones",
-        "features": {
-          "employees": "Empleados ilimitados",
-          "customIntegrations": "Integraciones personalizadas",
-          "accountManager": "Gerente de cuenta dedicado",
-          "phoneSupport": "Soporte telefónico 24/7",
-          "onSiteTraining": "Capacitación en el sitio"
-        }
+        "price": "Personalizado",
+        "features": "Todas las características Profesionales, más:|Gerente de cuenta dedicado|Paneles personalizables y análisis avanzados|Acceso API para integraciones profundas|Soporte prioritario (teléfono, correo electrónico y chat)|Incorporación y capacitación personalizada|Informes personalizados basados en KPIs únicos|Opciones de encuestas en varios idiomas|Capacidad de escalar en grandes organizaciones|Capacitación en profundidad sobre rendimiento y compromiso"
       }
+    },
+    "addOns": {
+      "title": "Complementos",
+      "analytics": {
+        "name": "Paquete de análisis avanzado",
+        "price": "€3",
+        "description": "Informes e insights más detallados"
+      },
+      "managerTraining": {
+        "name": "Capacitación y soporte para gerentes",
+        "price": "€5",
+        "description": "Desarrollo de liderazgo y estrategias de compromiso"
+      }
+    },
+    "note": {
+      "freeTrialDuration": "Todos los planes vienen con una prueba gratuita de 90 días.",
+      "customPricing": "Precios personalizados disponibles para empresas con más de 500 empleados o necesidades únicas."
     }
   },
   "survey": {
