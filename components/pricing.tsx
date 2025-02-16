@@ -1,6 +1,5 @@
 "use client";
 
-import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,46 +9,62 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 import { useLanguage } from "@/lib/language-context";
+import { Check } from "lucide-react";
+import { useState } from "react";
 
 export default function Pricing() {
   const { t } = useLanguage();
+  const [isYearly, setIsYearly] = useState(false);
 
-  const plans = [
+  const plans: {
+    name: string;
+    description: string;
+    price: string;
+    features: string[];
+    buttonText: string;
+  }[] = [
     {
-      name: t("pricing.plans.starter.name"),
-      price: "$99",
-      description: t("pricing.plans.starter.description"),
-      features: [
-        t("pricing.plans.starter.features.employees"),
-        t("pricing.plans.starter.features.moodTracking"),
-        t("pricing.plans.starter.features.weeklyReports"),
-        t("pricing.plans.starter.features.emailSupport"),
-      ],
+      name: t("pricing.plans.freeTrial.name"),
+      description: t("pricing.plans.freeTrial.description"),
+      price: t("pricing.plans.freeTrial.price"),
+      features: t("pricing.plans.freeTrial.features").split("|"),
+      buttonText: t("pricing.startFreeTrial"),
     },
     {
-      name: t("pricing.plans.pro.name"),
-      price: "$299",
-      description: t("pricing.plans.pro.description"),
-      features: [
-        t("pricing.plans.pro.features.employees"),
-        t("pricing.plans.pro.features.advancedAnalytics"),
-        t("pricing.plans.pro.features.dailyReports"),
-        t("pricing.plans.pro.features.collaborationTools"),
-        t("pricing.plans.pro.features.prioritySupport"),
-      ],
+      name: t("pricing.plans.essential.name"),
+      description: t("pricing.plans.essential.description"),
+      price: isYearly ? "€51" : "€5",
+      features: t("pricing.plans.essential.features").split("|"),
+      buttonText: t("pricing.getStarted"),
+    },
+    {
+      name: t("pricing.plans.professional.name"),
+      description: t("pricing.plans.professional.description"),
+      price: isYearly ? "€122" : "€12",
+      features: t("pricing.plans.professional.features").split("|"),
+      buttonText: t("pricing.getStarted"),
     },
     {
       name: t("pricing.plans.enterprise.name"),
-      price: t("pricing.plans.enterprise.price"),
       description: t("pricing.plans.enterprise.description"),
-      features: [
-        t("pricing.plans.enterprise.features.employees"),
-        t("pricing.plans.enterprise.features.customIntegrations"),
-        t("pricing.plans.enterprise.features.accountManager"),
-        t("pricing.plans.enterprise.features.phoneSupport"),
-        t("pricing.plans.enterprise.features.onSiteTraining"),
-      ],
+      price: t("pricing.customPricing"),
+      features: t("pricing.plans.enterprise.features").split("|"),
+      buttonText: t("pricing.contactUs"),
+    },
+  ];
+
+  const addOns = [
+    {
+      name: t("pricing.addOns.analytics.name"),
+      price: isYearly ? "€30.60" : "€3",
+      description: t("pricing.addOns.analytics.description"),
+    },
+    {
+      name: t("pricing.addOns.managerTraining.name"),
+      price: isYearly ? "€51" : "€5",
+      description: t("pricing.addOns.managerTraining.description"),
     },
   ];
 
@@ -59,7 +74,17 @@ export default function Pricing() {
         <h2 className="text-3xl font-bold text-center mb-12">
           {t("pricing.title")}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex justify-center items-center mb-8">
+          <span className="mr-2">{t("pricing.monthlyToggle")}</span>
+          <Switch checked={isYearly} onCheckedChange={setIsYearly} />
+          <span className="ml-2">{t("pricing.yearlyToggle")}</span>
+          {isYearly && (
+            <span className="ml-4 bg-primary text-primary-foreground px-2 py-1 rounded-full text-sm">
+              {t("pricing.yearlyDiscount")}
+            </span>
+          )}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {plans.map((plan, index) => (
             <Card key={index} className="flex flex-col">
               <CardHeader>
@@ -69,26 +94,71 @@ export default function Pricing() {
               <CardContent className="flex-grow">
                 <p className="text-4xl font-bold mb-4">
                   {plan.price}
-                  <span className="text-xl font-normal text-muted-foreground">
-                    {plan.price !== t("pricing.plans.enterprise.price")
-                      ? t("pricing.perMonth")
-                      : ""}
-                  </span>
+                  {plan.price !== t("pricing.customPricing") && (
+                    <span className="text-xl font-normal text-muted-foreground">
+                      {isYearly
+                        ? `/${t("pricing.perUser")}/${t(
+                            "pricing.yearlyToggle"
+                          )}`
+                        : `/${t("pricing.perUser")}/${t(
+                            "pricing.monthlyToggle"
+                          )}`}
+                    </span>
+                  )}
                 </p>
                 <ul className="space-y-2">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center">
-                      <Check className="h-5 w-5 text-primary mr-2" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
+                  {plan.features.map(
+                    (feature: string, featureIndex: number) => (
+                      <li key={featureIndex} className="flex items-center">
+                        <Check className="h-5 w-5 text-primary mr-2" />
+                        <span>{feature}</span>
+                      </li>
+                    )
+                  )}
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button className="w-full">{t("pricing.getStarted")}</Button>
+                <Button className="w-full">{plan.buttonText}</Button>
               </CardFooter>
             </Card>
           ))}
+        </div>
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-center mb-8">
+            {t("pricing.addOns.title")}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {addOns.map((addOn, index) => (
+              <Card key={index}>
+                <CardHeader>
+                  <CardTitle>{addOn.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold mb-2">
+                    {addOn.price}
+                    <span className="text-lg font-normal text-muted-foreground">
+                      {isYearly
+                        ? `/${t("pricing.perUser")}/${t(
+                            "pricing.yearlyToggle"
+                          )}`
+                        : `/${t("pricing.perUser")}/${t(
+                            "pricing.monthlyToggle"
+                          )}`}
+                    </span>
+                  </p>
+                  <p>{addOn.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+        <div className="mt-16 text-center">
+          <p className="text-muted-foreground">
+            {t("pricing.note.freeTrialDuration")}
+          </p>
+          <p className="text-muted-foreground">
+            {t("pricing.note.customPricing")}
+          </p>
         </div>
       </div>
     </section>

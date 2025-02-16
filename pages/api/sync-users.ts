@@ -5,6 +5,7 @@ import {
 } from "@aws-sdk/client-cognito-identity-provider";
 import { fromEnv } from "@aws-sdk/credential-providers";
 import type { Gender, UserStatus } from "@prisma/client";
+import { addMonths } from "date-fns";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const cognitoClient = new CognitoIdentityProviderClient({
@@ -33,6 +34,7 @@ export default async function handler(
         country: "Unknown",
         city: "Unknown",
         email: "unknown@example.com",
+        trialEndDate: addMonths(new Date(), 3), // Add this line to include trialEndDate
       },
     });
 

@@ -167,44 +167,57 @@
   },
   "pricing": {
     "title": "Piani tariffari",
+    "monthlyToggle": "Mensile",
+    "yearlyToggle": "Annuale",
+    "yearlyDiscount": "Risparmia il 15%",
+    "perUser": "per utente",
     "perMonth": "/mese",
     "getStarted": "Inizia",
+    "startFreeTrial": "Inizia la prova gratuita",
+    "customPricing": "Prezzo personalizzato",
+    "contactUs": "Contattaci",
     "plans": {
-      "starter": {
-        "name": "Starter",
-        "price": "€99",
-        "description": "Perfetto per piccoli team che stanno iniziando",
-        "features": {
-          "employees": "Fino a 25 dipendenti",
-          "moodTracking": "Tracciamento base dell'umore",
-          "weeklyReports": "Report settimanali",
-          "emailSupport": "Supporto via email"
-        }
+      "freeTrial": {
+        "name": "Prova gratuita",
+        "description": "Funzionalità limitate per 90 giorni",
+        "price": "€0",
+        "features": "Accesso limitato ai sondaggi dei dipendenti|Analisi e reportistica di base|Supporto via email"
       },
-      "pro": {
-        "name": "Pro",
-        "price": "€299",
-        "description": "Ideale per aziende in crescita con esigenze avanzate",
-        "features": {
-          "employees": "Fino a 100 dipendenti",
-          "advancedAnalytics": "Analisi avanzata dell'umore",
-          "dailyReports": "Report giornalieri",
-          "collaborationTools": "Strumenti di collaborazione del team",
-          "prioritySupport": "Supporto email prioritario"
-        }
+      "essential": {
+        "name": "Essenziale",
+        "description": "Per piccoli team che stanno iniziando",
+        "price": "€5",
+        "features": "Sondaggi illimitati sul coinvolgimento dei dipendenti|Reportistica e analisi di base|Sondaggi pulse con domande personalizzate|Supporto via email|Accesso a modelli preimpostati|Dashboard semplice per l'analisi dei risultati dei sondaggi"
+      },
+      "professional": {
+        "name": "Professionale",
+        "description": "Per aziende in crescita con esigenze avanzate",
+        "price": "€12",
+        "features": "Tutte le funzionalità Essenziali, più:|Reportistica avanzata e analisi delle tendenze|Sondaggi e modelli personalizzabili|Insights azionabili e punteggi di coinvolgimento|Benchmarking rispetto agli standard di settore|Supporto 1-a-1 (email e chat)|Integrazione con strumenti di terze parti|Revisioni mensili delle prestazioni con insights sui dati"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "Personalizzato",
         "description": "Soluzioni su misura per grandi organizzazioni",
-        "features": {
-          "employees": "Dipendenti illimitati",
-          "customIntegrations": "Integrazioni personalizzate",
-          "accountManager": "Manager dell'account dedicato",
-          "phoneSupport": "Supporto telefonico 24/7",
-          "onSiteTraining": "Formazione in loco"
-        }
+        "price": "Personalizzato",
+        "features": "Tutte le funzionalità Professionali, più:|Account manager dedicato|Dashboard personalizzabili e analisi avanzate|Accesso API per integrazioni profonde|Supporto prioritario (telefono, email e chat)|Onboarding e formazione su misura|Reportistica personalizzata basata su KPI unici|Opzioni di sondaggio multilingue|Capacità di scalare su grandi organizzazioni|Formazione approfondita sulle prestazioni e il coinvolgimento"
       }
+    },
+    "addOns": {
+      "title": "Componenti aggiuntivi",
+      "analytics": {
+        "name": "Pacchetto di analisi avanzate",
+        "price": "€3",
+        "description": "Report e insights più dettagliati"
+      },
+      "managerTraining": {
+        "name": "Formazione e supporto per manager",
+        "price": "€5",
+        "description": "Sviluppo della leadership e strategie di coinvolgimento"
+      }
+    },
+    "note": {
+      "freeTrialDuration": "Tutti i piani includono una prova gratuita di 90 giorni.",
+      "customPricing": "Prezzi personalizzati disponibili per aziende con oltre 500 dipendenti o esigenze uniche."
     }
   },
   "survey": {
@@ -378,6 +391,43 @@
       "dashboardButton": "Vai alla Dashboard"
     }
   },
+  "gender": {
+    "male": "Maschio",
+    "female": "Femmina",
+    "other": "Altro"
+  },
+  "industries": {
+    "technology": "Tecnologia",
+    "healthcare": "Sanità",
+    "finance": "Finanza",
+    "education": "Istruzione",
+    "retail": "Vendita al dettaglio",
+    "manufacturing": "Produzione",
+    "construction": "Costruzioni",
+    "agriculture": "Agricoltura",
+    "entertainment": "Intrattenimento",
+    "hospitality": "Ospitalità",
+    "transportation": "Trasporti",
+    "energy": "Energia",
+    "real_estate": "Immobiliare",
+    "media": "Media",
+    "telecommunications": "Telecomunicazioni",
+    "consulting": "Consulenza",
+    "non_profit": "Organizzazione non profit",
+    "other": "Altro"
+  },
+  "companySizes": {
+    "1-10": "1-10",
+    "11-50": "11-50",
+    "51-200": "51-200",
+    "201-500": "201-500",
+    "501-1000": "501-1000",
+    "1001-5000": "1001-5000",
+    "5000Plus": "Più di 5000"
+  },
+  "errors": {
+    "failedToCreateOrganization": "Impossibile creare l'organizzazione. Si prega di riprovare."
+  },
   "startFreeTrialPage": {
     "title": "Inizia la tua prova gratuita",
     "description": "Compila il modulo sottostante per iniziare",
@@ -388,17 +438,41 @@
     "email": "Email",
     "companyName": "Nome dell'azienda",
     "companyPhoneNumber": "Numero di telefono dell'azienda",
-    "companyIndustry": "Settore dell'azienda",
+    "companyIndustry": "Settore",
     "selectIndustry": "Seleziona settore",
     "companySize": "Dimensione dell'azienda",
     "selectCompanySize": "Seleziona dimensione dell'azienda",
     "country": "Paese",
     "city": "Città",
-    "street": "Via",
     "startFreeTrial": "Inizia la prova gratuita",
     "creating": "Creazione in corso...",
     "organizationCreatedSuccessfully": "Organizzazione creata con successo",
-    "organizationCreatedDescription": "Il tuo account organizzazione è stato creato con ID: {{organizationId}}. Sei stato assegnato come amministratore per questa organizzazione.",
-    "goToDashboard": "Vai alla dashboard"
+    "organizationCreatedDescription": "Il tuo account organizzazione è stato creato con l'ID: {{organizationId}}. Sei stato assegnato come amministratore per questa organizzazione. La tua prova gratuita terminerà il {{trialEndDate}}.",
+    "goToDashboard": "Vai alla dashboard",
+    "confirmationTitle": "Organizzazione creata con successo",
+    "buttonText": "Inizia la prova gratuita"
+  },
+  "cookieConsent": {
+    "title": "Consenso sui Cookie",
+    "description": "Utilizziamo i cookie per migliorare la tua esperienza di navigazione, fornire annunci o contenuti personalizzati e analizzare il nostro traffico. Cliccando su \"Accetta tutto\", acconsenti all'uso dei cookie.",
+    "rejectAll": "Rifiuta tutto",
+    "acceptAll": "Accetta tutto"
+  },
+  "contact": {
+    "title": "Contattaci",
+    "getInTouch": "Mettiti in contatto",
+    "formDescription": "Compila il modulo e ti risponderemo il prima possibile.",
+    "name": "Nome",
+    "namePlaceholder": "Inserisci il tuo nome",
+    "email": "Email",
+    "emailPlaceholder": "Inserisci la tua email",
+    "message": "Messaggio",
+    "messagePlaceholder": "Inserisci il tuo messaggio",
+    "sendMessage": "Invia messaggio",
+    "contactInformation": "Informazioni di contatto",
+    "contactInfoDescription": "Puoi anche raggiungerci utilizzando le seguenti informazioni.",
+    "emailAddress": "support@moodwhisper.com",
+    "phoneNumber": "+43 (660) 729-8774",
+    "address": "Austria, Vienna"
   }
 }

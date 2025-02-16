@@ -167,44 +167,57 @@
   },
   "pricing": {
     "title": "Pricing Plans",
+    "monthlyToggle": "Monthly",
+    "yearlyToggle": "Yearly",
+    "yearlyDiscount": "Save 15%",
+    "perUser": "per user",
     "perMonth": "/month",
     "getStarted": "Get Started",
+    "startFreeTrial": "Start Free Trial",
+    "customPricing": "Custom pricing",
+    "contactUs": "Contact Us",
     "plans": {
-      "starter": {
-        "name": "Starter",
-        "price": "$99",
-        "description": "Perfect for small teams just getting started",
-        "features": {
-          "employees": "Up to 25 employees",
-          "moodTracking": "Basic mood tracking",
-          "weeklyReports": "Weekly reports",
-          "emailSupport": "Email support"
-        }
+      "freeTrial": {
+        "name": "Free Trial",
+        "description": "Limited Features for 90 days",
+        "price": "€0",
+        "features": "Limited access to employee surveys|Basic analytics and reporting|Email support"
       },
-      "pro": {
-        "name": "Pro",
-        "price": "$299",
-        "description": "Ideal for growing companies with advanced needs",
-        "features": {
-          "employees": "Up to 100 employees",
-          "advancedAnalytics": "Advanced mood analytics",
-          "dailyReports": "Daily reports",
-          "collaborationTools": "Team collaboration tools",
-          "prioritySupport": "Priority email support"
-        }
+      "essential": {
+        "name": "Essential",
+        "description": "For small teams getting started",
+        "price": "€5",
+        "features": "Unlimited employee engagement surveys|Basic reporting and insights|Pulse surveys with custom questions|Email support|Access to pre-set templates|Simple dashboard for survey results analysis"
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "For growing companies with advanced needs",
+        "price": "€12",
+        "features": "All Essential features, plus:|Advanced reporting and trend analysis|Customizable surveys and templates|Actionable insights and engagement scores|Benchmarking against industry standards|1-on-1 support (email and chat)|Integration with third-party tools|Monthly performance reviews with data insights"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "Custom",
         "description": "Tailored solutions for large organizations",
-        "features": {
-          "employees": "Unlimited employees",
-          "customIntegrations": "Custom integrations",
-          "accountManager": "Dedicated account manager",
-          "phoneSupport": "24/7 phone support",
-          "onSiteTraining": "On-site training"
-        }
+        "price": "Custom",
+        "features": "All Professional features, plus:|Dedicated account manager|Customizable dashboards and advanced analytics|API access for deep integrations|Priority support (phone, email, and chat)|Tailored onboarding and training|Custom reporting based on unique KPIs|Multi-language survey options|Ability to scale across large organizations|In-depth performance and employee engagement training"
       }
+    },
+    "addOns": {
+      "title": "Add-Ons",
+      "analytics": {
+        "name": "Advanced Analytics Package",
+        "price": "€3",
+        "description": "More detailed reports and insights"
+      },
+      "managerTraining": {
+        "name": "Manager Training & Support",
+        "price": "€5",
+        "description": "Leadership development and engagement strategies"
+      }
+    },
+    "note": {
+      "freeTrialDuration": "All plans come with a 90-day free trial.",
+      "customPricing": "Custom pricing is available for companies with over 500 employees or unique needs."
     }
   },
   "survey": {
@@ -378,6 +391,43 @@
       "dashboardButton": "Go to Dashboard"
     }
   },
+  "gender": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  },
+  "industries": {
+    "technology": "Technology",
+    "healthcare": "Healthcare",
+    "finance": "Finance",
+    "education": "Education",
+    "retail": "Retail",
+    "manufacturing": "Manufacturing",
+    "construction": "Construction",
+    "agriculture": "Agriculture",
+    "entertainment": "Entertainment",
+    "hospitality": "Hospitality",
+    "transportation": "Transportation",
+    "energy": "Energy",
+    "real_estate": "Real Estate",
+    "media": "Media",
+    "telecommunications": "Telecommunications",
+    "consulting": "Consulting",
+    "non_profit": "Non-profit",
+    "other": "Other"
+  },
+  "companySizes": {
+    "1-10": "1-10",
+    "11-50": "11-50",
+    "51-200": "51-200",
+    "201-500": "201-500",
+    "501-1000": "501-1000",
+    "1001-5000": "1001-5000",
+    "5000Plus": "5000+"
+  },
+  "errors": {
+    "failedToCreateOrganization": "Failed to create organization. Please try again."
+  },
   "startFreeTrialPage": {
     "title": "Start Your Free Trial",
     "description": "Fill out the form below to get started",
@@ -394,11 +444,35 @@
     "selectCompanySize": "Select company size",
     "country": "Country",
     "city": "City",
-    "street": "Street",
     "startFreeTrial": "Start Free Trial",
     "creating": "Creating...",
     "organizationCreatedSuccessfully": "Organization Created Successfully",
-    "organizationCreatedDescription": "Your organization account has been created with the ID: {{organizationId}}. You have been assigned as an admin for this organization.",
-    "goToDashboard": "Go to Dashboard"
+    "organizationCreatedDescription": "Your organization account has been created with the ID: {{organizationId}}. You have been assigned as an admin for this organization. Your free trial will end on {{trialEndDate}}.",
+    "goToDashboard": "Go to Dashboard",
+    "confirmationTitle": "Organization Created Successfully",
+    "buttonText": "Start Free Trial"
+  },
+  "cookieConsent": {
+    "title": "Cookie Consent",
+    "description": "We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking \"Accept All\", you consent to our use of cookies.",
+    "rejectAll": "Reject All",
+    "acceptAll": "Accept All"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "getInTouch": "Get in Touch",
+    "formDescription": "Fill out the form and we'll get back to you as soon as possible.",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "message": "Message",
+    "messagePlaceholder": "Enter your message",
+    "sendMessage": "Send Message",
+    "contactInformation": "Contact Information",
+    "contactInfoDescription": "You can also reach us using the following information.",
+    "emailAddress": "support@moodwhisper.com",
+    "phoneNumber": "+43 (660) 729-8774",
+    "address": "Austria, Vienna"
   }
 }

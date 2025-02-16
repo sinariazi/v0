@@ -25,8 +25,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useLanguage } from "@/lib/language-context"; // Add this import
+import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/lib/language-context";
+import { addMonths, format } from "date-fns";
 import { useRouter } from "next/navigation";
+import type React from "react"; // Added import for React
 import { useState } from "react";
 
 const industries = [
@@ -65,7 +68,8 @@ const capitalizeWords = (str: string) => {
 };
 
 export default function StartFreeTrialPage() {
-  const { t } = useLanguage(); // Add this line to use the translation function
+  const { t } = useLanguage();
+  const { toast } = useToast();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -79,6 +83,7 @@ export default function StartFreeTrialPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [organizationId, setOrganizationId] = useState("");
+  const [trialEndDate, setTrialEndDate] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -86,6 +91,7 @@ export default function StartFreeTrialPage() {
     setIsSubmitting(true);
 
     try {
+      const trialEndDate = addMonths(new Date(), 3);
       const response = await fetch("/api/create-organization", {
         method: "POST",
         headers: {
@@ -102,19 +108,26 @@ export default function StartFreeTrialPage() {
           companyCity: companyCity.toLowerCase(),
           companyPhoneNumber,
           gender,
+          trialEndDate: trialEndDate.toISOString(),
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
         setOrganizationId(data.organizationId);
+        setTrialEndDate(format(trialEndDate, "MMMM d, yyyy"));
         setShowConfirmation(true);
       } else {
-        throw new Error("Failed to create organization");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create organization");
       }
     } catch (error) {
       console.error("Error creating organization:", error);
-      alert(t("errors.failedToCreateOrganization"));
+      toast({
+        title: t("errors.failedToCreateOrganization"),
+        description: error instanceof Error ? error.message : String(error),
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -129,14 +142,18 @@ export default function StartFreeTrialPage() {
     <div className="container mx-auto py-10">
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle>{t("startFreeTrial.title")}</CardTitle>
-          <CardDescription>{t("startFreeTrial.description")}</CardDescription>
+          <CardTitle>{t("startFreeTrialPage.title")}</CardTitle>
+          <CardDescription>
+            {t("startFreeTrialPage.description")}
+          </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">{t("forms.firstName")}</Label>
+                <Label htmlFor="firstName">
+                  {t("startFreeTrialPage.firstName")}
+                </Label>
                 <Input
                   id="firstName"
                   value={firstName}
@@ -145,7 +162,9 @@ export default function StartFreeTrialPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">{t("forms.lastName")}</Label>
+                <Label htmlFor="lastName">
+                  {t("startFreeTrialPage.lastName")}
+                </Label>
                 <Input
                   id="lastName"
                   value={lastName}
@@ -155,10 +174,12 @@ export default function StartFreeTrialPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="gender">{t("forms.gender")}</Label>
+              <Label htmlFor="gender">{t("startFreeTrialPage.gender")}</Label>
               <Select value={gender} onValueChange={setGender} required>
                 <SelectTrigger>
-                  <SelectValue placeholder={t("forms.selectGender")} />
+                  <SelectValue
+                    placeholder={t("startFreeTrialPage.selectGender")}
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="MALE">{t("gender.male")}</SelectItem>
@@ -168,7 +189,7 @@ export default function StartFreeTrialPage() {
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">{t("forms.email")}</Label>
+              <Label htmlFor="email">{t("startFreeTrialPage.email")}</Label>
               <Input
                 id="email"
                 type="email"
@@ -178,7 +199,9 @@ export default function StartFreeTrialPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companyName">{t("forms.companyName")}</Label>
+              <Label htmlFor="companyName">
+                {t("startFreeTrialPage.companyName")}
+              </Label>
               <Input
                 id="companyName"
                 value={companyName}
@@ -188,7 +211,7 @@ export default function StartFreeTrialPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="companyPhoneNumber">
-                {t("forms.companyPhoneNumber")}
+                {t("startFreeTrialPage.companyPhoneNumber")}
               </Label>
               <Input
                 id="companyPhoneNumber"
@@ -199,7 +222,7 @@ export default function StartFreeTrialPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="companyIndustry">
-                {t("forms.companyIndustry")}
+                {t("startFreeTrialPage.companyIndustry")}
               </Label>
               <Select
                 value={companyIndustry}
@@ -207,7 +230,9 @@ export default function StartFreeTrialPage() {
                 required
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={t("forms.selectIndustry")} />
+                  <SelectValue
+                    placeholder={t("startFreeTrialPage.selectIndustry")}
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   {industries.map((industry) => (
@@ -219,14 +244,18 @@ export default function StartFreeTrialPage() {
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companySize">{t("forms.companySize")}</Label>
+              <Label htmlFor="companySize">
+                {t("startFreeTrialPage.companySize")}
+              </Label>
               <Select
                 value={companySize}
                 onValueChange={setCompanySize}
                 required
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={t("forms.selectCompanySize")} />
+                  <SelectValue
+                    placeholder={t("startFreeTrialPage.selectCompanySize")}
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   {companySizes.map((size) => (
@@ -238,7 +267,9 @@ export default function StartFreeTrialPage() {
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companyCountry">{t("forms.country")}</Label>
+              <Label htmlFor="companyCountry">
+                {t("startFreeTrialPage.country")}
+              </Label>
               <Input
                 id="companyCountry"
                 value={capitalizeWords(companyCountry)}
@@ -249,7 +280,9 @@ export default function StartFreeTrialPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="companyCity">{t("forms.city")}</Label>
+              <Label htmlFor="companyCity">
+                {t("startFreeTrialPage.city")}
+              </Label>
               <Input
                 id="companyCity"
                 value={capitalizeWords(companyCity)}
@@ -261,8 +294,8 @@ export default function StartFreeTrialPage() {
           <CardFooter>
             <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting
-                ? t("forms.creating")
-                : t("startFreeTrial.buttonText")}
+                ? t("startFreeTrialPage.creating")
+                : t("startFreeTrialPage.buttonText")}
             </Button>
           </CardFooter>
         </form>
@@ -271,13 +304,17 @@ export default function StartFreeTrialPage() {
       <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t("startFreeTrial.confirmationTitle")}</DialogTitle>
+            <DialogTitle>
+              {t("startFreeTrialPage.confirmationTitle")}
+            </DialogTitle>
             <DialogDescription>
-              {t(`startFreeTrial.confirmationDescription ${organizationId}`)}
+              {t(
+                `startFreeTrialPage.organizationCreatedDescription ${organizationId} ${trialEndDate}`
+              )}
             </DialogDescription>
           </DialogHeader>
           <Button onClick={handleConfirmationClose}>
-            {t("startFreeTrial.goToDashboard")}
+            {t("startFreeTrialPage.goToDashboard")}
           </Button>
         </DialogContent>
       </Dialog>

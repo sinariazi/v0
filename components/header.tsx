@@ -8,12 +8,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/lib/auth-context";
-import type { Language } from "@/lib/language-context";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage, type Language } from "@/lib/language-context";
 import { LogIn, LogOut, Menu, Moon, Sun, User, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import type React from "react";
 import { useEffect, useState } from "react";
 import SignInModal from "./SignInModal";
 
@@ -26,10 +26,15 @@ type NavLink = {
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const { user, loading, signOut } = useAuth();
   const router = useRouter();
   const { language, setLanguage, t } = useLanguage();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -83,7 +88,6 @@ export default function Header() {
         { href: "/", label: t("header.home") },
         { href: "/features", label: t("header.features") },
         { href: "/how-it-works", label: t("header.howItWorks") },
-        { href: "/blog", label: t("header.blog") },
         { href: "/about", label: t("header.about") },
         { href: "/contact", label: t("header.contact") },
         {
@@ -117,17 +121,19 @@ export default function Header() {
           <span className="text-2xl font-bold">Mood Whisper</span>
         </Link>
         <div className="flex items-center space-x-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
+          {mounted && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </Button>
+          )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">

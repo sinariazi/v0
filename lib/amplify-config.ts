@@ -1,22 +1,31 @@
-import { Amplify } from "aws-amplify";
 import { cognitoUserPoolsTokenProvider } from "@aws-amplify/auth/cognito";
-import { KeyValueStorageInterface } from "@aws-amplify/core";
+import type { KeyValueStorageInterface } from "@aws-amplify/core";
+import { Amplify } from "aws-amplify";
 
 // Create a wrapper for localStorage that conforms to KeyValueStorageInterface
 const localStorageWrapper: KeyValueStorageInterface = {
   setItem: (key: string, value: string): Promise<void> => {
-    localStorage.setItem(key, value);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(key, value);
+    }
     return Promise.resolve();
   },
   getItem: (key: string): Promise<string | null> => {
-    return Promise.resolve(localStorage.getItem(key));
+    if (typeof window !== "undefined") {
+      return Promise.resolve(localStorage.getItem(key));
+    }
+    return Promise.resolve(null);
   },
   removeItem: (key: string): Promise<void> => {
-    localStorage.removeItem(key);
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(key);
+    }
     return Promise.resolve();
   },
   clear: (): Promise<void> => {
-    localStorage.clear();
+    if (typeof window !== "undefined") {
+      localStorage.clear();
+    }
     return Promise.resolve();
   },
 };

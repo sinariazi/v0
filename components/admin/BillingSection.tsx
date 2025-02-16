@@ -52,7 +52,7 @@ export function BillingSection() {
       const data = await response.json();
       setEvents(data.events);
     } catch (err) {
-      setError(t("billing.errorLoadingEvents"));
+      setError(t("billing.errorLoadingEvents") + err);
     } finally {
       setLoading(false);
     }

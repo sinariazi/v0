@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-context";
 import { useLanguage } from "@/lib/language-context";
-import { Linkedin, Instagram } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Instagram, Linkedin } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   const { user } = useAuth();
@@ -36,12 +36,7 @@ export default function Footer() {
               </Link>
             </>
           )}
-          <Link
-            href="/blog"
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
-            {t("footer.blog")}
-          </Link>
+
           <Link
             href="/about"
             className="text-sm text-muted-foreground hover:text-foreground"

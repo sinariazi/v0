@@ -1,5 +1,5 @@
+import { Gender, UserRole } from "@/components/user-management/types";
 import prisma from "@/lib/prisma";
-import type { Gender, UserRole } from "@/types";
 import {
   AdminCreateUserCommand,
   AdminSetUserPasswordCommand,
@@ -38,7 +38,7 @@ export default async function handler(
       });
       res.status(200).json(users);
     } catch (error) {
-      res.status(500).json({ message: "Error fetching users" });
+      res.status(500).json({ message: "Error fetching users", error });
     }
   } else if (req.method === "POST") {
     try {

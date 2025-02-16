@@ -3,7 +3,7 @@
 // Inspired by react-hot-toast library
 import * as React from "react";
 
-import type { ToastProps } from "@/components/ui/toast";
+import type { ToastActionElement, ToastProps } from "@/components/ui/toast";
 
 const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;
@@ -12,9 +12,7 @@ type ToasterToast = ToastProps & {
   id: string;
   title?: React.ReactNode;
   description?: React.ReactNode;
-  // action?: ToastActionElement;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  action?: ToastActionElement;
 };
 
 const actionTypes = {
@@ -27,7 +25,7 @@ const actionTypes = {
 let count = 0;
 
 function genId() {
-  count = (count + 1) % Number.MAX_SAFE_INTEGER;
+  count = (count + 1) % Number.MAX_VALUE;
   return count.toString();
 }
 
@@ -139,7 +137,7 @@ function dispatch(action: Action) {
   });
 }
 
-type Toast = Omit<ToasterToast, "id" | "open" | "onOpenChange">;
+type Toast = Omit<ToasterToast, "id">;
 
 function toast({ ...props }: Toast) {
   const id = genId();
@@ -157,7 +155,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
-      onOpenChange: (open: boolean) => {
+      onOpenChange: (open) => {
         if (!open) dismiss();
       },
     },
