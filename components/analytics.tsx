@@ -31,25 +31,30 @@ export function Analytics() {
   );
 }
 
+type GtagArgs =
+  | [string, string, Record<string, unknown>]
+  | [string, Record<string, unknown>]
+  | [string, string, string, Record<string, unknown>];
+
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: (...args: GtagArgs) => void;
+    dataLayer: Array<Record<string, unknown>>;
   }
 }
 
 export const trackEvent = (
   eventName: string,
-  eventParams?: Record<string, any>
+  eventParams?: Record<string, unknown>
 ) => {
   if (hasCookieConsent() && typeof window !== "undefined") {
-    window.gtag("event", eventName, eventParams);
+    window.gtag("event", eventName, eventParams || {});
   }
 };
 
 export const trackPageView = (url: string) => {
   if (hasCookieConsent() && typeof window !== "undefined") {
-    window.gtag("config", process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
+    window.gtag("config", process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "", {
       page_path: url,
     });
   }
