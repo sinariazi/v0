@@ -26,6 +26,7 @@ const CookieConsent = () => {
   const handleAccept = () => {
     localStorage.setItem("cookieConsent", "true");
     setIsOpen(false);
+    window.location.reload(); // Reload the page to activate analytics
   };
 
   const handleReject = () => {

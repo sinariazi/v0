@@ -2,7 +2,11 @@ import { hasCookieConsent } from "@/lib/cookieConsent";
 import Script from "next/script";
 
 export function Analytics() {
-  if (!hasCookieConsent()) {
+  const isDebug =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).has("gadebug");
+
+  if (!hasCookieConsent() && !isDebug) {
     return null;
   }
 
@@ -22,7 +26,10 @@ export function Analytics() {
             gtag('js', new Date());
             gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
-              cookie_flags: 'SameSite=None;Secure'
+              cookie_flags: 'SameSite=None;Secure',
+              anonymize_ip: true,
+              allow_google_signals: false,
+              allow_ad_personalization_signals: false
             });
           `,
         }}
@@ -47,13 +54,13 @@ export const trackEvent = (
   eventName: string,
   eventParams?: Record<string, unknown>
 ) => {
-  if (hasCookieConsent() && typeof window !== "undefined") {
+  if (typeof window !== "undefined" && hasCookieConsent()) {
     window.gtag("event", eventName, eventParams || {});
   }
 };
 
 export const trackPageView = (url: string) => {
-  if (hasCookieConsent() && typeof window !== "undefined") {
+  if (typeof window !== "undefined" && hasCookieConsent()) {
     window.gtag("config", process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "", {
       page_path: url,
     });
